@@ -1,0 +1,50 @@
+{% extends "index.twig" %}
+
+{% set tag = url_param('tag', 'string') %}
+{% set tags = get_all_tags() %}
+
+{% block content %}
+    {{ parent() }}
+
+	{% if tag %}
+		<div class="col-lg-12">
+		<header class="mb-4">
+		<!-- Page title-->
+			<h1 class="fw-bolder mb-1">Resultados de la busqueda para etiqueta: &nbsp;{{ tag|e('html') }}</h1>
+		</header>
+		</div>
+	    {% for page in pages if page.title and tags and not (page.id ends with 'index') %}
+		{% if page.meta.tags is iterable %}
+		    {% set pageTags = page.meta.tags %}
+		{% else %}
+		    {% set pageTags = page.meta.tags|split(',') %}
+		{% endif %}
+		
+		{% for pageTag in pageTags %}
+		    {% if pageTag|trim == tag %}
+				<div class="card mb-4">
+					<a href="{{ page.url }}"><img class="card-img-top" src="https://picsum.photos/750/300/?blur&random={{ page.date }}" alt="Random Image from picsum" /></a>
+					<div class="card-body">
+						<div class="small text-muted">{{ page.date }}</div>
+						<h2 class="card-title h4">{{ page.title }}</h2>
+						<p class="card-text">{{ page.description }}</p>
+						<a class="btn btn-primary" href="{{ page.url }}">Leer más →</a>
+					</div>
+				</div>
+		    {% endif %}
+		{% endfor %}
+	   {% endfor %}
+     {% else %}
+	<div class="col-lg-12">
+	<header class="mb-4">
+	<!-- Page title-->
+	<h1 class="fw-bolder mb-1">Etiquetas disponibles:</h1>
+	</header>
+	</div>
+	    <ul>
+	    {% for tag in tags|sort %}
+		<li><a href="{{current_page.url}}/?tag={{ tag }}">{{ tag }}</a></li>
+	    {% endfor %}
+	    </ul>
+      {% endif %}
+{% endblock content %}

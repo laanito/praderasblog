@@ -1,0 +1,22 @@
+# 
+# Basic
+#
+site_title: Blog Praderas
+base_url: https://blog.praderas.org
+rewrite_url: true
+
+#
+# Themes
+#
+
+theme: bootstrap-blog
+
+
+# 
+# Pagination
+#
+
+pagination_limit: 10
+pagination_sub_page: true
+pagination_page_indicator: "blog"
+
