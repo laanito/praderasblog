@@ -77,12 +77,9 @@
 - URL routing is canonical on subdomain (`blog.praderas.org`), while root domain returns 404.
 
 ## Confirmed Technical/UX Issues
-- `themes/bootstrap-blog/blog.twig` appears corrupted/truncated near footer/scripts.
-  - Live HTML includes a broken tail with `<!DOCTYPE html>` injected at the end.
-  - The blog page search widget uses `id="button-search"` but lacks working JS wiring.
-  - Pagination variables are available from plugin but listing template does not render pager UI.
-- UI language is mixed (Spanish + English):
-  - Example: "Search", "Go!", "Side Widget" in blog listing.
+- (Resolved in tree for Phase 1) Historically, `blog.twig` was corrupted and showed broken HTML, inconsistent search `id`s, and no visible pager. **Current `blog.twig` + `sidebar.twig` / `search-behavior.twig` in this repo** address the listing, search, and pagination UI; verify again after deploy.
+- UI language is still mixed in some areas not touched in Phase 1 (e.g. footer text, search results cards):
+  - The blog listing sidebar and shared search are now in Spanish; remaining English strings are tracked in proposed-improvements (Priority 2).
 - `config/config.yml` points to `https://blog.praderas.org`; user-reported canonical site is `https://praderas.org` (domain strategy mismatch).
 - Some post metadata quality is inconsistent (date formatting styles vary across posts).
 
