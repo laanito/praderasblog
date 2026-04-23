@@ -39,18 +39,16 @@
 		</div>
     </div>
     <!-- Recent posts (replaces default "Side Widget" placeholder) -->
-    <div class="card mb-4">
+    <div class="card mb-4 sidebar-recent">
 		<div class="card-header">Artículos recientes</div>
-		<div class="card-body">
-		    <ul class="list-unstyled mb-0">
+		<div class="list-group list-group-flush">
 			{% for page in pages|sort_by("time")|reverse if page.id starts with "blog/" %}
 			{% if loop.index <= 5 %}
-			<li class="mb-3">
-			    <a href="{{ page.url }}">{{ page.title }}</a>
-			    <div class="small text-muted">{{ page.date }}</div>
-			</li>
+			<a class="list-group-item list-group-item-action sidebar-recent__link" href="{{ page.url }}">
+				<span class="d-block fw-semibold text-body sidebar-recent__title text-break">{{ page.title }}</span>
+				<span class="d-block small text-muted mt-1">{{ page.date }}</span>
+			</a>
 			{% endif %}
 			{% endfor %}
-		    </ul>
 		</div>
     </div>

@@ -10824,3 +10824,19 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+/* Praderas: sidebar "Artículos recientes" — list-group with clear hover/focus */
+.sidebar-recent .list-group-item.sidebar-recent__link {
+  border-left: 3px solid var(--bs-primary);
+  padding-left: 1rem;
+  transition: background-color 0.15s ease-in-out, border-left-color 0.15s ease-in-out;
+}
+.sidebar-recent .list-group-item.sidebar-recent__link:hover .sidebar-recent__title,
+.sidebar-recent .list-group-item.sidebar-recent__link:focus .sidebar-recent__title {
+  color: var(--bs-primary) !important;
+}
+.sidebar-recent .list-group-item.sidebar-recent__link:focus-visible {
+  box-shadow: inset 0 0 0 2px rgba(var(--bs-primary-rgb), 0.45);
+  outline: 0;
+  z-index: 1;
+}
