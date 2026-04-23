@@ -1,0 +1,16 @@
+	<script>
+	(function () {
+		var input = document.getElementById('search_input');
+		var btn = document.getElementById('search_submit');
+		if (!input || !btn) { return; }
+		function goSearch() {
+			var t = (input.value || '').trim();
+			if (!t) { return; }
+			location.href = '{{ "search"|link }}/' + encodeURIComponent(t);
+		}
+		btn.addEventListener('click', function (e) { e.preventDefault(); goSearch(); });
+		input.addEventListener('keydown', function (e) {
+			if (e.key === 'Enter') { e.preventDefault(); goSearch(); }
+		});
+	})();
+	</script>
