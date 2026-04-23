@@ -26,6 +26,9 @@
   - `blog.twig` listing cards
   - `post.twig` article page
   - `search.twig` and `tags.twig`
+  - `sidebar.twig` shared sidebar (Búsqueda, Categorías, Artículos recientes)
+  - `search-behavior.twig` shared search (click + Enter) script include
+  - `css/styles.css` includes scoped rules for the recent-posts list (class `sidebar-recent`)
 - `plugins/`
   - `10-Pagination.php`
   - `40-PicoSearch.php`
@@ -63,16 +66,14 @@
 ## Phase 1 theme work (2026-04, completed in repo)
 - `themes/bootstrap-blog/blog.twig` was rebuilt: malformed trailing HTML/JS is removed, pagination is visible, layout matches the rest of the site.
 - Shared `sidebar.twig` + `search-behavior.twig`: one search field (`#search_input`, `#search_submit`) wired for click and Enter, Spanish labels, **Artículos recientes** (5) replaces the default “Side Widget” placeholder, category tag links are URL-escaped in the partial.
+- **Human feedback (post-launch):** the first “recent posts” pass shipped as plain, unstyled links. Review said the block *worked* but looked unpolished. A follow-up (list group + `sidebar-recent` CSS) made it *better*; the maintainer is fine leaving it as-is for now (not a final art direction, just acceptable). Document this so the next pass does not assume the UI is “finished.”
 - `index.twig` and `post.twig` use the same sidebar and search behavior; `lang` on the main layout templates is set to `es` where we touched.
 - `config/config.yml` sets Spanish labels for the pagination plugin (`pagination_prev_text` / `pagination_next_text`) for any consumer of the plugin’s link strings; the blog template uses explicit Spanish labels for the pager UI.
 - If `gh` (GitHub CLI) is unavailable, open a pull request from the branch manually after `git push`.
 
 ## Live Site Findings (Current State)
 - Main nav currently includes: **Bienvenidos**, **Acerca de PicoCMS**, **Blog**.
-- Sidebar appears on most pages with:
-  - Search card
-  - Categories/tags card
-  - Placeholder "Side Widget" card (still default text)
+- Sidebar on most pages includes: search, category tags, and **Artículos recientes** (functional; visual polish was iterated after human feedback—usable, not a showcase).
 - Blog cards and tag results currently use random images from `picsum.photos`.
 - URL routing is canonical on subdomain (`blog.praderas.org`), while root domain returns 404.
 
@@ -84,6 +85,7 @@
 - Some post metadata quality is inconsistent (date formatting styles vary across posts).
 
 ## Agent Guardrails for Future Work
+- For **UI-only** changes (e.g. sidebar, typography), assume **human design review** may be needed: agents can meet functional acceptance while still under-delivering on “feel” until a second pass.
 - Keep this repo as a **content-first static-like CMS**; avoid introducing heavy backend complexity.
 - Prioritize:
   1. Fixing template integrity and navigation/search behavior.

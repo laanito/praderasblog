@@ -1,6 +1,6 @@
 ---
 Title: Reviviendo Praderas (Día 2) — Fase 1: arreglamos el listado, la búsqueda y la paginación (con un agente de IA)
-Description: Fase 1 del plan de mejoras: el listado del blog vuelve a ser HTML sano, el buscador se comporta igual en todas las plantillas, la paginación vuelve a mostrarse y el lateral deja de ser un cartel de “prueba”. Lo cuento con el tono de bitácora; el trabajo, en buena medida, lo hizo un agente de IA siguiendo el plan.
+Description: Fase 1: listado, búsqueda, paginación, bloque de artículos recientes, y un repaso con feedback humano sobre el estilo del lateral. Proceso apoyado en agentes de IA, revisión y despliegue a cargo de humanos.
 Date: 2026-04-23 10:00AM
 Template: post
 Author: Luis Amigo
@@ -28,6 +28,14 @@ Mientras tanto, en el lateral, el buscador del listado no compartía el mismo *w
 5. **Centralizamos** el lateral en un `sidebar.twig` reutilizable para el layout base, entradas y listado, para no volver a divergir en silencio.
 
 También dejamos anotado en `config/config.yml` el texto que el plugin de paginación puede usar por si en el futuro alguien consume sus cadenas directamente.
+
+## El bloque de “Artículos recientes” y el feedback de carne y hueso
+
+Esto merece un párrafo aparte, porque **aquí se notó** que un agente puede cerrar tareas técnicas y, aun así, **fallar de forma sutil en el detalle** que tú sientes con el cursor encima: la primera versión del bloque hacía bien su trabajo, pero con enlaces *tan* básicos que daban tristeza. No era un bug: era poca capa de presentación.
+
+Bajé feedback humano, un segundo PR afinó el markup (lista tipo “list group” y un poco de CSS aislado) para que tuviera jerarquía, hover y foco decente. Al día de hoy la valoración en casa es honesta: **está bastante mejor, no lo llamaríamos un diseño redondo, y asumimos vivir con ello** hasta que tengamos ganas de otra vuelta de mimo visual. A veces el plan es “*good enough* y seguir.”
+
+Eso queda anotado también en `.agents` para que un agente futuro no tome un “*mejor*” por “*hecho para siempre*”.
 
 ## El meta-hilo: por qué documentar el proceso
 
