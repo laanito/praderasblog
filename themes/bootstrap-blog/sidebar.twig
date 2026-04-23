@@ -1,0 +1,56 @@
+{% set tags = get_all_tags() %}
+{% set tag_styles = { 'Aplicaciones Moviles' : 'bg-warning', 
+			'Ciberseguridad' : 'bg-success',
+			'Desarrollo Web' : 'bg-primary', 
+			'Productividad' : 'bg-secondary', 
+			'Sistemas' : 'bg-info', 
+			'Sociedad' : 'bg-danger', 
+			'Economia' : 'bg-primary', 
+			'Inteligencia Artificial' : 'bg-dark', 
+			'Privacidad' : 'bg-success', 
+		} 
+%}
+
+    <!-- Search widget (ids shared with search-behavior.twig) -->
+    <div class="card mb-4">
+		<div class="card-header">Búsqueda</div>
+		<div class="card-body">
+		    <div class="input-group">
+			<input id="search_input" class="form-control" type="search" placeholder="Introduce términos de búsqueda…" aria-label="Términos de búsqueda" autocomplete="off" />
+			<button class="btn btn-primary" id="search_submit" type="button">Buscar</button>
+		    </div>
+		</div>
+    </div>
+    <!-- Categories widget -->
+    <div class="card mb-4">
+		<div class="card-header">Categorías</div>
+		<div class="card-body">
+		    <div class="row">
+		   {% for tag_group in tags|sort|batch(5) %}
+			<div class="col-sm-6">
+			    <ul class="list-unstyled mb-0">
+				{% for tag in tag_group %}
+					<li><a class="badge {{ attribute(tag_styles, tag) is defined ? ' ' ~ attribute(tag_styles, tag) : " bg-secondary" }} text-decoration-none link-light" href="{{ base_url }}/tags/?tag={{ tag|e('url') }}">{{ tag }}</a></li>
+				{% endfor %}
+			    </ul>
+			</div>
+		   {% endfor %}
+		    </div>
+		</div>
+    </div>
+    <!-- Recent posts (replaces default "Side Widget" placeholder) -->
+    <div class="card mb-4">
+		<div class="card-header">Artículos recientes</div>
+		<div class="card-body">
+		    <ul class="list-unstyled mb-0">
+			{% for page in pages|sort_by("time")|reverse if page.id starts with "blog/" %}
+			{% if loop.index <= 5 %}
+			<li class="mb-3">
+			    <a href="{{ page.url }}">{{ page.title }}</a>
+			    <div class="small text-muted">{{ page.date }}</div>
+			</li>
+			{% endif %}
+			{% endfor %}
+		    </ul>
+		</div>
+    </div>

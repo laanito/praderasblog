@@ -60,6 +60,13 @@
   - Serves `robots.txt` and `sitemap.xml`.
   - Live check confirms both endpoints exist on `blog.praderas.org`.
 
+## Phase 1 theme work (2026-04, completed in repo)
+- `themes/bootstrap-blog/blog.twig` was rebuilt: malformed trailing HTML/JS is removed, pagination is visible, layout matches the rest of the site.
+- Shared `sidebar.twig` + `search-behavior.twig`: one search field (`#search_input`, `#search_submit`) wired for click and Enter, Spanish labels, **Artículos recientes** (5) replaces the default “Side Widget” placeholder, category tag links are URL-escaped in the partial.
+- `index.twig` and `post.twig` use the same sidebar and search behavior; `lang` on the main layout templates is set to `es` where we touched.
+- `config/config.yml` sets Spanish labels for the pagination plugin (`pagination_prev_text` / `pagination_next_text`) for any consumer of the plugin’s link strings; the blog template uses explicit Spanish labels for the pager UI.
+- If `gh` (GitHub CLI) is unavailable, open a pull request from the branch manually after `git push`.
+
 ## Live Site Findings (Current State)
 - Main nav currently includes: **Bienvenidos**, **Acerca de PicoCMS**, **Blog**.
 - Sidebar appears on most pages with:

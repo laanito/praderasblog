@@ -1,19 +1,7 @@
-{% set tags = get_all_tags() %}
 {% set my_tag = url_param('tag', 'string') %}
-{% set tag_styles = { 'Aplicaciones Moviles' : 'bg-warning', 
-			'Ciberseguridad' : 'bg-success',
-			'Desarrollo Web' : 'bg-primary', 
-			'Productividad' : 'bg-secondary', 
-			'Sistemas' : 'bg-info', 
-			'Sociedad' : 'bg-danger', 
-			'Economia' : 'bg-primary', 
-			'Inteligencia Artificial' : 'bg-dark', 
-			'Privacidad' : 'bg-success', 
-		} 
-%}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -30,7 +18,7 @@
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
             <a href="{{ "index"|link }}" class="navbar-brand">{{ site_title }}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegación"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     {% for page in pages if page.title %}
@@ -44,58 +32,19 @@
             </div>
         </div>
    </nav>
-   <!-- Page Content-->
+   <!-- Page Content -->
    <div class="container mt-5">
            <div class="row">
 		<!-- Content Area -->
                <div class="col-lg-8">
 		{% block content %} {{ content }} {% endblock %}
                </div>
-		<!-- Side widgets-->
 		<div class="col-lg-4">
-		    <!-- Search widget-->
-		    <div class="card mb-4">
-			<div class="card-header">Búsqueda</div>
-			<div class="card-body">
-			    <div class="input-group">
-				<input id="search_input" class="form-control" type="text" placeholder="Introduce búsqueda..." aria-label="Introduce búsqueda..." aria-describedby="button-search" />
-				<button class="btn btn-primary" id="search_submit">Buscar</button>
-			    </div>
-			</div>
-		    </div>
-		    <!-- End of search widget -->
-		    <!-- Categories widget-->
-		    <div class="card mb-4">
-			<div class="card-header">Categorías</div>
-			<div class="card-body">
-			    <div class="row">
-			   {% for tag_group in tags|sort|batch(5) %}
-				<div class="col-sm-6">
-				    <ul class="list-unstyled mb-0">
-					{% for tag in tag_group %}
-					<li><a class="badge {{ attribute(tag_styles, tag) is defined ? ' ' ~ attribute(tag_styles, tag) : " bg-secondary" }} text-decoration-none link-light" href="{{ base_url }}/tags/?tag={{ tag }}">{{ tag }}</a></li>
-					{% endfor %} 
-				    </ul>
-				</div>
-			   {% endfor %}
-			    </div>
-			</div>
-		    </div>
-		    <!-- End of Categories -->
-		    <!-- Side widget-->
-		    <div class="card mb-4">
-			<div class="card-header">Side Widget</div>
-			<div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-		    </div>
-		    <!-- End of Side widget -->
+		{% include 'sidebar.twig' %}
 		</div>
-		<!-- End of Side Widgets -->
-	<!-- End of Content Area -->
-    </div>
-    <!-- End of row -->
+	</div>
   </div>
-<!-- End of Page Content -->
-   <!-- Footer-->
+   <!-- Footer -->
     <footer class="py-5 bg-dark">
         <div class="container">
             <div class="social">
@@ -104,23 +53,14 @@
                 {% endfor %}
             </div>
             <p class="m-0 text-center text-white">
-                Pico Blog Theme was made by <a href="http://katharinabrunner.de">Katharina Brunner</a>, 
+                Pico Blog Theme was made by <a href="http://katharinabrunner.de">Katharina Brunner</a>,
             <a href="http://picocms.org/">Pico</a> was made by <a href="http://gilbert.pellegrom.me">Gilbert Pellegrom</a>
             and is maintained by <a href="https://github.com/picocms/Pico/graphs/contributors">The Pico Community</a>.
             Released under the <a href="https://github.com/picocms/Pico/blob/master/LICENSE.md">MIT license</a>.
             </p> </div>
     </footer>
-        <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
         <script src="{{ theme_url }}/js/scripts.js"></script>
-	<script type="text/javascript">
-    	// Intercept form submit and go to the search results page directly, avoiding a redirect
-    	document.getElementById('search_submit').addEventListener('click', function (e) {
-        	var search_terms = document.getElementById('search_input').value;
-        	location.href = '{{ "search"|link }}/' + encodeURIComponent(search_terms);
-        e.preventDefault();
-    	});
-	</script>
+{% include 'search-behavior.twig' %}
 </body>
 </html>
