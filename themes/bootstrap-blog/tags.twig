@@ -3,6 +3,14 @@
 {% set tag = url_param('tag', 'string') %}
 {% set tags = get_all_tags() %}
 
+{% block breadcrumb %}
+{% if tag %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Categorías', 'url': "categorias"|link }, { 'label': tag } ] } only %}
+{% else %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Etiquetas' } ] } only %}
+{% endif %}
+{% endblock %}
+
 {% block content %}
     {{ parent() }}
 

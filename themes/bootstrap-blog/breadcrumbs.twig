@@ -1,0 +1,14 @@
+{# Expects `crumbs`: array of { label, url? }  Last item should omit url. #}
+<nav class="mb-3" aria-label="Migaja de pan">
+	<ol class="breadcrumb small mb-0 p-0 bg-transparent">
+	{% for c in crumbs %}
+		<li class="breadcrumb-item text-break{% if loop.last %} active text-dark{% endif %}" {% if loop.last %}aria-current="page"{% endif %}>
+		{% if c.url is defined and c.url %}
+		<a href="{{ c.url }}">{{ c.label }}</a>
+		{% else %}
+		{{ c.label }}
+		{% endif %}
+		</li>
+	{% endfor %}
+	</ol>
+</nav>

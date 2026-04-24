@@ -31,15 +31,7 @@
             <a href="{{ "index"|link }}" class="navbar-brand">{{ site_title }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegación"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    {% for page in pages if page.title %}
-                    {% if not (page.id starts with "blog/") and (page.id not in ["search","tags"]) %}
-                        <li class="nav-item{% if page.id == current_page.id %} active{% endif %}">
-                            <a class="nav-link" href="{{ page.url }}">{{ page.title }}</a>
-                        </li>
-                         {% endif %}
-                    {% endfor %}
-                </ul>
+                {% include 'nav.twig' %}
             </div>
         </div>
    </nav>
@@ -47,6 +39,20 @@
    <div class="container mt-5">
            <div class="row">
 		<div class="col-lg-8">
+		{% if current_page.id is defined and current_page.id starts with "blog/" %}
+			{% if meta.tags %}
+				{% if meta.tags is iterable %}
+					{% set t0 = meta.tags|first %}
+				{% else %}
+					{% set t0 = meta.tags|split(",")|first|trim %}
+				{% endif %}
+				{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Blog', 'url': "blog"|link }, { 'label': t0, 'url': base_url ~ '/tags/?tag=' ~ t0|e('url') }, { 'label': meta.title } ] } only %}
+			{% else %}
+				{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Blog', 'url': "blog"|link }, { 'label': meta.title } ] } only %}
+			{% endif %}
+		{% else %}
+			{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': meta.title } ] } only %}
+		{% endif %}
 		<article>
 			<header class="mb-4">
 			<h1 class="fw-bolder mb-1">{{ meta.title }}</h1>
@@ -60,9 +66,46 @@
 			{% endfor %}
 			</header>
                         <figure class="mb-4"><img class="img-fluid rounded" src="https://picsum.photos/900/400/?blur" alt="" /></figure>
-			<section class="mb-5">
+			<section class="mb-5 post-body">
                          {{ content }}
 			</section>
+		{% if current_page.id is defined and current_page.id starts with "blog/" %}
+		{% if related_posts is defined and related_posts|length > 0 %}
+			<aside class="entry-related border-top pt-4 mt-4" aria-label="Entradas relacionadas">
+				<h2 class="h5">Te puede interesar</h2>
+				<ul class="list-unstyled mb-0">
+				{% for rp in related_posts %}
+					<li class="mb-2 d-flex flex-column flex-sm-row flex-wrap gap-sm-2">
+						<a href="{{ rp.url }}" class="fw-semibold">{{ rp.title }}</a>
+						<span class="text-muted small">{{ rp.date }}</span>
+					</li>
+				{% endfor %}
+				</ul>
+			</aside>
+		{% endif %}
+		<nav class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-start gap-3 border-top pt-4 mt-4" aria-label="Entradas anteriores y posteriores">
+			<div class="flex-sm-fill me-sm-2">
+			{% if post_prev_in_time is defined and post_prev_in_time %}
+			<a href="{{ post_prev_in_time.url }}" class="d-block text-decoration-none" rel="prev">
+				<span class="text-muted text-uppercase small d-block">← Más antigua</span>
+				<span class="d-block text-body">{{ post_prev_in_time.title }}</span>
+			</a>
+			{% else %}
+			<span class="text-muted small">Inicio de la línea (cronológica)</span>
+			{% endif %}
+			</div>
+			<div class="flex-sm-fill text-sm-end ms-sm-2">
+			{% if post_next_in_time is defined and post_next_in_time %}
+			<a href="{{ post_next_in_time.url }}" class="d-block text-decoration-none" rel="next">
+				<span class="text-muted text-uppercase small d-block">Más reciente →</span>
+				<span class="d-block text-body">{{ post_next_in_time.title }}</span>
+			</a>
+			{% else %}
+			<span class="text-muted small d-block">Última (cronológica) por ahora</span>
+			{% endif %}
+			</div>
+		</nav>
+		{% endif %}
 		</article>
                 </div>
 		<div class="col-lg-4">

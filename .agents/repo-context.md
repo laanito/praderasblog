@@ -20,18 +20,23 @@
   - `blog.md` listing page (`Template: blog`)
   - `search.md` search page (`Template: search`)
   - `tags.md` tag page (`Template: tags`)
+  - `categorias.md` category index (`Template: categories`) — URL typically `/categorias`
   - `blog/*.md` post content
 - `themes/bootstrap-blog/`
   - `index.twig` base layout + sidebar + navbar
   - `blog.twig` listing cards
   - `post.twig` article page
   - `search.twig` and `tags.twig`
+  - `categories.twig` category index (cards + tag counts from plugin)
+  - `nav.twig` primary navigation (four items; **Categorías** highlights when on `tags` too)
+  - `breadcrumbs.twig` shared “migaja de pan”
   - `sidebar.twig` shared sidebar (Búsqueda, Categorías, Artículos recientes)
   - `search-behavior.twig` shared search (click + Enter) script include
   - `css/styles.css` includes scoped rules for the recent-posts list (class `sidebar-recent`)
 - `plugins/`
   - `10-Pagination.php`
   - `40-PicoSearch.php`
+  - `50-BlogNeighbors.php` — on `blog/*` posts: `post_prev_in_time`, `post_next_in_time` (chronological), `related_posts` (shared tags, max 5); on `categorias` page: `tag_post_counts` (map tag → int)
   - `PicoTags.php`
   - `PicoRobots/`
 
@@ -71,8 +76,14 @@
 - `config/config.yml` sets Spanish labels for the pagination plugin (`pagination_prev_text` / `pagination_next_text`) for any consumer of the plugin’s link strings; the blog template uses explicit Spanish labels for the pager UI.
 - If `gh` (GitHub CLI) is unavailable, open a pull request from the branch manually after `git push`.
 
+## Phase 2 (2026-04, completed in repo)
+- Primary **navbar** is fixed to four items (`nav.twig`), not “all top-level content pages” : Inicio, Blog, Categorías, Acerca.
+- **`/categorias`**: new markdown page + `categories.twig` lists each site tag (with short blurb, post count, link to `/tags/?tag=...`).
+- **Breadcrumbs** on `index` (Inicio on home), `blog`, `post` (chained through first tag when present), `search`, `tags`, and `categorias`.
+- **Article footer** (only `content/blog/*` with `post` template): *Te puede interesar* (tag overlap) + prev/next by **time** via `50-BlogNeighbors.php`.
+
 ## Live Site Findings (Current State)
-- Main nav currently includes: **Bienvenidos**, **Acerca de PicoCMS**, **Blog**.
+- Main nav: **Inicio** (Bienvenidos), **Blog**, **Categorías** (and primary highlight also when browsing `/tags`), **Acerca**.
 - Sidebar on most pages includes: search, category tags, and **Artículos recientes** (functional; visual polish was iterated after human feedback—usable, not a showcase).
 - Blog cards and tag results currently use random images from `picsum.photos`.
 - URL routing is canonical on subdomain (`blog.praderas.org`), while root domain returns 404.
@@ -100,6 +111,7 @@
 - Any agent making structural changes should test:
   - `/`
   - `/blog`
+  - `/categorias`
   - `/blog/<post>`
   - `/search/<term>`
   - `/tags` and `/tags/?tag=<tag>`
