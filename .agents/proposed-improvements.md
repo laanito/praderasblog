@@ -79,6 +79,8 @@
 - **Phase 2 (2-4 days):** Navigation refresh, categories page, related posts, breadcrumbs. **→ Done in repo (2026-04-24):** fixed primary nav (`nav.twig`: Inicio, Blog, Categorías, Acerca), new `content/categorias.md` + `categories.twig`, `breadcrumbs.twig` on core templates, `plugins/50-BlogNeighbors.php` for related + prev/next by time + tag counts; see post `content/blog/reviviendo-praderas-dia-3-fase-2-navegacion-categorias-crumbs-y-posts-relacionados.md` and `.agents/repo-context.md`.
 - **Phase 3 (2-3 days):** Metadata normalization pass and taxonomy cleanup across all posts.
 - **Phase 4 (2-3 days):** SEO polish, canonical redirects, social metadata, search relevance tuning.
+- **Phase 5 (medium, after 3–4 recommended):** Multilingual (e.g. ES + EN): split content layout, `lang` + `translation_key`, switcher, `hreflang`, sitemap. **Details:** `.agents/phase-5-6-plan.md` (Section Phase 5).
+- **Phase 6 (low–medium, after 1–4 / coord. with meta):** AI-ready JSON endpoints (`blog.json`, per-post JSON or `?format=json`), schema v1, caching, optional public “for agents” doc. **Details:** `.agents/phase-5-6-plan.md` (Section Phase 6).
 
 ## Success Metrics
 - **Navigation:** users reach a post from homepage in <=2 clicks.
