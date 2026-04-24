@@ -1,5 +1,9 @@
 {% extends "index.twig" %}
 
+{% block breadcrumb %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Búsqueda' } ] } only %}
+{% endblock %}
+
 {% block content %}
     {{ parent() }}
 

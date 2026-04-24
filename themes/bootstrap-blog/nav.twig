@@ -1,0 +1,18 @@
+{#
+  Primary navigation: Inicio, Blog, Categorías, Acerca (fixed order, excludes other content pages)
+#}
+{% set main_nav = [
+  [ 'index', 'Inicio' ],
+  [ 'blog', 'Blog' ],
+  [ 'categorias', 'Categorías' ],
+  [ 'acerca-de-picocms', 'Acerca' ],
+] %}
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                {% for nav in main_nav %}
+                {% for p in pages if p.id == nav[0] and p.title %}
+                <li class="nav-item{% if p.id == current_page.id or (nav[0] == 'categorias' and (current_page.id is defined) and (current_page.id == 'tags')) %} active{% endif %}">
+                    <a class="nav-link" href="{{ p.url }}">{{ nav[1] }}</a>
+                </li>
+                {% endfor %}
+                {% endfor %}
+                </ul>

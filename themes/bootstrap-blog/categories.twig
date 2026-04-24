@@ -1,0 +1,45 @@
+{% extends "index.twig" %}
+
+{% set tag_blurbs = {
+  'Aplicaciones Moviles': 'Desarrollo y buenas prácticas en móviles.',
+  'Ciberseguridad': 'Protección de datos y entornos conectados.',
+  'Crypto': 'Blockchain, activos y economía digital.',
+  'Desarrollo Web': 'Herramientas, APIs y arquitectura en la web.',
+  'Economia': 'Tendencias y análisis económico.',
+  'Inteligencia Artificial': 'IA aplicada, producto y debate social.',
+  'Privacidad': 'Control personal, redes y datos.',
+  'Productividad': 'Herramientas, flujos y teletrabajo.',
+  'Sistemas': 'Infra, software libre y administración.',
+  'Sociedad': 'Tecnología y contexto social.'
+} %}
+
+{% block breadcrumb %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Categorías' } ] } only %}
+{% endblock %}
+
+{% block content %}
+<header class="mb-4">
+	<h1 class="fw-bolder mb-2">{{ meta.title }}</h1>
+	{% if meta.description %}<p class="text-muted lead">{{ meta.description }}</p>{% endif %}
+</header>
+{{ content }}
+<div class="row g-3">
+{% for tag in get_all_tags()|sort %}
+	{% set cnt = (tag_post_counts is defined and attribute(tag_post_counts, tag) is not same as(null)) ? attribute(tag_post_counts, tag) : 0 %}
+	<div class="col-12 col-md-6 col-lg-4">
+		<div class="card h-100 border-0 shadow-sm">
+			<div class="card-body d-flex flex-column position-relative">
+				<h2 class="h5 card-title mb-1">{{ tag }}</h2>
+				<p class="text-muted small flex-grow-1 mb-1">
+					{{ attribute(tag_blurbs, tag)|default('Artículos bajo la etiqueta «' ~ tag ~ '».') }}
+					<br /><span class="d-inline-block mt-1"><strong>{{ cnt }}</strong> entrada{% if cnt != 1 %}s{% endif %}</span>
+				</p>
+				<span class="text-primary small">Ver entradas →</span>
+				<a class="stretched-link" href="{{ base_url }}/tags/?tag={{ tag|e('url') }}"><span class="visually-hidden">{{ tag }}: ver entradas</span></a>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+</div>
+<p class="small text-muted mt-3 mb-0">También puedes usar el listado alfabético en <a href="{{ 'tags'|link }}">etiquetas</a> o el <a href="{{ "search"|link }}">buscador</a> del lateral.</p>
+{% endblock %}
