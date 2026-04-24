@@ -14,9 +14,13 @@
 - **Rendering:** Twig templates in `themes/bootstrap-blog`.
 - **Extensions:** Custom plugins in `plugins/` for pagination, search, tags, robots/sitemap.
 
+## Agent docs (backlog & roadmaps)
+- `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
+- `phase-5-6-plan.md` — **future** work: multilingual (Phase 5) and JSON/AI-ready API (Phase 6); read before implementing either.
+
 ## Directory Map
 - `content/`
-  - `index.md` homepage ("Bienvenidos")
+  - `index.md` homepage ("Bienvenidos") — product copy; describes Pico, *Reviviendo Praderas*, navigation, and AI-as-tooling (not a single chat product)
   - `blog.md` listing page (`Template: blog`)
   - `search.md` search page (`Template: search`)
   - `tags.md` tag page (`Template: tags`)

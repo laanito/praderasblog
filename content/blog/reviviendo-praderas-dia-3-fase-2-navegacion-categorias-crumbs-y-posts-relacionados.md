@@ -37,3 +37,7 @@ Hoy tocamos estructura y comprensión, no aún toda la *Priority 2* (unidad de i
 El blog, otra vez, deja de ser un conjunto de ficheros y empieza a leerse como un **lugar** : sabes dónde estás, a qué tema pertenece lo que lees, y a qué otra cosa *probablemente* quieres ir.
 
 Mañana habrá cosas en las que pincelar y opinar, como siempre. Hoy, la Fase 2 ya hizo el trabajo sucio, con método y con bitácora.
+
+### Actualización (mismo día, pincel final)
+
+Aún el mismo día, retocamos la **página de inicio** (`content/index.md`): hacía falta quitar un relato antiguo centrado en *ChatGPT* como “socio digital” del lector, que ya no reflejaba el proyecto (hoy el foco es el **blog y el repositorio**, asistido cuando toca con **agentes y herramientas** tipo Cursor, con humano al mando). También dejamos anclados en **`.agents/phase-5-6-plan.md`** los borradores de **Fase 5 (multilingüe)** y **Fase 6 (JSON para agentes)** para no perder el hilo cuando toque abrir otro capítulo. No es glamour; es alinear discurso y pizarra.

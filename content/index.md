@@ -1,33 +1,31 @@
 ---
 Title: Bienvenidos
+Description: Blog Praderas: tecnología con rigor y calma. Artículos, guías y una bitácora sobre cómo estamos modernizando el sitio con herramientas modernas, incluidos agentes de asistencia a la programación.
 ---
-# Bienvenidos al Blog Praderas: Explorando la Tecnología de Forma Fácil y Divertida!
 
-¡Hola a todos los entusiastas de la tecnología y curiosos digitales! Te damos la más cálida bienvenida al emocionante mundo de Praderas, tu destino número uno para descubrir las maravillas de la tecnología de manera sencilla y entretenida. ¿Te sientes abrumado por los avances tecnológicos? ¡No te preocupes más! En Praderas, estamos aquí para desmitificar la tecnología y guiarte a través del laberinto digital con facilidad.
+# Bienvenidos al Blog Praderas
 
-## ¿Por qué Praderas?
+Bienvenida, bienvenido. **Praderas** es un espacio para **explorar tecnología** con rigor, pero sin ruido innecesario: desde cripto y ciberseguridad hasta productividad, inteligencia artificial, desarrollo y sistemas. Aquí intentamos explicar lo que importa, con contexto y en castellano.
 
-En un mundo donde la tecnología evoluciona a un ritmo vertiginoso, sabemos lo desafiante que puede ser mantenerse al día. Pero eso es exactamente por qué creamos Praderas. Aquí, rompemos las barreras técnicas y presentamos la tecnología de una manera accesible para todos, desde los novatos hasta los aficionados experimentados. No importa si eres un principiante completo o alguien que busca ampliar su conocimiento, ¡estás en el lugar correcto!
+## Qué es este sitio hoy (2026)
 
-## Exploración Simplificada de la Tecnología
+Este blog corre sobre **[Pico CMS](https://picocms.org/)**: ficheros en Markdown, plantillas ligeras, sin base de datos. Llevamos a cabo un **proceso consciente de mejora**: arreglo de plantillas, mejor navegación, categorías, búsqueda, migas de pan y sugerencias de lectura. Lo documentamos en la serie *Reviviendo Praderas* (entradas “Día 1, 2, 3…”) con transparencia sobre el trabajo y las decisiones.
 
-En Praderas, estamos decididos a hacer que la tecnología sea comprensible para todos. ¿Cómo lo logramos? A través de nuestro socio digital, **ChatGPT**, una herramienta avanzada de IA que se comunica de manera amigable y responde a tus preguntas en lenguaje humano simple. Desde explicaciones sobre los términos más complejos hasta guías paso a paso, ChatGPT está aquí para despejar tus dudas y hacerte sentir como un experto en tecnología.
+Ese trabajo **no** depende de un único asistente de chat integrado al sitio. Sí usamos, cuando encaja, **herramientas de asistencia** (en el ecosoma actual, cosas en la línea de **Cursor, agentes y buenos prompts**) para iterar en el repositorio: la idea es mezclar criterio humano, pruebas y un poco de automatización donde ahorra tiempo sin sustituir el criterio.
 
-## ¿Qué Puedes Esperar?
+## Cómo moverte
 
-- **Artículos Expertos para No Expertos:** Nuestro equipo de redactores expertos trabaja junto con ChatGPT para crear contenido que desglose los conceptos técnicos en términos fáciles de entender. Desde explicaciones sobre la nube hasta consejos de ciberseguridad, te guiaremos en cada paso del camino.
+- **Blog** — listado de todas las entradas, con paginación.
+- **Categorías** — mapa por temas (etiquetas) con enlaces a los listados filtrados.
+- **Búsqueda** (en el lateral) — búsqueda en contenidos.
+- **Acerca** — notas sobre el gestor y el enfoque del proyecto.
 
-- **Guias Prácticas:** ¿Quieres saber cómo elegir la mejor laptop para tus necesidades? ¿O cómo configurar una red WiFi en casa? Nuestras guías prácticas te llevarán de la mano a través de todo, desde la toma de decisiones hasta la implementación.
+## Qué puedes esperar
 
-- **Últimas Novedades Tecnológicas:** Mantente actualizado con las últimas noticias tecnológicas y descubre las innovaciones más emocionantes. En Praderas, te brindamos información fresca y relevante que te mantendrá en la vanguardia.
+- **Artículos y guías** sobre temas técnicos explicados con cuidado.
+- **Contenido** que envejece: si algo queda desfasado, lo asumimos y seguimos aprendiendo.
+- **Honestidad** sobre cómo se construye el sitio, incluido el uso (y los límites) de la IA en el flujo editorial y de código.
 
-- **Comunidad y Participación:** ¡Queremos escucharte! Participa en nuestras secciones de comentarios, haz preguntas y comparte tus propias experiencias. Praderas es un espacio para aprender juntos y crecer en la comunidad tecnológica.
+## Un último apunte
 
-## Únete a la Aventura Praderas
-
-Ya sea que estés buscando optimizar tu hogar inteligente, entender los fundamentos de la inteligencia artificial o simplemente mantenerte al día con las tendencias tecnológicas, Praderas es tu compañero confiable en este viaje digital. ¡No dejes que la tecnología te intimide! Únete a nosotros mientras exploramos el vasto universo tecnológico de manera vibrante y amigable.
-
-Prepárate para sumergirte en Praderas, donde la tecnología se convierte en un amigo y no en un enigma. ¡Estamos emocionados de tener tu compañía en esta emocionante travesía!
-
-No olvides suscribirte para recibir actualizaciones y consejos tecnológicos directamente en tu bandeja de entrada. ¡Juntos, descubriremos el universo digital de manera divertida y accesible!
-
+No prometemos boletines mágicos ni atajos. Sí un blog vivo, con mantenimiento real y ganas de seguir siendo **útil** y **legible**. Pásate por el [Blog](blog), elige una [categoría](categorias) o usa el buscador: tres clics, muchas lecturas.
