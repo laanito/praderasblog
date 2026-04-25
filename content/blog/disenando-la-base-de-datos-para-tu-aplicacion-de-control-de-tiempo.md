@@ -3,6 +3,7 @@ Title: Diseñando la Base de Datos para tu Aplicación de Control de Tiempo
 Description: En este artículo, exploraremos la estructura inicial de la base de datos para tu aplicación de control de tiempo
 Author: Luis Amigo
 Date: 2023-09-12 02:07PM
+Tags: Desarrollo Web, Sistemas
 Template: post
 ---
 

@@ -3,6 +3,7 @@ Title: Creación de Usuarios en tu Aplicación de Control de Tiempo con React
 Description: En este artículo, te guiaré a través de la creación de un componente de React para agregar nuevos usuarios a tu base de datos
 Author: Luis Amigo
 Date: 2023-09-25 02:00PM
+Tags: Desarrollo Web, Productividad
 Template: post
 ---
 

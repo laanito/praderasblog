@@ -3,6 +3,7 @@ Title: Creación de Tablas Restantes en la Base de Datos para tu Aplicación de 
 Description: En este artículo hablamos de Creación de Tablas Restantes en la Base de Datos para tu Aplicación de Control de Tiempo
 Author: Luis Amigo
 Date: 2023-09-14 03:47PM
+Tags: Desarrollo Web, Sistemas
 Template: post
 ---
 

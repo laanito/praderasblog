@@ -5,7 +5,7 @@
 - **Primary live URL:** `https://blog.praderas.org/` (not `https://praderas.org/`).
 - **Language:** Mostly Spanish content and labels, with some English leftovers in theme UI.
 - **Current active theme:** `bootstrap-blog` (configured in `config/config.yml`).
-- **Content size:** 51 posts in `content/blog`.
+- **Content size:** 55 posts in `content/blog` (including the Reviviendo Praderas day series).
 
 ## High-Level Architecture
 - **Core runtime:** `index.php` boots Pico and loads `config/`, `plugins/`, and `themes/`.
@@ -47,11 +47,11 @@
 ## Content Front Matter Conventions
 - Common fields used: `Title`, `Description`, `Date`, `Author`, `Template`, `Tags`.
 - Current coverage in `content/blog`:
-  - `Description`: 51/51
-  - `Date`: 51/51
-  - `Author`: 51/51
-  - `Template: post`: 51/51
-  - `Tags`: 38/51 (13 posts missing tags)
+  - `Description`: 55/55
+  - `Date`: 55/55
+  - `Author`: 55/55
+  - `Template: post`: 55/55
+  - `Tags`: 55/55 (normalized in Phase 3)
 - Existing tag taxonomy includes:
   - `Aplicaciones Moviles`, `Ciberseguridad`, `Crypto`, `Desarrollo Web`, `Economia`,
     `Inteligencia Artificial`, `Privacidad`, `Productividad`, `Sistemas`, `Sociedad`.
@@ -86,6 +86,12 @@
 - **Breadcrumbs** on `index` (Inicio on home), `blog`, `post` (chained through first tag when present), `search`, `tags`, and `categorias`.
 - **Article footer** (only `content/blog/*` with `post` template): *Te puede interesar* (tag overlap) + prev/next by **time** via `50-BlogNeighbors.php`.
 
+## Phase 3 (2026-04, completed in repo)
+- Front matter normalization pass across legacy posts: missing `Tags` filled, lowercase `tags` standardized to `Tags`, and one date outlier normalized.
+- Canonical taxonomy is now complete across all posts (`Tags` present everywhere).
+- Added `scripts/frontmatter_audit.py` (schema/date/taxonomy checks) for repeatable verification.
+- Added `.agents/post-template.md` as starter editorial template for new entries.
+
 ## Live Site Findings (Current State)
 - Main nav: **Inicio** (Bienvenidos), **Blog**, **Categorías** (and primary highlight also when browsing `/tags`), **Acerca**.
 - Sidebar on most pages includes: search, category tags, and **Artículos recientes** (functional; visual polish was iterated after human feedback—usable, not a showcase).
@@ -97,7 +103,7 @@
 - UI language is still mixed in some areas not touched in Phase 1 (e.g. footer text, search results cards):
   - The blog listing sidebar and shared search are now in Spanish; remaining English strings are tracked in proposed-improvements (Priority 2).
 - `config/config.yml` points to `https://blog.praderas.org`; user-reported canonical site is `https://praderas.org` (domain strategy mismatch).
-- Some post metadata quality is inconsistent (date formatting styles vary across posts).
+- Phase 3 fixed known metadata gaps in repo; re-run `python3 scripts/frontmatter_audit.py` after future content imports to prevent regressions.
 
 ## Agent Guardrails for Future Work
 - For **UI-only** changes (e.g. sidebar, typography), assume **human design review** may be needed: agents can meet functional acceptance while still under-delivering on “feel” until a second pass.

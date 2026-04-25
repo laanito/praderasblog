@@ -3,6 +3,7 @@ Title: Tendencias Tecnológicas Futuras: Navegando por el Horizonte de la Innova
 Description: En este artículo, exploraremos algunas de las tendencias tecnológicas más emocionantes que están en el horizonte, listas para revolucionar nuestro mundo en los próximos años
 Author: Luis Amigo
 Date: 2023-08-22 10:59AM
+Tags: Sociedad, Inteligencia Artificial, Sistemas
 Template: post
 ---
 

@@ -3,6 +3,7 @@ Title: Introducción a React: ES5, ES6 y su Ejecución
 Description: En este artículo hablamos de Introducción a React: ES5, ES6 y su Ejecución
 Author: Luis Amigo
 Date: 2023-09-11 11:15AM
+Tags: Desarrollo Web
 Template: post
 ---
 
