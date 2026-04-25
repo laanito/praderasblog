@@ -4,7 +4,7 @@ Description: En este artículo hablamos de Evolución de la Inteligencia Artific
 Author: Luis Amigo
 Date: 2023-12-26 08:19PM
 Template: post
-tags: Inteligencia Artificial
+Tags: Inteligencia Artificial
 ---
 
 ## **Introducción**

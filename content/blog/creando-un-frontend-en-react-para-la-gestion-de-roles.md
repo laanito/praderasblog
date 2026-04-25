@@ -3,6 +3,7 @@ Title: Creando un Frontend en React para la Gestión de Roles
 Description: En este artículo, te guiaré a través de los conceptos básicos de React y cómo configurar un proyecto React desde cero
 Author: Luis Amigo
 Date: 2023-09-19 12:27PM
+Tags: Desarrollo Web
 Template: post
 ---
 

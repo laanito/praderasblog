@@ -3,6 +3,7 @@ Title: Configuración de la Base de Datos para tu Aplicación de Control de Tiem
 Description: En este artículo, te guiaremos a través del proceso de creación de la estructura de la base de datos y la configuración de los usuarios y permisos necesarios
 Author: Luis Amigo
 Date: 2023-09-13 12:31PM
+Tags: Desarrollo Web, Sistemas
 Template: post
 ---
 

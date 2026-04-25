@@ -3,6 +3,7 @@ Title: Autenticación y Uso de Tokens JWT en PostgREST
 Description: En este artículo hablamos de Autenticación y Uso de Tokens JWT en PostgREST
 Author: Luis Amigo
 Date: 2023-09-10 08:05PM
+Tags: Desarrollo Web, Sistemas, Ciberseguridad
 Template: post
 ---
 
