@@ -33,6 +33,16 @@
   - Example path: `Inicio > Blog > Categoría > Artículo`.
   - Helps orientation, especially from search and tag landing pages.
 
+## Day 5 Consultant Priorities (Adopted, pre-Phase 5)
+- **Visual & Usability Refinement (High Priority)**
+  - Raise perceived quality from generic Bootstrap to calm/professional reading UX.
+  - Sequence: whitespace -> hierarchy -> cards/related -> typography -> tags -> sidebar -> footer -> micro-interactions.
+  - Heuristics: Nielsen (Aesthetic/Minimalist + Consistency); keep implementation lightweight.
+- **Series / Collections Support (Next, after visual baseline)**
+  - Add front matter fields: `series`, `series_slug`, `series_order`.
+  - Deliver in-post series navigation + series index pages (`/series/<slug>/`).
+- **Reference:** `.agents/day5-consultant-feedback.md`.
+
 ## Priority 2 - Usability and Content Readability
 - **Unify interface language**
   - Translate all UI labels to Spanish (or fully bilingual), avoiding mixed English strings.
@@ -78,7 +88,7 @@
 - **Phase 1 (1-2 days):** Fix `blog.twig`, unify search widget, add pagination UI, remove placeholder widget. **→ Done in repo (2026-04-23):** `blog.twig` rebuild, `sidebar.twig` + `search-behavior.twig`, Spanish pager labels, recent-posts block; see `.agents/repo-context.md` and post `content/blog/reviviendo-praderas-dia-2-fase-1-plantilla-listado-busqueda-y-paginacion.md`. **Styling follow-up (human feedback):** the recent-posts list was first too plain; a second change added Bootstrap `list-group` and scoped CSS (`sidebar-recent` in `styles.css`). *Better, not a final look—acceptable to ship* until a later UI pass.
 - **Phase 2 (2-4 days):** Navigation refresh, categories page, related posts, breadcrumbs. **→ Done in repo (2026-04-24):** fixed primary nav (`nav.twig`: Inicio, Blog, Categorías, Acerca), new `content/categorias.md` + `categories.twig`, `breadcrumbs.twig` on core templates, `plugins/50-BlogNeighbors.php` for related + prev/next by time + tag counts; see post `content/blog/reviviendo-praderas-dia-3-fase-2-navegacion-categorias-crumbs-y-posts-relacionados.md` and `.agents/repo-context.md`.
 - **Phase 3 (2-3 days):** Metadata normalization pass and taxonomy cleanup across all posts. **→ Done in repo (2026-04-25):** completed missing `Tags` across legacy posts, normalized key casing (`Tags`), normalized outlier date format, added `scripts/frontmatter_audit.py`, and documented `.agents/post-template.md`; see post `content/blog/reviviendo-praderas-dia-4-fase-3-metadatos-taxonomia-y-lint-de-front-matter.md`.
-- **Phase 4 (2-3 days):** SEO polish, canonical redirects, social metadata, search relevance tuning.
+- **Phase 4 (2-3 days):** SEO polish, canonical redirects, social metadata, search relevance tuning. **(Recommended sequencing update):** run Day 5 visual polish + series support before starting the heavier multilingual rollout (Phase 5).
 - **Phase 5 (medium, after 3–4 recommended):** Multilingual (e.g. ES + EN): split content layout, `lang` + `translation_key`, switcher, `hreflang`, sitemap. **Details:** `.agents/phase-5-6-plan.md` (Section Phase 5).
 - **Phase 6 (low–medium, after 1–4 / coord. with meta):** AI-ready JSON endpoints (`blog.json`, per-post JSON or `?format=json`), schema v1, caching, optional public “for agents” doc. **Details:** `.agents/phase-5-6-plan.md` (Section Phase 6).
 

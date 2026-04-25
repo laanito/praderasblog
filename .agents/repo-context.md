@@ -17,6 +17,7 @@
 ## Agent docs (backlog & roadmaps)
 - `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
 - `phase-5-6-plan.md` — **future** work: multilingual (Phase 5) and JSON/AI-ready API (Phase 6); read before implementing either.
+- `day5-consultant-feedback.md` — adopted Day-5 sequence: visual/usability polish first, then series/collections support.
 
 ## Directory Map
 - `content/`
@@ -91,6 +92,11 @@
 - Canonical taxonomy is now complete across all posts (`Tags` present everywhere).
 - Added `scripts/frontmatter_audit.py` (schema/date/taxonomy checks) for repeatable verification.
 - Added `.agents/post-template.md` as starter editorial template for new entries.
+
+## Day 5 planning note (adopted)
+- Before Phase 5 multilingual, prioritize visual/usability refinement to improve readability and perceived quality.
+- After visual baseline, implement series/collections support (`series`, `series_slug`, `series_order`) with in-post nav and series index pages.
+- See `.agents/day5-consultant-feedback.md` for concrete sequencing and constraints.
 
 ## Live Site Findings (Current State)
 - Main nav: **Inicio** (Bienvenidos), **Blog**, **Categorías** (and primary highlight also when browsing `/tags`), **Acerca**.
