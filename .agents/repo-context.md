@@ -5,7 +5,7 @@
 - **Primary live URL:** `https://blog.praderas.org/` (not `https://praderas.org/`).
 - **Language:** Mostly Spanish content and labels, with some English leftovers in theme UI.
 - **Current active theme:** `bootstrap-blog` (configured in `config/config.yml`).
-- **Content size:** 56 posts in `content/blog` (including the Reviviendo Praderas day series).
+- **Content size:** 56 posts in `content/blog` (including the *Reviviendo Praderas* day series through Día 5).
 
 ## High-Level Architecture
 - **Core runtime:** `index.php` boots Pico and loads `config/`, `plugins/`, and `themes/`.
@@ -17,7 +17,7 @@
 ## Agent docs (backlog & roadmaps)
 - `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
 - `phase-5-6-plan.md` — **future** work: multilingual (Phase 5) and JSON/AI-ready API (Phase 6); read before implementing either.
-- `day5-consultant-feedback.md` — adopted Day-5 sequence: visual/usability polish first, then series/collections support.
+- `day5-consultant-feedback.md` — Day 5 sequence: **visual/usability (shipped)** → **series/collections (next)**; includes second-review notes.
 
 ## Directory Map
 - `content/`
@@ -37,7 +37,7 @@
   - `breadcrumbs.twig` shared “migaja de pan”
   - `sidebar.twig` shared sidebar (Búsqueda, Categorías, Artículos recientes)
   - `search-behavior.twig` shared search (click + Enter) script include
-  - `css/styles.css` — base Bootstrap (bundle); `css/praderas-theme.css` — Day-5+ layer (design tokens, reading width, cards, nav/footer/sidebar polish)
+  - `css/styles.css` — base Bootstrap (bundle); `css/praderas-theme.css` — Day 5 visual layer (tokens, ~1.75 body line-height, related + listing card elevation/hover, pill tags, breadcrumbs/sidebar/footer, in-body link hover; mobile `1rem` / `sm+` `1.0625rem` for long-form)
   - `styles.css` also includes scoped rules for the recent-posts list (class `sidebar-recent`)
 - `plugins/`
   - `10-Pagination.php`
@@ -49,11 +49,11 @@
 ## Content Front Matter Conventions
 - Common fields used: `Title`, `Description`, `Date`, `Author`, `Template`, `Tags`.
 - Current coverage in `content/blog`:
-  - `Description`: 55/55
-  - `Date`: 55/55
-  - `Author`: 55/55
-  - `Template: post`: 55/55
-  - `Tags`: 55/55 (normalized in Phase 3)
+  - `Description`: 56/56
+  - `Date`: 56/56
+  - `Author`: 56/56
+  - `Template: post`: 56/56
+  - `Tags`: 56/56 (normalized in Phase 3)
 - Existing tag taxonomy includes:
   - `Aplicaciones Moviles`, `Ciberseguridad`, `Crypto`, `Desarrollo Web`, `Economia`,
     `Inteligencia Artificial`, `Privacidad`, `Productividad`, `Sistemas`, `Sociedad`.
@@ -94,14 +94,15 @@
 - Added `scripts/frontmatter_audit.py` (schema/date/taxonomy checks) for repeatable verification.
 - Added `.agents/post-template.md` as starter editorial template for new entries.
 
-## Day 5 planning note (adopted)
-- Before Phase 5 multilingual, prioritize visual/usability refinement to improve readability and perceived quality.
-- After visual baseline, implement series/collections support (`series`, `series_slug`, `series_order`) with in-post nav and series index pages.
-- See `.agents/day5-consultant-feedback.md` for concrete sequencing and constraints.
+## Day 5 (adopted; visual part shipped 2026-04-26)
+- **Visual / usability:** delivered via `praderas-theme.css` and template updates; Día 5 post + consultant follow-up merged in the same week. External review ~8,7/10 after first live deploy; a second small CSS/Twig pass closed the main nits.
+- **Next (same consultant plan):** series/collections — front matter `series` / `series_slug` / `series_order`, in-post series nav, index under `/series/...` (not implemented yet).
+- **Before Phase 5 multilingual:** finish or schedule **series** so navigation model is stable; then proceed per `.agents/phase-5-6-plan.md`.
+- Details: `.agents/day5-consultant-feedback.md`, backlog: `proposed-improvements.md` (Day 5 section).
 
 ## Live Site Findings (Current State)
 - Main nav: **Inicio** (Bienvenidos), **Blog**, **Categorías** (and primary highlight also when browsing `/tags`), **Acerca**.
-- Sidebar on most pages includes: search, category tags, and **Artículos recientes** (functional; visual polish was iterated after human feedback—usable, not a showcase).
+- Sidebar on most pages includes: search, category tags, and **Artículos recientes** (list-group + `sidebar-recent` styles; **Praderas** theme layer styles tags as pills with hover).
 - Blog cards and tag results currently use random images from `picsum.photos`.
 - URL routing is canonical on subdomain (`blog.praderas.org`), while root domain returns 404.
 
