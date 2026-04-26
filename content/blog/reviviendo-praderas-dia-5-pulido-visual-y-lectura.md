@@ -1,6 +1,6 @@
 ---
 Title: Reviviendo Praderas (Día 5) — Pulido visual: espacio, legibilidad y un tono de marca sin frameworks nuevos
-Description: Capa de diseño (tokens CSS, tipografía de lectura, tarjetas, barra lateral y pie) y una segunda iteración con feedback de consultor: sombras, «lift» en hover, pastillas y contraste de enlaces.
+Description: Capa de diseño, iteración con consultor, y datos de tiempo: ~26 min para el seguimiento (segundo PR) frente a un orden de magnitud humano (10–14 h) comentado por el consultor.
 Date: 2026-04-26 10:00AM
 Template: post
 Author: Luis Amigo
@@ -45,3 +45,16 @@ Afinamos un segundo paso en código:
 - **Token global** `--bs-link-hover-color` pasa a ese verde para coherencia con el hover en párrafos (donde aplica el tema).
 
 Esto cierra el «**un pasito más hacia un aspecto redondo**» que el consultor pedía sin reabrir el saco a frameworks pesados. Series y fases siguientes, cuando toque, sobre esta base.
+
+## Datos de tiempo, segundo PR y el «10–14 h» (transparencia)
+
+Nos importa dejar constancia, **con números**, de cómo se movió el trabajo en **abril de 2026** — no para fanfarronear, sino para que quien lea *Reviviendo Praderas* tenga **contexto** sobre asistentes de código, revisiones y flujo con Git.
+
+- Tras el **merge** del PR que llevaba el pulido Day 5 y el seguimiento a la primera lectura del consultor, el resto (última pasada al artículo, alineación con su feedback, **sincronización de notas** en `.agents` y cierre de la narrativa) fue un **segundo pull request** aparte. A partir de ahí, **cualquier cambio nuevo** (como añadir este bloque) vuelve a exigir **otro PR**: es la forma sana de mantener trazabilidad.
+- De punta a punta, el bloque de trabajo descrito en el párrafo anterior — humano + agente en el repo, con el consultor aportando criterio **por escrito** — rondó **veintiséis minutos** de reloj (orden de magnitud, no un laboratorio; medido de forma informal).
+
+El consultor, con el resultado encima, comentó que un **desarrollador senior** en solitario habría podido emplear del orden de **diez a catorce horas** en un entregable **equivalente** (misma clase de ajustes de interfaz, coherencia y documentación asociada).
+
+**¿De acuerdo?** A **grosso modo, sí, como orden de magnitud** — con matices. Ese rango es creíble si la persona hace de **diseño ligero**, prueba en varios viewports, itera, escribe notas y se detiene a leer el feedback; también podría ser **menor** si el criterio visual ya estaba cerrado de antemano, o **mayor** si hubiera habido rondas largas de marca, accesibilidad formal o research. Lo que no me parece discutible es el **multiplicador** cuando el repositorio ya va encarrilado: el asistente se lleva buena parte del **tecleo, el barro y la consistencia** en diffs, y el humano aporta **dirección, criterio y traca** (y el consultor, un ojo producto). No es “la IA en 26 minutos sustituye a un senior 12 horas” en abstracto: es “**con este alcance y este contexto**, el tiempo de calendario se comprime mucho”.
+
+Guardamos esto en el blog porque **sin datos** la conversación sobre IA en el flujo de trabajo se queda en anécdotas. Con **números aproximados y limitaciones explícitas**, al menos se puede discutir con un poco más de seriedad.
