@@ -30,7 +30,7 @@
 		
 		{% for pageTag in pageTags %}
 		    {% if pageTag|trim == tag %}
-				<div class="card mb-4">
+				<div class="pradera-post-card card mb-4">
 					<a href="{{ page.url }}"><img class="card-img-top" src="https://picsum.photos/750/300/?blur&random={{ page.date }}" alt="Random Image from picsum" /></a>
 					<div class="card-body">
 						<div class="small text-muted">{{ page.date }}</div>

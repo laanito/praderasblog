@@ -12,9 +12,10 @@
     {% endif %}
     <link rel="icon" type="image/x-icon" href="{{ theme_url }}/assets/favicon.ico" />
     <link rel="stylesheet" href="{{ theme_url }}/css/styles.css" />
+    <link rel="stylesheet" href="{{ theme_url }}/css/praderas-theme.css" />
 </head>
-<body>
-   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<body class="praderas-site">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark pradera-nav">
             <div class="container">
             <a href="{{ "index"|link }}" class="navbar-brand">{{ site_title }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegación"><span class="navbar-toggler-icon"></span></button>
@@ -26,9 +27,9 @@
    <!-- Page Content -->
    <div class="container mt-5">
            <div class="row">
-		<div class="col-lg-8">
+		<div class="col-lg-8 pradera-main">
 		{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Blog' } ] } only %}
-		<header class="mb-4">
+		<header class="pradera-list-header mb-4">
 			<h1 class="fw-bolder mb-1">{{ meta.title }}</h1>
 		</header>
 	   {% if paged_pages %}
@@ -36,7 +37,7 @@
 		<div class="row">
 			{% for page in page_pair %}
 			<div class="col-lg-6">
-			<div class="card mb-4">
+			<div class="pradera-post-card card mb-4">
 				<a href="{{ page.url }}"><img class="card-img-top" src="https://picsum.photos/750/300/?blur&random={{ page.date }}" alt="" /></a>
 				<div class="card-body">
 					<div class="small text-muted">{{ page.date }}</div>
@@ -51,7 +52,7 @@
 	  {% endfor %}
 	  {% endif %}
 	  {% if total_pages is defined and total_pages > 1 and page_number is defined %}
-	  <nav class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center gap-2 my-4" aria-label="Páginas del blog">
+	  <nav class="pradera-blog-pagination d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center gap-2 my-4" aria-label="Páginas del blog">
 		<div>
 		{% if prev_page_url is defined and prev_page_url %}
 		<a href="{{ prev_page_url }}" class="btn btn-outline-primary" id="prev_page_link">← Entradas anteriores</a>
@@ -76,19 +77,14 @@
 	</div>
 </div>
    <!-- Footer -->
-    <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-dark pradera-footer">
         <div class="container">
             <div class="social">
                 {% for social in meta.social %}
                     <a href="{{ social.url }}" title="{{ social.title }}"><span class="icon-{{ social.icon }}"></span></a>
                 {% endfor %}
             </div>
-            <p class="m-0 text-center text-white">
-                <a href="https://github.com/cutterkom/pico-blog-cms">Pico Blog Theme</a> was made by <a href="http://katharinabrunner.de">Katharina Brunner</a>,
-            <a href="http://picocms.org/">Pico</a> was made by <a href="http://gilbert.pellegrom.me">Gilbert Pellegrom</a>
-            and is maintained by <a href="https://github.com/picocms/Pico/graphs/contributors">The Pico Community</a>.
-            Released under the <a href="https://github.com/picocms/Pico/blob/master/LICENSE.md">MIT license</a>.
-            </p> </div>
+            <p class="m-0 text-center pradera-footer__credit">Basado en <a href="https://github.com/cutterkom/pico-blog-cms" rel="noopener">Pico Blog Theme</a> (K. Brunner). <a href="http://picocms.org/">Pico CMS</a> (G. Pellegrom) — mantenido por la <a href="https://github.com/picocms/Pico/graphs/contributors" rel="noopener">comunidad</a> — <a href="https://github.com/picocms/Pico/blob/master/LICENSE.md" rel="noopener">licencia MIT</a>.</p> </div>
     </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ theme_url }}/js/scripts.js"></script>

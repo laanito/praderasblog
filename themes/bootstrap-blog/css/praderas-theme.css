@@ -1,0 +1,461 @@
+/**
+ * Praderas — Day 5 visual layer (design tokens + reading polish).
+ * Load after styles.css. Does not replace Bootstrap; augments it.
+ */
+:root {
+  /* Surfaces (warm, calm) */
+  --pradera-paper: #fbf8f3;
+  --pradera-paper-2: #f3efe8;
+  --pradera-ink: #1c1917;
+  --pradera-ink-muted: #57534e;
+  --pradera-faint: #a8a29e;
+  --pradera-border: #e7e1d8;
+  --pradera-border-strong: #d6d0c4;
+  /* Accent: muted forest green */
+  --pradera-accent: #1f5f44;
+  --pradera-accent-hover: #164d36;
+  --pradera-accent-rgb: 31, 95, 68;
+  --pradera-nav: #1a2620;
+  --pradera-nav-rgb: 26, 38, 32;
+  /* Type */
+  --pradera-prose-lh: 1.75;
+  --pradera-heading-tight: 1.25;
+  /* Shape */
+  --pradera-radius: 0.5rem;
+  --pradera-radius-sm: 0.35rem;
+  --pradera-shadow: 0 0.12rem 0.35rem rgba(28, 25, 23, 0.06);
+  --pradera-shadow-hover: 0 0.2rem 0.65rem rgba(28, 25, 23, 0.1);
+  --pradera-transition: 0.2s ease;
+  /* Space scale */
+  --pradera-section-y: 1.5rem;
+}
+
+body.praderas-site {
+  /* Align Bootstrap 5 with brand accent */
+  --bs-primary: var(--pradera-accent);
+  --bs-primary-rgb: var(--pradera-accent-rgb);
+  --bs-link-color: var(--pradera-accent);
+  --bs-link-hover-color: var(--pradera-accent-hover);
+  background-color: var(--pradera-paper);
+  color: var(--pradera-ink);
+}
+
+/* Prose: homepage (narrow measure); listing pages stay full col width */
+body.praderas-site .pradera-prose {
+  line-height: var(--pradera-prose-lh);
+  color: var(--pradera-ink);
+  font-size: 1.0625rem;
+  max-width: 42rem;
+}
+
+/* Main column: tag/list pages with full-bleed cards are not .pradera-prose; no max-width */
+body.praderas-site .pradera-main--reading {
+  max-width: 42rem;
+}
+
+body.praderas-site .pradera-prose h1,
+body.praderas-site .pradera-prose h2,
+body.praderas-site .pradera-prose h3,
+body.praderas-site .pradera-article h1,
+body.praderas-site .pradera-article h2,
+body.praderas-site .pradera-article h3,
+body.praderas-site .post-body h1,
+body.praderas-site .post-body h2,
+body.praderas-site .post-body h3 {
+  line-height: var(--pradera-heading-tight);
+  color: var(--pradera-ink);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+body.praderas-site .pradera-prose h1:first-child,
+body.praderas-site .pradera-prose h2:first-child,
+body.praderas-site .pradera-article h1,
+body.praderas-site .post-body > h1:first-child,
+body.praderas-site .post-body > h2:first-child {
+  margin-top: 0;
+}
+
+body.praderas-site .pradera-prose a:not(.btn),
+body.praderas-site .pradera-prose li,
+body.praderas-site .post-body a:not(.btn) {
+  text-underline-offset: 0.15em;
+  transition: color var(--pradera-transition);
+}
+
+/* Article body */
+body.praderas-site .post-body {
+  line-height: var(--pradera-prose-lh);
+  font-size: 1.0625rem;
+  color: var(--pradera-ink);
+}
+
+body.praderas-site .post-body p {
+  margin-bottom: 1.15em;
+}
+
+body.praderas-site .post-body h2,
+body.praderas-site .post-body h3 {
+  scroll-margin-top: 5rem;
+}
+
+body.praderas-site .post-body blockquote {
+  border-left: 4px solid var(--pradera-border-strong);
+  padding: 0.5rem 0 0.5rem 1rem;
+  margin: 1.5rem 0;
+  color: var(--pradera-ink-muted);
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 0 var(--pradera-radius-sm) var(--pradera-radius-sm) 0;
+}
+
+body.praderas-site .post-body pre {
+  background: #f4f0e8;
+  border: 1px solid var(--pradera-border);
+  border-radius: var(--pradera-radius-sm);
+  padding: 0.9rem 1rem;
+  font-size: 0.9em;
+  overflow-x: auto;
+}
+
+body.praderas-site .post-body :not(pre) > code,
+body.praderas-site .pradera-prose :not(pre) > code {
+  background: rgba(31, 95, 68, 0.1);
+  padding: 0.1em 0.35em;
+  border-radius: 0.2em;
+  font-size: 0.92em;
+}
+
+body.praderas-site .post-body img,
+body.praderas-site .pradera-prose img {
+  border-radius: var(--pradera-radius-sm);
+}
+
+/* Post header: title + meta + tags */
+body.praderas-site .pradera-post-header h1 {
+  color: var(--pradera-ink);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+body.praderas-site .pradera-post-header .pradera-post-meta {
+  color: var(--pradera-ink-muted) !important;
+  font-size: 0.95rem;
+}
+
+body.praderas-site .pradera-post-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+  margin-top: 0.75rem;
+}
+
+body.praderas-site .pradera-post-tags .badge,
+body.praderas-site .pradera-post-tags a.badge {
+  font-weight: 500;
+  padding: 0.4em 0.65em;
+  border-radius: 9999px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+  transition: transform var(--pradera-transition), box-shadow var(--pradera-transition);
+}
+
+body.praderas-site .pradera-post-tags a.badge:hover,
+body.praderas-site .pradera-post-tags a.badge:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+body.praderas-site .pradera-post-tags a.badge:focus-visible {
+  outline: 2px solid var(--pradera-accent);
+  outline-offset: 2px;
+}
+
+/* Listing cards: blog, tags, search */
+body.praderas-site .pradera-post-card {
+  border: 1px solid var(--pradera-border);
+  border-radius: var(--pradera-radius);
+  box-shadow: var(--pradera-shadow);
+  overflow: hidden;
+  transition: box-shadow var(--pradera-transition), transform var(--pradera-transition), border-color var(--pradera-transition);
+  background: #fff;
+}
+
+body.praderas-site .pradera-post-card:hover {
+  box-shadow: var(--pradera-shadow-hover);
+  border-color: var(--pradera-border-strong);
+}
+
+body.praderas-site .pradera-post-card .card-img-top {
+  transition: opacity var(--pradera-transition);
+}
+
+body.praderas-site .pradera-post-card:hover .card-img-top {
+  opacity: 0.95;
+}
+
+body.praderas-site .pradera-post-card .card-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+body.praderas-site .pradera-post-card .card-title a:hover,
+body.praderas-site .pradera-post-card .card-title a:focus {
+  color: var(--pradera-accent);
+}
+
+/* Related posts */
+body.praderas-site .pradera-related {
+  border-top: 1px solid var(--pradera-border) !important;
+  padding-top: 1.75rem !important;
+  margin-top: 2.25rem !important;
+}
+
+body.praderas-site .pradera-related__title {
+  color: var(--pradera-ink);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+body.praderas-site .pradera-related__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+body.praderas-site .pradera-related__link {
+  display: block;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--pradera-border);
+  border-radius: var(--pradera-radius);
+  background: #fff;
+  text-decoration: none;
+  color: var(--pradera-ink);
+  box-shadow: var(--pradera-shadow);
+  transition: background var(--pradera-transition), border-color var(--pradera-transition), box-shadow var(--pradera-transition);
+}
+
+body.praderas-site .pradera-related__link:hover {
+  background: #fff;
+  border-color: var(--pradera-border-strong);
+  box-shadow: var(--pradera-shadow-hover);
+}
+
+body.praderas-site .pradera-related__link:focus-visible {
+  outline: 2px solid var(--pradera-accent);
+  outline-offset: 2px;
+}
+
+body.praderas-site .pradera-related__link-title {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+body.praderas-site .pradera-related__date {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--pradera-ink-muted) !important;
+}
+
+/* Chrono nav */
+body.praderas-site .pradera-post-nav {
+  border-top: 1px solid var(--pradera-border) !important;
+  padding-top: 1.75rem !important;
+  margin-top: 2.25rem !important;
+  gap: 0.75rem 1.5rem !important;
+}
+
+body.praderas-site .pradera-post-nav a.text-decoration-none {
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--pradera-radius-sm);
+  border: 1px solid transparent;
+  margin: -0.65rem -0.85rem;
+  transition: background var(--pradera-transition), border-color var(--pradera-transition);
+}
+
+body.praderas-site .pradera-post-nav a.text-decoration-none:hover,
+body.praderas-site .pradera-post-nav a.text-decoration-none:focus {
+  background: rgba(31, 95, 68, 0.06);
+  border-color: var(--pradera-border);
+}
+
+body.praderas-site .pradera-post-nav a.text-decoration-none:focus-visible {
+  outline: 2px solid var(--pradera-accent);
+  outline-offset: 2px;
+}
+
+/* Navbar: brand tone */
+body.praderas-site .pradera-nav.navbar {
+  background-color: var(--pradera-nav) !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+body.praderas-site .pradera-nav .navbar-nav .nav-link {
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--pradera-radius-sm);
+  transition: background var(--pradera-transition);
+}
+
+body.praderas-site .pradera-nav .navbar-nav .nav-link:hover,
+body.praderas-site .pradera-nav .navbar-nav .nav-link:focus {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.praderas-site .pradera-nav .navbar-nav .nav-link:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.5);
+  outline-offset: 2px;
+}
+
+/* Breadcrumbs */
+body.praderas-site .pradera-breadcrumb {
+  border-bottom: 1px solid var(--pradera-border);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.25rem !important;
+}
+
+body.praderas-site .pradera-breadcrumb a {
+  color: var(--pradera-ink-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color var(--pradera-transition), border-color var(--pradera-transition);
+}
+
+body.praderas-site .pradera-breadcrumb a:hover {
+  color: var(--pradera-accent);
+  border-color: var(--pradera-accent);
+}
+
+/* Sidebar */
+body.praderas-site .pradera-sidebar {
+  position: relative;
+}
+
+body.praderas-site .pradera-sidebar .pradera-widget,
+body.praderas-site .pradera-sidebar .card {
+  border: 1px solid var(--pradera-border);
+  border-radius: var(--pradera-radius);
+  box-shadow: var(--pradera-shadow);
+  background: #fff;
+  overflow: hidden;
+}
+
+body.praderas-site .pradera-sidebar .pradera-widget .card-header,
+body.praderas-site .pradera-sidebar .card .card-header {
+  background: var(--pradera-paper-2) !important;
+  border-bottom: 1px solid var(--pradera-border) !important;
+  font-weight: 600;
+  color: var(--pradera-ink);
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+body.praderas-site .pradera-sidebar .pradera-widget .card-body,
+body.praderas-site .pradera-sidebar .card .card-body {
+  padding: 1rem;
+}
+
+/* Sidebar tag badges: list rows */
+body.praderas-site .pradera-sidebar a.badge {
+  border-radius: 9999px;
+  font-weight: 500;
+  margin: 0.1rem 0;
+  display: inline-block;
+}
+
+/* Footer */
+body.praderas-site .pradera-footer {
+  margin-top: 0;
+  background-color: var(--pradera-nav) !important;
+  padding: 2.5rem 0 3rem !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+body.praderas-site .pradera-footer a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  transition: color var(--pradera-transition);
+}
+
+body.praderas-site .pradera-footer a:hover,
+body.praderas-site .pradera-footer a:focus {
+  color: #fff;
+}
+
+body.praderas-site .pradera-footer .pradera-footer__credit,
+body.praderas-site .pradera-footer p,
+body.praderas-site .pradera-footer .m-0 {
+  color: rgba(255, 255, 255, 0.72) !important;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Primary buttons: slight polish */
+body.praderas-site .btn-primary {
+  --bs-btn-bg: var(--pradera-accent);
+  --bs-btn-border-color: var(--pradera-accent);
+  --bs-btn-hover-bg: var(--pradera-accent-hover);
+  --bs-btn-hover-border-color: var(--pradera-accent-hover);
+  font-weight: 500;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: transform var(--pradera-transition), box-shadow var(--pradera-transition);
+}
+
+body.praderas-site .btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+body.praderas-site .btn-primary:focus-visible,
+body.praderas-site .btn-outline-primary:focus-visible {
+  box-shadow: 0 0 0 0.2rem rgba(var(--pradera-accent-rgb), 0.35);
+}
+
+/* Pagination (blog) */
+body.praderas-site .pradera-blog-pagination p.small {
+  color: var(--pradera-ink-muted) !important;
+}
+
+/* Categories grid cards: align with pradera-post-card feel */
+body.praderas-site .pradera-categories-grid .card {
+  border: 1px solid var(--pradera-border) !important;
+  border-radius: var(--pradera-radius) !important;
+  box-shadow: var(--pradera-shadow) !important;
+  transition: box-shadow var(--pradera-transition), border-color var(--pradera-transition);
+}
+
+body.praderas-site .pradera-categories-grid .card:hover {
+  box-shadow: var(--pradera-shadow-hover) !important;
+}
+
+/* Social icons in footer */
+body.praderas-site .pradera-footer .social a {
+  display: inline-flex;
+  padding: 0.35rem;
+  margin: 0 0.2rem 1rem 0.2rem;
+  border-radius: 50%;
+  line-height: 0;
+  transition: background var(--pradera-transition);
+}
+
+body.praderas-site .pradera-footer .social a:hover,
+body.praderas-site .pradera-footer .social a:focus {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Container: top margin breathing room for main content */
+body.praderas-site > .container.mt-5 {
+  margin-top: 1.75rem !important;
+  padding-bottom: 2.5rem;
+}
+
+@media (min-width: 992px) {
+  body.praderas-site > .container.mt-5 {
+    margin-top: 2.25rem !important;
+  }
+}

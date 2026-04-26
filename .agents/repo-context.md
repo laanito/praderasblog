@@ -5,7 +5,7 @@
 - **Primary live URL:** `https://blog.praderas.org/` (not `https://praderas.org/`).
 - **Language:** Mostly Spanish content and labels, with some English leftovers in theme UI.
 - **Current active theme:** `bootstrap-blog` (configured in `config/config.yml`).
-- **Content size:** 55 posts in `content/blog` (including the Reviviendo Praderas day series).
+- **Content size:** 56 posts in `content/blog` (including the Reviviendo Praderas day series).
 
 ## High-Level Architecture
 - **Core runtime:** `index.php` boots Pico and loads `config/`, `plugins/`, and `themes/`.
@@ -37,7 +37,8 @@
   - `breadcrumbs.twig` shared “migaja de pan”
   - `sidebar.twig` shared sidebar (Búsqueda, Categorías, Artículos recientes)
   - `search-behavior.twig` shared search (click + Enter) script include
-  - `css/styles.css` includes scoped rules for the recent-posts list (class `sidebar-recent`)
+  - `css/styles.css` — base Bootstrap (bundle); `css/praderas-theme.css` — Day-5+ layer (design tokens, reading width, cards, nav/footer/sidebar polish)
+  - `styles.css` also includes scoped rules for the recent-posts list (class `sidebar-recent`)
 - `plugins/`
   - `10-Pagination.php`
   - `40-PicoSearch.php`

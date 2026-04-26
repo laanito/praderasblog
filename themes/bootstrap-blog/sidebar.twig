@@ -11,8 +11,9 @@
 		} 
 %}
 
+<aside class="pradera-sidebar" role="complementary" aria-label="Contenido lateral">
     <!-- Search widget (ids shared with search-behavior.twig) -->
-    <div class="card mb-4">
+    <div class="pradera-widget card mb-4">
 		<div class="card-header">Búsqueda</div>
 		<div class="card-body">
 		    <div class="input-group">
@@ -22,7 +23,7 @@
 		</div>
     </div>
     <!-- Categories widget -->
-    <div class="card mb-4">
+    <div class="pradera-widget card mb-4">
 		<div class="card-header">Categorías</div>
 		<div class="card-body">
 		    <div class="row">
@@ -39,7 +40,7 @@
 		</div>
     </div>
     <!-- Recent posts (replaces default "Side Widget" placeholder) -->
-    <div class="card mb-4 sidebar-recent">
+    <div class="pradera-widget card mb-4 sidebar-recent">
 		<div class="card-header">Artículos recientes</div>
 		<div class="list-group list-group-flush">
 			{% for page in pages|sort_by("time")|reverse if page.id starts with "blog/" %}
@@ -52,3 +53,4 @@
 			{% endfor %}
 		</div>
     </div>
+</aside>
