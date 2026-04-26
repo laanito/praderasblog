@@ -31,7 +31,7 @@
 			<div class="col-sm-6">
 			    <ul class="list-unstyled mb-0">
 				{% for tag in tag_group %}
-					<li><a class="badge {{ attribute(tag_styles, tag) is defined ? ' ' ~ attribute(tag_styles, tag) : " bg-secondary" }} text-decoration-none link-light" href="{{ base_url }}/tags/?tag={{ tag|e('url') }}">{{ tag }}</a></li>
+					<li><a class="pradera-pill-tag badge rounded-pill{{ attribute(tag_styles, tag) is defined ? ' ' ~ attribute(tag_styles, tag) : ' bg-secondary' }} text-decoration-none link-light" href="{{ base_url }}/tags/?tag={{ tag|e('url') }}">{{ tag }}</a></li>
 				{% endfor %}
 			    </ul>
 			</div>

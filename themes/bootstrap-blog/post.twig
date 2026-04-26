@@ -59,13 +59,13 @@
 			<h1 class="fw-bolder mb-1">{{ meta.title }}</h1>
 			<div class="pradera-post-meta text-muted fst-italic mb-0">
 				{% if meta.date_formatted %}
-				Publicado el {{ meta.date_formatted }}
+				{{ 'Publicado el ' ~ meta.date_formatted }}
 				{% endif %}
 			</div>
 			{% if meta.tags %}
 			<div class="pradera-post-tags" role="list">
 			{% for tag in meta.tags %}
-				<a class="badge {{ attribute(tag_styles, tag) is defined ? ' ' ~ attribute(tag_styles, tag) : " bg-secondary" }} text-decoration-none link-light" role="listitem" href="{{ base_url }}/tags/?tag={{ tag|e('url') }}">{{ tag }}</a>
+				<a class="pradera-pill-tag badge rounded-pill{{ attribute(tag_styles, tag) is defined ? ' ' ~ attribute(tag_styles, tag) : ' bg-secondary' }} text-decoration-none link-light" role="listitem" href="{{ base_url }}/tags/?tag={{ tag|e('url') }}">{{ tag }}</a>
 			{% endfor %}
 			</div>
 			{% endif %}

@@ -1,8 +1,10 @@
 # Day 5 Consultant Feedback (Adopted)
 
-**Date:** 2026-04-25  
+**Date (original):** 2026-04-25  
 **Source:** External consultant review after Day 4  
-**Decision:** Adopted as backlog guidance (not yet implemented)
+**Decision:** Adopted as backlog guidance
+
+**Implementation status (2026-04-26):** **Task A (visual & usability)** is **implemented** in the theme (`praderas-theme.css` + template classes). An external **second pass** on the live site (~**8,7/10**) led to a small follow-up (card/related depth, pill tags, date spacing, link contrast, mobile type). **Task B (series/collections)** remains **planned** — next after the visual baseline.
 
 ## Summary
 
@@ -51,7 +53,13 @@ Expected UX:
 - Series index pages (`/series/<slug>/`)
 - Integrated with the same visual language from task A
 
+## Second review (post-ship, 2026-04-26)
+
+- Live check: homepage, `/blog`, Día 5 post. Verdict: solid improvement; “generic Bootstrap” discomfort largely gone.
+- Follow-up tweaks: related-post and listing cards (shadow + hover lift), tag pills + stronger hover, fix `Publicado el` + date spacing, darker body-link hover, mobile base font size.
+- Documented in `content/blog/reviviendo-praderas-dia-5-pulido-visual-y-lectura.md` (section *Actualización: revisión del consultor*).
+
 ## Notes for future agents
 
 - Treat this as **approved direction**, but still validate details with human review.
-- Ship A before B unless explicitly overridden by product priority.
+- **A is done;** next default is **B (series)** unless product priority overrides.
