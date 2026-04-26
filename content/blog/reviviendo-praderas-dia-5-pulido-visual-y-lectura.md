@@ -1,6 +1,6 @@
 ---
 Title: Reviviendo Praderas (Día 5) — Pulido visual: espacio, legibilidad y un tono de marca sin frameworks nuevos
-Description: Capa de diseño (tokens CSS, tipografía de lectura, tarjetas, barra lateral y pie) para salir de la sensación "Bootstrap de serie" y acercar el sitio a una bitácora tranquila.
+Description: Capa de diseño (tokens CSS, tipografía de lectura, tarjetas, barra lateral y pie) y una segunda iteración con feedback de consultor: sombras, «lift» en hover, pastillas y contraste de enlaces.
 Date: 2026-04-26 10:00AM
 Template: post
 Author: Luis Amigo
@@ -30,3 +30,18 @@ La parte “bonita” se puede menospreciar; en un blog, **leer cinco minutos** 
 - Más afinado fino: tipografía web opcional, modo oscuro si algún día lo pide alguien de verdad.
 
 Hasta el siguiente día, en el repositorio.
+
+## Actualización: revisión del consultor (puntuación **8,7/10**)
+
+Tras publicar, el consultor revisó el sitio en producción (inicio, listado de blog, entrada Día 5) y resumió el veredicto: **sólida mejora** — de «Bootstrap genérico» a **limpio, calmado y más agradable de leer**; la sensación incómoda, en buena medida, **desaparecida**.
+
+Afinamos un segundo paso en código:
+
+- **«Te puede interesar» y tarjetas de listado:** sombra algo más rica, hover con **ligero lift** (translate + escala) para dejar de sentirse plano.
+- **Etiquetas:** clases `rounded-pill` + `pradera-pill-tag`, sombra e hover con **más empuje** (escala, sombra, brillo suave) en el post y en el lateral.
+- **Fecha:** la línea a veces salía `Publicado el` pegada a la fecha; lo fijamos con concatenación en Twig: siempre un espacio entre `el` y `{{ meta.date_formatted }}`.
+- **Enlaces en el cuerpo del texto:** hover a un **verde más oscuro** (`#145233`) y subrayado alineado para más contraste.
+- **Móvil:** cuerpo de artículo y *homepage* en `1rem` de base; a partir de **576px** se sube a `1.0625rem` para quien tenga más anchura.
+- **Token global** `--bs-link-hover-color` pasa a ese verde para coherencia con el hover en párrafos (donde aplica el tema).
+
+Esto cierra el «**un pasito más hacia un aspecto redondo**» que el consultor pedía sin reabrir el saco a frameworks pesados. Series y fases siguientes, cuando toque, sobre esta base.
