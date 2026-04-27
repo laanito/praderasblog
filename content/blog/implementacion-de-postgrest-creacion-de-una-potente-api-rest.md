@@ -5,6 +5,9 @@ Author: Luis Amigo
 Date: 2023-09-07 10:41AM
 Template: post
 Tags: Desarrollo Web, Sistemas
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 2
 ---
 
 En nuestra serie de desarrollo de arquitecturas desacopladas, llegamos a un paso crucial: la implementación de una API REST que nos permitirá interactuar con nuestra base de datos PostgreSQL de manera eficiente. En este artículo, exploraremos qué es una API REST, cuáles son sus ventajas y cómo podemos lograr esto utilizando PostgREST.

@@ -239,37 +239,29 @@ body.praderas-site .pradera-post-card .card-title a:focus {
   color: var(--pradera-accent);
 }
 
-/* Related posts */
-body.praderas-site .pradera-series-nav {
-  border-top: 1px solid var(--pradera-border) !important;
-  padding-top: 1.75rem !important;
-  margin-top: 2.25rem !important;
+/* Series widgets and series pages */
+body.praderas-site .pradera-series-sidebar .card-body p:last-child {
+  margin-bottom: 0;
 }
 
-body.praderas-site .pradera-series-nav__title {
-  color: var(--pradera-ink);
-  margin-bottom: 0.35rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
-body.praderas-site .pradera-series-nav__link {
-  padding: 0.65rem 0.85rem;
-  border-radius: var(--pradera-radius-sm);
-  border: 1px solid transparent;
-  margin: -0.65rem -0.85rem;
-  transition: background var(--pradera-transition), border-color var(--pradera-transition);
-}
-
-body.praderas-site .pradera-series-nav__link:hover,
-body.praderas-site .pradera-series-nav__link:focus {
-  background: rgba(31, 95, 68, 0.06);
+body.praderas-site .pradera-series-sidebar .list-group-item {
   border-color: var(--pradera-border);
 }
 
-body.praderas-site .pradera-series-nav__link:focus-visible {
+body.praderas-site .pradera-series-sidebar__link {
+  transition: background var(--pradera-transition), border-color var(--pradera-transition);
+}
+
+body.praderas-site .pradera-series-sidebar__link:hover,
+body.praderas-site .pradera-series-sidebar__link:focus {
+  background: rgba(31, 95, 68, 0.06);
+}
+
+body.praderas-site .pradera-series-sidebar__link:focus-visible {
   outline: 2px solid var(--pradera-accent);
-  outline-offset: 2px;
+  outline-offset: -2px;
+  position: relative;
+  z-index: 1;
 }
 
 body.praderas-site .pradera-series-item__link {

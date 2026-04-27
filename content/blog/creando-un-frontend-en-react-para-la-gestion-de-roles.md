@@ -4,6 +4,9 @@ Description: En este artículo, te guiaré a través de los conceptos básicos d
 Author: Luis Amigo
 Date: 2023-09-19 12:27PM
 Tags: Desarrollo Web
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 10
 Template: post
 ---
 

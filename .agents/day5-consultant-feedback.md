@@ -4,7 +4,7 @@
 **Source:** External consultant review after Day 4  
 **Decision:** Adopted as backlog guidance
 
-**Implementation status (2026-04-27):** **Task A (visual & usability)** is **implemented** in the theme (`praderas-theme.css` + template classes), with external second-pass tweaks (~**8,7/10** after first pass). **Task B (series/collections)** is now **implemented**: front matter fields (`Series`, `Series_Slug`, `Series_Order`), in-post series navigation, and indexes at `/series` and `/series/<slug>/` via plugin + Twig.
+**Implementation status (2026-04-27):** **Task A (visual & usability)** is **implemented** in the theme (`praderas-theme.css` + template classes), with external second-pass tweaks (~**8,7/10** after first pass). **Task B (series/collections)** is now **implemented**: front matter fields (`Series`, `Series_Slug`, `Series_Order`), indexes at `/series` and `/series/<slug>/` via plugin + Twig, top-nav `Series` entry, and series previous/next/index navigation surfaced in the sidebar on post pages.
 
 ## Summary
 
@@ -63,3 +63,4 @@ Expected UX:
 
 - Treat this as **approved direction**, but still validate details with human review.
 - **A and B are done**; next default is **Phase 4 (SEO/discoverability)** unless product priority overrides.
+- Legacy run “Control de Tiempo Desacoplado” is now also mapped as a series (13 chapters) for consistency with the new model.

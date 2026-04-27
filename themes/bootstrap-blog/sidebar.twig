@@ -22,6 +22,36 @@
 		    </div>
 		</div>
     </div>
+    {% if post_series is defined and post_series %}
+    <div class="pradera-widget card mb-4 pradera-series-sidebar">
+		<div class="card-header">Serie</div>
+		<div class="card-body pb-2">
+			<p class="small text-muted mb-2">Parte {{ post_series.index }} de {{ post_series.total }}</p>
+			<p class="mb-0"><a class="fw-semibold text-decoration-none" href="{{ post_series.url }}">{{ post_series.name }}</a></p>
+		</div>
+		<div class="list-group list-group-flush">
+			{% if post_series.prev %}
+			<a class="list-group-item list-group-item-action pradera-series-sidebar__link" href="{{ post_series.prev.url }}" rel="prev">
+				<span class="d-block text-muted text-uppercase small">← Parte anterior</span>
+				<span class="d-block text-body text-break">{{ post_series.prev.title }}</span>
+			</a>
+			{% else %}
+			<div class="list-group-item small text-muted">Inicio de la serie</div>
+			{% endif %}
+			{% if post_series.next %}
+			<a class="list-group-item list-group-item-action pradera-series-sidebar__link" href="{{ post_series.next.url }}" rel="next">
+				<span class="d-block text-muted text-uppercase small">Siguiente parte →</span>
+				<span class="d-block text-body text-break">{{ post_series.next.title }}</span>
+			</a>
+			{% else %}
+			<div class="list-group-item small text-muted">Última parte publicada</div>
+			{% endif %}
+		</div>
+		<div class="card-body pt-2">
+			<a class="btn btn-outline-primary btn-sm w-100" href="{{ post_series.url }}">Ver índice completo</a>
+		</div>
+    </div>
+    {% endif %}
     <!-- Categories widget -->
     <div class="pradera-widget card mb-4">
 		<div class="card-header">Categorías</div>

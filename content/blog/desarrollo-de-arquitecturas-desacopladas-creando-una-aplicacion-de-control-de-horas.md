@@ -5,6 +5,9 @@ Author: Luis Amigo
 Date: 2023-09-06 11:21AM
 Template: post
 Tags: Desarrollo Web, Sistemas
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 1
 ---
 
 En esta serie de artículos, emprenderemos un emocionante viaje hacia el desarrollo de arquitecturas desacopladas. Nuestro objetivo final es construir una aplicación de control de horas para una empresa pequeña. A lo largo de esta serie, desglosaremos cada componente, desde la configuración del servidor hasta la implementación de la interfaz de usuario en React.

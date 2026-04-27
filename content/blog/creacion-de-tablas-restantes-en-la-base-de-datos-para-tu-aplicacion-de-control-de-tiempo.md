@@ -4,6 +4,9 @@ Description: En este artículo hablamos de Creación de Tablas Restantes en la B
 Author: Luis Amigo
 Date: 2023-09-14 03:47PM
 Tags: Desarrollo Web, Sistemas
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 8
 Template: post
 ---
 
