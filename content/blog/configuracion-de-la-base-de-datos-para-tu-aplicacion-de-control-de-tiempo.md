@@ -4,6 +4,9 @@ Description: En este artículo, te guiaremos a través del proceso de creación 
 Author: Luis Amigo
 Date: 2023-09-13 12:31PM
 Tags: Desarrollo Web, Sistemas
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 7
 Template: post
 ---
 

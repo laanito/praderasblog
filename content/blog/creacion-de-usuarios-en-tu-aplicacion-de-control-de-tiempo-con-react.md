@@ -4,6 +4,9 @@ Description: En este artículo, te guiaré a través de la creación de un compo
 Author: Luis Amigo
 Date: 2023-09-25 02:00PM
 Tags: Desarrollo Web, Productividad
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 13
 Template: post
 ---
 

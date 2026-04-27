@@ -4,6 +4,9 @@ Description: En este artículo hablamos de Interactuando con la API REST de tu A
 Author: Luis Amigo
 Date: 2023-09-18 02:07PM
 Tags: Desarrollo Web, Sistemas
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 9
 Template: post
 ---
 

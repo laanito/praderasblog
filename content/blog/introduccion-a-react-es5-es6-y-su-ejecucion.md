@@ -4,6 +4,9 @@ Description: En este artículo hablamos de Introducción a React: ES5, ES6 y su 
 Author: Luis Amigo
 Date: 2023-09-11 11:15AM
 Tags: Desarrollo Web
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 5
 Template: post
 ---
 

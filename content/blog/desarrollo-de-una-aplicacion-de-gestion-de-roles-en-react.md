@@ -4,6 +4,9 @@ Description: En este artículo hablamos de Desarrollo de una Aplicación de Gest
 Author: Luis Amigo
 Date: 2023-09-20 11:44AM
 Tags: Desarrollo Web
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 11
 Template: post
 ---
 

@@ -75,37 +75,6 @@
                          {{ content }}
 			</section>
 		{% if current_page.id is defined and current_page.id starts with "blog/" %}
-		{% if post_series is defined and post_series %}
-		<aside class="pradera-series-nav border-top pt-4 mt-4" aria-label="Navegación de serie">
-			<h2 class="h5 pradera-series-nav__title">Serie: {{ post_series.name }}</h2>
-			<p class="small text-muted mb-3">Parte {{ post_series.index }} de {{ post_series.total }}.</p>
-			<nav class="d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-start gap-3" aria-label="Navegación dentro de la serie">
-				<div class="flex-sm-fill me-sm-2">
-				{% if post_series.prev %}
-					<a href="{{ post_series.prev.url }}" class="d-block text-decoration-none pradera-series-nav__link" rel="prev">
-						<span class="text-muted text-uppercase small d-block">← Parte anterior</span>
-						<span class="d-block text-body">{{ post_series.prev.title }}</span>
-					</a>
-				{% else %}
-					<span class="text-muted small">Inicio de la serie</span>
-				{% endif %}
-				</div>
-				<div class="flex-sm-fill text-sm-center">
-					<a href="{{ post_series.url }}" class="btn btn-outline-primary btn-sm">Índice de la serie</a>
-				</div>
-				<div class="flex-sm-fill text-sm-end ms-sm-2">
-				{% if post_series.next %}
-					<a href="{{ post_series.next.url }}" class="d-block text-decoration-none pradera-series-nav__link" rel="next">
-						<span class="text-muted text-uppercase small d-block">Siguiente parte →</span>
-						<span class="d-block text-body">{{ post_series.next.title }}</span>
-					</a>
-				{% else %}
-					<span class="text-muted small d-block">Última parte publicada</span>
-				{% endif %}
-				</div>
-			</nav>
-		</aside>
-		{% endif %}
 		{% if related_posts is defined and related_posts|length > 0 %}
 			<aside class="pradera-related entry-related border-top pt-4 mt-4" aria-label="Entradas relacionadas">
 				<h2 class="h5 pradera-related__title">Te puede interesar</h2>

@@ -4,6 +4,9 @@ Description: En este artículo, exploraremos la estructura inicial de la base de
 Author: Luis Amigo
 Date: 2023-09-12 02:07PM
 Tags: Desarrollo Web, Sistemas
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 6
 Template: post
 ---
 

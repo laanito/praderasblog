@@ -4,6 +4,9 @@ Description: En este artículo hablamos de Autenticación y Uso de Tokens JWT en
 Author: Luis Amigo
 Date: 2023-09-10 08:05PM
 Tags: Desarrollo Web, Sistemas, Ciberseguridad
+Series: Control de Tiempo Desacoplado
+Series_Slug: control-de-tiempo-desacoplado
+Series_Order: 4
 Template: post
 ---
 

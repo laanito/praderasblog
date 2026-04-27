@@ -5,7 +5,7 @@
 - **Primary live URL:** `https://blog.praderas.org/` (not `https://praderas.org/`).
 - **Language:** Mostly Spanish content and labels, with some English leftovers in theme UI.
 - **Current active theme:** `bootstrap-blog` (configured in `config/config.yml`).
-- **Content size:** 56 posts in `content/blog` (including the *Reviviendo Praderas* day series through Día 5).
+- **Content size:** 57 posts in `content/blog` (including *Reviviendo Praderas* through Día 6).
 
 ## High-Level Architecture
 - **Core runtime:** `index.php` boots Pico and loads `config/`, `plugins/`, and `themes/`.
@@ -17,7 +17,7 @@
 ## Agent docs (backlog & roadmaps)
 - `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
 - `phase-5-6-plan.md` — **future** work: multilingual (Phase 5) and JSON/AI-ready API (Phase 6); read before implementing either.
-- `day5-consultant-feedback.md` — Day 5 sequence: **visual/usability (shipped)** → **series/collections (next)**; includes second-review notes.
+- `day5-consultant-feedback.md` — Day 5 sequence and status notes (visual + series completed, follow-up UX tweaks).
 
 ## Directory Map
 - `content/`
@@ -35,9 +35,9 @@
   - `search.twig` and `tags.twig`
   - `categories.twig` category index (cards + tag counts from plugin)
   - `series.twig` series index/detail template
-  - `nav.twig` primary navigation (four items; **Categorías** highlights when on `tags` too)
+  - `nav.twig` primary navigation (**Inicio, Blog, Series, Categorías, Acerca**; **Categorías** highlights when on `tags` too)
   - `breadcrumbs.twig` shared “migaja de pan”
-  - `sidebar.twig` shared sidebar (Búsqueda, Categorías, Artículos recientes)
+  - `sidebar.twig` shared sidebar (Búsqueda, Serie on post pages, Categorías, Artículos recientes)
   - `search-behavior.twig` shared search (click + Enter) script include
   - `css/styles.css` — base Bootstrap (bundle); `css/praderas-theme.css` — Day 5 visual layer (tokens, ~1.75 body line-height, related + listing card elevation/hover, pill tags, breadcrumbs/sidebar/footer, in-body link hover; mobile `1rem` / `sm+` `1.0625rem` for long-form)
   - `styles.css` also includes scoped rules for the recent-posts list (class `sidebar-recent`)
@@ -45,7 +45,7 @@
   - `10-Pagination.php`
   - `40-PicoSearch.php`
   - `50-BlogNeighbors.php` — on `blog/*` posts: `post_prev_in_time`, `post_next_in_time` (chronological), `related_posts` (shared tags, max 5); on `categorias` page: `tag_post_counts` (map tag → int)
-  - `60-SeriesCollections.php` — series routes (`/series/<slug>/`), series index context, and in-post series prev/next/index links
+  - `60-SeriesCollections.php` — series routes (`/series/<slug>/`), series index context, and post-level series navigation data (used in sidebar widget)
   - `PicoTags.php`
   - `PicoRobots/`
 
@@ -86,7 +86,7 @@
 - If `gh` (GitHub CLI) is unavailable, open a pull request from the branch manually after `git push`.
 
 ## Phase 2 (2026-04, completed in repo)
-- Primary **navbar** is fixed to four items (`nav.twig`), not “all top-level content pages” : Inicio, Blog, Categorías, Acerca.
+- Primary **navbar** was fixed to four items in Phase 2; after Day 6 series rollout it is now five items: Inicio, Blog, Series, Categorías, Acerca.
 - **`/categorias`**: new markdown page + `categories.twig` lists each site tag (with short blurb, post count, link to `/tags/?tag=...`).
 - **Breadcrumbs** on `index` (Inicio on home), `blog`, `post` (chained through first tag when present), `search`, `tags`, and `categorias`.
 - **Article footer** (only `content/blog/*` with `post` template): *Te puede interesar* (tag overlap) + prev/next by **time** via `50-BlogNeighbors.php`.
@@ -99,13 +99,14 @@
 
 ## Day 5/6 (consultant track completed through series)
 - **Visual / usability (Day 5):** delivered via `praderas-theme.css` and template updates; Día 5 post + consultant follow-up merged. External review ~8,7/10 after first live deploy; a second small CSS/Twig pass closed the main nits.
-- **Series / collections (Day 6):** implemented with front matter `Series` / `Series_Slug` / `Series_Order`, in-post series nav, and index routes under `/series/...`.
+- **Series / collections (Day 6):** implemented with front matter `Series` / `Series_Slug` / `Series_Order`, index routes under `/series/...`, top-nav `Series` link, and a sidebar series widget on post pages.
+- **Legacy series mapping:** “Control de Tiempo Desacoplado” was retrofitted across 13 historical posts (kickoff to React users chapter) using the same series fields.
 - **Before Phase 5 multilingual:** with series now in place, proceed to Phase 4 SEO/discoverability and then Phase 5/6 per `.agents/phase-5-6-plan.md`.
 - Details: `.agents/day5-consultant-feedback.md`, backlog: `proposed-improvements.md` (Day 5 section).
 
 ## Live Site Findings (Current State)
-- Main nav: **Inicio** (Bienvenidos), **Blog**, **Categorías** (and primary highlight also when browsing `/tags`), **Acerca**.
-- Sidebar on most pages includes: search, category tags, and **Artículos recientes** (list-group + `sidebar-recent` styles; **Praderas** theme layer styles tags as pills with hover).
+- Main nav: **Inicio** (Bienvenidos), **Blog**, **Series**, **Categorías** (and primary highlight also when browsing `/tags`), **Acerca**.
+- Sidebar on most pages includes: search, category tags, and **Artículos recientes** (list-group + `sidebar-recent` styles; **Praderas** theme layer styles tags as pills with hover). On post pages that belong to a series, a **Serie** widget (prev/next/index) appears above categories.
 - Blog cards and tag results currently use random images from `picsum.photos`.
 - URL routing is canonical on subdomain (`blog.praderas.org`), while root domain returns 404.
 
