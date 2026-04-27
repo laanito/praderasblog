@@ -5,6 +5,9 @@ Date: 2026-04-25 10:40AM
 Template: post
 Author: Luis Amigo
 Tags: Desarrollo Web, Productividad, Inteligencia Artificial
+Series: Reviviendo Praderas
+Series_Slug: reviviendo-praderas
+Series_Order: 4
 ---
 
 # Reviviendo Praderas (Día 4) — Fase 3: ordenar metadatos sin llorar

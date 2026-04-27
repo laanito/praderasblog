@@ -5,6 +5,9 @@ Date: 2026-04-24 09:00AM
 Template: post
 Author: Luis Amigo
 Tags: Desarrollo Web, Productividad, Inteligencia Artificial
+Series: Reviviendo Praderas
+Series_Slug: reviviendo-praderas
+Series_Order: 3
 ---
 
 # Reviviendo Praderas (Día 3) — Fase 2: que el sitio te diga dónde estás (con IA haciendo el pesado)

@@ -1,0 +1,61 @@
+{% extends "index.twig" %}
+
+{% block breadcrumb %}
+{% if current_series is defined and current_series %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Series', 'url': "series"|link }, { 'label': current_series.name } ] } only %}
+{% else %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Series' } ] } only %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% if current_series is defined and current_series %}
+<header class="mb-4">
+  <h1 class="fw-bolder mb-2">Serie: {{ current_series.name }}</h1>
+  <p class="text-muted mb-0">{{ current_series.entries|length }} entrada{% if current_series.entries|length != 1 %}s{% endif %} en esta colección.</p>
+</header>
+
+<div class="pradera-series-list d-flex flex-column gap-3">
+{% for entry in current_series.entries %}
+  <article class="pradera-series-item">
+    <a href="{{ entry.url }}" class="pradera-series-item__link text-decoration-none">
+      <div class="d-flex justify-content-between align-items-start gap-3">
+        <div>
+          <span class="text-muted text-uppercase small d-block">Parte {{ loop.index }}</span>
+          <h2 class="h5 mb-1 text-body">{{ entry.title }}</h2>
+        </div>
+        {% if entry.date %}
+        <span class="small text-muted text-nowrap">{{ entry.date }}</span>
+        {% endif %}
+      </div>
+    </a>
+  </article>
+{% endfor %}
+</div>
+{% else %}
+<header class="mb-4">
+  <h1 class="fw-bolder mb-2">{{ meta.title }}</h1>
+  {% if meta.description %}<p class="text-muted lead">{{ meta.description }}</p>{% endif %}
+</header>
+<div class="pradera-prose mb-4">
+  {{ content }}
+</div>
+{% if series_collections is defined and series_collections|length > 0 %}
+<div class="pradera-series-grid row g-3">
+{% for serie in series_collections %}
+  <div class="col-12 col-md-6">
+    <div class="card h-100 pradera-post-card">
+      <div class="card-body">
+        <h2 class="h5 card-title mb-1">{{ serie.name }}</h2>
+        <p class="small text-muted mb-3">{{ serie.entries|length }} entrada{% if serie.entries|length != 1 %}s{% endif %}</p>
+        <a class="btn btn-outline-primary btn-sm" href="{{ serie.url }}">Ver serie →</a>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% else %}
+<p class="text-muted">Aun no hay series publicadas.</p>
+{% endif %}
+{% endif %}
+{% endblock %}
