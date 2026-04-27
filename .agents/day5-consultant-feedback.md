@@ -4,7 +4,7 @@
 **Source:** External consultant review after Day 4  
 **Decision:** Adopted as backlog guidance
 
-**Implementation status (2026-04-26):** **Task A (visual & usability)** is **implemented** in the theme (`praderas-theme.css` + template classes). An external **second pass** on the live site (~**8,7/10**) led to a small follow-up (card/related depth, pill tags, date spacing, link contrast, mobile type). **Task B (series/collections)** remains **planned** — next after the visual baseline.
+**Implementation status (2026-04-27):** **Task A (visual & usability)** is **implemented** in the theme (`praderas-theme.css` + template classes), with external second-pass tweaks (~**8,7/10** after first pass). **Task B (series/collections)** is now **implemented**: front matter fields (`Series`, `Series_Slug`, `Series_Order`), in-post series navigation, and indexes at `/series` and `/series/<slug>/` via plugin + Twig.
 
 ## Summary
 
@@ -62,4 +62,4 @@ Expected UX:
 ## Notes for future agents
 
 - Treat this as **approved direction**, but still validate details with human review.
-- **A is done;** next default is **B (series)** unless product priority overrides.
+- **A and B are done**; next default is **Phase 4 (SEO/discoverability)** unless product priority overrides.

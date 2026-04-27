@@ -5,6 +5,9 @@ Date: 2026-04-23 10:00AM
 Template: post
 Author: Luis Amigo
 Tags: Desarrollo Web, Productividad, Inteligencia Artificial
+Series: Reviviendo Praderas
+Series_Slug: reviviendo-praderas
+Series_Order: 2
 ---
 
 # Reviviendo Praderas (Día 2) — Fase 1: listado, búsqueda, paginación (con IA de copiloto)

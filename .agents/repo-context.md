@@ -23,6 +23,7 @@
 - `content/`
   - `index.md` homepage ("Bienvenidos") — product copy; describes Pico, *Reviviendo Praderas*, navigation, and AI-as-tooling (not a single chat product)
   - `blog.md` listing page (`Template: blog`)
+  - `series.md` series hub (`Template: series`) for `/series` and `/series/<slug>/`
   - `search.md` search page (`Template: search`)
   - `tags.md` tag page (`Template: tags`)
   - `categorias.md` category index (`Template: categories`) — URL typically `/categorias`
@@ -33,6 +34,7 @@
   - `post.twig` article page
   - `search.twig` and `tags.twig`
   - `categories.twig` category index (cards + tag counts from plugin)
+  - `series.twig` series index/detail template
   - `nav.twig` primary navigation (four items; **Categorías** highlights when on `tags` too)
   - `breadcrumbs.twig` shared “migaja de pan”
   - `sidebar.twig` shared sidebar (Búsqueda, Categorías, Artículos recientes)
@@ -43,6 +45,7 @@
   - `10-Pagination.php`
   - `40-PicoSearch.php`
   - `50-BlogNeighbors.php` — on `blog/*` posts: `post_prev_in_time`, `post_next_in_time` (chronological), `related_posts` (shared tags, max 5); on `categorias` page: `tag_post_counts` (map tag → int)
+  - `60-SeriesCollections.php` — series routes (`/series/<slug>/`), series index context, and in-post series prev/next/index links
   - `PicoTags.php`
   - `PicoRobots/`
 
@@ -94,10 +97,10 @@
 - Added `scripts/frontmatter_audit.py` (schema/date/taxonomy checks) for repeatable verification.
 - Added `.agents/post-template.md` as starter editorial template for new entries.
 
-## Day 5 (adopted; visual part shipped 2026-04-26)
-- **Visual / usability:** delivered via `praderas-theme.css` and template updates; Día 5 post + consultant follow-up merged in the same week. External review ~8,7/10 after first live deploy; a second small CSS/Twig pass closed the main nits.
-- **Next (same consultant plan):** series/collections — front matter `series` / `series_slug` / `series_order`, in-post series nav, index under `/series/...` (not implemented yet).
-- **Before Phase 5 multilingual:** finish or schedule **series** so navigation model is stable; then proceed per `.agents/phase-5-6-plan.md`.
+## Day 5/6 (consultant track completed through series)
+- **Visual / usability (Day 5):** delivered via `praderas-theme.css` and template updates; Día 5 post + consultant follow-up merged. External review ~8,7/10 after first live deploy; a second small CSS/Twig pass closed the main nits.
+- **Series / collections (Day 6):** implemented with front matter `Series` / `Series_Slug` / `Series_Order`, in-post series nav, and index routes under `/series/...`.
+- **Before Phase 5 multilingual:** with series now in place, proceed to Phase 4 SEO/discoverability and then Phase 5/6 per `.agents/phase-5-6-plan.md`.
 - Details: `.agents/day5-consultant-feedback.md`, backlog: `proposed-improvements.md` (Day 5 section).
 
 ## Live Site Findings (Current State)

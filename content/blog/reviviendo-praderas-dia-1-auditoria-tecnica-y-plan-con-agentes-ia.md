@@ -5,6 +5,9 @@ Date: 2026-04-22 01:10PM
 Template: post
 Author: Luis Amigo
 Tags: Desarrollo Web, Productividad, Inteligencia Artificial
+Series: Reviviendo Praderas
+Series_Slug: reviviendo-praderas
+Series_Order: 1
 ---
 
 # Reviviendo Praderas (Día 1): auditoría técnica y plan de mejoras con agentes de IA
