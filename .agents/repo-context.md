@@ -5,7 +5,7 @@
 - **Primary live URL:** `https://blog.praderas.org/` (not `https://praderas.org/`).
 - **Language:** Mostly Spanish content and labels, with some English leftovers in theme UI.
 - **Current active theme:** `bootstrap-blog` (configured in `config/config.yml`).
-- **Content size:** 57 posts in `content/blog` (including *Reviviendo Praderas* through Día 6).
+- **Content size:** 58 posts in `content/blog` (including *Reviviendo Praderas* through Día 7).
 
 ## High-Level Architecture
 - **Core runtime:** `index.php` boots Pico and loads `config/`, `plugins/`, and `themes/`.
@@ -24,6 +24,7 @@
   - `index.md` homepage ("Bienvenidos") — product copy; describes Pico, *Reviviendo Praderas*, navigation, and AI-as-tooling (not a single chat product)
   - `blog.md` listing page (`Template: blog`)
   - `series.md` series hub (`Template: series`) for `/series` and `/series/<slug>/`
+  - `archivo.md` chronological archive (`Template: archive`) — URL `/archivo`
   - `search.md` search page (`Template: search`)
   - `tags.md` tag page (`Template: tags`)
   - `categorias.md` category index (`Template: categories`) — URL typically `/categorias`
@@ -35,6 +36,8 @@
   - `search.twig` and `tags.twig`
   - `categories.twig` category index (cards + tag counts from plugin)
   - `series.twig` series index/detail template
+  - `archive.twig` archive by year/month (`/archivo`)
+  - `page-meta.twig` shared `<title>`, meta description/robots, canonical + Open Graph + Twitter Card tags
   - `nav.twig` primary navigation (**Inicio, Blog, Series, Categorías, Acerca**; **Categorías** highlights when on `tags` too)
   - `breadcrumbs.twig` shared “migaja de pan”
   - `sidebar.twig` shared sidebar (Búsqueda, Serie on post pages, Categorías, Artículos recientes)
@@ -70,6 +73,7 @@
   - Uses canonical route format `/search/<term>`.
   - Registers Twig filter `apply_search`.
   - Fallback redirect for non-JS query flow (`?q=`).
+  - Optional `PicoSearch.low_value_words` in `config/config.yml` (Spanish stopwords list as of Phase 4).
 - **Tags (`PicoTags.php`)**
   - Registers `Tags` and `Filter` front matter.
   - Exposes `get_all_tags()` and `apply_tag_filter`.
@@ -97,18 +101,24 @@
 - Added `scripts/frontmatter_audit.py` (schema/date/taxonomy checks) for repeatable verification.
 - Added `.agents/post-template.md` as starter editorial template for new entries.
 
+## Phase 4 (SEO & discoverability, 2026-04)
+- Shared SEO/social head partial (`page-meta.twig`): canonical URL, Open Graph, Twitter Cards; article vs website `og:type` for `blog/*` vs other pages.
+- **`base_url`** in `config/config.yml` documents canonical deployment host (`https://blog.praderas.org`); root-domain redirects remain infrastructure-side.
+- **`/archivo`**: year/month grouped index of `blog/*` posts (`archive.twig`), linked from sidebar “Archivo”.
+- Search page (`content/search.md`) includes `Description` for cleaner snippets/metadata where applicable.
+
 ## Day 5/6 (consultant track completed through series)
 - **Visual / usability (Day 5):** delivered via `praderas-theme.css` and template updates; Día 5 post + consultant follow-up merged. External review ~8,7/10 after first live deploy; a second small CSS/Twig pass closed the main nits.
 - **Series / collections (Day 6):** implemented with front matter `Series` / `Series_Slug` / `Series_Order`, index routes under `/series/...`, top-nav `Series` link, and a sidebar series widget on post pages.
 - **Legacy series mapping:** “Control de Tiempo Desacoplado” was retrofitted across 13 historical posts (kickoff to React users chapter) using the same series fields.
-- **Before Phase 5 multilingual:** with series now in place, proceed to Phase 4 SEO/discoverability and then Phase 5/6 per `.agents/phase-5-6-plan.md`.
+- **Before Phase 6 JSON endpoints:** with Phase 4 SEO shipped (2026-04-28), next planned major work is **Phase 5 multilingual**, then Phase 6 per `.agents/phase-5-6-plan.md`.
 - Details: `.agents/day5-consultant-feedback.md`, backlog: `proposed-improvements.md` (Day 5 section).
 
 ## Live Site Findings (Current State)
 - Main nav: **Inicio** (Bienvenidos), **Blog**, **Series**, **Categorías** (and primary highlight also when browsing `/tags`), **Acerca**.
-- Sidebar on most pages includes: search, category tags, and **Artículos recientes** (list-group + `sidebar-recent` styles; **Praderas** theme layer styles tags as pills with hover). On post pages that belong to a series, a **Serie** widget (prev/next/index) appears above categories.
+- Sidebar on most pages includes: search, **Archivo** link card, category tags, and **Artículos recientes** (list-group + `sidebar-recent` styles; **Praderas** theme layer styles tags as pills with hover). On post pages that belong to a series, a **Serie** widget (prev/next/index) appears above categories.
 - Blog cards and tag results currently use random images from `picsum.photos`.
-- URL routing is canonical on subdomain (`blog.praderas.org`), while root domain returns 404.
+- URL routing is canonical on subdomain (`blog.praderas.org`); treat `base_url` as the canonical origin for links and social meta. Root domain behaviour without redirects is a deployment/DNS concern outside this repo.
 
 ## Confirmed Technical/UX Issues
 - (Resolved in tree for Phase 1) Historically, `blog.twig` was corrupted and showed broken HTML, inconsistent search `id`s, and no visible pager. **Current `blog.twig` + `sidebar.twig` / `search-behavior.twig` in this repo** address the listing, search, and pagination UI; verify again after deploy.
@@ -138,3 +148,4 @@
   - `/search/<term>`
   - `/tags` and `/tags/?tag=<tag>`
   - `/robots.txt` and `/sitemap.xml`
+  - `/archivo`

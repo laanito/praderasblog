@@ -1,0 +1,45 @@
+{# Unified document title, meta description/robots, canonical URL, Open Graph, and Twitter cards. #}
+{% set page_title_string = site_title %}
+{% if meta.title is defined and meta.title %}
+	{% if my_tag is defined and my_tag %}
+		{% set page_title_string = meta.title ~ ' · ' ~ my_tag ~ ' | ' ~ site_title %}
+	{% else %}
+		{% set page_title_string = meta.title ~ ' | ' ~ site_title %}
+	{% endif %}
+{% elseif my_tag is defined and my_tag %}
+	{% set page_title_string = my_tag ~ ' | ' ~ site_title %}
+{% endif %}
+
+<title>{{ page_title_string }}</title>
+{% if meta.description %}
+<meta name="description" content="{{ meta.description|striptags }}">
+{% endif %}
+{% if meta.robots %}
+<meta name="robots" content="{{ meta.robots }}">
+{% endif %}
+
+{% set canonical_url = current_page.url|default(base_url) %}
+<link rel="canonical" href="{{ canonical_url }}" />
+
+<meta property="og:locale" content="es_ES" />
+<meta property="og:site_name" content="{{ site_title }}" />
+<meta property="og:title" content="{{ page_title_string }}" />
+{% if meta.description %}
+<meta property="og:description" content="{{ meta.description|striptags }}" />
+{% endif %}
+<meta property="og:url" content="{{ canonical_url }}" />
+{% if current_page.id is defined and current_page.id starts with 'blog/' %}
+<meta property="og:type" content="article" />
+{% else %}
+<meta property="og:type" content="website" />
+{% endif %}
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="{{ page_title_string }}" />
+{% if meta.description %}
+<meta name="twitter:description" content="{{ meta.description|striptags }}" />
+{% endif %}
+
+<link rel="icon" type="image/x-icon" href="{{ theme_url }}/assets/favicon.ico" />
+<link rel="stylesheet" href="{{ theme_url }}/css/styles.css" />
+<link rel="stylesheet" href="{{ theme_url }}/css/praderas-theme.css" />

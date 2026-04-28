@@ -4,15 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>{% if meta.title %}{{ meta.title }} | {% endif %}{{ site_title }}</title>
-    {% if meta.description %}
-        <meta name="description" content="{{ meta.description|striptags }}">
-    {% endif %}{% if meta.robots %}
-        <meta name="robots" content="{{ meta.robots }}">
-    {% endif %}
-    <link rel="icon" type="image/x-icon" href="{{ theme_url }}/assets/favicon.ico" />
-    <link rel="stylesheet" href="{{ theme_url }}/css/styles.css" />
-    <link rel="stylesheet" href="{{ theme_url }}/css/praderas-theme.css" />
+{% include 'page-meta.twig' %}
 </head>
 <body class="praderas-site">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark pradera-nav">
