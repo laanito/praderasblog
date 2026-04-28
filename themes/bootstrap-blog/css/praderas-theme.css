@@ -547,3 +547,25 @@ body.praderas-site > .container.mt-5 {
     font-size: 1.0625rem;
   }
 }
+
+/* Archive (/archivo): year / month grouping */
+body.praderas-site .pradera-archive__year {
+  color: var(--pradera-ink);
+  border-bottom: 1px solid var(--pradera-border);
+  padding-bottom: 0.35rem;
+}
+
+body.praderas-site .pradera-archive__month {
+  letter-spacing: 0.02em;
+}
+
+body.praderas-site .pradera-archive__list a {
+  font-weight: 500;
+  text-decoration: none;
+}
+
+body.praderas-site .pradera-archive__list a:hover,
+body.praderas-site .pradera-archive__list a:focus {
+  text-decoration: underline;
+  color: var(--pradera-body-link-hover) !important;
+}

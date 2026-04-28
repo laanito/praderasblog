@@ -1,0 +1,60 @@
+{% extends "index.twig" %}
+
+{% set meses = {
+  '01': 'enero',
+  '02': 'febrero',
+  '03': 'marzo',
+  '04': 'abril',
+  '05': 'mayo',
+  '06': 'junio',
+  '07': 'julio',
+  '08': 'agosto',
+  '09': 'septiembre',
+  '10': 'octubre',
+  '11': 'noviembre',
+  '12': 'diciembre'
+} %}
+
+{% block breadcrumb %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Archivo' } ] } only %}
+{% endblock %}
+
+{% block content %}
+<header class="mb-4">
+	<h1 class="fw-bolder mb-2">{{ meta.title }}</h1>
+	{% if meta.description %}<p class="text-muted lead">{{ meta.description }}</p>{% endif %}
+</header>
+
+{% set sorted = pages|sort_by('time')|reverse %}
+{% set last_year = '' %}
+{% set last_month = '' %}
+
+<div class="pradera-archive">
+{% for p in sorted %}
+{% if p.id starts with 'blog/' and p.title %}
+	{% set y = p.time|date('Y') %}
+	{% set m = p.time|date('m') %}
+	{% if y != last_year %}
+		{% if last_month != '' %}
+			</ul>
+			{% set last_month = '' %}
+		{% endif %}
+		<h2 class="h4 mt-4 mb-2 pradera-archive__year">{{ y }}</h2>
+		{% set last_year = y %}
+	{% endif %}
+	{% if m != last_month %}
+		{% if last_month != '' %}
+			</ul>
+		{% endif %}
+		<h3 class="h6 text-muted mt-3 mb-2 pradera-archive__month">{{ attribute(meses, m) }} {{ y }}</h3>
+		<ul class="list-unstyled mb-3 pradera-archive__list">
+		{% set last_month = m %}
+	{% endif %}
+	<li class="mb-2"><a href="{{ p.url }}">{{ p.title }}</a> <span class="text-muted small">{{ p.date }}</span></li>
+{% endif %}
+{% endfor %}
+{% if last_month != '' %}
+</ul>
+{% endif %}
+</div>
+{% endblock %}

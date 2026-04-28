@@ -73,24 +73,23 @@
   - Reduces inconsistencies in future content uploads.
 
 ## Priority 4 - SEO and Discoverability Enhancements
+- **Status (2026-04-28):** **Shipped in repo** — canonical URLs aligned with `base_url` (`https://blog.praderas.org`) via `<link rel="canonical">` + OG/Twitter URLs; shared head partial `themes/bootstrap-blog/page-meta.twig`; Spanish `PicoSearch.low_value_words` in `config/config.yml`; archive page `/archivo` (`content/archivo.md` + `themes/bootstrap-blog/archive.twig`) with sidebar link; search page description added in `content/search.md`. Post `content/blog/reviviendo-praderas-dia-7-fase-4-seo-y-descubrimiento.md` documents the work.
 - **Clarify canonical domain strategy**
-  - Decide `praderas.org` vs `blog.praderas.org` as canonical.
-  - Align `base_url`, redirects, and sitemap host consistently.
+  - **Repo stance:** treat **`blog.praderas.org`** as canonical for generated links and metadata (matches `base_url`). Root domain behaviour remains hosting/DNS (redirects not expressed in this flat-file repo).
 - **Improve meta consistency**
-  - Ensure each page has meta description and meaningful title patterns.
-  - Add Open Graph/Twitter tags in base template.
+  - Unified title pattern and optional description; Open Graph + Twitter Card tags from `page-meta.twig`.
 - **Upgrade search relevance**
-  - Expand low-value words config for Spanish stopwords.
-  - Optionally show highlighted matching snippets in results.
+  - Spanish stopwords list added under `PicoSearch:` in `config/config.yml`.
+  - Highlighted snippets in results remain optional/future.
 - **Add archive views**
-  - Monthly/yearly archive index for older content discovery.
+  - Year/month grouping implemented at `/archivo`.
 
 ## Suggested Implementation Phases
 - **Phase 1 (1-2 days):** Fix `blog.twig`, unify search widget, add pagination UI, remove placeholder widget. **→ Done in repo (2026-04-23):** `blog.twig` rebuild, `sidebar.twig` + `search-behavior.twig`, Spanish pager labels, recent-posts block; see `.agents/repo-context.md` and post `content/blog/reviviendo-praderas-dia-2-fase-1-plantilla-listado-busqueda-y-paginacion.md`. **Styling follow-up (human feedback):** the recent-posts list was first too plain; a second change added Bootstrap `list-group` and scoped CSS (`sidebar-recent` in `styles.css`). *Better, not a final look—acceptable to ship* until a later UI pass.
 - **Phase 2 (2-4 days):** Navigation refresh, categories page, related posts, breadcrumbs. **→ Done in repo (2026-04-24):** fixed primary nav (`nav.twig`: Inicio, Blog, Categorías, Acerca), new `content/categorias.md` + `categories.twig`, `breadcrumbs.twig` on core templates, `plugins/50-BlogNeighbors.php` for related + prev/next by time + tag counts; see post `content/blog/reviviendo-praderas-dia-3-fase-2-navegacion-categorias-crumbs-y-posts-relacionados.md` and `.agents/repo-context.md`. **Follow-up (2026-04-27):** nav now includes **Series** as a fifth primary item after Day 6 series rollout.
 - **Phase 3 (2-3 days):** Metadata normalization pass and taxonomy cleanup across all posts. **→ Done in repo (2026-04-25):** completed missing `Tags` across legacy posts, normalized key casing (`Tags`), normalized outlier date format, added `scripts/frontmatter_audit.py`, and documented `.agents/post-template.md`; see post `content/blog/reviviendo-praderas-dia-4-fase-3-metadatos-taxonomia-y-lint-de-front-matter.md`.
 - **Day 5 (consultant track, ~1–2 days + review):** Visual / usability layer (`praderas-theme.css` + twig), follow-up polish pass, and **Task B series/collections**. **→ Done in repo (2026-04-27),** documented in Día 5 + Día 6 posts.
-- **Phase 4 (2-3 days):** SEO polish, canonical redirects, social metadata, search relevance tuning. **Sequencing:** with Day 5 A/B completed, this is now the active next phase before the heavier **Phase 5** multilingual rollout.
+- **Phase 4 (2-3 days):** SEO polish, canonical alignment, social metadata, search relevance tuning, archives. **→ Done in repo (2026-04-28):** `page-meta.twig`, `PicoSearch` Spanish stopwords, `/archivo`, sidebar link, search page description; see post `content/blog/reviviendo-praderas-dia-7-fase-4-seo-y-descubrimiento.md`. **Sequencing:** next major bucket is **Phase 5** multilingual rollout when ready.
 - **Phase 5 (medium, after 3–4 recommended):** Multilingual (e.g. ES + EN): split content layout, `lang` + `translation_key`, switcher, `hreflang`, sitemap. **Details:** `.agents/phase-5-6-plan.md` (Section Phase 5).
 - **Phase 6 (low–medium, after 1–4 / coord. with meta):** AI-ready JSON endpoints (`blog.json`, per-post JSON or `?format=json`), schema v1, caching, optional public “for agents” doc. **Details:** `.agents/phase-5-6-plan.md` (Section Phase 6).
 

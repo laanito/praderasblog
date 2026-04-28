@@ -62,5 +62,5 @@ Expected UX:
 ## Notes for future agents
 
 - Treat this as **approved direction**, but still validate details with human review.
-- **A and B are done**; next default is **Phase 4 (SEO/discoverability)** unless product priority overrides.
+- **A and B are done**; **Phase 4 (SEO/discoverability)** shipped (2026-04-28); next default is **Phase 5 (multilingual)** unless product priority overrides.
 - Legacy run “Control de Tiempo Desacoplado” is now also mapped as a series (13 chapters) for consistency with the new model.

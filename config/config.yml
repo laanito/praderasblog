@@ -2,8 +2,57 @@
 # Basic
 #
 site_title: Blog Praderas
+# Canonical URL for this deployment (sitemap, OG URLs, and Pico links). Root domain praderas.org is separate infra.
 base_url: https://blog.praderas.org
 rewrite_url: true
+
+#
+# Search plugin — Spanish stopwords (reduces noise for multi-word queries)
+#
+PicoSearch:
+  low_value_words:
+    - a
+    - al
+    - como
+    - con
+    - de
+    - del
+    - el
+    - en
+    - es
+    - esa
+    - ese
+    - este
+    - ha
+    - las
+    - le
+    - les
+    - lo
+    - los
+    - me
+    - mi
+    - mis
+    - mucho
+    - muy
+    - nos
+    - o
+    - os
+    - para
+    - por
+    - que
+    - se
+    - sin
+    - son
+    - su
+    - sus
+    - te
+    - tu
+    - tus
+    - un
+    - una
+    - uno
+    - y
+    - ya
 
 #
 # Themes
