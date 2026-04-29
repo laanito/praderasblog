@@ -1,6 +1,6 @@
 ---
 Title: Bienvenidos
-Description: Blog Praderas: tecnología con rigor y calma. Artículos, guías y una bitácora sobre cómo estamos modernizando el sitio con herramientas modernas, incluidos agentes de asistencia a la programación.
+Description: Blog Praderas: tecnología con rigor y calma. Archivo recuperado y sitio actual en Pico; transparencia explícita sobre autoría humana vs flujos con IA (2020, 2023–24 y 2026).
 Lang: es
 Translation_Key: praderas-home
 ---
@@ -11,23 +11,35 @@ Bienvenida, bienvenido. **Praderas** es un espacio para **explorar tecnología**
 
 ## Qué es este sitio hoy (2026)
 
-Este blog corre sobre **[Pico CMS](https://picocms.org/)**: ficheros en Markdown, plantillas ligeras, sin base de datos. Llevamos a cabo un **proceso consciente de mejora**: arreglo de plantillas, mejor navegación, categorías, búsqueda, migas de pan y sugerencias de lectura. Lo documentamos en la serie *Reviviendo Praderas* (entradas “Día 1, 2, 3…”) con transparencia sobre el trabajo y las decisiones.
+Este blog corre sobre **[Pico CMS](https://picocms.org/)**: ficheros en Markdown, plantillas ligeras, sin base de datos. Llevamos a cabo un **proceso consciente de mejora**: arreglo de plantillas, mejor navegación, categorías, búsqueda, migas de pan, sugerencias de lectura, SEO, series y, desde la **Fase 5**, **español + inglés** como modelo de contenido de primer nivel (pares por `Translation_Key`, conmutador de idioma, `hreflang`). Lo documentamos en la serie *Reviviendo Praderas* (entradas “Día 1, 2, 3…”) con transparencia sobre el trabajo y las decisiones.
 
-Ese trabajo **no** depende de un único asistente de chat integrado al sitio. Sí usamos, cuando encaja, **herramientas de asistencia** (en el ecosoma actual, cosas en la línea de **Cursor, agentes y buenos prompts**) para iterar en el repositorio: la idea es mezclar criterio humano, pruebas y un poco de automatización donde ahorra tiempo sin sustituir el criterio.
+## Cómo se ha producido este archivo (tres momentos — y hoy)
+
+Lo decimos **sin eufemismos** para que sepas **qué estás leyendo**:
+
+- **Hacia 2020:** Buena parte del material son **recuperaciones** de un blog anterior. Ese texto de origen es **100 % humano**.
+- **2023–2024:** El sitio —estructura, criterio de montaje— fue **impulsado por una persona**; el **texto publicado** de ese ciclo fue **generado con IA** (cuánto se revisó a mano varió según la entrada).
+- **Desde 2026 (esta reconstrucción):** La **planificación, el código, la revisión y la auditoría** siguen **flujos liderados por IA**. Hay una persona al otro lado que marca **intención y dirección** —qué problema resolvemos, qué significa “terminado” en términos de producto (algo así como **CEO / mente**, no manos en el teclado). **No** hay, en esta fase del proyecto, la expectativa de una intervención humana habitual línea a línea en implementación ni el mismo tipo de revisión editorial que daría un equipo clásico.
+
+Es una afirmación fuerte; la hacemos **a posta**. La serie *Reviviendo Praderas* cuenta las decisiones técnicas; el **papel humano aquí es estratégico**, no artesanal, en esta etapa.
 
 ## Cómo moverte
 
-- **Blog** — listado de todas las entradas, con paginación.
+- **Blog** — listado de entradas en español, con paginación (`/blog`). Las entradas en inglés se listan en **`/en/blog`**.
 - **Categorías** — mapa por temas (etiquetas) con enlaces a los listados filtrados.
-- **Búsqueda** (en el lateral) — búsqueda en contenidos.
+- **Búsqueda** (en el lateral) — búsqueda en contenidos (lista de palabras vacías según idioma de la página).
 - **Acerca** — notas sobre el gestor y el enfoque del proyecto.
 
 ## Qué puedes esperar
 
-- **Artículos y guías** sobre temas técnicos explicados con cuidado.
+- **Artículos y guías** sobre temas técnicos explicados con cuidado en el nivel de frase —sin negar que el **proceso** detrás es el descrito arriba.
 - **Contenido** que envejece: si algo queda desfasado, lo asumimos y seguimos aprendiendo.
-- **Honestidad** sobre cómo se construye el sitio, incluido el uso (y los límites) de la IA en el flujo editorial y de código.
+- **Honestidad** sobre herramientas: agentes, repositorio y límites; sin letra pequeña que contradiga la portada.
+
+## Conmutador de idioma
+
+Cuando una página tiene traducción emparejada (misma **`Translation_Key`** en el front matter), la cabecera enlaza al otro idioma. Las páginas emparejadas emiten alternativas **`hreflang`** y metadatos **`og:locale`** coherentes.
 
 ## Un último apunte
 
-No prometemos boletines mágicos ni atajos. Sí un blog vivo, con mantenimiento real y ganas de seguir siendo **útil** y **legible**. Pásate por el [Blog](blog), elige una [categoría](categorias) o usa el buscador: tres clics, muchas lecturas.
+No prometemos boletines mágicos ni atajos. Sí un blog vivo, con mantenimiento real y ganas de seguir siendo **útil** y **legible**. Pásate por el [Blog](blog), por el [blog en inglés](/en/blog), elige una [categoría](categorias) o usa el buscador: tres clics, muchas lecturas.

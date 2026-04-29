@@ -1,6 +1,6 @@
 ---
 Title: Home
-Description: Blog Praderas — technology with rigor and calm. Articles, guides, and a log of how we are modernizing the site with a flat-file stack and careful tooling.
+Description: Blog Praderas — technology with rigor and calm. A flat-file Pico site with a transparent story: how the archive and the 2026 rebuild are produced, including English posts alongside Spanish.
 Template: index
 Lang: en
 Translation_Key: praderas-home
@@ -8,21 +8,39 @@ Translation_Key: praderas-home
 
 # Welcome to Blog Praderas
 
-**Praderas** is a space to **explore technology** with rigor and without unnecessary noise: from crypto and cybersecurity to productivity, artificial intelligence, development, and systems. We try to explain what matters, with context.
+**Praderas** is a place to **explore technology** with rigor and without pointless noise: crypto and security, productivity, AI, development, systems. We aim to explain what matters—with context.
 
-## What this site is (2026)
+## What this site is in 2026
 
-This blog runs on **[Pico CMS](https://picocms.org/)**: Markdown files, light templates, no database. We are doing a **deliberate improvement process**: templates, navigation, categories, search, breadcrumbs, related reading, SEO, series—and now **Spanish + English** as a first-class content layout.
+The site runs on **[Pico CMS](https://picocms.org/)**: Markdown, light Twig templates, no database. We are doing a **deliberate rebuild**: navigation, categories, search, breadcrumbs, related posts, SEO, series—and **Spanish + English** as a first-class layout (`Translation_Key` pairs, language switcher, `hreflang`).
 
-We use **assisted tooling** (in the current ecosystem, things along the lines of **Cursor and agents**) where it fits, mixed with human judgment, tests, and small automation where it saves time without replacing judgment.
+## How this archive is produced (three moments—and today)
 
-## How to move around
+We state this plainly so you know **what you are reading**:
 
-- **Blog** — Spanish listing at `/blog` (paginated); English posts are listed at **`/en/blog`**.
-- **Categories** — tag map (shared taxonomy; tag landing URLs stay as today).
-- **Search** — sidebar widget (behavior tuned per language for stopwords).
-- **About** — notes on Pico and the project approach.
+- **Around 2020:** Many articles are **recoveries** from an older blog. That source material is **human-written**.
+- **2023–2024:** The stack and information architecture were **human-driven**; the **published prose** from that period was **generated with AI** (how much a human checked each piece varied).
+- **From 2026 (this rebuild):** **Planning, coding, review, and audit** run as **AI-led workflows**. A person still provides **direction and intent**—what problem we solve, what “done” means in product terms (think **CEO / mind**, not hands on the keyboard). There is **no** traditional expectation of a human doing line-by-line implementation or the same kind of editorial pass a classic team would apply.
+
+That is a strong claim; we make it **on purpose**. The *Reviving Praderas* series documents the technical choices; the **human role here is strategic**, not artisanal, for this phase of the project.
+
+## How to get around
+
+- **Blog** — Spanish index at [`/blog`](/blog) (paginated). English posts are listed at [`/en/blog`](/en/blog).
+- **Categories** — Shared tag taxonomy; filtered lists behave as today.
+- **Search** — Sidebar widget; stopwords depend on page language.
+- **About** — Notes on Pico and approach (still primarily Spanish; a dedicated EN About page is optional follow-up).
+
+## What you can expect
+
+- **Technical articles and guides** written with care at the sentence level—while being honest that the **process** behind them is the one described above.
+- **Content that ages**; when something is wrong or outdated, we say so and iterate.
+- **Clarity** about tooling: agents, repos, and limits—no magical “AI wrote nothing” disclaimers that contradict the homepage.
 
 ## Language switch
 
-When a page has a matching translation (same **`Translation_Key`** in front matter), the header shows a link to the other language. Paired pages also emit **`hreflang`** alternates and consistent **`og:locale`** metadata for search engines.
+When a page has a matching translation (same **`Translation_Key`** in the front matter), the header offers the other language. Paired pages emit **`hreflang`** alternates and consistent **`og:locale`** metadata.
+
+## Closing
+
+No miracle newsletters—just a maintained blog that tries to stay **useful** and **readable**. Open the [blog in Spanish](/blog), the [English blog index](/en/blog), pick a [category](/categorias), or use search: a few clicks, plenty to read.
