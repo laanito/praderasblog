@@ -21,7 +21,15 @@
 {% set canonical_url = current_page.url|default(base_url) %}
 <link rel="canonical" href="{{ canonical_url }}" />
 
-<meta property="og:locale" content="es_ES" />
+<meta property="og:locale" content="{{ og_locale|default('es_ES') }}" />
+{% if og_locale_alternate is defined and og_locale_alternate %}
+<meta property="og:locale:alternate" content="{{ og_locale_alternate }}" />
+{% endif %}
+{% if hreflang_alternates is defined and hreflang_alternates|length > 0 %}
+{% for alt in hreflang_alternates %}
+<link rel="alternate" hreflang="{{ alt.hreflang }}" href="{{ alt.href }}" />
+{% endfor %}
+{% endif %}
 <meta property="og:site_name" content="{{ site_title }}" />
 <meta property="og:title" content="{{ page_title_string }}" />
 {% if meta.description %}

@@ -1,7 +1,7 @@
 {% set my_tag = url_param('tag', 'string') %}
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ html_lang|default('es') }}">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -10,8 +10,8 @@
 <body class="praderas-site">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark pradera-nav">
             <div class="container">
-            <a href="{{ "index"|link }}" class="navbar-brand">{{ site_title }}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegación"><span class="navbar-toggler-icon"></span></button>
+            <a href="{{ pradera_home_url|default("index"|link) }}" class="navbar-brand">{{ site_title }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ (content_lang is defined and content_lang == 'en') ? 'Toggle navigation' : 'Alternar navegación' }}"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 {% include 'nav.twig' %}
             </div>
@@ -22,7 +22,7 @@
            <div class="row">
 		<!-- Content Area -->
                <div class="col-lg-8 pradera-main">
-		{% block breadcrumb %}{% if current_page and current_page.id is defined and current_page.id == 'index' %}{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio' } ] } only %}{% endif %}{% endblock %}
+		{% block breadcrumb %}{% if current_page and current_page.id is defined and (current_page.id == 'index' or current_page.id == 'en/index') %}{% set _home = (content_lang is defined and content_lang == 'en') ? 'Home' : 'Inicio' %}{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': _home } ] } only %}{% endif %}{% endblock %}
 		{% block content %}{% if current_page is defined and current_page.id is defined and current_page.id == 'index' %}<div class="pradera-prose">{{ content }}</div>{% else %}{{ content }}{% endif %}{% endblock %}
                </div>
 		<div class="col-lg-4">

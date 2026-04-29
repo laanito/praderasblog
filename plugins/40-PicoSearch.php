@@ -168,7 +168,18 @@ class PicoSearch extends AbstractPicoPlugin
     }
 
     public function isLowValueWord($word) {
-        return in_array(mb_strtolower($word), $this->getPluginConfig('low_value_words') ?: []);
+        $w = mb_strtolower($word);
+        $lang = 'es';
+        $page = $this->getPico()->getCurrentPage();
+        if ($page !== null && class_exists('Multilingual', false)) {
+            $lang = Multilingual::inferLang($page);
+        }
+        if ($lang === 'en') {
+            $list = $this->getPluginConfig('low_value_words_en') ?: array();
+        } else {
+            $list = $this->getPluginConfig('low_value_words') ?: array();
+        }
+        return in_array($w, $list);
     }
 
     public function onPageRendering(&$twig, &$twigVariables, &$templateName) {

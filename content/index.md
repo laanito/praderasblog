@@ -1,6 +1,8 @@
 ---
 Title: Bienvenidos
 Description: Blog Praderas: tecnología con rigor y calma. Artículos, guías y una bitácora sobre cómo estamos modernizando el sitio con herramientas modernas, incluidos agentes de asistencia a la programación.
+Lang: es
+Translation_Key: praderas-home
 ---
 
 # Bienvenidos al Blog Praderas

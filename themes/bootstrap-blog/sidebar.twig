@@ -10,58 +10,59 @@
 			'Privacidad' : 'bg-success', 
 		} 
 %}
+{% set is_en = content_lang is defined and content_lang == 'en' %}
 
-<aside class="pradera-sidebar" role="complementary" aria-label="Contenido lateral">
+<aside class="pradera-sidebar" role="complementary" aria-label="{{ is_en ? 'Sidebar' : 'Contenido lateral' }}">
     <!-- Search widget (ids shared with search-behavior.twig) -->
     <div class="pradera-widget card mb-4">
-		<div class="card-header">Búsqueda</div>
+		<div class="card-header">{{ is_en ? 'Search' : 'Búsqueda' }}</div>
 		<div class="card-body">
 		    <div class="input-group">
-			<input id="search_input" class="form-control" type="search" placeholder="Introduce términos de búsqueda…" aria-label="Términos de búsqueda" autocomplete="off" />
-			<button class="btn btn-primary" id="search_submit" type="button">Buscar</button>
+			<input id="search_input" class="form-control" type="search" placeholder="{{ is_en ? 'Enter search terms…' : 'Introduce términos de búsqueda…' }}" aria-label="{{ is_en ? 'Search terms' : 'Términos de búsqueda' }}" autocomplete="off" />
+			<button class="btn btn-primary" id="search_submit" type="button">{{ is_en ? 'Search' : 'Buscar' }}</button>
 		    </div>
 		</div>
     </div>
     <div class="pradera-widget card mb-4">
-		<div class="card-header">Archivo</div>
+		<div class="card-header">{{ is_en ? 'Archive' : 'Archivo' }}</div>
 		<div class="card-body">
-		    <p class="small text-muted mb-2">Entradas agrupadas por año y mes.</p>
-		    <a href="{{ 'archivo'|link }}" class="btn btn-outline-primary btn-sm w-100">Ver archivo →</a>
+		    <p class="small text-muted mb-2">{{ is_en ? 'Posts grouped by year and month (Spanish posts).' : 'Entradas agrupadas por año y mes.' }}</p>
+		    <a href="{{ 'archivo'|link }}" class="btn btn-outline-primary btn-sm w-100">{{ is_en ? 'View archive →' : 'Ver archivo →' }}</a>
 		</div>
     </div>
     {% if post_series is defined and post_series %}
     <div class="pradera-widget card mb-4 pradera-series-sidebar">
-		<div class="card-header">Serie</div>
+		<div class="card-header">{{ is_en ? 'Series' : 'Serie' }}</div>
 		<div class="card-body pb-2">
-			<p class="small text-muted mb-2">Parte {{ post_series.index }} de {{ post_series.total }}</p>
+			<p class="small text-muted mb-2">{{ is_en ? ('Part ' ~ post_series.index ~ ' of ' ~ post_series.total) : ('Parte ' ~ post_series.index ~ ' de ' ~ post_series.total) }}</p>
 			<p class="mb-0"><a class="fw-semibold text-decoration-none" href="{{ post_series.url }}">{{ post_series.name }}</a></p>
 		</div>
 		<div class="list-group list-group-flush">
 			{% if post_series.prev %}
 			<a class="list-group-item list-group-item-action pradera-series-sidebar__link" href="{{ post_series.prev.url }}" rel="prev">
-				<span class="d-block text-muted text-uppercase small">← Parte anterior</span>
+				<span class="d-block text-muted text-uppercase small">{{ is_en ? '← Previous part' : '← Parte anterior' }}</span>
 				<span class="d-block text-body text-break">{{ post_series.prev.title }}</span>
 			</a>
 			{% else %}
-			<div class="list-group-item small text-muted">Inicio de la serie</div>
+			<div class="list-group-item small text-muted">{{ is_en ? 'Series start' : 'Inicio de la serie' }}</div>
 			{% endif %}
 			{% if post_series.next %}
 			<a class="list-group-item list-group-item-action pradera-series-sidebar__link" href="{{ post_series.next.url }}" rel="next">
-				<span class="d-block text-muted text-uppercase small">Siguiente parte →</span>
+				<span class="d-block text-muted text-uppercase small">{{ is_en ? 'Next part →' : 'Siguiente parte →' }}</span>
 				<span class="d-block text-body text-break">{{ post_series.next.title }}</span>
 			</a>
 			{% else %}
-			<div class="list-group-item small text-muted">Última parte publicada</div>
+			<div class="list-group-item small text-muted">{{ is_en ? 'Latest published part' : 'Última parte publicada' }}</div>
 			{% endif %}
 		</div>
 		<div class="card-body pt-2">
-			<a class="btn btn-outline-primary btn-sm w-100" href="{{ post_series.url }}">Ver índice completo</a>
+			<a class="btn btn-outline-primary btn-sm w-100" href="{{ post_series.url }}">{{ is_en ? 'Full series index' : 'Ver índice completo' }}</a>
 		</div>
     </div>
     {% endif %}
     <!-- Categories widget -->
     <div class="pradera-widget card mb-4">
-		<div class="card-header">Categorías</div>
+		<div class="card-header">{{ is_en ? 'Categories' : 'Categorías' }}</div>
 		<div class="card-body">
 		    <div class="row">
 		   {% for tag_group in tags|sort|batch(5) %}
@@ -78,9 +79,9 @@
     </div>
     <!-- Recent posts (replaces default "Side Widget" placeholder) -->
     <div class="pradera-widget card mb-4 sidebar-recent">
-		<div class="card-header">Artículos recientes</div>
+		<div class="card-header">{{ is_en ? 'Recent posts' : 'Artículos recientes' }}</div>
 		<div class="list-group list-group-flush">
-			{% for page in pages|sort_by("time")|reverse if page.id starts with "blog/" %}
+			{% for page in pages|sort_by("time")|reverse if page.id starts with "blog/" and ((is_en and page.id starts with "blog/en/") or (not is_en and not (page.id starts with "blog/en/"))) %}
 			{% if loop.index <= 5 %}
 			<a class="list-group-item list-group-item-action sidebar-recent__link" href="{{ page.url }}">
 				<span class="d-block fw-semibold text-body sidebar-recent__title text-break">{{ page.title }}</span>

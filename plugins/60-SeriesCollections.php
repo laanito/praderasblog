@@ -50,19 +50,33 @@ class SeriesCollections extends AbstractPicoPlugin
             return;
         }
 
-        $seriesMap = $this->buildSeriesMap($this->getPico()->getPages());
-        $twigVariables['series_collections'] = array_values($seriesMap);
+        $byLang = $this->buildSeriesMapByLang($this->getPico()->getPages());
+        $esMap = isset($byLang['es']) ? $byLang['es'] : array();
+        uasort($esMap, function ($a, $b) {
+            return strcasecmp($a['name'], $b['name']);
+        });
+        $twigVariables['series_collections'] = array_values($esMap);
 
         if ($current['id'] === 'series' && $this->requestedSeriesSlug !== null) {
             $twigVariables['series_slug'] = $this->requestedSeriesSlug;
-            $twigVariables['current_series'] = isset($seriesMap[$this->requestedSeriesSlug])
-                ? $seriesMap[$this->requestedSeriesSlug]
-                : null;
+            $slug = $this->requestedSeriesSlug;
+            $twigVariables['current_series'] = null;
+            if (isset($esMap[$slug])) {
+                $twigVariables['current_series'] = $esMap[$slug];
+            } elseif (isset($byLang['en'][$slug])) {
+                $twigVariables['current_series'] = $byLang['en'][$slug];
+            }
         }
 
         if (strpos($current['id'], 'blog/') !== 0) {
             return;
         }
+
+        $curLang = class_exists('Multilingual', false) ? Multilingual::inferLang($current) : 'es';
+        if (!isset($byLang[$curLang])) {
+            $curLang = 'es';
+        }
+        $seriesMap = $byLang[$curLang];
 
         $currentSlug = $this->extractSeriesSlug(isset($current['meta']) ? $current['meta'] : array());
         if ($currentSlug === '' || !isset($seriesMap[$currentSlug])) {
@@ -87,13 +101,18 @@ class SeriesCollections extends AbstractPicoPlugin
         );
     }
 
-    private function buildSeriesMap($pages)
+    private function buildSeriesMapByLang($pages)
     {
-        $seriesMap = array();
+        $byLang = array('es' => array(), 'en' => array());
 
         foreach ($pages as $page) {
             if (!isset($page['id'], $page['time']) || strpos($page['id'], 'blog/') !== 0) {
                 continue;
+            }
+
+            $lang = class_exists('Multilingual', false) ? Multilingual::inferLang($page) : 'es';
+            if (!isset($byLang[$lang])) {
+                $lang = 'es';
             }
 
             $meta = isset($page['meta']) ? $page['meta'] : array();
@@ -103,18 +122,18 @@ class SeriesCollections extends AbstractPicoPlugin
             }
 
             $name = $this->extractSeriesName($meta, $slug);
-            if (!isset($seriesMap[$slug])) {
-                $seriesMap[$slug] = array(
+            if (!isset($byLang[$lang][$slug])) {
+                $byLang[$lang][$slug] = array(
                     'name' => $name,
                     'slug' => $slug,
                     'url' => $this->buildSeriesUrl($slug),
                     'entries' => array(),
                 );
-            } elseif ($seriesMap[$slug]['name'] === $this->humanizeSlug($slug) && $name !== '') {
-                $seriesMap[$slug]['name'] = $name;
+            } elseif ($byLang[$lang][$slug]['name'] === $this->humanizeSlug($slug) && $name !== '') {
+                $byLang[$lang][$slug]['name'] = $name;
             }
 
-            $seriesMap[$slug]['entries'][] = array(
+            $byLang[$lang][$slug]['entries'][] = array(
                 'id' => $page['id'],
                 'title' => isset($page['title']) ? $page['title'] : $page['id'],
                 'url' => isset($page['url']) ? $page['url'] : '',
@@ -124,34 +143,35 @@ class SeriesCollections extends AbstractPicoPlugin
             );
         }
 
-        foreach ($seriesMap as &$series) {
-            usort($series['entries'], function ($a, $b) {
-                if ($a['series_order'] !== null && $b['series_order'] !== null && $a['series_order'] !== $b['series_order']) {
-                    return $a['series_order'] < $b['series_order'] ? -1 : 1;
-                }
+        foreach (array('es', 'en') as $lang) {
+            if (!isset($byLang[$lang])) {
+                continue;
+            }
+            foreach ($byLang[$lang] as &$series) {
+                usort($series['entries'], function ($a, $b) {
+                    if ($a['series_order'] !== null && $b['series_order'] !== null && $a['series_order'] !== $b['series_order']) {
+                        return $a['series_order'] < $b['series_order'] ? -1 : 1;
+                    }
 
-                if ($a['series_order'] !== null && $b['series_order'] === null) {
-                    return -1;
-                }
+                    if ($a['series_order'] !== null && $b['series_order'] === null) {
+                        return -1;
+                    }
 
-                if ($a['series_order'] === null && $b['series_order'] !== null) {
-                    return 1;
-                }
+                    if ($a['series_order'] === null && $b['series_order'] !== null) {
+                        return 1;
+                    }
 
-                if ($a['time'] !== $b['time']) {
-                    return $a['time'] < $b['time'] ? -1 : 1;
-                }
+                    if ($a['time'] !== $b['time']) {
+                        return $a['time'] < $b['time'] ? -1 : 1;
+                    }
 
-                return strcmp($a['id'], $b['id']);
-            });
+                    return strcmp($a['id'], $b['id']);
+                });
+            }
+            unset($series);
         }
-        unset($series);
 
-        uasort($seriesMap, function ($a, $b) {
-            return strcasecmp($a['name'], $b['name']);
-        });
-
-        return $seriesMap;
+        return $byLang;
     }
 
     private function extractSeriesSlug($meta)

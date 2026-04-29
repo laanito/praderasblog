@@ -1,7 +1,7 @@
 # Phases 5 & 6 — Multilingual and AI-Ready (JSON) — Adopted backlog
 
 **Source:** Adapted from strategic planning (April 2026), consolidated for this repository.  
-**Status:** Not started; intended **after** the current implementation phases 3–4 in `proposed-improvements.md` (metadata/SEO) are in good shape.  
+**Status:** **Phase 5 (subset) shipped in repo (2026-04-28)** on branch `feat/phase-5-multilingual`: ES default URLs preserved, EN under `content/blog/en/` + `content/en/`, `Lang` + `Translation_Key`, plugin `65-Multilingual.php`, theme switcher + `hreflang`/`og:locale`, scoped pagination/neighbors/search stopwords. **Phase 6** (JSON) not started.  
 **Supersedes:** One-off copy of an external `PHASE_5_MULTILINGUAL_…` file; this file is the **canonical** reference in-repo.
 
 ---
@@ -29,7 +29,7 @@ Both align with the blog’s “transparent, modern stack” story; neither repl
 
 ### Recommended approach (Option A — maintainable)
 
-- **Split content trees**, e.g. `content/blog/es/` and `content/blog/en/`, with shared **`translation_key`** in front matter to pair translations.
+- **Split content trees** (implemented variant): Spanish posts remain in `content/blog/*.md`; English posts live in **`content/blog/en/*.md`**; optional English top pages in **`content/en/*.md`**. Shared **`Translation_Key`** in front matter pairs translations (see also `Lang`).
 - Add explicit **`lang`** in front matter per file.
 - Twig partial for a **language switcher**; Pico routing for language prefixes (exact URL scheme TBD: `/en/blog/...` vs `blog/en/...` — decide before build).
 - Translations: LLM-assisted batches + **human review** on flagship posts and legal-sensitive lines.
@@ -99,4 +99,5 @@ Two endpoints (exact paths TBD; cache-friendly):
 
 ## Changelog in-repo
 
+- **2026-04-28:** Phase 5 **first slice** implemented: `plugins/65-Multilingual.php`, theme updates (`page-meta.twig`, `nav.twig`, `lang-switcher.twig`, `blog-en.twig`, `post.twig`/`index.twig`/`blog.twig`/`sidebar.twig`/`archive.twig`), `10-Pagination.php` / `50-BlogNeighbors.php` / `60-SeriesCollections.php` language scoping, `40-PicoSearch.php` + `low_value_words_en`, sample `content/en/*` + paired Día 8 posts. Documented in `content/blog/reviviendo-praderas-dia-8-fase-5-multilingue-modelo-y-metadatos.md` (+ EN twin under `content/blog/en/`).
 - **2026-04-24:** Added as canonical backlog; aligned numbering with `proposed-improvements` (5 = multilingual, 6 = JSON); editor notes and caveats added.
