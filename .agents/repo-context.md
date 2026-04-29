@@ -17,11 +17,12 @@
 ## Agent docs (backlog & roadmaps)
 - `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
 - `phase-5-6-plan.md` — Phase **5** (multilingual) **first slice shipped** (2026-04-28); Phase **6** (JSON) still future; read before extending either.
+- `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.
 - `day5-consultant-feedback.md` — Day 5 sequence and status notes (visual + series completed, follow-up UX tweaks).
 
 ## Directory Map
 - `content/`
-  - `index.md` homepage ("Bienvenidos") — product copy; describes Pico, *Reviviendo Praderas*, navigation, and AI-as-tooling (not a single chat product); optional `Lang` / `Translation_Key` for pairing with `content/en/index.md`
+  - `index.md` homepage ("Bienvenidos") — product copy, Pico, *Reviviendo Praderas*, navigation, and **explicit editorial/AI transparency** (2020 human recoveries, 2023–24 human-built site + IA-generated prose, 2026 IA-led engineering with human direction); paired with `content/en/index.md` via `Translation_Key`
   - `en/index.md`, `en/blog.md` — English home + blog listing (`Template: blog-en` on the latter → `/en/blog`)
   - `blog.md` listing page (`Template: blog`)
   - `series.md` series hub (`Template: series`) for `/series` and `/series/<slug>/`
