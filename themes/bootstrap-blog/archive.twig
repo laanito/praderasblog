@@ -31,7 +31,7 @@
 
 <div class="pradera-archive">
 {% for p in sorted %}
-{% if p.id starts with 'blog/' and p.title %}
+{% if p.id starts with 'blog/' and not (p.id starts with 'blog/en/') and p.title %}
 	{% set y = p.time|date('Y') %}
 	{% set m = p.time|date('m') %}
 	{% if y != last_year %}

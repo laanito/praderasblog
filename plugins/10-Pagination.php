@@ -56,6 +56,15 @@ class Pagination extends AbstractPicoPlugin {
 		} else {
 			$show_pages = $pages;
 		}
+		// Spanish blog listing (/blog): only posts under blog/* excluding English subtree blog/en/*
+		if ($currentPage !== null && isset($currentPage['id']) && $currentPage['id'] === 'blog') {
+			$show_pages = array_values(array_filter($show_pages, function ($page) {
+				if (!isset($page['id'])) {
+					return false;
+				}
+				return strpos($page['id'], 'blog/') === 0 && strpos($page['id'], 'blog/en/') !== 0;
+			}));
+		}
 		// get total pages before show_pages is sliced
 		$this->total_pages = ceil(count($show_pages) / $this->config['limit']);
 		// sort $show_pages by $page['date']:

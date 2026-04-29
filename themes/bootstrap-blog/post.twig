@@ -10,9 +10,10 @@
 			'Privacidad' : 'bg-success', 
 		} 
 %}
+{% set is_en = content_lang is defined and content_lang == 'en' %}
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ html_lang|default('es') }}">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -21,8 +22,8 @@
 <body class="praderas-site">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark pradera-nav">
             <div class="container">
-            <a href="{{ "index"|link }}" class="navbar-brand">{{ site_title }}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegación"><span class="navbar-toggler-icon"></span></button>
+            <a href="{{ pradera_home_url|default("index"|link) }}" class="navbar-brand">{{ site_title }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ is_en ? 'Toggle navigation' : 'Alternar navegación' }}"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 {% include 'nav.twig' %}
             </div>
@@ -32,6 +33,9 @@
    <div class="container mt-5">
            <div class="row">
 		<div class="col-lg-8 pradera-main">
+		{% set _home_label = is_en ? 'Home' : 'Inicio' %}
+		{% set _home_url = pradera_home_url|default("index"|link) %}
+		{% set _blog_url = is_en ? ("en/blog"|link) : ("blog"|link) %}
 		{% if current_page.id is defined and current_page.id starts with "blog/" %}
 			{% if meta.tags %}
 				{% if meta.tags is iterable %}
@@ -39,19 +43,19 @@
 				{% else %}
 					{% set t0 = meta.tags|split(",")|first|trim %}
 				{% endif %}
-				{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Blog', 'url': "blog"|link }, { 'label': t0, 'url': base_url ~ '/tags/?tag=' ~ t0|e('url') }, { 'label': meta.title } ] } only %}
+				{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': _home_label, 'url': _home_url }, { 'label': 'Blog', 'url': _blog_url }, { 'label': t0, 'url': base_url ~ '/tags/?tag=' ~ t0|e('url') }, { 'label': meta.title } ] } only %}
 			{% else %}
-				{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Blog', 'url': "blog"|link }, { 'label': meta.title } ] } only %}
+				{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': _home_label, 'url': _home_url }, { 'label': 'Blog', 'url': _blog_url }, { 'label': meta.title } ] } only %}
 			{% endif %}
 		{% else %}
-			{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': meta.title } ] } only %}
+			{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': _home_label, 'url': _home_url }, { 'label': meta.title } ] } only %}
 		{% endif %}
 		<article class="pradera-article pradera-main--reading">
 			<header class="mb-4 pradera-post-header">
 			<h1 class="fw-bolder mb-1">{{ meta.title }}</h1>
 			<div class="pradera-post-meta text-muted fst-italic mb-0">
 				{% if meta.date_formatted %}
-				{{ 'Publicado el ' ~ meta.date_formatted }}
+				{{ is_en ? ('Published on ' ~ meta.date_formatted) : ('Publicado el ' ~ meta.date_formatted) }}
 				{% endif %}
 			</div>
 			{% if meta.tags %}
@@ -68,8 +72,8 @@
 			</section>
 		{% if current_page.id is defined and current_page.id starts with "blog/" %}
 		{% if related_posts is defined and related_posts|length > 0 %}
-			<aside class="pradera-related entry-related border-top pt-4 mt-4" aria-label="Entradas relacionadas">
-				<h2 class="h5 pradera-related__title">Te puede interesar</h2>
+			<aside class="pradera-related entry-related border-top pt-4 mt-4" aria-label="{{ is_en ? 'Related posts' : 'Entradas relacionadas' }}">
+				<h2 class="h5 pradera-related__title">{{ is_en ? 'You may also like' : 'Te puede interesar' }}</h2>
 				<ul class="list-unstyled pradera-related__list mb-0">
 				{% for rp in related_posts %}
 					<li>
@@ -82,25 +86,25 @@
 				</ul>
 			</aside>
 		{% endif %}
-		<nav class="pradera-post-nav d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-start gap-3 border-top pt-4 mt-4" aria-label="Entradas anteriores y posteriores">
+		<nav class="pradera-post-nav d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-start gap-3 border-top pt-4 mt-4" aria-label="{{ is_en ? 'Previous and next posts' : 'Entradas anteriores y posteriores' }}">
 			<div class="flex-sm-fill me-sm-2">
 			{% if post_prev_in_time is defined and post_prev_in_time %}
 			<a href="{{ post_prev_in_time.url }}" class="d-block text-decoration-none" rel="prev">
-				<span class="text-muted text-uppercase small d-block">← Más antigua</span>
+				<span class="text-muted text-uppercase small d-block">{{ is_en ? '← Older' : '← Más antigua' }}</span>
 				<span class="d-block text-body">{{ post_prev_in_time.title }}</span>
 			</a>
 			{% else %}
-			<span class="text-muted small">Inicio de la línea (cronológica)</span>
+			<span class="text-muted small">{{ is_en ? 'Oldest in this language' : 'Inicio de la línea (cronológica)' }}</span>
 			{% endif %}
 			</div>
 			<div class="flex-sm-fill text-sm-end ms-sm-2">
 			{% if post_next_in_time is defined and post_next_in_time %}
 			<a href="{{ post_next_in_time.url }}" class="d-block text-decoration-none" rel="next">
-				<span class="text-muted text-uppercase small d-block">Más reciente →</span>
+				<span class="text-muted text-uppercase small d-block">{{ is_en ? 'Newer →' : 'Más reciente →' }}</span>
 				<span class="d-block text-body">{{ post_next_in_time.title }}</span>
 			</a>
 			{% else %}
-			<span class="text-muted small d-block">Última (cronológica) por ahora</span>
+			<span class="text-muted small d-block">{{ is_en ? 'Latest in this language for now' : 'Última (cronológica) por ahora' }}</span>
 			{% endif %}
 			</div>
 		</nav>

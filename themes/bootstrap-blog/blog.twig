@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ html_lang|default('es') }}">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -9,8 +9,8 @@
 <body class="praderas-site">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark pradera-nav">
             <div class="container">
-            <a href="{{ "index"|link }}" class="navbar-brand">{{ site_title }}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegación"><span class="navbar-toggler-icon"></span></button>
+            <a href="{{ pradera_home_url|default("index"|link) }}" class="navbar-brand">{{ site_title }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ (content_lang is defined and content_lang == 'en') ? 'Toggle navigation' : 'Alternar navegación' }}"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 {% include 'nav.twig' %}
             </div>

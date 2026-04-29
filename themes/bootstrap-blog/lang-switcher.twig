@@ -1,0 +1,5 @@
+{% if alternate_language_page is defined and alternate_language_page and alternate_language_page.url is defined %}
+<div class="pradera-lang-switcher ms-lg-3 mt-2 mt-lg-0 d-flex align-items-center">
+	<a href="{{ alternate_language_page.url }}" class="btn btn-sm btn-outline-light" hreflang="{{ content_lang is defined and content_lang == 'es' ? 'en' : 'es' }}" lang="{{ content_lang is defined and content_lang == 'es' ? 'en' : 'es' }}">{{ content_lang is defined and content_lang == 'es' ? 'English' : 'Español' }}</a>
+</div>
+{% endif %}

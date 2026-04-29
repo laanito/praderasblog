@@ -22,6 +22,9 @@ class BlogNeighbors extends AbstractPicoPlugin
                 if (!isset($p['id']) || strpos($p['id'], 'blog/') !== 0) {
                     continue;
                 }
+                if (class_exists('Multilingual', false) && Multilingual::inferLang($p) !== 'es') {
+                    continue;
+                }
                 $tgs = $this->parseTagList(isset($p['meta']['tags']) ? $p['meta']['tags'] : null);
                 foreach ($tgs as $t) {
                     if ($t === '') {
@@ -41,9 +44,13 @@ class BlogNeighbors extends AbstractPicoPlugin
             return;
         }
 
+        $curLang = class_exists('Multilingual', false) ? Multilingual::inferLang($current) : 'es';
         $blogPages = array();
         foreach ($allPages as $p) {
             if (isset($p['id'], $p['time']) && strpos($p['id'], 'blog/') === 0) {
+                if (class_exists('Multilingual', false) && Multilingual::inferLang($p) !== $curLang) {
+                    continue;
+                }
                 $blogPages[] = $p;
             }
         }

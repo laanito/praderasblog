@@ -53,6 +53,44 @@ PicoSearch:
     - uno
     - y
     - ya
+  low_value_words_en:
+    - a
+    - an
+    - and
+    - are
+    - as
+    - at
+    - be
+    - but
+    - by
+    - for
+    - from
+    - has
+    - have
+    - how
+    - in
+    - is
+    - it
+    - its
+    - of
+    - on
+    - or
+    - that
+    - the
+    - their
+    - this
+    - to
+    - was
+    - we
+    - were
+    - what
+    - when
+    - where
+    - which
+    - who
+    - will
+    - with
+    - your
 
 #
 # Themes
