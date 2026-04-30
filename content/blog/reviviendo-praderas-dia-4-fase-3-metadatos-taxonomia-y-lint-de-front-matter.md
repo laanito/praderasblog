@@ -8,6 +8,8 @@ Tags: Desarrollo Web, Productividad, Inteligencia Artificial
 Series: Reviviendo Praderas
 Series_Slug: reviviendo-praderas
 Series_Order: 4
+Lang: es
+Translation_Key: praderas-day-4-phase-3-metadata-taxonomy-frontmatter-lint
 ---
 
 # Reviviendo Praderas (Día 4) — Fase 3: ordenar metadatos sin llorar

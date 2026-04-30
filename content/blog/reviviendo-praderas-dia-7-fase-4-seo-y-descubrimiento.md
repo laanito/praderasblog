@@ -8,6 +8,8 @@ Tags: Desarrollo Web, Productividad, Inteligencia Artificial
 Series: Reviviendo Praderas
 Series_Slug: reviviendo-praderas
 Series_Order: 7
+Lang: es
+Translation_Key: praderas-day-7-phase-4-seo-discoverability
 ---
 
 # Reviviendo Praderas (Día 7) — Fase 4: que Google y las personas encuentren sin drama

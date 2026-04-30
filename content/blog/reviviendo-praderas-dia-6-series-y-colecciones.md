@@ -8,6 +8,8 @@ Tags: Desarrollo Web, Productividad, Inteligencia Artificial
 Series: Reviviendo Praderas
 Series_Slug: reviviendo-praderas
 Series_Order: 6
+Lang: es
+Translation_Key: praderas-day-6-series-and-collections
 ---
 
 # Reviviendo Praderas (Día 6) — cuando una mejora de navegación necesita modelo, no parche

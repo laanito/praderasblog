@@ -8,6 +8,8 @@ Tags: Desarrollo Web, Productividad, Inteligencia Artificial
 Series: Reviviendo Praderas
 Series_Slug: reviviendo-praderas
 Series_Order: 5
+Lang: es
+Translation_Key: praderas-day-5-visual-polish
 ---
 
 # Reviviendo Praderas (Día 5) — Cuando toca cuidar la forma, no solo la función
