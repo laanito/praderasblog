@@ -93,12 +93,14 @@ Two endpoints (exact paths TBD; cache-friendly):
 
 1. Read `repo-context.md` and `proposed-improvements.md` first.
 2. Use **this file** for Phase 5/6 scope; open a **PR** with a short migration/risk section.
-3. If an external file references `.agents/grok-consultant-context.md`, treat it as optional; **this repo** may not include it — rely on `repo-context.md` and this document.
+3. For **ES→EN migration batches** (series, glossary, PR sizing, honest “context” and wall-clock notes), read `translation-batches.md` alongside `translation-migration-tracker.md`.
+4. If an external file references `.agents/grok-consultant-context.md`, treat it as optional; **this repo** may not include it — rely on `repo-context.md` and this document.
 
 ---
 
 ## Changelog in-repo
 
+- **2026-04-30:** “For future agents” now points to `translation-batches.md` for translation PR workflow.
 - **2026-04-29:** Added `.agents/translation-migration-tracker.md` (ES→EN backlog, vocabulary stub, editorial-era reference); homepages `index.md` / `en/index.md` aligned with explicit production model (2020 / 2023–24 / 2026).
 - **2026-04-28:** Phase 5 **first slice** implemented: `plugins/65-Multilingual.php`, theme updates (`page-meta.twig`, `nav.twig`, `lang-switcher.twig`, `blog-en.twig`, `post.twig`/`index.twig`/`blog.twig`/`sidebar.twig`/`archive.twig`), `10-Pagination.php` / `50-BlogNeighbors.php` / `60-SeriesCollections.php` language scoping, `40-PicoSearch.php` + `low_value_words_en`, sample `content/en/*` + paired Día 8 posts. Documented in `content/blog/reviviendo-praderas-dia-8-fase-5-multilingue-modelo-y-metadatos.md` (+ EN twin under `content/blog/en/`).
 - **2026-04-24:** Added as canonical backlog; aligned numbering with `proposed-improvements` (5 = multilingual, 6 = JSON); editor notes and caveats added.

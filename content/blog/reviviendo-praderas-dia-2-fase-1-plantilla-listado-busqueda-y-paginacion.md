@@ -8,6 +8,8 @@ Tags: Desarrollo Web, Productividad, Inteligencia Artificial
 Series: Reviviendo Praderas
 Series_Slug: reviviendo-praderas
 Series_Order: 2
+Lang: es
+Translation_Key: praderas-day-2-phase-1-listing-search-pagination
 ---
 
 # Reviviendo Praderas (Día 2) — Fase 1: listado, búsqueda, paginación (con IA de copiloto)

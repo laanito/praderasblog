@@ -5,7 +5,7 @@
 - **Primary live URL:** `https://blog.praderas.org/` (not `https://praderas.org/`).
 - **Language:** Spanish-first site with **Phase 5** English subtree (`content/blog/en/`, `content/en/`); theme labels switch for EN pages where wired (`content_lang`).
 - **Current active theme:** `bootstrap-blog` (configured in `config/config.yml`).
-- **Content size:** ~58 Spanish posts under `content/blog/*.md` (including *Reviviendo Praderas* through Día 8) plus English posts under `content/blog/en/` (incremental).
+- **Content size:** Spanish posts under `content/blog/*.md` plus incremental English posts under `content/blog/en/` (see tracker for pair coverage).
 
 ## High-Level Architecture
 - **Core runtime:** `index.php` boots Pico and loads `config/`, `plugins/`, and `themes/`.
@@ -18,6 +18,7 @@
 - `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
 - `phase-5-6-plan.md` — Phase **5** (multilingual) **first slice shipped** (2026-04-28); Phase **6** (JSON) still future; read before extending either.
 - `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.
+- `translation-batches.md` — **how to run translation in batches:** context-window rationale, whole-series rule, glossary updates, honest human wall-clock vs specialist estimates, merge checklist (read before shipping ES/EN pairs).
 - `day5-consultant-feedback.md` — Day 5 sequence and status notes (visual + series completed, follow-up UX tweaks).
 
 ## Directory Map

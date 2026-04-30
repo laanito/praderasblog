@@ -8,6 +8,8 @@ Tags: Desarrollo Web, Productividad, Inteligencia Artificial
 Series: Reviviendo Praderas
 Series_Slug: reviviendo-praderas
 Series_Order: 1
+Lang: es
+Translation_Key: praderas-day-1-technical-audit
 ---
 
 # Reviviendo Praderas (Día 1): auditoría técnica y plan de mejoras con agentes de IA
