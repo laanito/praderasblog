@@ -2,7 +2,7 @@
 
 **Purpose:** Plan and record the move from Spanish-only posts to paired EN content (`content/blog/en/`, same **`Translation_Key`** as the Spanish file). This file is the **working ledger** for agents and humans: status, vocabulary, and language rules—not the public site.
 
-**Related:** `phase-5-6-plan.md` (Phase 5 goals), `post-template.md` (`Lang`, `Translation_Key`), homepage pair `content/index.md` ↔ `content/en/index.md`.
+**Related:** `phase-5-6-plan.md` (Phase 5 goals), `post-template.md` (`Lang`, `Translation_Key`), `translation-batches.md` (batching rules, context explainer, honest time reporting), homepage pair `content/index.md` ↔ `content/en/index.md`.
 
 ---
 
@@ -95,6 +95,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-04-30 (agent docs):** Added `translation-batches.md` — operational instructions distilled from Day 9 (batches, context window, series integrity, glossary, wall-clock honesty); linked from `repo-context.md`, `post-template.md`, and this file.
 - **2026-04-30 (follow-up):** Day 9 ES/EN posts updated: plain-language “context” explainer, 8-batch timeline table, batch rationale, and human wall-clock ~20 min (replacing an earlier inflated AI-assisted duration estimate).
 - **2026-04-30:** Added batch-based migration plan (8 batches), completed Batch 1 for *Reviving Praderas* (Day 1-9 pairs now available in EN), and expanded vocabulary guidance.
 - **2026-04-29:** Initial tracker: eras table, backlog schema, vocabulary stub, checklist; created alongside homepage transparency updates.
