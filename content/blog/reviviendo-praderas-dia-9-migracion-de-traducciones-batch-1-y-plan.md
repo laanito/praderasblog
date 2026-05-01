@@ -51,7 +51,7 @@ Definimos **8 batches**. El detalle vive en el tracker del repo; aquí va la **l
 | Lote | Contenido | Estado (abril 2026) |
 |------|-----------|---------------------|
 | **1** | *Reviviendo Praderas* (Día 1–9, serie completa) | **Hecho** — 30 abr |
-| **2** | *Control de Tiempo Desacoplado* (13 capítulos, serie completa) | Pendiente |
+| **2** | *Control de Tiempo Desacoplado* (13 capítulos, serie completa) | **Hecho** — 30 abr (PR batch 2) |
 | **3** | Ciberseguridad, privacidad, geolocalización | Pendiente |
 | **4** | IA, tendencias, salud/entretenimiento con IA | Pendiente |
 | **5** | Productividad y herramientas (Emacs, Taskwarrior, colaboración, etc.) | Pendiente |
@@ -71,4 +71,4 @@ La lección para quien quiere **entender la IA** no es “la IA acaba en 20 minu
 
 ## Qué sigue
 
-El siguiente bloque natural es **Batch 2**: la serie **Control de Tiempo Desacoplado** (13 capítulos), manteniendo la misma regla de no dejar medias series.
+El **Batch 2** (serie **Control de Tiempo Desacoplado** + hubs `/en/series` y `/en/categorias`) quedó en un PR aparte. El siguiente bloque natural es **Batch 3**: cluster de **ciberseguridad, privacidad y geolocalización**.
