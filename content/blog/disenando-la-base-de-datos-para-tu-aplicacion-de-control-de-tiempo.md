@@ -8,6 +8,8 @@ Series: Control de Tiempo Desacoplado
 Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 6
 Template: post
+Lang: es
+Translation_Key: praderas-ctd-06
 ---
 
 

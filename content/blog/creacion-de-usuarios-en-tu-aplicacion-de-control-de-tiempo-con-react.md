@@ -8,6 +8,8 @@ Series: Control de Tiempo Desacoplado
 Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 13
 Template: post
+Lang: es
+Translation_Key: praderas-ctd-13
 ---
 
 En nuestra serie de desarrollo de aplicaciones de gestión de tiempo, hemos cubierto aspectos cruciales, como la creación de roles y proyectos. Ahora es el momento de abordar la gestión de usuarios en nuestra aplicación. En este artículo, te guiaré a través de la creación de un componente de React para agregar nuevos usuarios a tu base de datos.

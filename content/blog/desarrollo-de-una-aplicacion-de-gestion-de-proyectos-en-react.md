@@ -8,6 +8,8 @@ Series: Control de Tiempo Desacoplado
 Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 12
 Template: post
+Lang: es
+Translation_Key: praderas-ctd-12
 ---
 
 En nuestra serie de tutoriales sobre el desarrollo de una aplicación de control de tiempo, llegamos a la etapa de gestionar proyectos. Vamos a utilizar React para crear una interfaz de usuario que permita a los usuarios listar, crear y editar proyectos. A continuación, exploraremos el proceso de desarrollo y el código de React necesario.
@@ -133,9 +135,7 @@ function EditProject() {
         <div>
           <label htmlFor="fechaFin">Fecha de Fin:</label>
           <input type="date" id="fechaFin" value={fechaFin} onChange={handleFechaFinChange} />
-        </div
-
->
+        </div>
         <button type="submit">Guardar</button>
       </form>
     </div>

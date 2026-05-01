@@ -9,12 +9,15 @@
  * - Series_Order
  *
  * Features:
- * - /series/<slug>/ pages backed by content/series.md
+ * - /series/<slug>/ and /en/series/<slug>/ pages backed by content/series.md
  * - In-post previous/next/index navigation within the same series
  */
 class SeriesCollections extends AbstractPicoPlugin
 {
     private $requestedSeriesSlug = null;
+
+    /** @var string Language for the current series detail URL (es | en). */
+    private $requestedSeriesLang = 'es';
 
     public function onMetaHeaders(&$headers)
     {
@@ -25,8 +28,15 @@ class SeriesCollections extends AbstractPicoPlugin
 
     public function onRequestUrl(&$url)
     {
-        if (preg_match('~^series/([^/]+)/?$~', $url, $matches)) {
+        $this->requestedSeriesSlug = null;
+        $this->requestedSeriesLang = 'es';
+
+        if (preg_match('~^en/series/([^/]+)/?$~', $url, $matches)) {
             $this->requestedSeriesSlug = $this->slugify(rawurldecode($matches[1]));
+            $this->requestedSeriesLang = 'en';
+        } elseif (preg_match('~^series/([^/]+)/?$~', $url, $matches)) {
+            $this->requestedSeriesSlug = $this->slugify(rawurldecode($matches[1]));
+            $this->requestedSeriesLang = 'es';
         }
     }
 
@@ -51,20 +61,27 @@ class SeriesCollections extends AbstractPicoPlugin
         }
 
         $byLang = $this->buildSeriesMapByLang($this->getPico()->getPages());
-        $esMap = isset($byLang['es']) ? $byLang['es'] : array();
-        uasort($esMap, function ($a, $b) {
+
+        $listLang = ($current['id'] === 'en/series') ? 'en' : 'es';
+        $mapForList = isset($byLang[$listLang]) ? $byLang[$listLang] : array();
+        uasort($mapForList, function ($a, $b) {
             return strcasecmp($a['name'], $b['name']);
         });
-        $twigVariables['series_collections'] = array_values($esMap);
+        $twigVariables['series_collections'] = array_values($mapForList);
 
-        if ($current['id'] === 'series' && $this->requestedSeriesSlug !== null) {
-            $twigVariables['series_slug'] = $this->requestedSeriesSlug;
+        $seriesUiLang = $listLang;
+        if ($this->requestedSeriesSlug !== null) {
+            $seriesUiLang = $this->requestedSeriesLang;
+        }
+        $twigVariables['series_ui_lang'] = $seriesUiLang;
+
+        if ($this->requestedSeriesSlug !== null) {
             $slug = $this->requestedSeriesSlug;
+            $twigVariables['series_slug'] = $slug;
             $twigVariables['current_series'] = null;
-            if (isset($esMap[$slug])) {
-                $twigVariables['current_series'] = $esMap[$slug];
-            } elseif (isset($byLang['en'][$slug])) {
-                $twigVariables['current_series'] = $byLang['en'][$slug];
+            $detailLang = $this->requestedSeriesLang;
+            if (isset($byLang[$detailLang][$slug])) {
+                $twigVariables['current_series'] = $byLang[$detailLang][$slug];
             }
         }
 
@@ -126,7 +143,7 @@ class SeriesCollections extends AbstractPicoPlugin
                 $byLang[$lang][$slug] = array(
                     'name' => $name,
                     'slug' => $slug,
-                    'url' => $this->buildSeriesUrl($slug),
+                    'url' => $this->buildSeriesUrl($slug, $lang),
                     'entries' => array(),
                 );
             } elseif ($byLang[$lang][$slug]['name'] === $this->humanizeSlug($slug) && $name !== '') {
@@ -209,9 +226,14 @@ class SeriesCollections extends AbstractPicoPlugin
         return (int)$value;
     }
 
-    private function buildSeriesUrl($slug)
+    private function buildSeriesUrl($slug, $lang = 'es')
     {
-        return $this->getPico()->getBaseUrl() . 'series/' . rawurlencode($slug) . '/';
+        $base = $this->getPico()->getBaseUrl();
+        if ($lang === 'en') {
+            return $base . 'en/series/' . rawurlencode($slug) . '/';
+        }
+
+        return $base . 'series/' . rawurlencode($slug) . '/';
     }
 
     private function humanizeSlug($slug)

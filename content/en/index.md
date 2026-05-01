@@ -27,7 +27,8 @@ That is a strong claim; we make it **on purpose**. The *Reviving Praderas* serie
 ## How to get around
 
 - **Blog** — Spanish index at [`/blog`](/blog) (paginated). English posts are listed at [`/en/blog`](/en/blog).
-- **Categories** — Shared tag taxonomy; filtered lists behave as today.
+- **Series** — English hub at [`/en/series`](/en/series); Spanish hub stays at [`/series`](/series). Detail URLs use `/en/series/<slug>/` or `/series/<slug>/` to match the page language.
+- **Categories** — English topic map at [`/en/categorias`](/en/categorias) (counts for English posts only). Spanish categories remain at [`/categorias`](/categorias). Tag **labels** are still shared across languages; `/tags` is unchanged for now.
 - **Search** — Sidebar widget; stopwords depend on page language.
 - **About** — Notes on Pico and approach (still primarily Spanish; a dedicated EN About page is optional follow-up).
 
@@ -43,4 +44,4 @@ When a page has a matching translation (same **`Translation_Key`** in the front 
 
 ## Closing
 
-No miracle newsletters—just a maintained blog that tries to stay **useful** and **readable**. Open the [blog in Spanish](/blog), the [English blog index](/en/blog), pick a [category](/categorias), or use search: a few clicks, plenty to read.
+No miracle newsletters—just a maintained blog that tries to stay **useful** and **readable**. Open the [blog in Spanish](/blog), the [English blog index](/en/blog), browse [categories in English](/en/categorias) or [series in English](/en/series), or use search: a few clicks, plenty to read.

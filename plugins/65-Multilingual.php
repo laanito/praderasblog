@@ -10,7 +10,7 @@
  * URL layout (Option A subset):
  * - Spanish posts: content/blog/*.md → /blog/slug (default)
  * - English posts: content/blog/en/*.md → /blog/en/slug
- * - English top pages: content/en/*.md → /en/slug
+ * - English top pages: content/en/*.md → /en/slug (e.g. /en/series, /en/categorias)
  */
 class Multilingual extends AbstractPicoPlugin
 {

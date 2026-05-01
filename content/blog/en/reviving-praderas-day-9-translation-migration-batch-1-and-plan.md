@@ -51,7 +51,7 @@ We defined **8 batches**. Full detail lives in the repo tracker; here is the **p
 | Batch | Scope | Status (April 2026) |
 |-------|--------|---------------------|
 | **1** | *Reviving Praderas* (Day 1–9, full series) | **Done** — Apr 30 |
-| **2** | *Control de Tiempo Desacoplado* (13 chapters, full series) | Planned |
+| **2** | *Control de Tiempo Desacoplado* (13 chapters, full series) | **Done** — Apr 30 (batch 2 PR) |
 | **3** | Security, privacy, geolocation cluster | Planned |
 | **4** | AI, trends, AI in health/entertainment cluster | Planned |
 | **5** | Productivity and tools (Emacs, Taskwarrior, collaboration, etc.) | Planned |
@@ -71,4 +71,4 @@ The lesson for readers who want to **understand AI** is not “AI translates the
 
 ## What comes next
 
-The next logical block is **Batch 2**: the full **Control de Tiempo Desacoplado** series (13 chapters), following the same rule of not splitting a series in half.
+**Batch 2** (full **Decoupled time tracking** series plus `/en/series` and `/en/categorias` hub pages) shipped in a follow-up PR. Next up is **Batch 3**: the **security, privacy, and geolocation** cluster.

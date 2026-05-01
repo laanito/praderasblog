@@ -16,13 +16,14 @@ class BlogNeighbors extends AbstractPicoPlugin
         $allPages = $this->getPico()->getPages();
         $id = $current['id'];
 
-        if ($id === 'categorias') {
+        if ($id === 'categorias' || $id === 'en/categorias') {
+            $tagLang = ($id === 'en/categorias') ? 'en' : 'es';
             $tagCounts = array();
             foreach ($allPages as $p) {
                 if (!isset($p['id']) || strpos($p['id'], 'blog/') !== 0) {
                     continue;
                 }
-                if (class_exists('Multilingual', false) && Multilingual::inferLang($p) !== 'es') {
+                if (class_exists('Multilingual', false) && Multilingual::inferLang($p) !== $tagLang) {
                     continue;
                 }
                 $tgs = $this->parseTagList(isset($p['meta']['tags']) ? $p['meta']['tags'] : null);
