@@ -46,6 +46,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-day-7-phase-4-seo-discoverability` | `reviviendo-praderas-dia-7-fase-4-seo-y-descubrimiento.md` | `reviving-praderas-day-7-phase-4-seo-social-metadata-and-date-archive.md` | done | Batch 1: Reviving Praderas. |
 | `praderas-phase-5-multilingual` | `reviviendo-praderas-dia-8-fase-5-multilingue-modelo-y-metadatos.md` | `reviving-praderas-day-8-phase-5-multilingual-content-model.md` | done | Phase 5 announcement pair. |
 | `praderas-day-9-translation-migration-batch-1` | `reviviendo-praderas-dia-9-migracion-de-traducciones-batch-1-y-plan.md` | `reviving-praderas-day-9-translation-migration-batch-1-and-plan.md` | done | Batch 1 closure note + time estimates. |
+| `praderas-day-10-batch-2-multilingual-hubs` | `reviviendo-praderas-dia-10-batch-2-traduccion-y-arreglos-multilingues.md` | `reviving-praderas-day-10-batch-2-translation-and-multilingual-fixes.md` | done | Daily log: batch 2 + EN hubs + ~35 min wall clock vs localization band. |
 | `praderas-nav-series` | _(use `content/series.md`)_ | _(use `content/en/series.md`)_ | done | EN nav + `hreflang`; series detail also `/en/series/<slug>/`. |
 | `praderas-nav-categories` | _(use `content/categorias.md`)_ | _(use `content/en/categorias.md`)_ | done | EN categories hub; tag counts scoped to EN posts. |
 | `praderas-ctd-01` | `desarrollo-de-arquitecturas-desacopladas-creando-una-aplicacion-de-control-de-horas.md` | `decoupled-architectures-time-tracking-app-overview.md` | done | Batch 2. |
@@ -111,6 +112,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-01:** Day 10 ES/EN daily log posts (`praderas-day-10-batch-2-multilingual-hubs`) documenting batch 2 + hub fixes + ~35 min human wall clock vs ~10–18 h localization order-of-magnitude.
 - **2026-04-30 (batch 2):** Full *Control de Tiempo Desacoplado* EN pairs (`praderas-ctd-01`…`13`); `content/en/series.md` + `content/en/categorias.md` with `Translation_Key`; `SeriesCollections` + `BlogNeighbors` + `nav.twig` + bilingual `series.twig`/`categories.twig` for EN routes and counts.
 - **2026-04-30 (agent docs):** Added `translation-batches.md` — operational instructions distilled from Day 9 (batches, context window, series integrity, glossary, wall-clock honesty); linked from `repo-context.md`, `post-template.md`, and this file.
 - **2026-04-30 (follow-up):** Day 9 ES/EN posts updated: plain-language “context” explainer, 8-batch timeline table, batch rationale, and human wall-clock ~20 min (replacing an earlier inflated AI-assisted duration estimate).
