@@ -25,7 +25,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 - **Spanish posts:** `content/blog/<slug>.md` → `/blog/<slug>` (canonical bulk of the archive).
 - **English posts:** `content/blog/en/<slug>.md` → `/blog/en/<slug>`.
 - **Paired pages:** identical **`Translation_Key`** in front matter; optional **`Lang`**: `es` / `en`.
-- **UI copy in EN only:** `content/en/*.md` (e.g. `/en`, `/en/blog`).
+- **UI copy in EN only:** `content/en/*.md` (e.g. `/en`, `/en/blog`, `/en/series`, `/en/categorias`).
 - **Tag taxonomy:** Currently **shared** (Spanish labels on both sites). If we introduce EN-only tag display names, record the mapping in **Vocabulary** below.
 
 ---
@@ -46,6 +46,21 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-day-7-phase-4-seo-discoverability` | `reviviendo-praderas-dia-7-fase-4-seo-y-descubrimiento.md` | `reviving-praderas-day-7-phase-4-seo-social-metadata-and-date-archive.md` | done | Batch 1: Reviving Praderas. |
 | `praderas-phase-5-multilingual` | `reviviendo-praderas-dia-8-fase-5-multilingue-modelo-y-metadatos.md` | `reviving-praderas-day-8-phase-5-multilingual-content-model.md` | done | Phase 5 announcement pair. |
 | `praderas-day-9-translation-migration-batch-1` | `reviviendo-praderas-dia-9-migracion-de-traducciones-batch-1-y-plan.md` | `reviving-praderas-day-9-translation-migration-batch-1-and-plan.md` | done | Batch 1 closure note + time estimates. |
+| `praderas-nav-series` | _(use `content/series.md`)_ | _(use `content/en/series.md`)_ | done | EN nav + `hreflang`; series detail also `/en/series/<slug>/`. |
+| `praderas-nav-categories` | _(use `content/categorias.md`)_ | _(use `content/en/categorias.md`)_ | done | EN categories hub; tag counts scoped to EN posts. |
+| `praderas-ctd-01` | `desarrollo-de-arquitecturas-desacopladas-creando-una-aplicacion-de-control-de-horas.md` | `decoupled-architectures-time-tracking-app-overview.md` | done | Batch 2. |
+| `praderas-ctd-02` | `implementacion-de-postgrest-creacion-de-una-potente-api-rest.md` | `postgrest-rest-api-setup.md` | done | Batch 2. |
+| `praderas-ctd-03` | `mejora-de-seguridad-y-acceso-con-nginx-en-postgrest.md` | `nginx-postgrest-https-hardening.md` | done | Batch 2. |
+| `praderas-ctd-04` | `autenticacion-y-uso-de-tokens-jwt-en-postgrest.md` | `postgrest-jwt-authentication.md` | done | Batch 2. |
+| `praderas-ctd-05` | `introduccion-a-react-es5-es6-y-su-ejecucion.md` | `react-es5-es6-intro.md` | done | Batch 2. |
+| `praderas-ctd-06` | `disenando-la-base-de-datos-para-tu-aplicacion-de-control-de-tiempo.md` | `database-schema-time-tracking-app.md` | done | Batch 2. |
+| `praderas-ctd-07` | `configuracion-de-la-base-de-datos-para-tu-aplicacion-de-control-de-tiempo.md` | `database-roles-permissions-time-tracking.md` | done | Batch 2. |
+| `praderas-ctd-08` | `creacion-de-tablas-restantes-en-la-base-de-datos-para-tu-aplicacion-de-control-de-tiempo.md` | `database-extra-tables-time-tracking.md` | done | Batch 2. |
+| `praderas-ctd-09` | `interactuando-con-la-api-rest-de-tu-aplicacion-de-control-de-tiempo.md` | `rest-api-client-time-tracking-app.md` | done | Batch 2. |
+| `praderas-ctd-10` | `creando-un-frontend-en-react-para-la-gestion-de-roles.md` | `react-frontend-role-management-setup.md` | done | Batch 2. |
+| `praderas-ctd-11` | `desarrollo-de-una-aplicacion-de-gestion-de-roles-en-react.md` | `react-role-management-list-edit.md` | done | Batch 2. |
+| `praderas-ctd-12` | `desarrollo-de-una-aplicacion-de-gestion-de-proyectos-en-react.md` | `react-project-management-crud.md` | done | Batch 2. |
+| `praderas-ctd-13` | `creacion-de-usuarios-en-tu-aplicacion-de-control-de-tiempo-con-react.md` | `react-create-user-time-tracking.md` | done | Batch 2. |
 | *(add rows as you ship pairs)* | | | todo | Prefer one row per `Translation_Key`. |
 
 ## Batch migration plan (to avoid context overflow)
@@ -53,7 +68,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 1. **Batch 1 — Reviving Praderas complete series (Day 1 to Day 9)**  
    Status: **done in this PR**.
 2. **Batch 2 — Control de Tiempo Desacoplado complete series (13 chapters)**  
-   Status: todo.
+   Status: **done** — EN posts + paired hub pages `/en/series`, `/en/categorias`, routing/theme fixes for EN navigation.
 3. **Batch 3 — Core security + privacy cluster**  
    Status: todo.
 4. **Batch 4 — AI and future-tech cluster**  
@@ -76,6 +91,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 | Context | ES (current) | EN (preferred) | Notes |
 |---------|--------------|----------------|--------|
 | Series name | Reviviendo Praderas | Reviving Praderas | EN posts use EN series title; same `Series_Slug`. |
+| Series name | Control de Tiempo Desacoplado | Decoupled time tracking | Same `Series_Slug: control-de-tiempo-desacoplado`; EN detail URLs use `/en/series/<slug>/`. |
 | Sidebar label | Artículos recientes | Recent posts | Keep sentence case in EN UI. |
 | Sidebar CTA | Ver archivo | View archive | Keep concise CTA wording. |
 | Roadmap wording | Fase 4: SEO y descubrimiento | Phase 4: SEO and discoverability | Prefer "discoverability" in EN series posts. |
@@ -95,6 +111,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-04-30 (batch 2):** Full *Control de Tiempo Desacoplado* EN pairs (`praderas-ctd-01`…`13`); `content/en/series.md` + `content/en/categorias.md` with `Translation_Key`; `SeriesCollections` + `BlogNeighbors` + `nav.twig` + bilingual `series.twig`/`categories.twig` for EN routes and counts.
 - **2026-04-30 (agent docs):** Added `translation-batches.md` — operational instructions distilled from Day 9 (batches, context window, series integrity, glossary, wall-clock honesty); linked from `repo-context.md`, `post-template.md`, and this file.
 - **2026-04-30 (follow-up):** Day 9 ES/EN posts updated: plain-language “context” explainer, 8-batch timeline table, batch rationale, and human wall-clock ~20 min (replacing an earlier inflated AI-assisted duration estimate).
 - **2026-04-30:** Added batch-based migration plan (8 batches), completed Batch 1 for *Reviving Praderas* (Day 1-9 pairs now available in EN), and expanded vocabulary guidance.

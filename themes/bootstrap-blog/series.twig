@@ -1,18 +1,28 @@
 {% extends "index.twig" %}
 
+{% set sl = series_ui_lang is defined ? series_ui_lang : (content_lang is defined ? content_lang : 'es') %}
+
 {% block breadcrumb %}
 {% if current_series is defined and current_series %}
+{% if sl == 'en' %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Home', 'url': pradera_home_url|default("en/index"|link) }, { 'label': 'Series', 'url': "en/series"|link }, { 'label': current_series.name } ] } only %}
+{% else %}
 {% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Series', 'url': "series"|link }, { 'label': current_series.name } ] } only %}
+{% endif %}
+{% else %}
+{% if sl == 'en' %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Home', 'url': pradera_home_url|default("en/index"|link) }, { 'label': 'Series' } ] } only %}
 {% else %}
 {% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Series' } ] } only %}
+{% endif %}
 {% endif %}
 {% endblock %}
 
 {% block content %}
 {% if current_series is defined and current_series %}
 <header class="mb-4">
-  <h1 class="fw-bolder mb-2">Serie: {{ current_series.name }}</h1>
-  <p class="text-muted mb-0">{{ current_series.entries|length }} entrada{% if current_series.entries|length != 1 %}s{% endif %} en esta colección.</p>
+  <h1 class="fw-bolder mb-2">{% if sl == 'en' %}Series:{% else %}Serie:{% endif %} {{ current_series.name }}</h1>
+  <p class="text-muted mb-0">{{ current_series.entries|length }} {% if sl == 'en' %}post{% if current_series.entries|length != 1 %}s{% endif %} in this collection.{% else %}entrada{% if current_series.entries|length != 1 %}s{% endif %} en esta colección.{% endif %}</p>
 </header>
 
 <div class="pradera-series-list d-flex flex-column gap-3">
@@ -21,7 +31,7 @@
     <a href="{{ entry.url }}" class="pradera-series-item__link text-decoration-none">
       <div class="d-flex justify-content-between align-items-start gap-3">
         <div>
-          <span class="text-muted text-uppercase small d-block">Parte {{ loop.index }}</span>
+          <span class="text-muted text-uppercase small d-block">{% if sl == 'en' %}Part{% else %}Parte{% endif %} {{ loop.index }}</span>
           <h2 class="h5 mb-1 text-body">{{ entry.title }}</h2>
         </div>
         {% if entry.date %}
@@ -47,15 +57,15 @@
     <div class="card h-100 pradera-post-card">
       <div class="card-body">
         <h2 class="h5 card-title mb-1">{{ serie.name }}</h2>
-        <p class="small text-muted mb-3">{{ serie.entries|length }} entrada{% if serie.entries|length != 1 %}s{% endif %}</p>
-        <a class="btn btn-outline-primary btn-sm" href="{{ serie.url }}">Ver serie →</a>
+        <p class="small text-muted mb-3">{{ serie.entries|length }} {% if sl == 'en' %}post{% if serie.entries|length != 1 %}s{% endif %}{% else %}entrada{% if serie.entries|length != 1 %}s{% endif %}{% endif %}</p>
+        <a class="btn btn-outline-primary btn-sm" href="{{ serie.url }}">{% if sl == 'en' %}View series →{% else %}Ver serie →{% endif %}</a>
       </div>
     </div>
   </div>
 {% endfor %}
 </div>
 {% else %}
-<p class="text-muted">Aun no hay series publicadas.</p>
+<p class="text-muted">{% if sl == 'en' %}No series published yet.{% else %}Aun no hay series publicadas.{% endif %}</p>
 {% endif %}
 {% endif %}
 {% endblock %}

@@ -8,6 +8,8 @@ Tags: Sistemas
 Series: Control de Tiempo Desacoplado
 Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 3
+Lang: es
+Translation_Key: praderas-ctd-03
 ---
 
 En nuestra serie de desarrollo de arquitecturas desacopladas, estamos construyendo una sólida aplicación de control de horas. En el artículo anterior, configuramos con éxito nuestra API REST utilizando PostgREST. Ahora, es el momento de mejorar la seguridad y la accesibilidad utilizando Nginx como servidor proxy y Certbot para la seguridad HTTPS.
