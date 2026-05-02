@@ -97,6 +97,20 @@ class Multilingual extends AbstractPicoPlugin
             }
         }
         $twigVariables['hreflang_alternates'] = $hreflang;
+
+        // Display-only English labels for canonical Spanish tag names (URLs still use ES keys in ?tag=).
+        $twigVariables['tag_label_en'] = array(
+            'Aplicaciones Moviles' => 'Mobile apps',
+            'Ciberseguridad' => 'Cybersecurity',
+            'Crypto' => 'Crypto',
+            'Desarrollo Web' => 'Web development',
+            'Economia' => 'Economy',
+            'Inteligencia Artificial' => 'Artificial intelligence',
+            'Privacidad' => 'Privacy',
+            'Productividad' => 'Productivity',
+            'Sistemas' => 'Systems',
+            'Sociedad' => 'Society',
+        );
     }
 
     public static function inferLang(array $page)

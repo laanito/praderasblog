@@ -5,6 +5,7 @@ Author: Luis Amigo
 Date: 2023-08-24 11:43AM
 Template: post
 Tags: Ciberseguridad, Privacidad
+Translation_Key: praderas-b3-cs-digital-world
 ---
 
 En la era digital actual, donde la información fluye libremente a través de la web y las transacciones en línea son moneda corriente, la ciberseguridad se ha convertido en una preocupación fundamental. Mantener tus datos seguros en un mundo interconectado es esencial para proteger tu privacidad y evitar riesgos potenciales. En este artículo, exploraremos la importancia de la ciberseguridad y proporcionaremos consejos prácticos para mantener tu información a salvo en línea.

@@ -5,6 +5,7 @@ Author: Luis Amigo
 Robots: nofollow
 Template: post
 Tags: Desarrollo Web
+Translation_Key: praderas-nav-about-picocms
 ---
 
 # Introducción a PicoCMS

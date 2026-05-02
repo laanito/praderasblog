@@ -1,6 +1,7 @@
 ---
-Title: Tags 
+Title: Etiquetas
 Template: tags
-Description: Pagina de busqueda por categorias basadas en etiquetas
+Description: Listado alfabético de etiquetas y filtro de entradas por categoría.
+Translation_Key: praderas-nav-tags
 ---
 

@@ -19,12 +19,13 @@
 - `phase-5-6-plan.md` — Phase **5** (multilingual) **first slice shipped** (2026-04-28); Phase **6** (JSON) still future; read before extending either.
 - `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.
 - `translation-batches.md` — **how to run translation in batches:** context-window rationale, whole-series rule, glossary updates, honest human wall-clock vs specialist estimates, merge checklist (read before shipping ES/EN pairs).
+- `multilingual-ui-backlog.md` — **non-post EN gaps** (search, archive, footers, sitemap): what shipped vs pending for Twig/`content_lang` routes.
 - `day5-consultant-feedback.md` — Day 5 sequence and status notes (visual + series completed, follow-up UX tweaks).
 
 ## Directory Map
 - `content/`
   - `index.md` homepage ("Bienvenidos") — product copy, Pico, *Reviviendo Praderas*, navigation, and **explicit editorial/AI transparency** (2020 human recoveries, 2023–24 human-built site + IA-generated prose, 2026 IA-led engineering with human direction); paired with `content/en/index.md` via `Translation_Key`
-  - `en/index.md`, `en/blog.md` — English home + blog listing (`Template: blog-en` on the latter → `/en/blog`)
+  - `en/index.md`, `en/blog.md`, `en/tags.md`, `en/about-picocms.md` — English home, blog listing (`blog-en` → `/en/blog`), tag hub (`/en/tags`), About Pico (`/en/about-picocms`)
   - `blog.md` listing page (`Template: blog`)
   - `series.md` series hub (`Template: series`) for `/series` and `/series/<slug>/`
   - `archivo.md` chronological archive (`Template: archive`) — URL `/archivo`
@@ -44,7 +45,7 @@
   - `series.twig` series index/detail template
   - `archive.twig` archive by year/month (`/archivo`)
   - `page-meta.twig` shared `<title>`, meta description/robots, canonical + Open Graph + Twitter Card tags
-  - `nav.twig` primary navigation (ES: **Inicio, Blog, Series, Categorías, Acerca**; EN: **Home, Blog, Series, Categories, About** — About may still target Spanish `acerca` until split; **Categorías** highlights when on `tags` too) + language switcher include
+  - `nav.twig` primary navigation (ES: **Inicio, Blog, Series, Categorías, Acerca**; EN: **Home, Blog, Series, Categories, About** → `en/about-picocms`; **Categorías** / **Categories** highlight when on `tags` / `en/tags`) + language switcher include
   - `breadcrumbs.twig` shared “migaja de pan”
   - `sidebar.twig` shared sidebar (Búsqueda, Serie on post pages, Categorías, Artículos recientes)
   - `search-behavior.twig` shared search (click + Enter) script include

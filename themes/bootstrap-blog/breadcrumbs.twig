@@ -1,5 +1,6 @@
 {# Expects `crumbs`: array of { label, url? }  Last item should omit url. #}
-<nav class="pradera-breadcrumb mb-3" aria-label="Migaja de pan">
+{% set _bc_aria = (content_lang is defined and content_lang == 'en') ? 'Breadcrumb' : 'Migaja de pan' %}
+<nav class="pradera-breadcrumb mb-3" aria-label="{{ _bc_aria }}">
 	<ol class="breadcrumb small mb-0 p-0 bg-transparent">
 	{% for c in crumbs %}
 		<li class="breadcrumb-item text-break{% if loop.last %} active text-dark{% endif %}" {% if loop.last %}aria-current="page"{% endif %}>
