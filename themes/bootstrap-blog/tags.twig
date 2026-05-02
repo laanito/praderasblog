@@ -2,12 +2,17 @@
 
 {% set tag = url_param('tag', 'string') %}
 {% set tags = get_all_tags() %}
+{% set is_en = content_lang is defined and content_lang == 'en' %}
+{% set _tag_label_en = tag_label_en|default({}) %}
+{% set _cats_hub = is_en ? ("en/categorias"|link) : ("categorias"|link) %}
+{% set _home_url = pradera_home_url|default(is_en ? ("en/index"|link) : ("index"|link)) %}
+{% set _home_label = is_en ? 'Home' : 'Inicio' %}
 
 {% block breadcrumb %}
 {% if tag %}
-{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Categorías', 'url': "categorias"|link }, { 'label': tag } ] } only %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': _home_label, 'url': _home_url }, { 'label': is_en ? 'Categories' : 'Categorías', 'url': _cats_hub }, { 'label': is_en ? attribute(_tag_label_en, tag)|default(tag) : tag } ] } only %}
 {% else %}
-{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Etiquetas' } ] } only %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': _home_label, 'url': _home_url }, { 'label': is_en ? 'Tags' : 'Etiquetas' } ] } only %}
 {% endif %}
 {% endblock %}
 
@@ -18,10 +23,11 @@
 		<div class="col-lg-12">
 		<header class="mb-4">
 		<!-- Page title-->
-			<h1 class="fw-bolder mb-1">Resultados de la busqueda para etiqueta: &nbsp;{{ tag|e('html') }}</h1>
+			<h1 class="fw-bolder mb-1">{{ is_en ? 'Posts tagged:' : 'Resultados de la búsqueda para etiqueta:' }} &nbsp;{{ (is_en ? attribute(_tag_label_en, tag)|default(tag) : tag)|e('html') }}</h1>
 		</header>
 		</div>
 	    {% for page in pages if page.title and tags and not (page.id ends with 'index') %}
+		{% if (is_en and page.id starts with 'blog/en/') or (not is_en and page.id starts with 'blog/' and not (page.id starts with 'blog/en/')) %}
 		{% if page.meta.tags is iterable %}
 		    {% set pageTags = page.meta.tags %}
 		{% else %}
@@ -31,27 +37,28 @@
 		{% for pageTag in pageTags %}
 		    {% if pageTag|trim == tag %}
 				<div class="pradera-post-card card mb-4">
-					<a href="{{ page.url }}"><img class="card-img-top" src="https://picsum.photos/750/300/?blur&random={{ page.date }}" alt="Random Image from picsum" /></a>
+					<a href="{{ page.url }}"><img class="card-img-top" src="https://picsum.photos/750/300/?blur&random={{ page.date }}" alt="" /></a>
 					<div class="card-body">
 						<div class="small text-muted">{{ page.date }}</div>
 						<h2 class="card-title h4">{{ page.title }}</h2>
 						<p class="card-text">{{ page.description }}</p>
-						<a class="btn btn-primary" href="{{ page.url }}">Leer más →</a>
+						<a class="btn btn-primary" href="{{ page.url }}">{{ is_en ? 'Read more →' : 'Leer más →' }}</a>
 					</div>
 				</div>
 		    {% endif %}
 		{% endfor %}
+		{% endif %}
 	   {% endfor %}
      {% else %}
 	<div class="col-lg-12">
 	<header class="mb-4">
 	<!-- Page title-->
-	<h1 class="fw-bolder mb-1">Etiquetas disponibles:</h1>
+	<h1 class="fw-bolder mb-1">{{ is_en ? 'Available tags:' : 'Etiquetas disponibles:' }}</h1>
 	</header>
 	</div>
 	    <ul>
-	    {% for tag in tags|sort %}
-		<li><a href="{{current_page.url}}/?tag={{ tag }}">{{ tag }}</a></li>
+	    {% for t in tags|sort %}
+		<li><a href="{{ current_page.url }}?tag={{ t|e('url') }}">{{ is_en ? attribute(_tag_label_en, t)|default(t) : t }}</a></li>
 	    {% endfor %}
 	    </ul>
       {% endif %}

@@ -26,7 +26,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 - **English posts:** `content/blog/en/<slug>.md` → `/blog/en/<slug>`.
 - **Paired pages:** identical **`Translation_Key`** in front matter; optional **`Lang`**: `es` / `en`.
 - **UI copy in EN only:** `content/en/*.md` (e.g. `/en`, `/en/blog`, `/en/series`, `/en/categorias`).
-- **Tag taxonomy:** Currently **shared** (Spanish labels on both sites). If we introduce EN-only tag display names, record the mapping in **Vocabulary** below.
+- **Tag taxonomy:** Canonical **`Tags` values stay Spanish** in Markdown (audit + URLs). **English UI labels** for tags are a **display map** in `plugins/65-Multilingual.php` (`tag_label_en`); see **Vocabulary** and `multilingual-ui-backlog.md`.
 
 ---
 
@@ -62,6 +62,15 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-ctd-11` | `desarrollo-de-una-aplicacion-de-gestion-de-roles-en-react.md` | `react-role-management-list-edit.md` | done | Batch 2. |
 | `praderas-ctd-12` | `desarrollo-de-una-aplicacion-de-gestion-de-proyectos-en-react.md` | `react-project-management-crud.md` | done | Batch 2. |
 | `praderas-ctd-13` | `creacion-de-usuarios-en-tu-aplicacion-de-control-de-tiempo-con-react.md` | `react-create-user-time-tracking.md` | done | Batch 2. |
+| `praderas-b3-cs-intro` | `introduccion-a-la-ciberseguridad.md` | `intro-cybersecurity-online-safety-tips.md` | done | Batch 3: security / privacy cluster. |
+| `praderas-b3-cs-digital-world` | `ciberseguridad-en-el-mundo-digital-protegiendo-tu-informacion-en-un-entorno-conectado.md` | `cybersecurity-in-the-digital-world.md` | done | Batch 3. |
+| `praderas-b3-cs-advanced` | `ciberseguridad-avanzada-protegiendo-datos.md` | `advanced-cybersecurity-protecting-data.md` | done | Batch 3. |
+| `praderas-b3-internet-not-safe-ii` | `internet-no-es-un-lugar-seguro-ii-privacidad.md` | `internet-not-safe-part-ii-privacy.md` | done | Batch 3. |
+| `praderas-b3-social-privacy` | `como-mantener-tu-privacidad-en-las-redes-sociales-consejos-y-buenas-practicas.md` | `social-network-privacy-best-practices.md` | done | Batch 3. |
+| `praderas-b3-geolocation` | `geolocalizacion-en-internet.md` | `geolocation-on-the-internet.md` | done | Batch 3 (privacy / IP). |
+| `praderas-day-11-batch-3-security-ui` | `reviviendo-praderas-dia-11-batch-3-ciberseguridad-privacidad-y-capa-ui.md` | `reviving-praderas-day-11-batch-3-security-privacy-and-ui-layer.md` | done | Daily log: batch 3 + UI + ~12 min wall vs senior band. |
+| `praderas-nav-tags` | _(use `content/tags.md`)_ | _(use `content/en/tags.md`)_ | done | EN tag hub + paired `hreflang`. |
+| `praderas-nav-about-picocms` | _(use `content/acerca-de-picocms.md`)_ | _(use `content/en/about-picocms.md`)_ | done | EN About page; nav target. |
 | *(add rows as you ship pairs)* | | | todo | Prefer one row per `Translation_Key`. |
 
 ## Batch migration plan (to avoid context overflow)
@@ -71,7 +80,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 2. **Batch 2 — Control de Tiempo Desacoplado complete series (13 chapters)**  
    Status: **done** — EN posts + paired hub pages `/en/series`, `/en/categorias`, routing/theme fixes for EN navigation.
 3. **Batch 3 — Core security + privacy cluster**  
-   Status: todo.
+   Status: **done** — six ES/EN post pairs + Day 11 log; UI: `tag_label_en`, `/en/tags`, `/en/about-picocms` (see `multilingual-ui-backlog.md`).
 4. **Batch 4 — AI and future-tech cluster**  
    Status: todo.
 5. **Batch 5 — Productivity and collaboration tooling cluster**  
@@ -96,6 +105,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 | Sidebar label | Artículos recientes | Recent posts | Keep sentence case in EN UI. |
 | Sidebar CTA | Ver archivo | View archive | Keep concise CTA wording. |
 | Roadmap wording | Fase 4: SEO y descubrimiento | Phase 4: SEO and discoverability | Prefer "discoverability" in EN series posts. |
+| Tag pills / hubs (UI EN) | Ciberseguridad, Privacidad, … | Cybersecurity, Privacy, … | Canonical YAML unchanged; labels from `tag_label_en` in `65-Multilingual.php`. |
 | *(add)* | | | |
 
 ---
@@ -112,6 +122,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-02:** Batch 3 security/privacy cluster (`praderas-b3-*`), paired `/en/tags` + `/en/about-picocms`, `tag_label_en` display map, template i18n for tags/sidebar/post/categories/breadcrumbs; Day 11 ES/EN log (`praderas-day-11-batch-3-security-ui`) with ~12 min wall clock vs ~13.5–30 h senior counterfactual; added `.agents/multilingual-ui-backlog.md`.
 - **2026-05-01:** Day 10 ES/EN daily log posts (`praderas-day-10-batch-2-multilingual-hubs`) documenting batch 2 + hub fixes + ~35 min human wall clock vs ~10–18 h localization order-of-magnitude.
 - **2026-04-30 (batch 2):** Full *Control de Tiempo Desacoplado* EN pairs (`praderas-ctd-01`…`13`); `content/en/series.md` + `content/en/categorias.md` with `Translation_Key`; `SeriesCollections` + `BlogNeighbors` + `nav.twig` + bilingual `series.twig`/`categories.twig` for EN routes and counts.
 - **2026-04-30 (agent docs):** Added `translation-batches.md` — operational instructions distilled from Day 9 (batches, context window, series integrity, glossary, wall-clock honesty); linked from `repo-context.md`, `post-template.md`, and this file.

@@ -5,6 +5,7 @@ Author: Luis Amigo
 Date: 2020-12-10
 Template: post
 Tags: Ciberseguridad, Privacidad
+Translation_Key: praderas-b3-internet-not-safe-ii
 ---
 La seguridad no necesariamente debe ser nuestra única preocupación en Internet, de un tiempo a esta parte hemos visto cómo la privacidad se ha convertido en un nuevo caballo de batalla en internet. Diversas compañías se dedican a acumular datos sobre los usuarios y utilizarlos en su propio beneficio, o incluso venderlos a terceros para su uso de forma casi descontrolada.
 

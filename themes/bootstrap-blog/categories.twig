@@ -29,6 +29,8 @@
 } %}
 
 {% set tag_blurbs = is_en ? tag_blurbs_en : tag_blurbs_es %}
+{% set _tag_label_en = tag_label_en|default({}) %}
+{% set _tag_hub = is_en ? ("en/tags"|link) : ("tags"|link) %}
 
 {% block breadcrumb %}
 {% if is_en %}
@@ -52,13 +54,13 @@
 	<div class="col-12 col-md-6 col-lg-4">
 		<div class="card h-100 border-0 shadow-sm">
 			<div class="card-body d-flex flex-column position-relative">
-				<h2 class="h5 card-title mb-1">{{ tag }}</h2>
+				<h2 class="h5 card-title mb-1">{{ is_en ? attribute(_tag_label_en, tag)|default(tag) : tag }}</h2>
 				<p class="text-muted small flex-grow-1 mb-1">
 					{{ attribute(tag_blurbs, tag)|default(is_en ? ('Posts tagged «' ~ tag ~ '».') : ('Artículos bajo la etiqueta «' ~ tag ~ '».')) }}
 					<br /><span class="d-inline-block mt-1"><strong>{{ cnt }}</strong> {% if is_en %}post{% if cnt != 1 %}s{% endif %}{% else %}entrada{% if cnt != 1 %}s{% endif %}{% endif %}</span>
 				</p>
 				<span class="text-primary small">{{ is_en ? 'View posts →' : 'Ver entradas →' }}</span>
-				<a class="stretched-link" href="{{ base_url }}/tags/?tag={{ tag|e('url') }}"><span class="visually-hidden">{{ tag }}{{ is_en ? ': view posts' : ': ver entradas' }}</span></a>
+				<a class="stretched-link" href="{{ _tag_hub }}?tag={{ tag|e('url') }}"><span class="visually-hidden">{{ is_en ? attribute(_tag_label_en, tag)|default(tag) : tag }}{{ is_en ? ': view posts' : ': ver entradas' }}</span></a>
 			</div>
 		</div>
 	</div>
@@ -66,7 +68,7 @@
 </div>
 <p class="small text-muted mt-3 mb-0">
 {% if is_en %}
-You can also use the alphabetical list on <a href="{{ 'tags'|link }}">tags</a> or the sidebar <a href="{{ "search"|link }}">search</a> (Spanish UI on those routes for now).
+You can also use the alphabetical list on <a href="{{ 'en/tags'|link }}">tags</a> or the sidebar <a href="{{ "search"|link }}">search</a> (search UI still Spanish-only for now).
 {% else %}
 También puedes usar el listado alfabético en <a href="{{ 'tags'|link }}">etiquetas</a> o el <a href="{{ "search"|link }}">buscador</a> del lateral.
 {% endif %}

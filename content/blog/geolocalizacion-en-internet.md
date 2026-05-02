@@ -5,6 +5,7 @@ Date: 2020-06-23
 Author: Luis Amigo
 Template: post
 Tags: Privacidad
+Translation_Key: praderas-b3-geolocation
 ---
 
 ### ¿Cómo funciona Internet?

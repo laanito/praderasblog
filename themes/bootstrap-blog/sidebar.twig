@@ -11,6 +11,8 @@
 		} 
 %}
 {% set is_en = content_lang is defined and content_lang == 'en' %}
+{% set _tag_label_en = tag_label_en|default({}) %}
+{% set _tag_hub = is_en ? ("en/tags"|link) : ("tags"|link) %}
 
 <aside class="pradera-sidebar" role="complementary" aria-label="{{ is_en ? 'Sidebar' : 'Contenido lateral' }}">
     <!-- Search widget (ids shared with search-behavior.twig) -->
@@ -26,8 +28,8 @@
     <div class="pradera-widget card mb-4">
 		<div class="card-header">{{ is_en ? 'Archive' : 'Archivo' }}</div>
 		<div class="card-body">
-		    <p class="small text-muted mb-2">{{ is_en ? 'Posts grouped by year and month (Spanish posts).' : 'Entradas agrupadas por año y mes.' }}</p>
-		    <a href="{{ 'archivo'|link }}" class="btn btn-outline-primary btn-sm w-100">{{ is_en ? 'View archive →' : 'Ver archivo →' }}</a>
+		    <p class="small text-muted mb-2">{{ is_en ? 'Posts by year and month (Spanish archive; English-only listing is still /en/blog).' : 'Entradas agrupadas por año y mes.' }}</p>
+		    <a href="{{ 'archivo'|link }}" class="btn btn-outline-primary btn-sm w-100">{{ is_en ? 'Spanish archive →' : 'Ver archivo →' }}</a>
 		</div>
     </div>
     {% if post_series is defined and post_series %}
@@ -69,7 +71,7 @@
 			<div class="col-sm-6">
 			    <ul class="list-unstyled mb-0">
 				{% for tag in tag_group %}
-					<li><a class="pradera-pill-tag badge rounded-pill{{ attribute(tag_styles, tag) is defined ? ' ' ~ attribute(tag_styles, tag) : ' bg-secondary' }} text-decoration-none link-light" href="{{ base_url }}/tags/?tag={{ tag|e('url') }}">{{ tag }}</a></li>
+					<li><a class="pradera-pill-tag badge rounded-pill{{ attribute(tag_styles, tag) is defined ? ' ' ~ attribute(tag_styles, tag) : ' bg-secondary' }} text-decoration-none link-light" href="{{ _tag_hub }}?tag={{ tag|e('url') }}">{{ is_en ? attribute(_tag_label_en, tag)|default(tag) : tag }}</a></li>
 				{% endfor %}
 			    </ul>
 			</div>

@@ -4,7 +4,8 @@ Description: En este artículo, nos sumergiremos en estrategias más sofisticada
 Date: 2023-08-10 18:00
 Author: Luis Amigo
 Template: post
-Tags: Ciberseguridad, Privacidad 
+Tags: Ciberseguridad, Privacidad
+Translation_Key: praderas-b3-cs-advanced
 ---
 # Ciberseguridad Avanzada: Protegiendo tus Datos en un Mundo Digital Vulnerable
 
