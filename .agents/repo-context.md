@@ -130,7 +130,7 @@
 - Details: `.agents/day5-consultant-feedback.md`, backlog: `proposed-improvements.md` (Day 5 section).
 
 ## Live Site Findings (Current State)
-- Main nav (ES): **Inicio** (Bienvenidos), **Blog**, **Series**, **Categorías** (and primary highlight also when browsing `/tags`), **Acerca**. On EN pages: **Home**, **Blog** → `/en/blog`, same Series/Categories/About labels as wired in `nav.twig`.
+- Main nav (ES): **Inicio** (Bienvenidos), **Blog**, **Series**, **Categorías** (highlight also on `/tags`), **Acerca** → `acerca-de-picocms`. On EN pages: **Home**, **Blog** → `/en/blog`, **Series** → `/en/series`, **Categories** → `/en/categorias` (highlight also on `/en/tags`), **About** → `/en/about-picocms` (`nav.twig`).
 - Sidebar on most pages includes: search, **Archivo** link card, category tags, and **Artículos recientes** (list-group + `sidebar-recent` styles; **Praderas** theme layer styles tags as pills with hover). On post pages that belong to a series, a **Serie** widget (prev/next/index) appears above categories.
 - Blog cards and tag results currently use random images from `picsum.photos`.
 - URL routing is canonical on subdomain (`blog.praderas.org`); treat `base_url` as the canonical origin for links and social meta. Root domain behaviour without redirects is a deployment/DNS concern outside this repo.
@@ -152,7 +152,8 @@
 - Treat `themes/bootstrap-blog/blog.twig.bak` as historical reference only; verify before reuse.
 
 ## Quick Operational Notes
-- Local runtime depends on PHP + Composer dependencies (`vendor/`).
+- **PHP on the agent machine:** Many developer environments (including some Cursor sandboxes) **do not have `php` on PATH**. Do **not** treat `php -l` or a local Pico boot as a merge gate unless you have confirmed PHP is installed. Prefer **`python3 scripts/frontmatter_audit.py`** for content checks; leave PHP syntax/runtime verification to **CI or a human** with a local stack.
+- Production/local preview of the site still depends on **PHP + Composer** (`vendor/`); that is unrelated to whether the agent shell can run `php`.
 - No admin panel: all editorial changes are file-based.
 - Any agent making structural changes should test:
   - `/`
@@ -164,4 +165,6 @@
   - `/robots.txt` and `/sitemap.xml`
   - `/archivo`
   - `/en` and `/en/blog`
+  - `/en/tags` and `/en/tags?tag=Ciberseguridad` (sample)
+  - `/en/about-picocms`
   - `/blog/en/<post>` (sample paired content)

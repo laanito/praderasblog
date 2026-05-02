@@ -11,6 +11,7 @@
 1. Read `translation-migration-tracker.md` — current batch status, vocabulary, and `Translation_Key` rows.
 2. Read `post-template.md` — `Lang`, `Translation_Key`, tags, date format.
 3. Run `python3 scripts/frontmatter_audit.py` before merge when you touch front matter.
+4. **Do not rely on local PHP** (`php -l`, `php index.php`, etc.) in agent workflows unless the environment explicitly provides PHP on PATH. This repo is valid Pico/PHP but many sandboxes lack a PHP binary—**skip PHP checks** rather than failing the task; note the gap for humans/CI if relevant.
 
 ---
 
@@ -54,9 +55,11 @@ The **numbered batch plan** (8 batches: flagship series first, then topic cluste
 - [ ] EN series title follows vocabulary (*Reviviendo Praderas* → *Reviving Praderas*); `Series_Slug` stays shared.
 - [ ] Tracker backlog rows + vocabulary updated.
 - [ ] Optional but encouraged: **one short meta post** (ES + EN) when a batch completes — explain batch index, why batches exist, **context** in plain language, and **honest** human wall time (see Day 9 pair as style reference).
+- [ ] **No local PHP required:** do not block on `php -l` or running Pico from the agent shell if `php` is unavailable (see `repo-context.md` → Quick Operational Notes).
 
 ---
 
 ## Changelog (in-repo)
 
+- **2026-05-02:** Explicit rule: skip local PHP checks when PHP is not on PATH; point to `repo-context.md` for agent guardrails.
 - **2026-04-30:** Initial instructions distilled from Day 9 wrap-up: batches, context window, series integrity, glossary, honest wall-clock vs localization comparison.
