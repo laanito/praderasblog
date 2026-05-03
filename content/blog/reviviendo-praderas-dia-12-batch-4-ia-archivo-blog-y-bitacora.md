@@ -1,7 +1,7 @@
 ---
 Title: Reviviendo Praderas (Día 12) — batch 4 (IA), archivo EN, conmutador en /en/blog y bitácora que faltó
 Description: Entrada de cierre del trabajo ya fusionado en main—seis posts de IA, /en/archivo, emparejamiento del listado de blog para el conmutador de idioma—más esta PR que añade la bitácora ES/EN que debió ir en el mismo lote.
-Date: 2026-05-03 12:15PM
+Date: 2026-05-03 12:17PM
 Template: post
 Author: Luis Amigo
 Tags: Desarrollo Web, Productividad, Inteligencia Artificial
@@ -18,10 +18,10 @@ Esta entrada documenta **cambios que ya están en `main`** (merge previo): **bat
 
 ## Reloj de pared (solo esta PR de bitácora)
 
-- **Referencia al abrir la sesión para escribir y publicar esta bitácora:** `2026-05-03 12:12:12 CEST`
-- **Referencia justo antes de commit + push de esta PR:** `2026-05-03 12:12:53 CEST`
+- **Inicio de la sesión de trabajo (referencia acordada):** `2026-05-03 11:56:12 CEST`
+- **Justo antes de commit + push de esta PR (referencia):** `2026-05-03 12:16:46 CEST`
 
-La comparación útil aquí es **pocos minutos de calendario** frente a lo que costaría redactar, alinear con el tracker, emparejar front matter y abrir PR **a mano** sin asistente (véase tabla abajo). El trabajo “grande” (posts IA + Twig + `content/en/archivo`) **ya se contó en el merge anterior**; hoy cerramos el **hueco de narrativa**.
+La comparación útil aquí es **~20 minutos de reloj** entre esas marcas (dirección, bitácora ES/EN, tracker, rama/PR) frente al orden de magnitud **manual** de la tabla siguiente. El trabajo “grande” (posts IA + Twig + `content/en/archivo`) **ya se contó en el merge anterior**; esta PR cierra el **hueco de narrativa**.
 
 ## Qué incluyó el merge ya fusionado (resumen)
 
@@ -45,4 +45,4 @@ La comparación útil aquí es **pocos minutos de calendario** frente a lo que c
 | Rama desde `main`, PR, descripción | **20–40 min** |
 | **Total** | **~2–3.5 h** repartidos |
 
-Con asistente y dirección clara, el tramo de calendario entre las dos marcas de tiempo de esta PR fue **menos de un minuto** (bitácora + tracker + rama); el coste “senior” sigue siendo útil como **orden de magnitud** del trabajo editorial, no del merge anterior.
+Con asistente y dirección clara, el tramo de calendario entre las dos marcas de tiempo de esta PR quedó en el orden de **veinte minutos** (incluye la corrección de marcas de tiempo y el push); el coste “senior” de la tabla sigue siendo útil como **orden de magnitud** del trabajo editorial equivalente **sin** asistente, no del merge anterior de código.

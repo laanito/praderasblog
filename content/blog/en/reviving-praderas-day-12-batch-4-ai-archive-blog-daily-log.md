@@ -1,7 +1,7 @@
 ---
 Title: "Reviving Praderas (Day 12) — batch 4 (AI), EN archive, /en/blog language switcher, and the missing daily log"
 Description: Wrap-up for work already merged to main—six AI post pairs, /en/archivo, paired blog listings for the language switcher—plus this PR that adds the ES/EN log pair that should have shipped with the same batch.
-Date: 2026-05-03 12:15PM
+Date: 2026-05-03 12:17PM
 Template: post
 Author: Luis Amigo
 Tags: Desarrollo Web, Productividad, Inteligencia Artificial
@@ -18,10 +18,10 @@ This post documents **changes already on `main`** from the earlier merge: **tran
 
 ## Wall clock (this log-only PR)
 
-- **When this follow-up session started:** `2026-05-03 12:12:12 CEST`
-- **Immediately before commit + push of this PR:** `2026-05-03 12:12:53 CEST`
+- **Session start (agreed reference stamp):** `2026-05-03 11:56:12 CEST`
+- **Immediately before commit + push of this PR (reference):** `2026-05-03 12:16:46 CEST`
 
-The useful comparison is **a few minutes of human calendar time** versus writing, pairing metadata, updating the tracker, and opening a PR **without** an assistant (see table below). The **heavy** translation and template work shipped in the **previous** merge; today closes the **narrative gap**.
+The useful comparison is **~20 minutes of wall clock** between those stamps (steering, ES/EN log, tracker, branch/PR, and this timestamp correction) versus the **manual** order-of-magnitude in the table below. The **heavy** translation and template work shipped in the **previous** merge; this PR closes the **narrative gap**.
 
 ## What the merged PR already contained (executive summary)
 
@@ -45,4 +45,4 @@ The useful comparison is **a few minutes of human calendar time** versus writing
 | Branch from `main`, PR hygiene | **20–40 min** |
 | **Total** | **~2–3.5 h** |
 
-With an assistant plus a clear owner brief, the elapsed wall time between the two timestamps above here was **under one minute** (log posts + tracker + branch); the senior band still describes **editorial** work, not the earlier merged batch.
+With an assistant plus a clear owner brief, the elapsed wall time between the two timestamps above landed around **twenty minutes** (including correcting the published clocks and pushing); the senior band still describes **editorial** work without an assistant—not the earlier merged code batch.

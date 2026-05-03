@@ -79,7 +79,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-b4-ai-society-impact` | `inteligencia-artificial-y-su-impacto-en-la-sociedad-avances-desafios-y-reflexiones.md` | `ai-impact-on-society.md` | done | Batch 4. |
 | `praderas-b4-ai-entertainment` | `impactoo-de-la-ia-en-entretenimiento.md` | `impact-of-ai-on-entertainment.md` | done | Batch 4 (ES slug keeps typo *impactoo*). |
 | `praderas-b4-neural-nets` | `redes-neuronales-fundamentos-y-aplicaciones.md` | `neural-networks-fundamentals.md` | done | Batch 4. |
-| `praderas-day-12-batch-4-archive-blog-log` | `reviviendo-praderas-dia-12-batch-4-ia-archivo-blog-y-bitacora.md` | `reviving-praderas-day-12-batch-4-ai-archive-blog-daily-log.md` | done | Daily log: batch 4 merge recap; follow-up PR wall clock under one minute. |
+| `praderas-day-12-batch-4-archive-blog-log` | `reviviendo-praderas-dia-12-batch-4-ia-archivo-blog-y-bitacora.md` | `reviving-praderas-day-12-batch-4-ai-archive-blog-daily-log.md` | done | Daily log: batch 4 merge recap; follow-up PR ~20 min wall (11:56:12 → 12:16:46 CEST). |
 | *(add rows as you ship pairs)* | | | todo | Prefer one row per `Translation_Key`. |
 
 ## Batch migration plan (to avoid context overflow)
