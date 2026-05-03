@@ -79,6 +79,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-b4-ai-society-impact` | `inteligencia-artificial-y-su-impacto-en-la-sociedad-avances-desafios-y-reflexiones.md` | `ai-impact-on-society.md` | done | Batch 4. |
 | `praderas-b4-ai-entertainment` | `impactoo-de-la-ia-en-entretenimiento.md` | `impact-of-ai-on-entertainment.md` | done | Batch 4 (ES slug keeps typo *impactoo*). |
 | `praderas-b4-neural-nets` | `redes-neuronales-fundamentos-y-aplicaciones.md` | `neural-networks-fundamentals.md` | done | Batch 4. |
+| `praderas-day-12-batch-4-archive-blog-log` | `reviviendo-praderas-dia-12-batch-4-ia-archivo-blog-y-bitacora.md` | `reviving-praderas-day-12-batch-4-ai-archive-blog-daily-log.md` | done | Daily log: batch 4 merge recap; follow-up PR wall clock under one minute. |
 | *(add rows as you ship pairs)* | | | todo | Prefer one row per `Translation_Key`. |
 
 ## Batch migration plan (to avoid context overflow)
@@ -130,6 +131,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-03 (follow-up):** Day 12 ES/EN log posts (`praderas-day-12-batch-4-archive-blog-log`) documenting merged batch 4 + `/en/archivo` + blog listing pair; published after main merge as a small transparency PR.
 - **2026-05-03:** Batch 4 AI cluster — six post pairs (`praderas-b4-*`); `Translation_Key` on `content/blog.md` ↔ `content/en/blog.md` (language switcher on `/en/blog`); `/en/archivo` + bilingual `archive.twig` + sidebar archive CTA.
 - **2026-05-02:** Batch 3 security/privacy cluster (`praderas-b3-*`), paired `/en/tags` + `/en/about-picocms`, `tag_label_en` display map, template i18n for tags/sidebar/post/categories/breadcrumbs; Day 11 ES/EN log (`praderas-day-11-batch-3-security-ui`) with ~12 min wall clock vs ~13.5–30 h senior counterfactual; added `.agents/multilingual-ui-backlog.md`.
 - **2026-05-01:** Day 10 ES/EN daily log posts (`praderas-day-10-batch-2-multilingual-hubs`) documenting batch 2 + hub fixes + ~35 min human wall clock vs ~10–18 h localization order-of-magnitude.
