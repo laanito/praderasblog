@@ -1,6 +1,7 @@
 {% extends "index.twig" %}
 
-{% set meses = {
+{% set is_en = content_lang is defined and content_lang == 'en' %}
+{% set meses_es = {
   '01': 'enero',
   '02': 'febrero',
   '03': 'marzo',
@@ -14,9 +15,27 @@
   '11': 'noviembre',
   '12': 'diciembre'
 } %}
+{% set meses_en = {
+  '01': 'January',
+  '02': 'February',
+  '03': 'March',
+  '04': 'April',
+  '05': 'May',
+  '06': 'June',
+  '07': 'July',
+  '08': 'August',
+  '09': 'September',
+  '10': 'October',
+  '11': 'November',
+  '12': 'December'
+} %}
+{% set meses = is_en ? meses_en : meses_es %}
+{% set _home_label = is_en ? 'Home' : 'Inicio' %}
+{% set _home_url = pradera_home_url|default(is_en ? ("en/index"|link) : ("index"|link)) %}
+{% set _archive_label = is_en ? 'Archive' : 'Archivo' %}
 
 {% block breadcrumb %}
-{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Archivo' } ] } only %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': _home_label, 'url': _home_url }, { 'label': _archive_label } ] } only %}
 {% endblock %}
 
 {% block content %}
@@ -31,7 +50,8 @@
 
 <div class="pradera-archive">
 {% for p in sorted %}
-{% if p.id starts with 'blog/' and not (p.id starts with 'blog/en/') and p.title %}
+{% if (is_en and p.id starts with 'blog/en/') or (not is_en and p.id starts with 'blog/' and not (p.id starts with 'blog/en/')) %}
+{% if p.title %}
 	{% set y = p.time|date('Y') %}
 	{% set m = p.time|date('m') %}
 	{% if y != last_year %}
@@ -51,6 +71,7 @@
 		{% set last_month = m %}
 	{% endif %}
 	<li class="mb-2"><a href="{{ p.url }}">{{ p.title }}</a> <span class="text-muted small">{{ p.date }}</span></li>
+{% endif %}
 {% endif %}
 {% endfor %}
 {% if last_month != '' %}
