@@ -28,8 +28,8 @@
     <div class="pradera-widget card mb-4">
 		<div class="card-header">{{ is_en ? 'Archive' : 'Archivo' }}</div>
 		<div class="card-body">
-		    <p class="small text-muted mb-2">{{ is_en ? 'Posts by year and month (Spanish archive; English-only listing is still /en/blog).' : 'Entradas agrupadas por año y mes.' }}</p>
-		    <a href="{{ 'archivo'|link }}" class="btn btn-outline-primary btn-sm w-100">{{ is_en ? 'Spanish archive →' : 'Ver archivo →' }}</a>
+		    <p class="small text-muted mb-2">{{ is_en ? 'Posts by year and month (English only on this site).' : 'Entradas agrupadas por año y mes.' }}</p>
+		    <a href="{{ is_en ? ("en/archivo"|link) : ("archivo"|link) }}" class="btn btn-outline-primary btn-sm w-100">{{ is_en ? 'View archive →' : 'Ver archivo →' }}</a>
 		</div>
     </div>
     {% if post_series is defined and post_series %}

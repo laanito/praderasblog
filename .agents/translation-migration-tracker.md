@@ -71,6 +71,14 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-day-11-batch-3-security-ui` | `reviviendo-praderas-dia-11-batch-3-ciberseguridad-privacidad-y-capa-ui.md` | `reviving-praderas-day-11-batch-3-security-privacy-and-ui-layer.md` | done | Daily log: batch 3 + UI + ~12 min wall vs senior band. |
 | `praderas-nav-tags` | _(use `content/tags.md`)_ | _(use `content/en/tags.md`)_ | done | EN tag hub + paired `hreflang`. |
 | `praderas-nav-about-picocms` | _(use `content/acerca-de-picocms.md`)_ | _(use `content/en/about-picocms.md`)_ | done | EN About page; nav target. |
+| `praderas-nav-blog-listing` | _(use `content/blog.md`)_ | _(use `content/en/blog.md`)_ | done | `/blog` ↔ `/en/blog` + language switcher via `hreflang` pair. |
+| `praderas-nav-archive` | _(use `content/archivo.md`)_ | _(use `content/en/archivo.md`)_ | done | `/archivo` ↔ `/en/archivo`; bilingual `archive.twig`. |
+| `praderas-b4-ai-games-evolution` | `evolucion-de-la-inteligencia-artificial-y-los-videojuegos.md` | `ai-evolution-and-video-games.md` | done | Batch 4: AI cluster. |
+| `praderas-b4-ai-early-disease-detection` | `deteccion-temprana-de-enfermedades-ia.md` | `ai-early-disease-detection.md` | done | Batch 4. |
+| `praderas-b4-ai-medicine` | `inteligencia-artificial-en-la-medicina.md` | `artificial-intelligence-in-medicine.md` | done | Batch 4. |
+| `praderas-b4-ai-society-impact` | `inteligencia-artificial-y-su-impacto-en-la-sociedad-avances-desafios-y-reflexiones.md` | `ai-impact-on-society.md` | done | Batch 4. |
+| `praderas-b4-ai-entertainment` | `impactoo-de-la-ia-en-entretenimiento.md` | `impact-of-ai-on-entertainment.md` | done | Batch 4 (ES slug keeps typo *impactoo*). |
+| `praderas-b4-neural-nets` | `redes-neuronales-fundamentos-y-aplicaciones.md` | `neural-networks-fundamentals.md` | done | Batch 4. |
 | *(add rows as you ship pairs)* | | | todo | Prefer one row per `Translation_Key`. |
 
 ## Batch migration plan (to avoid context overflow)
@@ -82,7 +90,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 3. **Batch 3 — Core security + privacy cluster**  
    Status: **done** — six ES/EN post pairs + Day 11 log; UI: `tag_label_en`, `/en/tags`, `/en/about-picocms` (see `multilingual-ui-backlog.md`).
 4. **Batch 4 — AI and future-tech cluster**  
-   Status: todo.
+   Status: **done (core slice)** — six ES/EN AI posts + paired blog listing + `/en/archivo` archive (remaining “future-tech” posts like `tendencias-tecnologicas-*` still todo for batch 4 extension or batch 5).
 5. **Batch 5 — Productivity and collaboration tooling cluster**  
    Status: todo.
 6. **Batch 6 — Mobile development fundamentals cluster**  
@@ -122,6 +130,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-03:** Batch 4 AI cluster — six post pairs (`praderas-b4-*`); `Translation_Key` on `content/blog.md` ↔ `content/en/blog.md` (language switcher on `/en/blog`); `/en/archivo` + bilingual `archive.twig` + sidebar archive CTA.
 - **2026-05-02:** Batch 3 security/privacy cluster (`praderas-b3-*`), paired `/en/tags` + `/en/about-picocms`, `tag_label_en` display map, template i18n for tags/sidebar/post/categories/breadcrumbs; Day 11 ES/EN log (`praderas-day-11-batch-3-security-ui`) with ~12 min wall clock vs ~13.5–30 h senior counterfactual; added `.agents/multilingual-ui-backlog.md`.
 - **2026-05-01:** Day 10 ES/EN daily log posts (`praderas-day-10-batch-2-multilingual-hubs`) documenting batch 2 + hub fixes + ~35 min human wall clock vs ~10–18 h localization order-of-magnitude.
 - **2026-04-30 (batch 2):** Full *Control de Tiempo Desacoplado* EN pairs (`praderas-ctd-01`…`13`); `content/en/series.md` + `content/en/categorias.md` with `Translation_Key`; `SeriesCollections` + `BlogNeighbors` + `nav.twig` + bilingual `series.twig`/`categories.twig` for EN routes and counts.

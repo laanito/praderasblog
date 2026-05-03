@@ -25,7 +25,7 @@
 ## Directory Map
 - `content/`
   - `index.md` homepage ("Bienvenidos") — product copy, Pico, *Reviviendo Praderas*, navigation, and **explicit editorial/AI transparency** (2020 human recoveries, 2023–24 human-built site + IA-generated prose, 2026 IA-led engineering with human direction); paired with `content/en/index.md` via `Translation_Key`
-  - `en/index.md`, `en/blog.md`, `en/tags.md`, `en/about-picocms.md` — English home, blog listing (`blog-en` → `/en/blog`), tag hub (`/en/tags`), About Pico (`/en/about-picocms`)
+  - `en/index.md`, `en/blog.md`, `en/tags.md`, `en/about-picocms.md`, `en/archivo.md` — English home, blog listing (`blog-en` → `/en/blog`), tag hub (`/en/tags`), About Pico (`/en/about-picocms`), date archive (`/en/archivo`; paired with `archivo.md` via `Translation_Key: praderas-nav-archive`)
   - `blog.md` listing page (`Template: blog`)
   - `series.md` series hub (`Template: series`) for `/series` and `/series/<slug>/`
   - `archivo.md` chronological archive (`Template: archive`) — URL `/archivo`
@@ -164,7 +164,8 @@
   - `/tags` and `/tags/?tag=<tag>`
   - `/robots.txt` and `/sitemap.xml`
   - `/archivo`
-  - `/en` and `/en/blog`
+  - `/en` and `/en/blog` (language switcher ↔ `/blog` when paired)
+  - `/en/archivo`
   - `/en/tags` and `/en/tags?tag=Ciberseguridad` (sample)
   - `/en/about-picocms`
   - `/blog/en/<post>` (sample paired content)

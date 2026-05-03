@@ -5,6 +5,7 @@ Author: Luis Amigo
 Date: 2023-12-26 08:19PM
 Template: post
 Tags: Inteligencia Artificial
+Translation_Key: praderas-b4-ai-games-evolution
 ---
 
 ## **Introducción**

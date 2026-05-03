@@ -5,6 +5,7 @@ Author: Luis Amigo
 Date: 2023-08-16 11:00
 Template: post
 Tags: Inteligencia Artificial
+Translation_Key: praderas-b4-neural-nets
 ---
 
 En el vasto mundo de la inteligencia artificial (IA), las redes neuronales artificiales se destacan como una de las tecnologías más intrigantes y poderosas. Estas estructuras, inspiradas en el funcionamiento del cerebro humano, han transformado la forma en que las máquinas pueden aprender y procesar información. En este artículo, exploraremos los fundamentos de las redes neuronales artificiales, cómo funcionan y cómo han encontrado su camino en una variedad de aplicaciones técnicas.
