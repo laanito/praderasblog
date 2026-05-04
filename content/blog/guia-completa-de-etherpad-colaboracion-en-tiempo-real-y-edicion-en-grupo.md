@@ -5,6 +5,7 @@ Author: Luis Amigo
 Date: 2023-08-31 12:28PM
 Template: post
 Tags: Productividad, Sistemas
+Translation_Key: praderas-b5-etherpad-guide
 ---
 
 Etherpad es una potente herramienta de edición colaborativa en tiempo real que permite a múltiples usuarios trabajar simultáneamente en un mismo documento. Con un enfoque en la colaboración y la simplicidad, Etherpad se ha convertido en una opción popular para equipos que necesitan trabajar en documentos de manera conjunta y en tiempo real. En este artículo, exploraremos las características de Etherpad, proporcionaremos instrucciones detalladas para su instalación en un sistema Debian y compartiremos consejos para aprovechar al máximo esta herramienta.

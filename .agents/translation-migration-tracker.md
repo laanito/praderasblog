@@ -80,6 +80,13 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-b4-ai-entertainment` | `impactoo-de-la-ia-en-entretenimiento.md` | `impact-of-ai-on-entertainment.md` | done | Batch 4 (ES slug keeps typo *impactoo*). |
 | `praderas-b4-neural-nets` | `redes-neuronales-fundamentos-y-aplicaciones.md` | `neural-networks-fundamentals.md` | done | Batch 4. |
 | `praderas-day-12-batch-4-archive-blog-log` | `reviviendo-praderas-dia-12-batch-4-ia-archivo-blog-y-bitacora.md` | `reviving-praderas-day-12-batch-4-ai-archive-blog-daily-log.md` | done | Daily log: batch 4 merge recap; follow-up PR ~20 min wall (11:56:12 → 12:16:46 CEST). |
+| `praderas-b5-remote-work-tips` | `consejos-para-el-teletrabajo-eficiente-como-maximizar-tu-productividad-desde-casa.md` | `remote-work-productivity-tips.md` | done | Batch 5: productivity cluster. |
+| `praderas-b5-etherpad-guide` | `guia-completa-de-etherpad-colaboracion-en-tiempo-real-y-edicion-en-grupo.md` | `etherpad-realtime-collaboration-guide.md` | done | Batch 5. |
+| `praderas-b5-redmine-guide` | `guia-completa-de-redmine-gestion-de-proyectos-y-tareas-simplificada.md` | `redmine-project-task-management-guide.md` | done | Batch 5. |
+| `praderas-b5-taskwarrior-guide` | `guia-completa-de-taskwarrior-gestion-de-tareas-eficiente.md` | `taskwarrior-task-management-guide.md` | done | Batch 5. |
+| `praderas-b5-focalboard-guide` | `focalboard-tu-solucion-todo-en-uno-para-la-gestion-de-tareas-y-proyectos.md` | `focalboard-task-project-management.md` | done | Batch 5. |
+| `praderas-b5-nextcloud-deck` | `nextcloud-con-deck-tu-solucion-de-nube-privada-y-groupware.md` | `nextcloud-deck-private-cloud-groupware.md` | done | Batch 5. |
+| `praderas-day-13-batch-5-productivity-log` | `reviviendo-praderas-dia-13-batch-5-productividad-herramientas-y-bitacora.md` | `reviving-praderas-day-13-batch-5-productivity-tools-and-daily-log.md` | done | Daily log: batch 5 + ~12 min wall vs ~14.5–33 h band. |
 | *(add rows as you ship pairs)* | | | todo | Prefer one row per `Translation_Key`. |
 
 ## Batch migration plan (to avoid context overflow)
@@ -93,7 +100,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 4. **Batch 4 — AI and future-tech cluster**  
    Status: **done (core slice)** — six ES/EN AI posts + paired blog listing + `/en/archivo` archive (remaining “future-tech” posts like `tendencias-tecnologicas-*` still todo for batch 4 extension or batch 5).
 5. **Batch 5 — Productivity and collaboration tooling cluster**  
-   Status: todo.
+   Status: **done (core slice)** — six ES/EN guides (remote work, Etherpad, Redmine, Taskwarrior, Focalboard, Nextcloud+Deck) + Day 13 log; remaining productivity posts (Emacs, other guides) still todo as **batch 5b** or batch 8 tail.
 6. **Batch 6 — Mobile development fundamentals cluster**  
    Status: todo.
 7. **Batch 7 — Crypto + blockchain cluster**  
@@ -115,6 +122,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 | Sidebar CTA | Ver archivo | View archive | Keep concise CTA wording. |
 | Roadmap wording | Fase 4: SEO y descubrimiento | Phase 4: SEO and discoverability | Prefer "discoverability" in EN series posts. |
 | Tag pills / hubs (UI EN) | Ciberseguridad, Privacidad, … | Cybersecurity, Privacy, … | Canonical YAML unchanged; labels from `tag_label_en` in `65-Multilingual.php`. |
+| Productivity guides (batch 5) | Guía Completa de … | “Complete guide” / concise EN title in post `Title` | Keep product names (Taskwarrior, Redmine, Etherpad, Focalboard, Nextcloud) unchanged. |
 | *(add)* | | | |
 
 ---
@@ -131,6 +139,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-04:** Batch 5 productivity slice — six ES/EN pairs (`praderas-b5-*`); Day 13 ES/EN log (`praderas-day-13-batch-5-productivity-log`); minor ES fixes (teletrabajo typo, Focalboard closing line).
 - **2026-05-03 (follow-up):** Day 12 ES/EN log posts (`praderas-day-12-batch-4-archive-blog-log`) documenting merged batch 4 + `/en/archivo` + blog listing pair; published after main merge as a small transparency PR.
 - **2026-05-03:** Batch 4 AI cluster — six post pairs (`praderas-b4-*`); `Translation_Key` on `content/blog.md` ↔ `content/en/blog.md` (language switcher on `/en/blog`); `/en/archivo` + bilingual `archive.twig` + sidebar archive CTA.
 - **2026-05-02:** Batch 3 security/privacy cluster (`praderas-b3-*`), paired `/en/tags` + `/en/about-picocms`, `tag_label_en` display map, template i18n for tags/sidebar/post/categories/breadcrumbs; Day 11 ES/EN log (`praderas-day-11-batch-3-security-ui`) with ~12 min wall clock vs ~13.5–30 h senior counterfactual; added `.agents/multilingual-ui-backlog.md`.
