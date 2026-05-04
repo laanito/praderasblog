@@ -5,6 +5,7 @@ Author: Luis Amigo
 Date: 2023-09-05 10:47AM
 Template: post
 Tags: Productividad, Sistemas
+Translation_Key: praderas-b5-focalboard-guide
 ---
 
 Focalboard es una potente herramienta de gestión de tareas y proyectos de código abierto que ha ganado popularidad por su simplicidad y versatilidad. En este artículo, exploraremos a fondo Focalboard, desde su introducción hasta su instalación y configuración, para que puedas comenzar a aprovechar al máximo esta plataforma.
@@ -92,4 +93,4 @@ Focalboard es una solución de gestión de tareas y proyectos versátil y de có
 
 En futuros artículos, profundizaremos en características avanzadas de Focalboard y proporcionaremos consejos y trucos para aprovechar al máximo esta herramienta. Si tienes preguntas o necesitas ayuda con Focalboard o cualquier aspecto de la gestión de proyectos, ¡no dudes en preguntar!
 
-Esperamos que esta guía te haya proporcionado una comprensión sólida de Focalboard y te haya inspirado a comenzar
+Esperamos que esta guía te haya proporcionado una comprensión sólida de Focalboard y te haya inspirado a comenzar a usarla hoy mismo.

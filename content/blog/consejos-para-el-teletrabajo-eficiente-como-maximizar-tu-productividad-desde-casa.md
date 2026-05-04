@@ -5,6 +5,7 @@ Author: Luis Amigo
 Date: 2023-08-23 11:11AM
 Template: post
 Tags: Productividad
+Translation_Key: praderas-b5-remote-work-tips
 ---
 
 El teletrabajo se ha convertido en una realidad para muchas personas en todo el mundo. Si bien trabajar desde casa puede ser conveniente, también presenta desafíos únicos en términos de organización, enfoque y productividad. En este artículo, exploraremos consejos prácticos para ayudarte a aprovechar al máximo el teletrabajo y lograr una eficiencia óptima mientras te desenvuelves en un entorno remoto.
@@ -29,7 +30,7 @@ Planifica tu día definiendo metas claras. Prioriza las tareas más importantes 
 
 Aplicaciones y herramientas de gestión de tiempo como Trello, Asana o Pomodoro Technique pueden ayudarte a organizar tus tareas, establecer intervalos de trabajo y descanso, y mantener tu productividad en el punto óptimo.
 
-## 6. Minimiza las Distorsiones
+## 6. Minimiza las Distracciones
 
 Identifica las distracciones comunes en tu entorno y busca formas de minimizarlas. Puede ser apagar notificaciones innecesarias en tu dispositivo o establecer límites de tiempo para el uso de redes sociales.
 

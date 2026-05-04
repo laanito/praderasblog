@@ -2,7 +2,7 @@
 
 **Purpose:** Track **non-post** surfaces that still mix languages or lack an EN route, so future agents do not rediscover the same gaps. **Canonical translation ledger** for posts remains `translation-migration-tracker.md`.
 
-**Last reviewed:** 2026-05-03 (Batch 4 + archive/blog pairing).
+**Last reviewed:** 2026-05-04 (Batch 5 productivity slice shipped in content).
 
 ---
 
@@ -14,6 +14,10 @@
 - **`/en/tags`** paired with Spanish `tags` (`Translation_Key: praderas-nav-tags`); `tags.twig` filters post cards by language.
 - **`/en/about-picocms`** paired with `acerca-de-picocms` (`Translation_Key: praderas-nav-about-picocms`); EN nav **About** targets the EN page.
 - **`sidebar.twig`**, **`post.twig`**, **`categories.twig`**, **`breadcrumbs.twig`**: tag hubs, pills, archive CTA copy, breadcrumb `aria-label`, EN footer on `post.twig`.
+
+### Batch 5 slice (productivity guides)
+
+- Six ES/EN post pairs (`praderas-b5-*`) for remote work, Etherpad, Redmine, Taskwarrior, Focalboard, and Nextcloud+Deck — see `translation-migration-tracker.md` backlog rows.
 
 ### Batch 4 follow-up (blog + archive)
 
