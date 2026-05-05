@@ -1,10 +1,13 @@
 ---
+
 Title: Electrum: qué es y por qué es bueno tener tu propio servidor de Electrum
 Description: En este artículo hablamos de Electrum: qué es y por qué es bueno tener tu propio servidor de Electrum
 Author: Luis Amigo
 Date: 2024-03-18 03:29PM
 Tags: Sistemas, Crypto, Privacidad
 Template: post
+Lang: es
+Translation_Key: praderas-b7-electrum-server
 ---
 
 ## Introducción

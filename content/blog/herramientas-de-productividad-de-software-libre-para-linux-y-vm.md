@@ -1,10 +1,13 @@
 ---
+
 Title: Herramientas de Productividad de Software Libre para Linux y VM
 Description: En este artículo, exploraremos una variedad de herramientas de productividad de software libre que puedes instalar en tu sistema Linux o VM para optimizar tus tareas diarias
 Author: Luis Amigo
 Date: 2023-08-30 11:49AM
 Template: post
 Tags: Productividad, Sistemas
+Lang: es
+Translation_Key: praderas-b8-linux-vm-productivity-tools
 ---
 
 Cuando se trata de incrementar la productividad en entornos de trabajo basados en Linux o máquinas virtuales (VM), las herramientas de software libre son una excelente opción. Estas herramientas no solo proporcionan funcionalidades eficaces, sino que también ofrecen la ventaja de ser personalizables y adaptables según las necesidades individuales. En este artículo, exploraremos una variedad de herramientas de productividad de software libre que puedes instalar en tu sistema Linux o VM para optimizar tus tareas diarias.

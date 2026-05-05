@@ -87,7 +87,27 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-b5-focalboard-guide` | `focalboard-tu-solucion-todo-en-uno-para-la-gestion-de-tareas-y-proyectos.md` | `focalboard-task-project-management.md` | done | Batch 5. |
 | `praderas-b5-nextcloud-deck` | `nextcloud-con-deck-tu-solucion-de-nube-privada-y-groupware.md` | `nextcloud-deck-private-cloud-groupware.md` | done | Batch 5. |
 | `praderas-day-13-batch-5-productivity-log` | `reviviendo-praderas-dia-13-batch-5-productividad-herramientas-y-bitacora.md` | `reviving-praderas-day-13-batch-5-productivity-tools-and-daily-log.md` | done | Daily log: batch 5 + ~12 min wall vs ~14.5–33 h band. |
-| *(add rows as you ship pairs)* | | | todo | Prefer one row per `Translation_Key`. |
+| `praderas-b6-first-mobile-app` | `como-construir-tu-primera-aplicacion-movil-un-enfoque-practico-paso-a-paso.md` | `building-your-first-mobile-app-practical-step-by-step.md` | done | Batch 6: mobile fundamentals. |
+| `praderas-b6-mobile-dev-beginners` | `desarrollo-de-aplicaciones-moviles-guia-paso-a-paso-para-principiantes.md` | `mobile-app-development-beginners-guide.md` | done | Batch 6. |
+| `praderas-b6-mobile-ui-ux` | `diseno-de-interfaz-de-usuario-ui-y-experiencia-de-usuario-ux-en-aplicaciones-moviles-un-enfoque-practico.md` | `mobile-app-ui-ux-practical-approach.md` | done | Batch 6. |
+| `praderas-b6-mobile-testing-strategy` | `estrategia-de-pruebas-en-desarrollo-de-aplicaciones-moviles-aproximaciones-frameworks-y-mejores-practicas.md` | `mobile-app-testing-strategy-frameworks-tdd.md` | done | Batch 6. |
+| `praderas-b6-mobile-frameworks` | `explorando-los-distintos-frameworks-de-desarrollo-de-aplicaciones-moviles.md` | `mobile-development-frameworks-explained.md` | done | Batch 6. |
+| `praderas-b6-mobile-languages-tools` | `lenguajes-y-herramientas-esenciales-para-el-desarrollo-de-aplicaciones-moviles.md` | `mobile-development-languages-and-essential-tools.md` | done | Batch 6. |
+| `praderas-b7-celestia-tia` | `analizando-crypto-celestia-token-tia.md` | `celestia-tia-token-overview.md` | done | Batch 7: crypto / chain (not financial advice). |
+| `praderas-b7-blockchain-crypto-intro` | `introduccion-a-blockchain-y-el-mundo-crypto.md` | `blockchain-and-crypto-introduction.md` | done | Batch 7. |
+| `praderas-b7-bitcoin-node` | `crea-tu-propio-nodo-bitcoin.md` | `run-your-own-bitcoin-node.md` | done | Batch 7. |
+| `praderas-b7-electrum-server` | `electrum-que-es-y-por-que-es-bueno-tener-tu-propio-servidor-de-electrum.md` | `electrum-wallet-and-personal-server.md` | done | Batch 7. |
+| `praderas-b8-laptop-buying-guide` | `como-elegir-una-computadora-portatil-guia-para-tomar-la-decision-correcta.md` | `laptop-buying-guide.md` | done | Batch 8: systems / productivity / society tail. |
+| `praderas-b8-ubuntu-vs-debian` | `comparando-ubuntu-y-debian.md` | `ubuntu-vs-debian-comparison.md` | done | Batch 8. |
+| `praderas-b8-future-of-education` | `el-futuro-de-la-educacion.md` | `future-of-education-digital-era.md` | done | Batch 8. |
+| `praderas-b8-emacs-guide` | `guia-completa-de-emacs-aumenta-tu-productividad-con-un-editor-poderoso.md` | `emacs-productivity-guide.md` | done | Batch 8 (Emacs guide tail from batch 5 note). |
+| `praderas-b8-linux-vm-productivity-tools` | `herramientas-de-productividad-de-software-libre-para-linux-y-vm.md` | `libre-linux-vm-productivity-tools.md` | done | Batch 8; internal links to paired EN productivity posts. |
+| `praderas-b8-remote-team-productivity-tools` | `herramientas-para-incrementar-la-productividad-en-el-trabajo-remoto.md` | `remote-team-productivity-tools.md` | done | Batch 8 (distinct from `praderas-b5-remote-work-tips`). |
+| `praderas-b8-debian-11-install` | `instalacion-de-debian-11-paso-a-paso.md` | `debian-11-install-step-by-step.md` | done | Batch 8; linked from EN `praderas-ctd-01` overview. |
+| `praderas-b8-online-learning-benefits` | `las-ventajas-del-aprendizaje-en-linea-flexibilidad-y-oportunidades.md` | `online-learning-benefits-flexibility.md` | done | Batch 8. |
+| `praderas-b8-emerging-tech-trends-society` | `tendencias-economicas-emergentes.md` | `emerging-tech-trends-society-business.md` | done | Batch 8 (ES filename says “economicas”; body is tech trends). |
+| `praderas-b8-future-tech-innovation-horizon` | `tendencias-tecnologicas-futuras-navegando-por-el-horizonte-de-la-innovacion.md` | `future-tech-trends-innovation-horizon.md` | done | Batch 8 (closes batch 4 “future tech” tail). |
+| `praderas-day-14-batch-6-7-8-translation-finale-log` | `reviviendo-praderas-dia-14-batch-6-7-8-cierre-traducciones-y-reloj.md` | `reviving-praderas-day-14-batches-6-7-8-translation-finale-and-clock.md` | done | Daily log: batches 6–8 closure + ~9.5 min wall vs ~43.5–102.5 h band. |
 
 ## Batch migration plan (to avoid context overflow)
 
@@ -98,15 +118,15 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 3. **Batch 3 — Core security + privacy cluster**  
    Status: **done** — six ES/EN post pairs + Day 11 log; UI: `tag_label_en`, `/en/tags`, `/en/about-picocms` (see `multilingual-ui-backlog.md`).
 4. **Batch 4 — AI and future-tech cluster**  
-   Status: **done (core slice)** — six ES/EN AI posts + paired blog listing + `/en/archivo` archive (remaining “future-tech” posts like `tendencias-tecnologicas-*` still todo for batch 4 extension or batch 5).
+   Status: **done** — core AI slice shipped earlier; remaining trend posts paired in Day 14/batch 8 closure (`praderas-b8-future-tech-innovation-horizon`, `praderas-b8-emerging-tech-trends-society`).
 5. **Batch 5 — Productivity and collaboration tooling cluster**  
-   Status: **done (core slice)** — six ES/EN guides (remote work, Etherpad, Redmine, Taskwarrior, Focalboard, Nextcloud+Deck) + Day 13 log; remaining productivity posts (Emacs, other guides) still todo as **batch 5b** or batch 8 tail.
+   Status: **done** — six ES/EN guides + Day 13 log (earlier PR); Emacs + libre Linux VM productivity list paired in Day 14/batch 8 (`praderas-b8-emacs-guide`, `praderas-b8-linux-vm-productivity-tools`).
 6. **Batch 6 — Mobile development fundamentals cluster**  
-   Status: todo.
+   Status: **done** — six ES/EN fundamentals posts (`praderas-b6-*`) + Day 14 log documents the batch closure.
 7. **Batch 7 — Crypto + blockchain cluster**  
-   Status: todo.
+   Status: **done** — four ES/EN posts (`praderas-b7-*`) in Day 14 PR.
 8. **Batch 8 — General tech and education long-tail**  
-   Status: todo.
+   Status: **done** — ten ES/EN posts (`praderas-b8-*`) covering systems, education, trends, remote tooling lists, Debian install, online learning + Day 14 finale log.
 
 ---
 
@@ -123,6 +143,8 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 | Roadmap wording | Fase 4: SEO y descubrimiento | Phase 4: SEO and discoverability | Prefer "discoverability" in EN series posts. |
 | Tag pills / hubs (UI EN) | Ciberseguridad, Privacidad, … | Cybersecurity, Privacy, … | Canonical YAML unchanged; labels from `tag_label_en` in `65-Multilingual.php`. |
 | Productivity guides (batch 5) | Guía Completa de … | “Complete guide” / concise EN title in post `Title` | Keep product names (Taskwarrior, Redmine, Etherpad, Focalboard, Nextcloud) unchanged. |
+| Mobile cluster (batch 6) | desarrollo móvil / frameworks | “mobile app development”, “frameworks” | Keep canonical tag `Aplicaciones Moviles` in YAML. |
+| Crypto posts | inversión / “token” hype | neutral/educational EN titles; disclaimers where needed | Not financial advice; figures go stale—prefer pointers to official docs. |
 | *(add)* | | | |
 
 ---
@@ -139,6 +161,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-05:** Batches 6–8 closure — twenty ES/EN pairs (`praderas-b6-*`…`praderas-b8-*`) + Day 14 ES/EN log (`praderas-day-14-batch-6-7-8-translation-finale-log`); EN `decoupled-architectures-time-tracking-app-overview` Debian bullet now targets `debian-11-install-step-by-step`; tracker batch statuses updated.
 - **2026-05-04:** Batch 5 productivity slice — six ES/EN pairs (`praderas-b5-*`); Day 13 ES/EN log (`praderas-day-13-batch-5-productivity-log`); minor ES fixes (teletrabajo typo, Focalboard closing line).
 - **2026-05-03 (follow-up):** Day 12 ES/EN log posts (`praderas-day-12-batch-4-archive-blog-log`) documenting merged batch 4 + `/en/archivo` + blog listing pair; published after main merge as a small transparency PR.
 - **2026-05-03:** Batch 4 AI cluster — six post pairs (`praderas-b4-*`); `Translation_Key` on `content/blog.md` ↔ `content/en/blog.md` (language switcher on `/en/blog`); `/en/archivo` + bilingual `archive.twig` + sidebar archive CTA.

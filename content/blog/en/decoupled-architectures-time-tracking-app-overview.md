@@ -38,7 +38,7 @@ We rely on a small but powerful stack (with common alternatives called out in th
 
 Each instalment focuses on one slice of the system. A preview of what follows:
 
-1. **[Debian 11 server setup](%base_url%/blog/instalacion-de-debian-11-paso-a-paso)** — still documented on the Spanish archive URL; no English twin yet.
+1. **[Debian 11 server setup](%base_url%/blog/en/debian-11-install-step-by-step)** — paired English walkthrough of the Spanish install guide.
 2. **[PostgREST implementation](%base_url%/blog/en/postgrest-rest-api-setup)** — standing up the auto-generated REST API.
 3. **Nginx** — reverse proxy, TLS, and safer exposure of PostgREST.
 4. **React frontend** — screens and flows for the product.

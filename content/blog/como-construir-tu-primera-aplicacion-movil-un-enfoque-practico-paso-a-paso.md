@@ -5,6 +5,8 @@ Author: Luis Amigo
 Date: 2023-08-19 10:33PM
 Template: post
 Tags: Aplicaciones Moviles
+Lang: es
+Translation_Key: praderas-b6-first-mobile-app
 ---
 
 El proceso de construir tu primera aplicación móvil puede ser emocionante y desafiante al mismo tiempo. A medida que te adentras en el mundo del desarrollo de aplicaciones, es esencial comprender los pasos necesarios para transformar tus ideas en una aplicación funcional. En este artículo, te guiaremos a través de un enfoque práctico y paso a paso para construir tu primera aplicación móvil, sin importar si tu plataforma objetivo es iOS o Android. ¡Prepárate para dar vida a tu creatividad!
