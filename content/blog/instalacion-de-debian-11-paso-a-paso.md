@@ -1,10 +1,13 @@
 ---
+
 Title: Instalación de Debian 11 paso a paso
 Description: Pasos básicos para instalar Debian 11 "Bullseye" en tu equipo.
 Date: 2023-08-09
 Template: post
 Author: Luis Amigo
 Tags: Sistemas
+Lang: es
+Translation_Key: praderas-b8-debian-11-install
 ---
 
 ## Introducción

@@ -5,6 +5,8 @@ Author: Luis Amigo
 Date: 2024-12-27 07:09PM
 Template: post
 Tags: Crypto, Economia
+Lang: es
+Translation_Key: praderas-b7-celestia-tia
 ---
 
 El proyecto Celestia es una red blockchain modular innovadora que se enfoca en mejorar la escalabilidad y la arquitectura de las cadenas de bloques tradicionales. 

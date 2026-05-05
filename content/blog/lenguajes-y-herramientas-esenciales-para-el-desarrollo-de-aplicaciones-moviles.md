@@ -5,6 +5,8 @@ Author: Luis Amigo
 Date: 2023-08-18 11:33AM
 Template: post
 Tags: Aplicaciones Moviles
+Lang: es
+Translation_Key: praderas-b6-mobile-languages-tools
 ---
 
 El desarrollo de aplicaciones móviles es un campo en constante evolución, con una demanda creciente de aplicaciones que brinden experiencias de usuario excepcionales en plataformas iOS y Android. Para enfrentar este desafío, es crucial comprender los lenguajes de programación y las herramientas que forman la base de la creación de aplicaciones móviles exitosas. En este artículo, exploraremos los lenguajes y herramientas esenciales que todo desarrollador de aplicaciones móviles debe conocer.

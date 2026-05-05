@@ -1,10 +1,13 @@
 ---
+
 Title: Comparando Ubuntu y Debian
 Description: Este artículo revisa las similitudes y diferencias entre Ubuntu y Debian
 Date: 2023-08-09 02:00
 Template: post
 Author: Luis Amigo
 Tags: Sistemas
+Lang: es
+Translation_Key: praderas-b8-ubuntu-vs-debian
 ---
 
 # Diferencias y Similitudes entre Ubuntu y Debian: ¿Cuál es la Elección Correcta?

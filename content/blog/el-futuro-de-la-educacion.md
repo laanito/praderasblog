@@ -1,10 +1,13 @@
 ---
+
 Title: El Futuro de la Educación: Aprendizaje en la Era Digital
 Author: Luis Amigo
 Description: En este artículo, exploraremos cómo la tecnología está moldeando el futuro de la educación y los impactos significativos que está teniendo en la forma en que aprendemos y enseñamos.
 Date: 2023-08-14 09:00AM
 Template: post
 Tags: Sociedad
+Lang: es
+Translation_Key: praderas-b8-future-of-education
 ---
 
 En la era actual de avances tecnológicos acelerados, la educación está experimentando una transformación radical. La convergencia de la tecnología y la pedagogía está dando forma a un nuevo paradigma educativo, donde el aprendizaje en la era digital está redefiniendo cómo los estudiantes adquieren conocimientos y cómo los educadores comparten información. En este artículo, exploraremos cómo la tecnología está moldeando el futuro de la educación y los impactos significativos que está teniendo en la forma en que aprendemos y enseñamos.

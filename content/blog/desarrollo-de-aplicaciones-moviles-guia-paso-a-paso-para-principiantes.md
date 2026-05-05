@@ -5,6 +5,8 @@ Author: Luis Amigo
 Date: 2023-08-17 12:36PM
 Template: post
 Tags: Aplicaciones Moviles
+Lang: es
+Translation_Key: praderas-b6-mobile-dev-beginners
 ---
 
 El mundo actual gira en torno a la tecnología móvil, y el desarrollo de aplicaciones móviles se ha convertido en una habilidad altamente demandada. Desde aplicaciones para redes sociales hasta herramientas de productividad y juegos adictivos, las aplicaciones móviles se han infiltrado en todos los aspectos de nuestra vida diaria. Si eres un principiante en el desarrollo de aplicaciones móviles, esta guía paso a paso te proporcionará una introducción sólida y te ayudará a dar tus primeros pasos en este emocionante campo.

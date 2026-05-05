@@ -5,6 +5,8 @@ Author: Luis Amigo
 Date: 2023-12-27 01:09PM
 Template: post
 Tags: Crypto
+Lang: es
+Translation_Key: praderas-b7-blockchain-crypto-intro
 ---
 
 ## Introducción
