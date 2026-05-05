@@ -46,11 +46,11 @@ En resumen, ejecutar tu propio nodo te otorga mayor privacidad, seguridad y cont
 
 - Capacidad de almacenamiento: Un nodo Bitcoin Core requiere descargar y almacenar toda la cadena de bloques, lo que actualmente son más de 400 GB de datos. Un nodo Lightning solo almacena información sobre canales de pago abiertos, lo que requiere mucho menos espacio.
 
-- Funcionalidad: Un nodo Core participa en la minería y validación de transacciones en la capa base de Bitcoin. Un nodo Lightning solo participa en apertura/cierre de canales de pago y enrutamiento de pagos en la red Lightning. 
+- Funcionalidad: Un nodo Core **valida y retransmite** transacciones y bloques en la capa base de Bitcoin. La **minería** es un proceso aparte (hardware y software dedicados); un nodo completo no mina por sí solo. Un nodo Lightning participa en apertura/cierre de canales de pago y enrutamiento de pagos en la red Lightning.
 
 - Velocidad y escalabilidad: Las transacciones en Lightning son casi instantáneas, mientras que en Bitcoin Core pueden tardar hasta una hora en confirmarse. Lightning permite miles de TPS frente a los 7 TPS teóricos de Bitcoin Core.
 
-- Privacidad: Un nodo Core revela todas las direcciones vinculadas a una cuenta. Lightning ofrece mejor privacidad al ocultar destinos y montos de pagos.
+- Privacidad: Tu propio nodo completo evita filtrar **consultas** de cartera a servidores de terceros, pero la capa base sigue siendo un libro público donde la analítica de cadena puede enlazar direcciones. Lightning suele ofrecer mejor privacidad operativa en muchos flujos al no publicar el mismo gráfico on-chain por cada pago.
 
 - Complejidad: Core es más simple de ejecutar, mientras que Lightning requiere más conocimientos técnicos para la gestión de canales y liquidez.
 

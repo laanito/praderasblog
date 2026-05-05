@@ -36,7 +36,7 @@ Full nodes help prevent fraud and preserve integrity; the network’s resilience
 - **Storage:** **Bitcoin Core** needs the full chain (hundreds of gigabytes and growing). A **Lightning** node tracks channels and routes—far smaller on disk.  
 - **Role:** Core **validates and relays** **layer-1** blocks and transactions (mining is a separate, optional activity). Lightning handles fast, cheap payments **above** the base chain via funded channels.  
 - **Speed and scale:** Lightning enables near-instant payments suited to small, frequent transfers; base-layer confirmations remain slower by design.  
-- **Privacy:** naive wallet reuse on-chain leaks linkage; Lightning improves payment privacy in many patterns but introduces its own operational considerations.  
+- **Privacy:** your own full node avoids leaking **wallet queries** to third-party APIs, but the base layer remains a public ledger where chain analytics can link addresses. Lightning often improves operational privacy across many flows, with its own operational trade-offs.  
 - **Complexity:** Core is relatively “install and sync”; Lightning adds liquidity management, channel backups, and watchtowers/towers in serious setups.
 
 ## You do not have to pick only one
