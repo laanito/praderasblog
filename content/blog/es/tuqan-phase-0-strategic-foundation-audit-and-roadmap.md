@@ -1,10 +1,10 @@
 ---
-Title: Tuqan Phase 0: Fundación Estratégica – Auditoría y Roadmap Inicial
-Description: Iniciamos la modernización de Tuqan con documentación agentic, audit completo y roadmap priorizado. Primer artículo de la serie Tuqan Modernization.
+Title: Tuqan Phase 0: Fundación Estratégica – Auditoría, Roadmap y Primeros Desafíos Técnicos
+Description: Primer artículo de la serie Tuqan Modernization. Explicamos la visión, el enfoque agentic, el plan de auditoría, el roadmap y los problemas reales con el conector de GitHub.
 Date: 2026-05-06
 Template: post
 Author: Grok + laanito
-Tags: tuqan, modernization, phase-0, audit, roadmap
+Tags: tuqan, modernization, phase-0, audit, roadmap, github-connector
 Series: Tuqan Modernization
 Series_Slug: tuqan-modernization
 Series_Order: 1
@@ -14,25 +14,56 @@ Translation_Key: tuqan-phase-0-strategic-foundation
 
 **“Hay proyectos que no necesitan nacer de cero: necesitan una segunda vida.”**
 
-Hoy arrancamos **Phase 0** del proyecto Tuqan Modernization (Phase 2 del ecosistema Praderas).
+Hoy marcamos el inicio oficial de **Phase 0** de la modernización de Tuqan, la segunda gran fase del ecosistema Praderas.
 
-### ¿Qué hemos hecho?
-- Creado la carpeta `.agents/` en el repositorio Tuqan.
-- Definido los **living documents** clave.
-- Elaborado un **plan completo de auditoría** (Phase 0).
-- Preparado el **roadmap inicial** con fases, riesgos y métricas.
+### El contexto del proyecto
+Tuqan es una aplicación legacy de gestión ISO 9001 / ISO 14001 nacida alrededor de 2005. Tiene código PHP 5.1 + PEAR mezclado con modernizaciones parciales (Composer, PSR-4, Phroute, Bootstrap 5, PDO, etc.). La aplicación actualmente no es funcional.
 
-### Documentos creados en `.agents/`
-- `grok-consultant-context.md`
-- `repo-context.md`
-- `phase-0-audit.md` (con plan detallado de auditoría)
-- `proposed-improvements.md` (roadmap priorizado)
+Nuestro objetivo no es reescribirla desde cero, sino **evolucionarla preservando la lógica de negocio** mientras aplicamos estándares modernos.
 
-**Próximos pasos tras este merge:**
-1. Ejecutar el plan de auditoría.
-2. Refinar el roadmap según hallazgos.
-3. Aprobar Phase 1 (Dependency Cleanup) antes de tocar código legacy.
+### El enfoque agentic y “documentation first”
+Todo el trabajo se hace de forma transparente:
+- Documentación primero en la carpeta `.agents/` (living documents).
+- Cada sesión empieza en un branch nuevo.
+- Cambios solo vía PRs.
+- Cero código de aplicación hasta que el roadmap completo esté aprobado.
 
-El repositorio es 100% público y todo el progreso será documentado aquí.
+### Los living documents creados
+- `.agents/grok-consultant-context.md`
+- `.agents/repo-context.md`
+- `.agents/phase-0-audit.md` (con plan detallado de auditoría)
+- `.agents/proposed-improvements.md` (roadmap priorizado con riesgos y métricas)
 
-*(Versión en inglés disponible en el mismo post con Translation_Key)*
+### Los problemas reales con el GitHub connector
+Durante este proceso hemos descubierto las limitaciones del conector de GitHub que uso:
+- Errores frecuentes de "unexpected end of JSON input"
+- Problemas de SHA mismatch al actualizar archivos existentes
+- Necesidad de pushes uno por uno en lugar de batch
+
+Esto ha obligado a hacer varios intentos manuales y a pausar temporalmente. Es una lección valiosa de transparencia: las herramientas agentic todavía tienen fricciones.
+
+### Plan de auditoría (Phase 0)
+El plan incluye una revisión completa de:
+- Estructura de archivos y carpetas legacy
+- Dependencias Composer y paquetes obsoletos
+- Mezcla de lógica de negocio con presentación
+- Problemas de seguridad (PEAR remnants, old PHP practices)
+- Estado actual de funcionalidad
+
+### Roadmap de alto nivel
+Fases principales:
+- **Phase 0**: Strategic Foundation & Audit (actual)
+- **Phase 1**: Dependency Cleanup & PSR enforcement
+- **Phase 2**: Architecture modernization (routing, DI, templates)
+- **Phase 3**: Business logic extraction & testing
+- **Phase 4**: UI/UX refresh + mobile
+- **Phase 5**: Deployment & monitoring
+
+**Próximos pasos**
+- Mergear este artículo.
+- Ejecutar la auditoría completa.
+- Publicar hallazgos en el siguiente post.
+
+Seguimos paso a paso, sin prisa, documentando todo.
+
+*(Versión en inglés disponible con la misma Translation_Key)*
