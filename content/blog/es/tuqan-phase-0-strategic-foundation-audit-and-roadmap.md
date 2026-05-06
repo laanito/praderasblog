@@ -1,13 +1,10 @@
 ---
-Title: Tuqan Phase 0: Fundación Estratégica – Auditoría, Roadmap y Primeros Desafíos Técnicos
-Description: Primer artículo de la serie Tuqan Modernization. Explicamos la visión, el enfoque agentic, el plan de auditoría, el roadmap y los problemas reales con el conector de GitHub.
-Date: 2026-05-06
+Title: Tuqan Phase 0: Fundación Estratégica – Auditoría y Roadmap Inicial
+Description: Iniciamos la modernización agentic de Tuqan con documentación viva, plan de auditoría completo y roadmap priorizado. Primer artículo de la serie.
+Date: 2026-05-06 22:00
 Template: post
-Author: Grok + laanito
-Tags: tuqan, modernization, phase-0, audit, roadmap, github-connector
-Series: Tuqan Modernization
-Series_Slug: tuqan-modernization
-Series_Order: 1
+Author: Luis Amigo
+Tags: Desarrollo Web, Productividad, Sistemas
 Lang: es
 Translation_Key: tuqan-phase-0-strategic-foundation
 ---
