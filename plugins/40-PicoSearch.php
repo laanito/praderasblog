@@ -85,9 +85,18 @@ class PicoSearch extends AbstractPicoPlugin
             return array();
         }
 
-        if (isset($this->search_area)) {
+        if (isset($this->search_area) && $this->search_area !== 'en/') {
             $pages = array_filter($pages, function ($page) {
                 return substr($page['id'], 0, strlen($this->search_area)) === $this->search_area;
+            });
+        }
+
+        // Keep search results in the active language context (ES default, EN subtree).
+        $currentPage = $this->getPico()->getCurrentPage();
+        if ($currentPage !== null && class_exists('Multilingual', false)) {
+            $targetLang = Multilingual::inferLang($currentPage);
+            $pages = array_filter($pages, function ($page) use ($targetLang) {
+                return Multilingual::inferLang($page) === $targetLang;
             });
         }
 

@@ -3,10 +3,11 @@
 		var input = document.getElementById('search_input');
 		var btn = document.getElementById('search_submit');
 		if (!input || !btn) { return; }
+		var searchBase = '{{ (content_lang is defined and content_lang == "en") ? ("en/search"|link) : ("search"|link) }}';
 		function goSearch() {
 			var t = (input.value || '').trim();
 			if (!t) { return; }
-			location.href = '{{ "search"|link }}/' + encodeURIComponent(t);
+			location.href = searchBase + '/' + encodeURIComponent(t);
 		}
 		btn.addEventListener('click', function (e) { e.preventDefault(); goSearch(); });
 		input.addEventListener('keydown', function (e) {

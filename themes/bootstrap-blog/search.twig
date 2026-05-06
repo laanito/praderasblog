@@ -1,7 +1,8 @@
 {% extends "index.twig" %}
+{% set is_en = content_lang is defined and content_lang == 'en' %}
 
 {% block breadcrumb %}
-{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Inicio', 'url': "index"|link }, { 'label': 'Búsqueda' } ] } only %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': is_en ? 'Home' : 'Inicio', 'url': pradera_home_url|default("index"|link) }, { 'label': is_en ? 'Search' : 'Búsqueda' } ] } only %}
 {% endblock %}
 
 {% block content %}
@@ -14,7 +15,7 @@
 		<div class="col-lg-12">
 		<header class="mb-4">
 		<!-- Page title-->
-			<h1 class="fw-bolder mb-1">Resultados de la búsqueda para&nbsp;{{ search_terms|e('html') }}</h1>
+			<h1 class="fw-bolder mb-1">{{ is_en ? 'Search results for' : 'Resultados de la búsqueda para' }}&nbsp;{{ search_terms|e('html') }}</h1>
 		</header>
 	   	</div>
 		  {% for page in search_results %}
@@ -24,7 +25,7 @@
 					<div class="small text-muted">{{ page.date }}</div>
 					<h2 class="card-title h4">{{ page.title }}</h2>
 					<p class="card-text">{{ page.description }}</p>
-					<a class="btn btn-primary" href="{{ page.url }}">Leer más →</a>
+					<a class="btn btn-primary" href="{{ page.url }}">{{ is_en ? 'Read more' : 'Leer más' }} →</a>
 				</div>
 			</div>
 		  {% endfor %}
@@ -32,7 +33,7 @@
 		<div class="col-lg-12">
 		<header class="mb-4">
 		<!-- Page title-->
-		<h1 class="fw-bolder mb-1">No hay resultados para&nbsp;{{ search_terms|e('html') }}</h1>
+		<h1 class="fw-bolder mb-1">{{ is_en ? 'No results for' : 'No hay resultados para' }}&nbsp;{{ search_terms|e('html') }}</h1>
 		</header>
 	   	</div>
 	      {% endif %}

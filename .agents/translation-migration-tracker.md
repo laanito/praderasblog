@@ -73,6 +73,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-nav-about-picocms` | _(use `content/acerca-de-picocms.md`)_ | _(use `content/en/about-picocms.md`)_ | done | EN About page; nav target. |
 | `praderas-nav-blog-listing` | _(use `content/blog.md`)_ | _(use `content/en/blog.md`)_ | done | `/blog` ↔ `/en/blog` + language switcher via `hreflang` pair. |
 | `praderas-nav-archive` | _(use `content/archivo.md`)_ | _(use `content/en/archivo.md`)_ | done | `/archivo` ↔ `/en/archivo`; bilingual `archive.twig`. |
+| `praderas-nav-search` | _(use `content/search.md`)_ | _(use `content/en/search.md`)_ | done | `/search` ↔ `/en/search`; UI copy + redirect base now branch by `content_lang`; results filtered by active language in `PicoSearch`. |
 | `praderas-b4-ai-games-evolution` | `evolucion-de-la-inteligencia-artificial-y-los-videojuegos.md` | `ai-evolution-and-video-games.md` | done | Batch 4: AI cluster. |
 | `praderas-b4-ai-early-disease-detection` | `deteccion-temprana-de-enfermedades-ia.md` | `ai-early-disease-detection.md` | done | Batch 4. |
 | `praderas-b4-ai-medicine` | `inteligencia-artificial-en-la-medicina.md` | `artificial-intelligence-in-medicine.md` | done | Batch 4. |
@@ -161,6 +162,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-06:** UI backlog slice — paired search route (`content/search.md` ↔ `content/en/search.md`, `praderas-nav-search`), bilingual search template/behavior (`search.twig`, `search-behavior.twig`), language-safe result filtering in `PicoSearch`, and EN footer credit branch in `index.twig`.
 - **2026-05-05:** Batches 6–8 closure — twenty ES/EN pairs (`praderas-b6-*`…`praderas-b8-*`) + Day 14 ES/EN log (`praderas-day-14-batch-6-7-8-translation-finale-log`); EN `decoupled-architectures-time-tracking-app-overview` Debian bullet now targets `debian-11-install-step-by-step`; tracker batch statuses updated.
 - **2026-05-04:** Batch 5 productivity slice — six ES/EN pairs (`praderas-b5-*`); Day 13 ES/EN log (`praderas-day-13-batch-5-productivity-log`); minor ES fixes (teletrabajo typo, Focalboard closing line).
 - **2026-05-03 (follow-up):** Day 12 ES/EN log posts (`praderas-day-12-batch-4-archive-blog-log`) documenting merged batch 4 + `/en/archivo` + blog listing pair; published after main merge as a small transparency PR.

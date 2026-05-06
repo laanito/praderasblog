@@ -1,4 +1,5 @@
 {% set my_tag = url_param('tag', 'string') %}
+{% set is_en = content_lang is defined and content_lang == 'en' %}
 
 <!DOCTYPE html>
 <html lang="{{ html_lang|default('es') }}">
@@ -38,7 +39,7 @@
                     <a href="{{ social.url }}" title="{{ social.title }}"><span class="icon-{{ social.icon }}"></span></a>
                 {% endfor %}
             </div>
-            <p class="m-0 text-center pradera-footer__credit">Basado en <a href="https://github.com/cutterkom/pico-blog-cms" rel="noopener">Pico Blog Theme</a> (K. Brunner). <a href="http://picocms.org/">Pico CMS</a> (G. Pellegrom) — mantenido por la <a href="https://github.com/picocms/Pico/graphs/contributors" rel="noopener">comunidad</a> — <a href="https://github.com/picocms/Pico/blob/master/LICENSE.md" rel="noopener">licencia MIT</a>.</p> </div>
+            <p class="m-0 text-center pradera-footer__credit">{% if is_en %}Based on <a href="https://github.com/cutterkom/pico-blog-cms" rel="noopener">Pico Blog Theme</a> (K. Brunner). <a href="http://picocms.org/">Pico CMS</a> (G. Pellegrom) — maintained by the <a href="https://github.com/picocms/Pico/graphs/contributors" rel="noopener">community</a> — <a href="https://github.com/picocms/Pico/blob/master/LICENSE.md" rel="noopener">MIT license</a>.{% else %}Basado en <a href="https://github.com/cutterkom/pico-blog-cms" rel="noopener">Pico Blog Theme</a> (K. Brunner). <a href="http://picocms.org/">Pico CMS</a> (G. Pellegrom) — mantenido por la <a href="https://github.com/picocms/Pico/graphs/contributors" rel="noopener">comunidad</a> — <a href="https://github.com/picocms/Pico/blob/master/LICENSE.md" rel="noopener">licencia MIT</a>.{% endif %}</p> </div>
     </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="{{ theme_url }}/js/scripts.js"></script>

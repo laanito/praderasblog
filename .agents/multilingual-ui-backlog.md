@@ -2,7 +2,7 @@
 
 **Purpose:** Track **non-post** surfaces that still mix languages or lack an EN route, so future agents do not rediscover the same gaps. **Canonical translation ledger** for posts remains `translation-migration-tracker.md`.
 
-**Last reviewed:** 2026-05-04 (Batch 5 productivity slice shipped in content).
+**Last reviewed:** 2026-05-06 (Day 15 UI slice: search route + non-post footer i18n).
 
 ---
 
@@ -24,14 +24,19 @@
 - **`/en/blog` language switcher:** `content/blog.md` ↔ `content/en/blog.md` share `Translation_Key: praderas-nav-blog-listing` so `lang-switcher.twig` can surface **Español** from the English listing.
 - **`/en/archivo`:** paired with `content/archivo.md` via `Translation_Key: praderas-nav-archive`; **`archive.twig`** branches month names, breadcrumbs, and post filter (`blog/en/` vs Spanish `blog/*`).
 
+### Day 15 slice
+
+- **Search UI EN route:** paired `content/search.md` ↔ `content/en/search.md` (`Translation_Key: praderas-nav-search`) so `/en/search/<terms>` resolves with EN metadata.
+- **Language-safe search results:** `PicoSearch` now keeps result language aligned with the current page (`Multilingual::inferLang`), while preserving scoped folder search behavior.
+- **Search copy split:** `search.twig` and `search-behavior.twig` now branch labels, breadcrumbs, CTA text, and redirect base (`/search` vs `/en/search`) by `content_lang`.
+- **Non-post footer i18n:** `index.twig` footer credit block now mirrors ES/EN split already used in post/blog layouts.
+
 ---
 
 ## Pending (prioritized)
 
 | Item | Route / surface | Notes |
 |------|-----------------|-------|
-| **Search UI** | `/search`, sidebar search | No `content/en/search.md` + template split; strings and results language rules TBD (search plugin may need `inferLang` filtering like tag counts). |
-| **`index.twig` footer** | Non-`post.twig` layouts (home, tags hub, etc.) | Footer credit block is still Spanish-only; align with `blog.twig` / `post.twig` split when touched. |
 | **Robots / sitemap per language** | `PicoRobots` + sitemap templates | Phase 5 “still open” items from `proposed-improvements.md`; verify alternate URLs when implemented. |
 | **Optional: EN tag vocabulary** | Front matter `Tags` | Today we intentionally keep **one** YAML tag set; migrating to bilingual keys would be a **large** content + tooling change—only if product explicitly wants distinct taxonomies. |
 | **Batch 4 extension** | `tendencias-tecnologicas-futuras-*.md`, `tendencias-economicas-emergentes.md`, … | Still Spanish-only; schedule as batch 4b or merge into batch 5 by theme. |
