@@ -84,6 +84,11 @@ Graph summary:
 
 ---
 
+## Committed example (reference PNG)
+
+- **`assets/images/day17-comfyui-sdxl-example.png`** — **1024×768** PNG from the validated SDXL ubersimple graph (local smoke test); embedded in the Day 17 ES/EN meta posts as a **quality bar** example (generic prompt, not final art direction).
+
 ## Changelog (in-repo)
 
 - **2026-05-10:** Initial doc + `scripts/comfyui/sdxl_ubersimple.api.json` + Day 17 meta posts documenting validation and integration checklist.
+- **2026-05-10 (follow-up):** Added committed example PNG `assets/images/day17-comfyui-sdxl-example.png` and embedded it in Day 17 ES/EN posts.

@@ -25,7 +25,13 @@ After the per-language sitemap work (Day 16), we picked up **Priority 2** in `pr
 2. **Real technical validation**  
    Against `http://127.0.0.1:8188` we exercised the usual flow: `POST /prompt` → `GET /history/{prompt_id}` → `GET /view?...`. A minimal **SD 1.5 @ 512²** graph proved wiring; an **SDXL “ubersimple”** graph (`SDXL/sd_xl_base_1.0.safetensors`, **1024×768**, `euler` + `sgm_uniform`, long negative, `VAEDecode` with the **checkpoint VAE** `["1",2]`) produced a **clearly better** image — consistent with the intuition that quality was about the **full stack**, not “VAE alone.”
 
-3. **What we did not ship yet**  
+## Example output (same session, local smoke test)
+
+Committed file: `assets/images/day17-comfyui-sdxl-example.png` (**1024×768**). Generic positive prompt (editorial desk / terminal mood, no readable text); meant only to **show the quality bar** of the SDXL graph above, not as the final cover for a specific post.
+
+![Example output: ComfyUI SDXL ubersimple, local 1024×768 smoke test](/assets/images/day17-comfyui-sdxl-example.png)
+
+### What we did not ship yet  
    No Pico plugin and no `post.twig` / `page-meta.twig` wiring in this branch: the goal was to **freeze a starting point** for future sessions, not couple the static site to a GPU service.
 
 ## Where agents should look

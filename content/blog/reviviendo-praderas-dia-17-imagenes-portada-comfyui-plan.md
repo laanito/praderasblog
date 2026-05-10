@@ -25,7 +25,13 @@ Tras cerrar el ítem SEO de sitemaps por idioma (Día 16), retomamos el hilo de 
 2. **Validación técnica real**  
    Contra `http://127.0.0.1:8188` comprobamos el flujo estándar: `POST /prompt` → `GET /history/{prompt_id}` → `GET /view?...`. Un grafo mínimo **SD 1.5 en 512²** sirvió de cableado; un grafo **SDXL “ubersimple”** (`SDXL/sd_xl_base_1.0.safetensors`, **1024×768**, `euler` + `sgm_uniform`, negativo largo, `VAEDecode` con VAE del checkpoint) dio **resultado visual claramente mejor** — alineado con la intuición de que el problema no era “solo el VAE” sino el **stack completo**.
 
-3. **Qué no hicimos aún**  
+## Ejemplo de salida (misma sesión, prueba local)
+
+Archivo en el repositorio: `assets/images/day17-comfyui-sdxl-example.png` (**1024×768**). Prompt positivo genérico (escritorio / terminal editorial, sin texto legible); solo para **ilustrar calidad** del grafo SDXL descrito arriba, no como portada definitiva de un artículo concreto.
+
+![Salida de ejemplo: ComfyUI SDXL ubersimple, prueba local 1024×768](/assets/images/day17-comfyui-sdxl-example.png)
+
+### Qué no hicimos aún  
    No hay plugin Pico ni cambio en `post.twig`/`page-meta.twig` en esta rama: el objetivo fue **documentar el punto de partida** para sesiones futuras, no acoplar el blog a un servicio GPU.
 
 ## Dónde queda documentado para agentes
