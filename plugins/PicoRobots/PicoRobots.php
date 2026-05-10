@@ -34,21 +34,21 @@ class PicoRobots extends AbstractPicoPlugin
     protected $robots;
 
     /**
-     * List of sitemap records
+     * Cached sitemap record lists (keys: "all", "es", "en")
      *
      * @see PicoRobots::getSitemap()
-     * @var array[]|null
+     * @var array<string, array[]>
      */
-    protected $sitemap;
+    protected $sitemapByFilter = array();
 
     /**
-     * Disables this plugin if neither robots.txt nor sitemap.xml is requested
+     * Disables this plugin unless robots.txt or a sitemap endpoint is requested
      *
      * @see DummyPlugin::onRequestUrl()
      */
     public function onRequestUrl(&$requestUrl)
     {
-        if (!in_array($requestUrl, array('robots.txt', 'sitemap.xml'), true)) {
+        if (!in_array($requestUrl, array('robots.txt', 'sitemap.xml', 'sitemap-es.xml', 'sitemap-en.xml'), true)) {
             $this->setEnabled(false);
         }
     }
@@ -60,7 +60,8 @@ class PicoRobots extends AbstractPicoPlugin
      */
     public function onSinglePageLoaded(array &$pageData)
     {
-        if (($this->getRequestUrl() === 'sitemap.xml') && $pageData['id']) {
+        $sitemapRequests = array('sitemap.xml', 'sitemap-es.xml', 'sitemap-en.xml');
+        if (in_array($this->getRequestUrl(), $sitemapRequests, true) && $pageData['id']) {
             $fileName = $this->getConfig('content_dir') . $pageData['id'] . $this->getConfig('content_ext');
             if (file_exists($fileName) && !isset($pageData['modificationTime'])) {
                 $pageData['modificationTime'] = filemtime($fileName);
@@ -93,7 +94,9 @@ class PicoRobots extends AbstractPicoPlugin
      */
     public function onPageRendering(&$twigTemplate, array &$twigVariables)
     {
-        if ($this->getRequestUrl() === 'robots.txt') {
+        $requestUrl = $this->getRequestUrl();
+
+        if ($requestUrl === 'robots.txt') {
             header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
             header('Content-Type: text/plain; charset=utf-8');
             $twigTemplate = 'robots.twig';
@@ -101,12 +104,23 @@ class PicoRobots extends AbstractPicoPlugin
             $twigVariables['robots'] = $this->getRobots();
         }
 
-        if ($this->getRequestUrl() === 'sitemap.xml') {
+        if ($requestUrl === 'sitemap.xml') {
+            header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
+            header('Content-Type: application/xml; charset=utf-8');
+            $twigTemplate = 'sitemap-index.twig';
+
+            $base = rtrim($this->getBaseUrl(), '/');
+            $twigVariables['sitemap_index'] = array(
+                array('loc' => $base . '/sitemap-es.xml'),
+                array('loc' => $base . '/sitemap-en.xml'),
+            );
+        } elseif ($requestUrl === 'sitemap-es.xml' || $requestUrl === 'sitemap-en.xml') {
             header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
             header('Content-Type: application/xml; charset=utf-8');
             $twigTemplate = 'sitemap.twig';
 
-            $twigVariables['sitemap'] = $this->getSitemap();
+            $lang = ($requestUrl === 'sitemap-en.xml') ? 'en' : 'es';
+            $twigVariables['sitemap'] = $this->getSitemap($lang);
         }
     }
 
@@ -143,52 +157,78 @@ class PicoRobots extends AbstractPicoPlugin
     }
 
     /**
-     * Returns the structure contents of sitemap.xml
+     * Returns sitemap URL records, optionally filtered by site language (Praderas ES/EN split).
      *
-     * This method triggers the `onSitemap` event when the contents of
-     * `sitemap.xml` weren't assembled yet.
+     * Triggers `onSitemap` when building a given filter for the first time in this request.
+     *
+     * @param string|null $langFilter "es", "en", or null for all pages plus manual config extras
      *
      * @return array[] list of sitemap records
      */
-    public function getSitemap()
+    public function getSitemap($langFilter = null)
     {
-        if ($this->sitemap === null) {
-            $changeFrequencies = array('always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never');
-            $this->sitemap = array();
+        $key = $langFilter === null ? 'all' : $langFilter;
+        if (!isset($this->sitemapByFilter[$key])) {
+            $this->sitemapByFilter[$key] = $this->buildSitemapRecords($langFilter);
+        }
 
-            $pages = $this->getPages();
-            foreach ($pages as $pageData) {
-                if (!empty($pageData['meta']['sitemap'])) {
-                    $modificationTime = null;
-                    if (isset($pageData['meta']['sitemap']['lastmod'])) {
-                        $modificationTime = $pageData['meta']['sitemap']['lastmod'] ?: null;
+        return $this->sitemapByFilter[$key];
+    }
 
-                        if ($modificationTime && !is_int($modificationTime)) {
-                            $modificationTime = strtotime($modificationTime) ?: null;
-                        }
-                    } elseif (!empty($pageData['modificationTime'])) {
-                        $modificationTime = $pageData['modificationTime'];
-                    }
+    /**
+     * @param string|null $langFilter
+     *
+     * @return array[]
+     */
+    protected function buildSitemapRecords($langFilter)
+    {
+        $changeFrequencies = array('always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never');
+        $result = array();
 
-                    $changeFrequency = null;
-                    if (!empty($pageData['meta']['sitemap']['changefreq'])) {
-                        $changeFrequency = $pageData['meta']['sitemap']['changefreq'];
-                    }
-
-                    $priority = null;
-                    if (isset($pageData['meta']['sitemap']['priority'])) {
-                        $priority = (float) $pageData['meta']['sitemap']['priority'];
-                    }
-
-                    $this->sitemap[] = array(
-                        'url' => $pageData['url'],
-                        'modificationTime' => $modificationTime,
-                        'changeFrequency' => in_array($changeFrequency, $changeFrequencies) ? $changeFrequency : null,
-                        'priority' => ($priority !== null) ? min(max(round($priority, 1), 0), 1) : null
-                    );
+        $pages = $this->getPages();
+        foreach ($pages as $pageData) {
+            if (empty($pageData['meta']['sitemap'])) {
+                continue;
+            }
+            if ($langFilter !== null) {
+                $lang = class_exists('Multilingual', false)
+                    ? Multilingual::inferLang($pageData)
+                    : 'es';
+                if ($lang !== $langFilter) {
+                    continue;
                 }
             }
 
+            $modificationTime = null;
+            if (isset($pageData['meta']['sitemap']['lastmod'])) {
+                $modificationTime = $pageData['meta']['sitemap']['lastmod'] ?: null;
+
+                if ($modificationTime && !is_int($modificationTime)) {
+                    $modificationTime = strtotime($modificationTime) ?: null;
+                }
+            } elseif (!empty($pageData['modificationTime'])) {
+                $modificationTime = $pageData['modificationTime'];
+            }
+
+            $changeFrequency = null;
+            if (!empty($pageData['meta']['sitemap']['changefreq'])) {
+                $changeFrequency = $pageData['meta']['sitemap']['changefreq'];
+            }
+
+            $priority = null;
+            if (isset($pageData['meta']['sitemap']['priority'])) {
+                $priority = (float) $pageData['meta']['sitemap']['priority'];
+            }
+
+            $result[] = array(
+                'url' => $pageData['url'],
+                'modificationTime' => $modificationTime,
+                'changeFrequency' => in_array($changeFrequency, $changeFrequencies) ? $changeFrequency : null,
+                'priority' => ($priority !== null) ? min(max(round($priority, 1), 0), 1) : null
+            );
+        }
+
+        if ($langFilter === null) {
             $sitemapConfig = $this->getPluginConfig('sitemap', array());
             foreach ($sitemapConfig as $record) {
                 if (!empty($record['url'])) {
@@ -200,7 +240,7 @@ class PicoRobots extends AbstractPicoPlugin
                         $modificationTime = strtotime($modificationTime) ?: null;
                     }
 
-                    $this->sitemap[] = array(
+                    $result[] = array(
                         'url' => $this->substituteUrl($record['url']),
                         'modificationTime' => $modificationTime,
                         'changeFrequency' => in_array($changeFrequency, $changeFrequencies) ? $changeFrequency : null,
@@ -208,11 +248,11 @@ class PicoRobots extends AbstractPicoPlugin
                     );
                 }
             }
-
-            $this->triggerEvent('onSitemap', array(&$this->sitemap));
         }
 
-        return $this->sitemap;
+        $this->triggerEvent('onSitemap', array(&$result));
+
+        return $result;
     }
 
     /**

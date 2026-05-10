@@ -109,6 +109,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-b8-emerging-tech-trends-society` | `tendencias-economicas-emergentes.md` | `emerging-tech-trends-society-business.md` | done | Batch 8 (ES filename says “economicas”; body is tech trends). |
 | `praderas-b8-future-tech-innovation-horizon` | `tendencias-tecnologicas-futuras-navegando-por-el-horizonte-de-la-innovacion.md` | `future-tech-trends-innovation-horizon.md` | done | Batch 8 (closes batch 4 “future tech” tail). |
 | `praderas-day-14-batch-6-7-8-translation-finale-log` | `reviviendo-praderas-dia-14-batch-6-7-8-cierre-traducciones-y-reloj.md` | `reviving-praderas-day-14-batches-6-7-8-translation-finale-and-clock.md` | done | Daily log: batches 6–8 closure + ~9.5 min wall vs ~43.5–102.5 h band. |
+| `praderas-day-16-sitemap-robots-lang-log` | `reviviendo-praderas-dia-16-sitemap-robots-por-idioma.md` | `reviving-praderas-day-16-sitemap-and-robots-per-language.md` | done | Day 16 log: sitemap index + `sitemap-es.xml` / `sitemap-en.xml` (`PicoRobots` + theme Twig). |
 
 ## Batch migration plan (to avoid context overflow)
 
@@ -162,6 +163,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-10:** Day 16 ES/EN log (`praderas-day-16-sitemap-robots-lang-log`) — per-language sitemaps: `sitemap.xml` as index, `sitemap-es.xml` / `sitemap-en.xml` filtered via `Multilingual::inferLang`; theme templates `sitemap-index.twig`, `sitemap.twig`; `.agents/multilingual-ui-backlog.md` pending row cleared.
 - **2026-05-06:** UI backlog slice — paired search route (`content/search.md` ↔ `content/en/search.md`, `praderas-nav-search`), bilingual search template/behavior (`search.twig`, `search-behavior.twig`), language-safe result filtering in `PicoSearch`, and EN footer credit branch in `index.twig`.
 - **2026-05-05:** Batches 6–8 closure — twenty ES/EN pairs (`praderas-b6-*`…`praderas-b8-*`) + Day 14 ES/EN log (`praderas-day-14-batch-6-7-8-translation-finale-log`); EN `decoupled-architectures-time-tracking-app-overview` Debian bullet now targets `debian-11-install-step-by-step`; tracker batch statuses updated.
 - **2026-05-04:** Batch 5 productivity slice — six ES/EN pairs (`praderas-b5-*`); Day 13 ES/EN log (`praderas-day-13-batch-5-productivity-log`); minor ES fixes (teletrabajo typo, Focalboard closing line).
