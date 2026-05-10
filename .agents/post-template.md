@@ -45,4 +45,8 @@ Run `python3 scripts/frontmatter_audit.py` before PR to catch missing fields, da
 - **`Lang`:** `es` or `en` (can be omitted when language is implied by path, e.g. `blog/en/...`).
 - **`Translation_Key`:** shared identifier between the Spanish markdown file and its English twin so the theme can render the language switcher and `hreflang` alternates.
 
+## Optional — hero / social image (future)
+
+- **`Image:`** (or one agreed field name) — site-relative path or URL to a **committed** cover once it exists. Prefer deterministic assets or images from a **local** generator; see `.agents/comfyui-cover-images.md` and `scripts/comfyui/sdxl_ubersimple.api.json`.
+
 For **migration work** (many posts, series, PR sizing), read `.agents/translation-batches.md` first: batches, glossary, and plain-language “context” rules for agents and for meta posts.

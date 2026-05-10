@@ -50,6 +50,7 @@
 - **Replace random placeholder images**
   - Use deterministic cover images per post (front matter field like `Image:`), with fallback.
   - Prevent visual inconsistency and low credibility from random picsum images.
+  - **Optional automation (2026-05-10):** local **ComfyUI** HTTP API validated with an SDXL reference graph; agent notes + API template in `.agents/comfyui-cover-images.md` and `scripts/comfyui/sdxl_ubersimple.api.json`. Pico theme wiring and committed-asset policy remain **future PRs** (see Day 17 meta posts in `translation-migration-tracker.md`).
 - **Improve readability defaults**
   - Increase line-height and content width balance for long-form reading.
   - Add styles for code blocks, tables, and callouts used in technical posts.
