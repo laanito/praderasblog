@@ -19,7 +19,7 @@
 - `phase-5-6-plan.md` — Phase **5** (multilingual) **first slice shipped** (2026-04-28); Phase **6** (JSON) still future; read before extending either.
 - `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.
 - `translation-batches.md` — **how to run translation in batches:** context-window rationale, whole-series rule, glossary updates, honest human wall-clock vs specialist estimates, merge checklist (read before shipping ES/EN pairs).
-- `multilingual-ui-backlog.md` — **non-post EN gaps** (search, archive, footers, sitemap): what shipped vs pending for Twig/`content_lang` routes.
+- `multilingual-ui-backlog.md` — **non-post EN gaps** (search, archive, footers, sitemap index): what shipped vs pending for Twig/`content_lang` routes.
 - `day5-consultant-feedback.md` — Day 5 sequence and status notes (visual + series completed, follow-up UX tweaks).
 
 ## Directory Map
@@ -87,8 +87,8 @@
   - Registers `Tags` and `Filter` front matter.
   - Exposes `get_all_tags()` and `apply_tag_filter`.
 - **Robots/Sitemap (`PicoRobots`)**
-  - Serves `robots.txt` and `sitemap.xml`.
-  - Live check confirms both endpoints exist on `blog.praderas.org`.
+  - Serves `robots.txt`; **`sitemap.xml`** is a **sitemap index** listing `sitemap-es.xml` and `sitemap-en.xml`, each a `<urlset>` filtered by `Multilingual::inferLang` (Day 16).
+  - Theme overrides: `themes/bootstrap-blog/sitemap-index.twig`, `sitemap.twig`.
 
 ## Phase 1 theme work (2026-04, completed in repo)
 - `themes/bootstrap-blog/blog.twig` was rebuilt: malformed trailing HTML/JS is removed, pagination is visible, layout matches the rest of the site.

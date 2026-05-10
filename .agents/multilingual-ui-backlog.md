@@ -2,7 +2,7 @@
 
 **Purpose:** Track **non-post** surfaces that still mix languages or lack an EN route, so future agents do not rediscover the same gaps. **Canonical translation ledger** for posts remains `translation-migration-tracker.md`.
 
-**Last reviewed:** 2026-05-06 (Day 15 UI slice: search route + non-post footer i18n).
+**Last reviewed:** 2026-05-10 (Day 16: sitemap index + per-language child sitemaps).
 
 ---
 
@@ -31,15 +31,19 @@
 - **Search copy split:** `search.twig` and `search-behavior.twig` now branch labels, breadcrumbs, CTA text, and redirect base (`/search` vs `/en/search`) by `content_lang`.
 - **Non-post footer i18n:** `index.twig` footer credit block now mirrors ES/EN split already used in post/blog layouts.
 
+### Day 16 slice
+
+- **`/sitemap.xml` as sitemap index:** points to `/sitemap-es.xml` and `/sitemap-en.xml` (standard `<sitemapindex>`).
+- **Language-filtered URL sets:** `PicoRobots` builds each child sitemap using `Multilingual::inferLang` so URLs align with ES vs EN trees (`blog/en/`, `content/en/`, `Lang`).
+- **Theme templates:** `themes/bootstrap-blog/sitemap-index.twig` + `sitemap.twig`; `robots.txt` unchanged pattern (`Sitemap:` → index).
+
 ---
 
 ## Pending (prioritized)
 
 | Item | Route / surface | Notes |
 |------|-----------------|-------|
-| **Robots / sitemap per language** | `PicoRobots` + sitemap templates | Phase 5 “still open” items from `proposed-improvements.md`; verify alternate URLs when implemented. |
 | **Optional: EN tag vocabulary** | Front matter `Tags` | Today we intentionally keep **one** YAML tag set; migrating to bilingual keys would be a **large** content + tooling change—only if product explicitly wants distinct taxonomies. |
-| **Batch 4 extension** | `tendencias-tecnologicas-futuras-*.md`, `tendencias-economicas-emergentes.md`, … | Still Spanish-only; schedule as batch 4b or merge into batch 5 by theme. |
 
 ---
 
