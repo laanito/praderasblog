@@ -12,7 +12,7 @@
 - **Configuration:** `config/config.yml` controls site title, base URL, theme, and pagination settings.
 - **Content model:** Markdown files under `content/` with YAML front matter.
 - **Rendering:** Twig templates in `themes/bootstrap-blog`.
-- **Extensions:** Custom plugins in `plugins/` for pagination, search, tags, robots/sitemap.
+- **Extensions:** Custom plugins in `plugins/` for pagination, search, tags, robots/sitemap. **Optional:** local ComfyUI HTTP API for AI-generated cover images — see `.agents/comfyui-cover-images.md` (not part of production `index.php` runtime).
 
 ## Agent docs (backlog & roadmaps)
 - `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
@@ -20,6 +20,7 @@
 - `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.
 - `translation-batches.md` — **how to run translation in batches:** context-window rationale, whole-series rule, glossary updates, honest human wall-clock vs specialist estimates, merge checklist (read before shipping ES/EN pairs).
 - `multilingual-ui-backlog.md` — **non-post EN gaps** (search, archive, footers, sitemap index): what shipped vs pending for Twig/`content_lang` routes.
+- `comfyui-cover-images.md` — **optional ComfyUI cover pipeline:** validated SDXL `/prompt` flow, template `scripts/comfyui/sdxl_ubersimple.api.json`, integration checklist (Pico wiring still future).
 - `day5-consultant-feedback.md` — Day 5 sequence and status notes (visual + series completed, follow-up UX tweaks).
 
 ## Directory Map

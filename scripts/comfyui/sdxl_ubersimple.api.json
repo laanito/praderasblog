@@ -1,0 +1,59 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "SDXL/sd_xl_base_1.0.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple"
+  },
+  "2": {
+    "inputs": {
+      "width": 1024,
+      "height": 768,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage"
+  },
+  "3": {
+    "inputs": {
+      "text": "REPLACE_WITH_POSITIVE_PROMPT",
+      "clip": ["1", 1]
+    },
+    "class_type": "CLIPTextEncode"
+  },
+  "5": {
+    "inputs": {
+      "samples": ["7", 0],
+      "vae": ["1", 2]
+    },
+    "class_type": "VAEDecode"
+  },
+  "6": {
+    "inputs": {
+      "images": ["5", 0],
+      "filename_prefix": "praderas_cover"
+    },
+    "class_type": "SaveImage"
+  },
+  "7": {
+    "inputs": {
+      "seed": 0,
+      "steps": 30,
+      "cfg": 5,
+      "sampler_name": "euler",
+      "scheduler": "sgm_uniform",
+      "denoise": 1,
+      "model": ["1", 0],
+      "positive": ["3", 0],
+      "negative": ["11", 0],
+      "latent_image": ["2", 0]
+    },
+    "class_type": "KSampler"
+  },
+  "11": {
+    "inputs": {
+      "text": "low-quality, blurry, pixelated, distorted, deformed, extra limbs, missing limbs, unnatural proportions, overexposed, underexposed, grainy, artifacts, jagged edges, low-resolution, oversaturated, undersaturated, chromatic aberration, noise, text, watermark, logo, compression artifacts, inconsistent lighting, unrealistic textures, anatomical errors, rendering glitches",
+      "clip": ["1", 1]
+    },
+    "class_type": "CLIPTextEncode"
+  }
+}
