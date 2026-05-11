@@ -10,7 +10,7 @@ Series_Slug: reviviendo-praderas
 Series_Order: 18
 Lang: en
 Translation_Key: praderas-day-18-cover-image-hero-social-responsive
-Image: /assets/images/day17-comfyui-sdxl-example.png
+Image: /assets/images/day18-comfyui-sdxl-cover-responsive.png
 ---
 
 # Reviving Praderas (Day 18) — serious cover handling on the site
@@ -32,7 +32,19 @@ Measured window: **~3m30s** of calendar time on this session (branch from `main`
 4. **Listings** — `list-card-thumb.twig` included from `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`: thumbnail when the post has `Image:`, otherwise a **neutral gradient** (no third-party image hosts).
 5. **`praderas-theme.css`** — `max-width: 100%`, `object-fit: contain`, `max-height` with `vh` on the hero; rules for `.post-body img` / `figure` so Markdown images do not blow the column on small screens.
 6. **`scripts/frontmatter_audit.py`** — also walks `content/blog/en/*.md` and verifies on-disk paths for non-HTTP `Image:` values.
-7. **Day 17 posts** — the same example PNG is referenced via `Image:` (no duplicate `![](...)` in the body) so the series entry demonstrates the hero.
+7. **Day 18** — a **dedicated** ComfyUI PNG (see below); **Day 17** still uses the smoke-test file `day17-comfyui-sdxl-example.png` as a historical reference in that log pair.
+
+## Cover image for this entry (ComfyUI / SDXL)
+
+This log ships **`Image: /assets/images/day18-comfyui-sdxl-cover-responsive.png`**: hero, social preview, and listing thumbnail all share that path (no duplicate `![](...)` in the body).
+
+- **Graph:** `scripts/comfyui/sdxl_ubersimple.api.json` (same baseline as Day 17).
+- **Reproducible export:** `python3 scripts/comfyui/export_cover.py` with `--output` targeting that path, **`--seed 18052026`**, and a unique SaveImage `--prefix` per run (e.g. `praderas_day18_export`).
+- **Positive CLIP prompt:**
+
+> Wide cinematic editorial illustration for a Spanish tech blog named Praderas, soft green meadow at golden hour, subtle abstract UI wireframes and gentle grid lines suggesting responsive web layout and Open Graph cards, calm modern typography shapes, no readable text, no logos, peaceful professional atmosphere, high detail, tasteful color grading
+
+The in-repo **image migration plan** (naming under `assets/images/`, paired ES/EN sharing one `Image:`, avoid silently reusing another day’s PNG) lives in **`.agents/comfyui-cover-images.md`**.
 
 ## ComfyUI “production ready”
 
@@ -40,5 +52,5 @@ In agent docs: the **instance + SDXL graph** are ready to **produce** images loc
 
 ## Still open (next PR when prioritized)
 
-- Script wiring Markdown ↔ `POST /prompt` and writing PNG + `Image:` automatically.  
+- Finish the checklist gap: automatic front-matter patch (`Image:`) after PNG generation; **`scripts/comfyui/export_cover.py`** currently covers **export only**.  
 - Optional CI and LFS policy if binary weight grows.

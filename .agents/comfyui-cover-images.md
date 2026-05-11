@@ -2,7 +2,7 @@
 
 **Purpose:** Give future sessions a **single starting point** for how we validated ComfyUI from this repo, which graph worked, and what remains to **productize** (automation script, CI). This is **not** required to build or run the blog.
 
-**Status (2026-05-11):** **ComfyUI** stack (SDXL ubersimple, local API) is treated as **production-ready** on the maintainer side for **generating** assets. The **blog** now consumes optional **`Image:`** front matter (hero + `og:image` / Twitter large card) and **no longer uses picsum** on listings/search/tags. Remaining optional work: **automation script** + **CI** + optional **standalone SDXL VAE** experiment.
+**Status (2026-05-11):** **ComfyUI** stack (SDXL ubersimple, local API) is treated as **production-ready** on the maintainer side for **generating** assets. The **blog** now consumes optional **`Image:`** front matter (hero + `og:image` / Twitter large card) and **no longer uses picsum** on listings/search/tags. **`scripts/comfyui/export_cover.py`** downloads the rendered PNG into `assets/images/` for you to **git commit**; optional work remains: **auto `Image:` patch**, **CI**, optional **standalone SDXL VAE** experiment.
 
 ---
 
@@ -76,8 +76,24 @@ Graph summary:
 | 4. **Listing cards** — no picsum; use `Image:` when set else neutral placeholder | **Shipped** (`list-card-thumb.twig`, `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`) |
 | 5. **CSS** — responsive hero + `.post-body img` / `figure` | **Shipped** (`praderas-theme.css`) |
 | 6. **Lint** — `Image:` path exists when set | **Shipped** (`scripts/frontmatter_audit.py` scans `content/blog` + `content/blog/en`) |
-| 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Open** |
+| 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Partial** — `scripts/comfyui/export_cover.py` saves PNG from the in-repo workflow; **auto `Image:` patch** still **Open** |
 | 8. **CI / secrets** — optional | **Open** |
+
+---
+
+## Image migration plan (in-repo PNGs)
+
+When a ship log (or any post) should ship a **real** cover instead of a placeholder:
+
+1. **Naming** — Prefer `assets/images/day{NN}-<role>-<short-slug>.png` aligned with **`Series_Order`** (example: `day18-comfyui-sdxl-cover-responsive.png`). **Spanish and English** paired posts use the **same** `Image:` path.
+2. **Front matter** — Set `Image: /assets/images/...` in **both** `content/blog/...` and `content/blog/en/...` before merge; hero, Open Graph / Twitter, and listing thumbnails all read that single value.
+3. **Generation** — With ComfyUI running locally, run:
+
+   `python3 scripts/comfyui/export_cover.py --output assets/images/<name>.png --positive "<CLIP positive>" --seed <int> --prefix <SaveImage prefix>`
+
+   Commit the PNG with the article. In the series log, note **seed** and a one-line **intent** for the prompt (CLIP is fine in English) so a future run can reproduce or iterate.
+4. **Avoid silent reuse** — Do not point a new day’s `Image:` at an older entry’s PNG unless the article explicitly discusses that reuse (e.g. “same smoke test asset as Day 17”). Otherwise export a **dedicated** file for that day.
+5. **Weight** — Baseline workflow is **1024×768**; keep binaries reasonable; if the tree grows, revisit **Git LFS** (see checklist row 1).
 
 ---
 
@@ -88,12 +104,14 @@ Graph summary:
 
 ---
 
-## Committed example (reference PNG)
+## Committed examples (reference PNGs)
 
-- **`assets/images/day17-comfyui-sdxl-example.png`** — **1024×768** PNG from the validated SDXL ubersimple graph (local smoke test). Day 17 posts use **`Image:`** pointing here so the hero demonstrates the pipeline.
+- **`assets/images/day17-comfyui-sdxl-example.png`** — **1024×768** PNG from the validated SDXL ubersimple graph (local smoke test). Day 17 posts use **`Image:`** here to demonstrate the pipeline on an earlier log entry.
+- **`assets/images/day18-comfyui-sdxl-cover-responsive.png`** — **1024×768** PNG generated for **Day 18** (paired ES/EN ship log): same graph, **seed `18052026`**, positive prompt documented in those posts; exported with `scripts/comfyui/export_cover.py` (or equivalent `POST /prompt` + `/view` flow).
 
 ## Changelog (in-repo)
 
+- **2026-05-11 (follow-up):** Day 18 gains a **dedicated** committed cover PNG + `export_cover.py`; `.agents` image **migration plan**; checklist row 7 marked **Partial**.
 - **2026-05-11:** Day 18 — `Image:` hero + social meta + responsive CSS; picsum removed from listings; `frontmatter_audit` validates `Image:` paths; ComfyUI marked production-ready for **generation**; checklist updated.
 - **2026-05-10:** Initial doc + `scripts/comfyui/sdxl_ubersimple.api.json` + Day 17 meta posts documenting validation and integration checklist.
 - **2026-05-10 (follow-up):** Added committed example PNG `assets/images/day17-comfyui-sdxl-example.png` and embedded it in Day 17 ES/EN posts.

@@ -2,7 +2,7 @@
 
 **Purpose:** Track **non-post** surfaces that still mix languages or lack an EN route, so future agents do not rediscover the same gaps. **Canonical translation ledger** for posts remains `translation-migration-tracker.md`.
 
-**Last reviewed:** 2026-05-11 (Day 18: `Image:` hero, social meta, listing thumbnails / neutral placeholder, responsive image CSS).
+**Last reviewed:** 2026-05-11 (Day 18: `Image:` hero, social meta, listing thumbnails / neutral placeholder, responsive image CSS; Day 18 **dedicated** ComfyUI PNG + `export_cover.py`; `.agents` image migration plan in `comfyui-cover-images.md`).
 
 ---
 

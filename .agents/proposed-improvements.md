@@ -48,7 +48,7 @@
 - **Unify interface language**
   - Translate all UI labels to Spanish (or fully bilingual), avoiding mixed English strings.
 - **Replace random placeholder images**
-  - **Shipped (2026-05-11, Day 18):** optional **`Image:`** hero on posts + **`og:image`** / Twitter large card; listing/search/tag cards use **`Image:`** or a **neutral in-theme placeholder** (picsum removed). In-body Markdown images get responsive rules in `praderas-theme.css`. ComfyUI remains the **optional generator** (see `.agents/comfyui-cover-images.md`); automation script / CI still open.
+  - **Shipped (2026-05-11, Day 18):** optional **`Image:`** hero on posts + **`og:image`** / Twitter large card; listing/search/tag cards use **`Image:`** or a **neutral in-theme placeholder** (picsum removed). In-body Markdown images get responsive rules in `praderas-theme.css`. ComfyUI remains the **optional generator** (see `.agents/comfyui-cover-images.md` for **image migration plan**, **`export_cover.py`**, and Day 18’s dedicated PNG); full automation (auto `Image:` patch) / CI still open.
 - **Improve readability defaults**
   - Increase line-height and content width balance for long-form reading.
   - Add styles for code blocks, tables, and callouts used in technical posts.
