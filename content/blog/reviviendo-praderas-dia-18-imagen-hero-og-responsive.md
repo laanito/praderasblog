@@ -27,7 +27,7 @@ Ventana medida: **~3 min 30 s** de calendario en esta sesión (rama desde `main`
 ## Qué se implementó
 
 1. **`Image:` en front matter** — registrado en `65-Multilingual.php` (`onMetaHeaders`) para que Pico exponga `meta.image` en Twig.
-2. **`post.twig`** — hero opcional con `pradera-hero-figure` / `pradera-hero-img`; sin `Image:` no se inyecta nada (se elimina el placeholder Picsum fijo).
+2. **`post.twig`** — hero con `pradera-hero-figure` / `pradera-hero-img`: **`Image:`** si existe; si no (entradas bajo `blog/…`), **Picsum** 1200×630 con la misma semilla estable que en tarjetas (`praderas-macros.twig`).
 3. **`page-meta.twig`** — URL absoluta para `og:image` y `twitter:image`; `twitter:card` pasa a `summary_large_image` cuando hay imagen.
 4. **Listados** — `list-card-thumb.twig` + includes en `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`: miniatura desde **`Image:`** si el post la define; si no, **Picsum** con URL `https://picsum.photos/seed/…/400/200` y semilla estable (tras el merge se revirtió un intento de solo gradiente neutro, que dejaba las tarjetas sin foto útil).
 5. **`praderas-theme.css`** — `max-width: 100%`, `object-fit: contain`, `max-height` con `vh` en el hero; reglas para `.post-body img` / `figure` para que imágenes Markdown no rompan el cuerpo en móvil.

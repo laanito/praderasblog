@@ -27,7 +27,7 @@ Measured window: **~3m30s** of calendar time on this session (branch from `main`
 ## What shipped
 
 1. **`Image:` front matter** — registered in `65-Multilingual.php` (`onMetaHeaders`) so Pico exposes `meta.image` in Twig.
-2. **`post.twig`** — optional hero (`pradera-hero-figure` / `pradera-hero-img`); without `Image:` nothing is injected (fixed picsum placeholder removed).
+2. **`post.twig`** — optional hero (`pradera-hero-figure` / `pradera-hero-img`): from **`Image:`** when set; otherwise **Picsum** 1200×630 for `blog/…` articles with the same stable seed as cards (`praderas-macros.twig`).
 3. **`page-meta.twig`** — absolute URL for `og:image` and `twitter:image`; `twitter:card` becomes `summary_large_image` when an image exists.
 4. **Listings** — `list-card-thumb.twig` included from `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`: thumbnail from **`Image:`** when set; otherwise **Picsum** at `https://picsum.photos/seed/…/400/200` with a stable seed (after merge, a neutral-only placeholder proved worse for undecorated posts and was reverted).
 5. **`praderas-theme.css`** — `max-width: 100%`, `object-fit: contain`, `max-height` with `vh` on the hero; rules for `.post-body img` / `figure` so Markdown images do not blow the column on small screens.

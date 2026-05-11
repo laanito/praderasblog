@@ -2,7 +2,7 @@
 
 **Purpose:** Track **non-post** surfaces that still mix languages or lack an EN route, so future agents do not rediscover the same gaps. **Canonical translation ledger** for posts remains `translation-migration-tracker.md`.
 
-**Last reviewed:** 2026-05-12 (Picsum **fallback** restored on cards when `Image:` unset; Day 18 `Image:` hero + social + responsive CSS + dedicated PNG + `export_cover.py` unchanged).
+**Last reviewed:** 2026-05-12 (blog **post** hero + **`og:image`** Picsum when no `Image:`; `praderas-macros.twig`; `.agents/image-prompt-guidelines.md`).
 
 ---
 
@@ -39,7 +39,7 @@
 
 ### Day 18 slice
 
-- **Optional `Image:`** on posts (`65-Multilingual.php` meta header): hero in `post.twig`, **`og:image`** + Twitter **`summary_large_image`** in `page-meta.twig` when set.
+- **Optional `Image:`** on posts (`65-Multilingual.php` meta header): hero in `post.twig` (else **Picsum** on `blog/…` articles), **`og:image`** + Twitter **`summary_large_image`** in `page-meta.twig` from resolved cover URL.
 - **Listings / search / tags:** `list-card-thumb.twig` — **`Image:`** when present, else **Picsum** with stable seed (`blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`).
 - **Responsive formatting:** `praderas-theme.css` rules for `.pradera-hero-*` and `.post-body img` / `figure` so layouts do not break on narrow viewports.
 
