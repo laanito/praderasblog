@@ -1,0 +1,7 @@
+{# Shared listing thumbnail: optional meta.image, else neutral placeholder (no picsum). Expects `page` with .meta; wrap with <a href="{{ page.url }}"> in parent. #}
+{% set thumb = page.meta.image|default('')|trim %}
+{% if thumb %}
+<img class="card-img-top pradera-list-card-thumb" src="{{ thumb|e('html_attr') }}" alt="" loading="lazy" decoding="async" />
+{% else %}
+<div class="card-img-top pradera-list-card-thumb pradera-list-card-thumb--placeholder" role="presentation" aria-hidden="true"></div>
+{% endif %}

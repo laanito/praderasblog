@@ -69,7 +69,12 @@
 			</div>
 			{% endif %}
 			</header>
-                        <figure class="mb-4"><img class="img-fluid rounded" src="https://picsum.photos/900/400/?blur" alt="" /></figure>
+			{% set cover = meta.image|default('')|trim %}
+			{% if cover %}
+			<figure class="pradera-hero-figure mb-4">
+				<img class="pradera-hero-img img-fluid rounded shadow-sm" src="{{ cover|e('html_attr') }}" alt="{{ meta.title|e('html_attr') }}" loading="lazy" decoding="async" />
+			</figure>
+			{% endif %}
 			<section class="mb-5 post-body">
                          {{ content }}
 			</section>

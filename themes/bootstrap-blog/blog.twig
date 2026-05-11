@@ -30,7 +30,7 @@
 			{% for page in page_pair %}
 			<div class="col-lg-6">
 			<div class="pradera-post-card card mb-4">
-				<a href="{{ page.url }}"><img class="card-img-top" src="https://picsum.photos/750/300/?blur&random={{ page.date }}" alt="" /></a>
+				<a href="{{ page.url }}">{% include 'list-card-thumb.twig' with { 'page': page } only %}</a>
 				<div class="card-body">
 					<div class="small text-muted">{{ page.date }}</div>
 					<h2 class="card-title h4">{{ page.title }}</h2>

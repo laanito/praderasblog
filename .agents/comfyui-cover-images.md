@@ -1,8 +1,8 @@
 # ComfyUI cover images — agent reference (local / optional automation)
 
-**Purpose:** Give future sessions a **single starting point** for how we validated ComfyUI from this repo, which graph worked, and what remains to **productize** (Pico theme, front matter, git policy). This is **not** required to build or run the blog.
+**Purpose:** Give future sessions a **single starting point** for how we validated ComfyUI from this repo, which graph worked, and what remains to **productize** (automation script, CI). This is **not** required to build or run the blog.
 
-**Status (2026-05-10):** Smoke-tested against `http://127.0.0.1:8188` on the maintainer machine. **SDXL “ubersimple”** graph produced clearly better results than a minimal **SD 1.5 @ 512²** chain. No cover pipeline is wired into Pico yet.
+**Status (2026-05-11):** **ComfyUI** stack (SDXL ubersimple, local API) is treated as **production-ready** on the maintainer side for **generating** assets. The **blog** now consumes optional **`Image:`** front matter (hero + `og:image` / Twitter large card) and **no longer uses picsum** on listings/search/tags. Remaining optional work: **automation script** + **CI** + optional **standalone SDXL VAE** experiment.
 
 ---
 
@@ -14,7 +14,7 @@
 Two complementary tracks (see also `proposed-improvements.md` Priority 2):
 
 1. **Closed vocabulary** — `Cover: productivity` style keys mapped to static assets in-repo (zero GPU).
-2. **ComfyUI** — tailored raster from `Title` / `Description` / house style prompt, then commit **`Image:`** (or theme convention path) pointing at a generated file under `assets/` or the theme.
+2. **ComfyUI** — tailored raster from `Title` / `Description` / house style prompt, then commit **`Image:`** pointing at a file under `assets/` (or CDN URL).
 
 This document focuses on **(2)**.
 
@@ -66,14 +66,18 @@ Graph summary:
 
 ---
 
-## Integration checklist (blog repo — future PRs)
+## Integration checklist (blog repo)
 
-1. **Assets** — Decide tree, e.g. `assets/images/covers/<slug>.webp` or theme-relative paths; avoid huge binaries in PRs without **Git LFS** or a deliberate policy.
-2. **Front matter** — Add optional `Image:` / `Cover:` / `Og_Image:` (pick one convention; document in `post-template.md`).
-3. **Twig** — `post.twig` + `page-meta.twig`: hero `<img>` and `og:image` only when the resolved path exists.
-4. **Script** — Python or Node: read Markdown front matter → build prompt string → load JSON template → substitute node `3` text → POST `/prompt` → poll → write image → optionally patch front matter (or print instructions).
-5. **Secrets & CI** — If generation runs in GitHub Actions, store **API URL + tokens** in secrets; ComfyUI must be reachable from the runner (unusual) **or** generation stays **local-only** with human-uploaded assets.
-6. **Lint** — Extend `scripts/frontmatter_audit.py` (or a sibling script) to assert `Image:` paths exist on disk when set.
+| Step | Status |
+|------|--------|
+| 1. **Assets tree** — e.g. `assets/images/...`; Git LFS policy if binaries grow | **Policy:** small PNGs in git OK for now |
+| 2. **Front matter** — optional **`Image:`** (site-relative `/assets/...` or absolute `https://...`) | **Shipped** (`post-template.md`, `65-Multilingual.php` meta header) |
+| 3. **Twig** — `post.twig` hero; `page-meta.twig` `og:image` + Twitter `summary_large_image` | **Shipped** |
+| 4. **Listing cards** — no picsum; use `Image:` when set else neutral placeholder | **Shipped** (`list-card-thumb.twig`, `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`) |
+| 5. **CSS** — responsive hero + `.post-body img` / `figure` | **Shipped** (`praderas-theme.css`) |
+| 6. **Lint** — `Image:` path exists when set | **Shipped** (`scripts/frontmatter_audit.py` scans `content/blog` + `content/blog/en`) |
+| 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Open** |
+| 8. **CI / secrets** — optional | **Open** |
 
 ---
 
@@ -86,9 +90,10 @@ Graph summary:
 
 ## Committed example (reference PNG)
 
-- **`assets/images/day17-comfyui-sdxl-example.png`** — **1024×768** PNG from the validated SDXL ubersimple graph (local smoke test); embedded in the Day 17 ES/EN meta posts as a **quality bar** example (generic prompt, not final art direction).
+- **`assets/images/day17-comfyui-sdxl-example.png`** — **1024×768** PNG from the validated SDXL ubersimple graph (local smoke test). Day 17 posts use **`Image:`** pointing here so the hero demonstrates the pipeline.
 
 ## Changelog (in-repo)
 
+- **2026-05-11:** Day 18 — `Image:` hero + social meta + responsive CSS; picsum removed from listings; `frontmatter_audit` validates `Image:` paths; ComfyUI marked production-ready for **generation**; checklist updated.
 - **2026-05-10:** Initial doc + `scripts/comfyui/sdxl_ubersimple.api.json` + Day 17 meta posts documenting validation and integration checklist.
 - **2026-05-10 (follow-up):** Added committed example PNG `assets/images/day17-comfyui-sdxl-example.png` and embedded it in Day 17 ES/EN posts.

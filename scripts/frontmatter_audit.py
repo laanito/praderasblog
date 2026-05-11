@@ -18,6 +18,7 @@ CANONICAL_TAGS = {
 }
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}( \d{2}:\d{2}(AM|PM)?)?$")
 
+
 def parse_frontmatter(path: pathlib.Path):
     text = path.read_text(encoding="utf-8")
     if not text.startswith("---"):
@@ -30,9 +31,26 @@ def parse_frontmatter(path: pathlib.Path):
             data[k.strip()] = v.strip()
     return data
 
+
+def check_image_field(repo_root: pathlib.Path, post: pathlib.Path, fm: dict, errors: list) -> None:
+    raw = fm.get("Image", "").strip().strip('"').strip("'")
+    if not raw:
+        return
+    if raw.startswith("http://") or raw.startswith("https://"):
+        return
+    rel = raw.lstrip("/")
+    target = repo_root / rel
+    if not target.is_file():
+        errors.append(f"{post}: Image path not found on disk: {raw} (resolved {target})")
+
+
 def main() -> int:
-    root = pathlib.Path("content/blog")
-    posts = sorted(root.glob("*.md"))
+    repo_root = pathlib.Path(__file__).resolve().parents[1]
+    roots = [repo_root / "content/blog", repo_root / "content/blog/en"]
+    posts = []
+    for root in roots:
+        if root.is_dir():
+            posts.extend(sorted(root.glob("*.md")))
     errors = []
     for post in posts:
         fm = parse_frontmatter(post)
@@ -49,6 +67,7 @@ def main() -> int:
         for tag in tags:
             if tag not in CANONICAL_TAGS:
                 errors.append(f"{post}: unknown tag '{tag}'")
+        check_image_field(repo_root, post, fm, errors)
     if errors:
         print("Frontmatter audit FAILED:")
         for e in errors:
@@ -56,6 +75,7 @@ def main() -> int:
         return 1
     print(f"Frontmatter audit OK. Checked {len(posts)} posts.")
     return 0
+
 
 if __name__ == "__main__":
     sys.exit(main())

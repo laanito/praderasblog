@@ -111,6 +111,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-day-14-batch-6-7-8-translation-finale-log` | `reviviendo-praderas-dia-14-batch-6-7-8-cierre-traducciones-y-reloj.md` | `reviving-praderas-day-14-batches-6-7-8-translation-finale-and-clock.md` | done | Daily log: batches 6–8 closure + ~9.5 min wall vs ~43.5–102.5 h band. |
 | `praderas-day-16-sitemap-robots-lang-log` | `reviviendo-praderas-dia-16-sitemap-robots-por-idioma.md` | `reviving-praderas-day-16-sitemap-and-robots-per-language.md` | done | Day 16 log: sitemap index + `sitemap-es.xml` / `sitemap-en.xml` (`PicoRobots` + theme Twig). |
 | `praderas-day-17-comfyui-cover-images-plan` | `reviviendo-praderas-dia-17-imagenes-portada-comfyui-plan.md` | `reviving-praderas-day-17-cover-images-comfyui-plan.md` | done | Day 17 log: ComfyUI cover pipeline planning + `.agents/comfyui-cover-images.md` + `scripts/comfyui/sdxl_ubersimple.api.json`. |
+| `praderas-day-18-cover-image-hero-social-responsive` | `reviviendo-praderas-dia-18-imagen-hero-og-responsive.md` | `reviving-praderas-day-18-cover-hero-og-responsive.md` | done | Day 18: `Image:` hero + `og:image` + responsive CSS; picsum removed from listings; `frontmatter_audit` EN tree + path check. |
 | `tuqan-phase-0-strategic-foundation` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | done | Tuqan series opener; ES file canonical path `content/blog/` (not `blog/es/`). |
 
 ## Batch migration plan (to avoid context overflow)
@@ -165,7 +166,9 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-11:** Day 18 ES/EN log (`praderas-day-18-cover-image-hero-social-responsive`) — `Image:` + social meta + listing placeholders; ComfyUI generation marked production-ready in `.agents/comfyui-cover-images.md`; Day 17 posts gain `Image:` + copy edits.
 - **2026-05-10:** Day 17 ES/EN log (`praderas-day-17-comfyui-cover-images-plan`) — ComfyUI cover pipeline planning doc (`.agents/comfyui-cover-images.md`), API template `scripts/comfyui/sdxl_ubersimple.api.json`, links from `repo-context.md`, `post-template.md`, `proposed-improvements.md`.
+- **2026-05-10 (follow-up):** Added committed example PNG `assets/images/day17-comfyui-sdxl-example.png` and embedded it in Day 17 ES/EN posts (Markdown figure; superseded for hero by Día 18 `Image:` wiring).
 - **2026-05-10 (follow-up):** Tuqan Phase 0 pair (`tuqan-phase-0-strategic-foundation`) — Spanish source moved from erroneous `content/blog/es/` to canonical `content/blog/`; front matter (Series), body copy, and `.agents` references aligned with repository facts; EN sibling matched.
 - **2026-05-10:** Day 16 ES/EN log (`praderas-day-16-sitemap-robots-lang-log`) — per-language sitemaps: `sitemap.xml` as index, `sitemap-es.xml` / `sitemap-en.xml` filtered via `Multilingual::inferLang`; theme templates `sitemap-index.twig`, `sitemap.twig`; `.agents/multilingual-ui-backlog.md` pending row cleared.
 - **2026-05-06:** UI backlog slice — paired search route (`content/search.md` ↔ `content/en/search.md`, `praderas-nav-search`), bilingual search template/behavior (`search.twig`, `search-behavior.twig`), language-safe result filtering in `PicoSearch`, and EN footer credit branch in `index.twig`.

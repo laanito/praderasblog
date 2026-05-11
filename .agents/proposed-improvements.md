@@ -48,9 +48,7 @@
 - **Unify interface language**
   - Translate all UI labels to Spanish (or fully bilingual), avoiding mixed English strings.
 - **Replace random placeholder images**
-  - Use deterministic cover images per post (front matter field like `Image:`), with fallback.
-  - Prevent visual inconsistency and low credibility from random picsum images.
-  - **Optional automation (2026-05-10):** local **ComfyUI** HTTP API validated with an SDXL reference graph; agent notes + API template in `.agents/comfyui-cover-images.md` and `scripts/comfyui/sdxl_ubersimple.api.json`. Pico theme wiring and committed-asset policy remain **future PRs** (see Day 17 meta posts in `translation-migration-tracker.md`).
+  - **Shipped (2026-05-11, Day 18):** optional **`Image:`** hero on posts + **`og:image`** / Twitter large card; listing/search/tag cards use **`Image:`** or a **neutral in-theme placeholder** (picsum removed). In-body Markdown images get responsive rules in `praderas-theme.css`. ComfyUI remains the **optional generator** (see `.agents/comfyui-cover-images.md`); automation script / CI still open.
 - **Improve readability defaults**
   - Increase line-height and content width balance for long-form reading.
   - Add styles for code blocks, tables, and callouts used in technical posts.

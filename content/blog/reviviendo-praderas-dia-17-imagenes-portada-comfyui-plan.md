@@ -10,6 +10,7 @@ Series_Slug: reviviendo-praderas
 Series_Order: 17
 Lang: es
 Translation_Key: praderas-day-17-comfyui-cover-images-plan
+Image: /assets/images/day17-comfyui-sdxl-example.png
 ---
 
 # Reviviendo Praderas (Día 17) — portadas sin azar (plan + ComfyUI)
@@ -27,25 +28,24 @@ Tras cerrar el ítem SEO de sitemaps por idioma (Día 16), retomamos el hilo de 
 
 ## Ejemplo de salida (misma sesión, prueba local)
 
-Archivo en el repositorio: `assets/images/day17-comfyui-sdxl-example.png` (**1024×768**). Prompt positivo genérico (escritorio / terminal editorial, sin texto legible); solo para **ilustrar calidad** del grafo SDXL descrito arriba, no como portada definitiva de un artículo concreto.
+Archivo en el repositorio: `assets/images/day17-comfyui-sdxl-example.png` (**1024×768**). Prompt positivo genérico (escritorio / terminal editorial, sin texto legible); solo para **ilustrar calidad** del grafo SDXL descrito arriba, no como portada definitiva de un artículo concreto. **Desde el Día 18** la misma ruta se referencia en el front matter como `Image:` y se muestra como **hero** encima del cuerpo (sin duplicar `![](...)` en Markdown).
 
-![Salida de ejemplo: ComfyUI SDXL ubersimple, prueba local 1024×768](/assets/images/day17-comfyui-sdxl-example.png)
+### Qué quedó fuera en el Día 17 (y llegó después)
 
-### Qué no hicimos aún  
-   No hay plugin Pico ni cambio en `post.twig`/`page-meta.twig` en esta rama: el objetivo fue **documentar el punto de partida** para sesiones futuras, no acoplar el blog a un servicio GPU.
+En la publicación original de esta nota aún no había integración Pico para hero ni metadatos sociales; **Día 18** añade `Image:`, `og:image`, tarjeta Twitter grande y estilos responsive — ver la siguiente entrada de la serie (`Translation_Key` contiguo en el tracker).
 
 ## Dónde queda documentado para agentes
 
 - **`.agents/comfyui-cover-images.md`** — precondiciones, flujo API, tabla del grafo, seguridad (localhost vs túnel), checklist de integración (assets, front matter, Twig, script, CI, lint).
 - **`scripts/comfyui/sdxl_ubersimple.api.json`** — plantilla lista para sustituir el texto del nodo positivo (`3`) y ajustar `seed` / prefijo de `SaveImage`.
 
-También enlazamos desde **`repo-context.md`**, **`post-template.md`** (campo `Image:` futuro) y **`proposed-improvements.md`** para que el descubrimiento no dependa del chat.
+También enlazamos desde **`repo-context.md`**, **`post-template.md`** (campo `Image:`) y **`proposed-improvements.md`** para que el descubrimiento no dependa del chat.
 
-## Próximos pasos (cuando se priorice)
+## Próximos pasos (tras el Día 18)
 
-1. Elegir convención única (`Image:` u otra) y extender `frontmatter_audit.py` si hace falta.  
-2. Añadir hero + `og:image` en Twig con rutas resueltas y fallback limpio.  
-3. Script pequeño (Python) que lea un `.md`, rellene el JSON y guarde PNG bajo `assets/` (o política con Git LFS).  
+1. ~~Elegir convención `Image:` y lint de ruta~~ — hecho en Día 18.  
+2. ~~Hero + `og:image` + CSS responsive~~ — hecho en Día 18.  
+3. Script pequeño (Python) que lea un `.md`, rellene el JSON ComfyUI y guarde PNG bajo `assets/` (o Git LFS).  
 4. Decidir si la generación vive **solo en local** o en CI con instancia alcanzable y secretos.
 
 ## Reloj de pared (orientativo)

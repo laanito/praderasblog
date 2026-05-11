@@ -2,7 +2,7 @@
 
 **Purpose:** Track **non-post** surfaces that still mix languages or lack an EN route, so future agents do not rediscover the same gaps. **Canonical translation ledger** for posts remains `translation-migration-tracker.md`.
 
-**Last reviewed:** 2026-05-10 (Day 16: sitemap index + per-language child sitemaps).
+**Last reviewed:** 2026-05-11 (Day 18: `Image:` hero, social meta, listing thumbnails / neutral placeholder, responsive image CSS).
 
 ---
 
@@ -36,6 +36,12 @@
 - **`/sitemap.xml` as sitemap index:** points to `/sitemap-es.xml` and `/sitemap-en.xml` (standard `<sitemapindex>`).
 - **Language-filtered URL sets:** `PicoRobots` builds each child sitemap using `Multilingual::inferLang` so URLs align with ES vs EN trees (`blog/en/`, `content/en/`, `Lang`).
 - **Theme templates:** `themes/bootstrap-blog/sitemap-index.twig` + `sitemap.twig`; `robots.txt` unchanged pattern (`Sitemap:` → index).
+
+### Day 18 slice
+
+- **Optional `Image:`** on posts (`65-Multilingual.php` meta header): hero in `post.twig`, **`og:image`** + Twitter **`summary_large_image`** in `page-meta.twig` when set.
+- **Listings / search / tags:** `list-card-thumb.twig` — show `Image:` when present, else **neutral gradient** (picsum removed from `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`).
+- **Responsive formatting:** `praderas-theme.css` rules for `.pradera-hero-*` and `.post-body img` / `figure` so layouts do not break on narrow viewports.
 
 ---
 

@@ -10,6 +10,7 @@ Series_Slug: reviviendo-praderas
 Series_Order: 17
 Lang: en
 Translation_Key: praderas-day-17-comfyui-cover-images-plan
+Image: /assets/images/day17-comfyui-sdxl-example.png
 ---
 
 # Reviving Praderas (Day 17) — cover images without roulette (plan + ComfyUI)
@@ -27,25 +28,24 @@ After the per-language sitemap work (Day 16), we picked up **Priority 2** in `pr
 
 ## Example output (same session, local smoke test)
 
-Committed file: `assets/images/day17-comfyui-sdxl-example.png` (**1024×768**). Generic positive prompt (editorial desk / terminal mood, no readable text); meant only to **show the quality bar** of the SDXL graph above, not as the final cover for a specific post.
+Committed file: `assets/images/day17-comfyui-sdxl-example.png` (**1024×768**). Generic positive prompt (editorial desk / terminal mood, no readable text); meant only to **show the quality bar** of the SDXL graph above, not as the final cover for a specific post. **From Day 18 onward** the same path is referenced in front matter as `Image:` and rendered as the **hero** above the body (no duplicate `![](...)` in Markdown).
 
-![Example output: ComfyUI SDXL ubersimple, local 1024×768 smoke test](/assets/images/day17-comfyui-sdxl-example.png)
+### What stayed out on Day 17 (and shipped next)
 
-### What we did not ship yet  
-   No Pico plugin and no `post.twig` / `page-meta.twig` wiring in this branch: the goal was to **freeze a starting point** for future sessions, not couple the static site to a GPU service.
+The original publication of this note had no Pico wiring for hero or social metadata; **Day 18** adds `Image:`, `og:image`, large Twitter card, and responsive layout — see the next series entry (adjacent `Translation_Key` in the tracker).
 
 ## Where agents should look
 
 - **`.agents/comfyui-cover-images.md`** — prerequisites, API flow, node table, security notes (localhost vs tunnel), integration checklist (assets, front matter, Twig, script, CI, lint).
 - **`scripts/comfyui/sdxl_ubersimple.api.json`** — template JSON: replace node **3** `inputs.text`, tune **seed** / `SaveImage` prefix.
 
-We also linked from **`repo-context.md`**, **`post-template.md`** (future `Image:` field), and **`proposed-improvements.md`** so discovery does not depend on chat history.
+We also linked from **`repo-context.md`**, **`post-template.md`** (`Image:` field), and **`proposed-improvements.md`** so discovery does not depend on chat history.
 
-## Next steps (when prioritized)
+## Next steps (after Day 18)
 
-1. Pick a single convention (`Image:` or another) and extend `frontmatter_audit.py` if needed.  
-2. Add hero + `og:image` in Twig with resolved paths and a clean fallback.  
-3. Small script (Python) that reads a `.md`, fills the JSON, saves PNG under `assets/` (or a Git LFS policy).  
+1. ~~Pick `Image:` + path lint~~ — done on Day 18.  
+2. ~~Hero + `og:image` + responsive CSS~~ — done on Day 18.  
+3. Small script (Python) that reads a `.md`, fills the ComfyUI JSON, saves PNG under `assets/` (or Git LFS).  
 4. Decide whether generation stays **local-only** or runs in CI against a reachable instance with secrets.
 
 ## Wall clock (order of magnitude)

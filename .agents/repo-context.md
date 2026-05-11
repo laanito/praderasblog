@@ -35,17 +35,19 @@
   - `categorias.md` category index (`Template: categories`) — URL typically `/categorias`
   - `blog/*.md` post content (Spanish URLs, `/blog/...`)
   - `blog/en/*.md` English posts (`/blog/en/...`)
+- `assets/` — static files served from site root (e.g. **`assets/images/**`** for optional post **`Image:`** heroes and social previews)
 - `themes/bootstrap-blog/`
   - `index.twig` base layout + sidebar + navbar
   - `blog.twig` listing cards (Spanish paginated `/blog`)
   - `blog-en.twig` English-only listing (`/en/blog`)
   - `lang-switcher.twig` header language link when `Translation_Key` has a pair
-  - `post.twig` article page
+  - `list-card-thumb.twig` optional `Image:` thumbnail or neutral placeholder for blog / EN blog / tags / search cards
+  - `post.twig` article page; optional **`Image:`** hero (`meta.image`) above `.post-body`; related posts + prev/next when wired by `50-BlogNeighbors.php`
   - `search.twig` and `tags.twig`
   - `categories.twig` category index (cards + tag counts from plugin)
   - `series.twig` series index/detail template
   - `archive.twig` archive by year/month (`/archivo`)
-  - `page-meta.twig` shared `<title>`, meta description/robots, canonical + Open Graph + Twitter Card tags
+  - `page-meta.twig` shared `<title>`, meta description/robots, canonical + Open Graph + Twitter Card tags (**`og:image`** / large Twitter card when `Image:` is set)
   - `nav.twig` primary navigation (ES: **Inicio, Blog, Series, Categorías, Acerca**; EN: **Home, Blog, Series, Categories, About** → `en/about-picocms`; **Categorías** / **Categories** highlight when on `tags` / `en/tags`) + language switcher include
   - `breadcrumbs.twig` shared “migaja de pan”
   - `sidebar.twig` shared sidebar (Búsqueda, Serie on post pages, Categorías, Artículos recientes)
@@ -133,7 +135,7 @@
 ## Live Site Findings (Current State)
 - Main nav (ES): **Inicio** (Bienvenidos), **Blog**, **Series**, **Categorías** (highlight also on `/tags`), **Acerca** → `acerca-de-picocms`. On EN pages: **Home**, **Blog** → `/en/blog`, **Series** → `/en/series`, **Categories** → `/en/categorias` (highlight also on `/en/tags`), **About** → `/en/about-picocms` (`nav.twig`).
 - Sidebar on most pages includes: search, **Archivo** link card, category tags, and **Artículos recientes** (list-group + `sidebar-recent` styles; **Praderas** theme layer styles tags as pills with hover). On post pages that belong to a series, a **Serie** widget (prev/next/index) appears above categories.
-- Blog cards and tag results currently use random images from `picsum.photos`.
+- Blog listing, tag, and search cards use **`Image:`** when present, otherwise a **neutral gradient placeholder** (picsum removed; Day 18).
 - URL routing is canonical on subdomain (`blog.praderas.org`); treat `base_url` as the canonical origin for links and social meta. Root domain behaviour without redirects is a deployment/DNS concern outside this repo.
 
 ## Confirmed Technical/UX Issues
