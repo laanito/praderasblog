@@ -1,3 +1,4 @@
+{% import 'praderas-macros.twig' as pradera %}
 
 {% set tag_styles = { 'Aplicaciones Moviles' : 'bg-warning', 
 			'Ciberseguridad' : 'bg-success',
@@ -69,10 +70,12 @@
 			</div>
 			{% endif %}
 			</header>
-			{% set cover = meta.image|default('')|trim %}
-			{% if cover %}
+			{% set _blog_article = current_page.id is defined and current_page.id starts with 'blog/' %}
+			{% set _picsum_seed = (current_page.id|default(current_page.url|default('post')))|replace({'/':'-'}) %}
+			{% set _hero_src = _blog_article ? pradera.resolve_visual_cover_url(meta.image|default(''), _picsum_seed, 1200, 630) : (meta.image|default('')|trim) %}
+			{% if _hero_src != '' %}
 			<figure class="pradera-hero-figure mb-4">
-				<img class="pradera-hero-img img-fluid rounded shadow-sm" src="{{ cover|e('html_attr') }}" alt="{{ meta.title|e('html_attr') }}" loading="lazy" decoding="async" />
+				<img class="pradera-hero-img img-fluid rounded shadow-sm" src="{{ _hero_src|e('html_attr') }}" alt="{{ meta.title|e('html_attr') }}" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade" />
 			</figure>
 			{% endif %}
 			<section class="mb-5 post-body">

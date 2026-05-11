@@ -1,0 +1,9 @@
+{# Shared helpers: committed/absolute cover URL, or Lorem Picsum from a stable seed (same seed + size → stable raster). #}
+{% macro resolve_visual_cover_url(meta_image, picsum_seed, width, height) %}
+{% set cover = meta_image|default('')|trim %}
+{% if cover != '' %}
+{{- cover -}}
+{% else %}
+https://picsum.photos/seed/{{ picsum_seed|e('url') }}/{{ width }}/{{ height }}
+{% endif %}
+{% endmacro %}

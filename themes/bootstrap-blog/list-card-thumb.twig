@@ -1,8 +1,5 @@
-{# Shared listing thumbnail: meta.image when set, else Lorem Picsum with stable seed from page.id (fallback page.url). Expects `page` with .meta; wrap with <a href="{{ page.url }}"> in parent. #}
-{% set thumb = page.meta.image|default('')|trim %}
-{% if thumb %}
-<img class="card-img-top pradera-list-card-thumb" src="{{ thumb|e('html_attr') }}" alt="" loading="lazy" decoding="async" />
-{% else %}
+{% import 'praderas-macros.twig' as pradera %}
+{# Shared listing thumbnail: meta.image when set, else Lorem Picsum (stable seed from page.id / url). Expects `page` with .meta; wrap with <a href="{{ page.url }}"> in parent. #}
 {% set picsum_seed = (page.id|default(page.url|default('post')))|replace({'/':'-'}) %}
-<img class="card-img-top pradera-list-card-thumb" src="https://picsum.photos/seed/{{ picsum_seed|e('url') }}/400/200" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade" />
-{% endif %}
+{% set thumb_src = pradera.resolve_visual_cover_url(page.meta.image|default(''), picsum_seed, 400, 200) %}
+<img class="card-img-top pradera-list-card-thumb" src="{{ thumb_src|e('html_attr') }}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade" />

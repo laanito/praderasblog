@@ -21,6 +21,7 @@
 - `translation-batches.md` — **how to run translation in batches:** context-window rationale, whole-series rule, glossary updates, honest human wall-clock vs specialist estimates, merge checklist (read before shipping ES/EN pairs).
 - `multilingual-ui-backlog.md` — **non-post EN gaps** (search, archive, footers, sitemap index): what shipped vs pending for Twig/`content_lang` routes.
 - `comfyui-cover-images.md` — **optional ComfyUI cover pipeline:** validated SDXL `/prompt` flow, template `scripts/comfyui/sdxl_ubersimple.api.json`, **`scripts/comfyui/export_cover.py`** (save PNG to `assets/images/`), in-repo **image migration plan**, integration checklist (auto front-matter patch still optional).
+- `image-prompt-guidelines.md` — **cover prompt coherence:** house tone + anchoring ComfyUI positives to article metadata (`Title`, `Description`, tags); use with `export_cover.py`.
 - `day5-consultant-feedback.md` — Day 5 sequence and status notes (visual + series completed, follow-up UX tweaks).
 
 ## Directory Map
@@ -42,12 +43,13 @@
   - `blog-en.twig` English-only listing (`/en/blog`)
   - `lang-switcher.twig` header language link when `Translation_Key` has a pair
   - `list-card-thumb.twig` optional `Image:` thumbnail or **Picsum** fallback (stable seed) for blog / EN blog / tags / search cards
-  - `post.twig` article page; optional **`Image:`** hero (`meta.image`) above `.post-body`; related posts + prev/next when wired by `50-BlogNeighbors.php`
+  - `praderas-macros.twig` shared **`resolve_visual_cover_url`** macro: committed/absolute `Image:` or Lorem Picsum (stable seed) for matching surfaces
+  - `post.twig` article page; **`Image:`** hero when set, else **Picsum** hero for `blog/` articles; related posts + prev/next when wired by `50-BlogNeighbors.php`
   - `search.twig` and `tags.twig`
   - `categories.twig` category index (cards + tag counts from plugin)
   - `series.twig` series index/detail template
   - `archive.twig` archive by year/month (`/archivo`)
-  - `page-meta.twig` shared `<title>`, meta description/robots, canonical + Open Graph + Twitter Card tags (**`og:image`** / large Twitter card when `Image:` is set)
+  - `page-meta.twig` shared `<title>`, meta description/robots, canonical + Open Graph + Twitter Card tags (**`og:image`** / large Twitter card when a cover URL exists — committed **`Image:`** or **Picsum** fallback on `blog/…` posts)
   - `nav.twig` primary navigation (ES: **Inicio, Blog, Series, Categorías, Acerca**; EN: **Home, Blog, Series, Categories, About** → `en/about-picocms`; **Categorías** / **Categories** highlight when on `tags` / `en/tags`) + language switcher include
   - `breadcrumbs.twig` shared “migaja de pan”
   - `sidebar.twig` shared sidebar (Búsqueda, Serie on post pages, Categorías, Artículos recientes)
@@ -135,7 +137,7 @@
 ## Live Site Findings (Current State)
 - Main nav (ES): **Inicio** (Bienvenidos), **Blog**, **Series**, **Categorías** (highlight also on `/tags`), **Acerca** → `acerca-de-picocms`. On EN pages: **Home**, **Blog** → `/en/blog`, **Series** → `/en/series`, **Categories** → `/en/categorias` (highlight also on `/en/tags`), **About** → `/en/about-picocms` (`nav.twig`).
 - Sidebar on most pages includes: search, **Archivo** link card, category tags, and **Artículos recientes** (list-group + `sidebar-recent` styles; **Praderas** theme layer styles tags as pills with hover). On post pages that belong to a series, a **Serie** widget (prev/next/index) appears above categories.
-- Blog listing, tag, and search cards use **`Image:`** when present, otherwise **Lorem Picsum** (`/seed/…/400/200`, stable seed from `page.id` / URL; Day 18 + 2026-05-12 follow-up).
+- Blog listing, tag, and search cards use **`Image:`** when present, otherwise **Lorem Picsum** (`list-card-thumb.twig`). **Blog article** pages (`post.twig`, `id` under `blog/…`) use the **same seed** for listing thumb, **hero** (1200×630), and **`og:image` / Twitter** when `Image:` is unset (`page-meta.twig` + `praderas-macros.twig`).
 - URL routing is canonical on subdomain (`blog.praderas.org`); treat `base_url` as the canonical origin for links and social meta. Root domain behaviour without redirects is a deployment/DNS concern outside this repo.
 
 ## Confirmed Technical/UX Issues
