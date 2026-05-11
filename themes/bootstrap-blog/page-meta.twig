@@ -36,16 +36,31 @@
 <meta property="og:description" content="{{ meta.description|striptags }}" />
 {% endif %}
 <meta property="og:url" content="{{ canonical_url }}" />
+{% set _ogimg = meta.image|default('')|trim %}
+{% if _ogimg != '' %}
+	{% if _ogimg|slice(0, 8) == 'https://' or _ogimg|slice(0, 7) == 'http://' %}
+		{% set pradera_social_image_url = _ogimg %}
+	{% else %}
+		{% set _base = base_url|default('')|trim('/') %}
+		{% set _path = (_ogimg|slice(0, 1) == '/') ? _ogimg : '/' ~ _ogimg %}
+		{% set pradera_social_image_url = _base ~ _path %}
+	{% endif %}
+<meta property="og:image" content="{{ pradera_social_image_url }}" />
+<meta property="og:image:alt" content="{{ page_title_string|e('html_attr') }}" />
+{% endif %}
 {% if current_page.id is defined and current_page.id starts with 'blog/' %}
 <meta property="og:type" content="article" />
 {% else %}
 <meta property="og:type" content="website" />
 {% endif %}
 
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="{{ (_ogimg|default('')|trim != '') ? 'summary_large_image' : 'summary' }}" />
 <meta name="twitter:title" content="{{ page_title_string }}" />
 {% if meta.description %}
 <meta name="twitter:description" content="{{ meta.description|striptags }}" />
+{% endif %}
+{% if _ogimg|default('')|trim != '' %}
+<meta name="twitter:image" content="{{ pradera_social_image_url }}" />
 {% endif %}
 
 <link rel="icon" type="image/x-icon" href="{{ theme_url }}/assets/favicon.ico" />

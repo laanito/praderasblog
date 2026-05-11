@@ -45,8 +45,8 @@ Run `python3 scripts/frontmatter_audit.py` before PR to catch missing fields, da
 - **`Lang`:** `es` or `en` (can be omitted when language is implied by path, e.g. `blog/en/...`).
 - **`Translation_Key`:** shared identifier between the Spanish markdown file and its English twin so the theme can render the language switcher and `hreflang` alternates.
 
-## Optional — hero / social image (future)
+## Optional — hero / social image (`Image:`)
 
-- **`Image:`** (or one agreed field name) — site-relative path or URL to a **committed** cover once it exists. Prefer deterministic assets or images from a **local** generator; see `.agents/comfyui-cover-images.md` and `scripts/comfyui/sdxl_ubersimple.api.json`.
+- **`Image:`** — optional site-relative path (e.g. `/assets/images/mi-portada.png`) or absolute `https://...`. When set on a **post** (`Template: post`), `post.twig` renders a **responsive hero** above the body; `page-meta.twig` adds **`og:image`** and switches Twitter card to **`summary_large_image`**. Paths under the site root are checked by `scripts/frontmatter_audit.py` when not HTTP(S). See `.agents/comfyui-cover-images.md` for the **image migration plan**, `scripts/comfyui/sdxl_ubersimple.api.json`, and **`scripts/comfyui/export_cover.py`** (local ComfyUI → committed PNG).
 
 For **migration work** (many posts, series, PR sizing), read `.agents/translation-batches.md` first: batches, glossary, and plain-language “context” rules for agents and for meta posts.

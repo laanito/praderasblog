@@ -6,6 +6,7 @@
  * Front matter (optional):
  * - Lang: es | en
  * - Translation_Key: shared string pairing translations (same key on ES and EN files)
+ * - Image: optional site-relative or absolute URL for hero + social preview (see `.agents/comfyui-cover-images.md`)
  *
  * URL layout (Option A subset):
  * - Spanish posts: content/blog/*.md → /blog/slug (default)
@@ -20,6 +21,7 @@ class Multilingual extends AbstractPicoPlugin
     {
         $headers['lang'] = 'Lang';
         $headers['translation_key'] = 'Translation_Key';
+        $headers['image'] = 'Image';
     }
 
     public function onPagesLoaded(array &$pages, &$currentPage, &$previousPage, &$nextPage)
