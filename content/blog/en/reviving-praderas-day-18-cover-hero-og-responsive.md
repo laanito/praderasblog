@@ -1,6 +1,6 @@
 ---
-Title: Reviving Praderas (Day 18) — `Image:` hero, Open Graph, and responsive layout (no picsum)
-Description: Optional cover from front matter, social meta, listing cards with thumbnail or neutral slab, CSS for in-body images and hero; ComfyUI production-ready for generation; wall-clock log.
+Title: Reviving Praderas (Day 18) — `Image:` hero, Open Graph, responsive layout (Picsum fallback)
+Description: Optional cover from front matter, social meta, listing cards with `Image:` thumbnail or stable Picsum, CSS for in-body images and hero; ComfyUI production-ready for generation; wall-clock log.
 Date: 2026-05-11 10:05AM
 Template: post
 Author: Luis Amigo
@@ -15,7 +15,7 @@ Image: /assets/images/day18-comfyui-sdxl-cover-responsive.png
 
 # Reviving Praderas (Day 18) — serious cover handling on the site
 
-This closes the next slice from **Day 17 / `.agents/comfyui-cover-images.md`**: the site now **understands `Image:`**, renders a **stable hero** at narrow widths, emits **`og:image`** (and Twitter **`summary_large_image`** when applicable), and removes **picsum** from listings, tags, and search. **ComfyUI** is documented as **production-ready** for **asset generation**; only automation script / CI remain open.
+This closes the next slice from **Day 17 / `.agents/comfyui-cover-images.md`**: the site now **understands `Image:`**, renders a **stable hero** at narrow widths, emits **`og:image`** (and Twitter **`summary_large_image`** when applicable), and on **listings, tags, and search** uses the **`Image:`** thumbnail when set; otherwise **Lorem Picsum** with a **stable seed** (from `page.id` / URL) so cards are not visually “broken”. **ComfyUI** is documented as **production-ready** for **asset generation**; only automation script / CI remain open.
 
 ## Wall clock (implementation + article + docs)
 
@@ -29,7 +29,7 @@ Measured window: **~3m30s** of calendar time on this session (branch from `main`
 1. **`Image:` front matter** — registered in `65-Multilingual.php` (`onMetaHeaders`) so Pico exposes `meta.image` in Twig.
 2. **`post.twig`** — optional hero (`pradera-hero-figure` / `pradera-hero-img`); without `Image:` nothing is injected (fixed picsum placeholder removed).
 3. **`page-meta.twig`** — absolute URL for `og:image` and `twitter:image`; `twitter:card` becomes `summary_large_image` when an image exists.
-4. **Listings** — `list-card-thumb.twig` included from `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`: thumbnail when the post has `Image:`, otherwise a **neutral gradient** (no third-party image hosts).
+4. **Listings** — `list-card-thumb.twig` included from `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`: thumbnail from **`Image:`** when set; otherwise **Picsum** at `https://picsum.photos/seed/…/400/200` with a stable seed (after merge, a neutral-only placeholder proved worse for undecorated posts and was reverted).
 5. **`praderas-theme.css`** — `max-width: 100%`, `object-fit: contain`, `max-height` with `vh` on the hero; rules for `.post-body img` / `figure` so Markdown images do not blow the column on small screens.
 6. **`scripts/frontmatter_audit.py`** — also walks `content/blog/en/*.md` and verifies on-disk paths for non-HTTP `Image:` values.
 7. **Day 18** — a **dedicated** ComfyUI PNG (see below); **Day 17** still uses the smoke-test file `day17-comfyui-sdxl-example.png` as a historical reference in that log pair.
