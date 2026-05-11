@@ -2,7 +2,7 @@
 
 **Purpose:** Give future sessions a **single starting point** for how we validated ComfyUI from this repo, which graph worked, and what remains to **productize** (automation script, CI). This is **not** required to build or run the blog.
 
-**Status (2026-05-11):** **ComfyUI** stack (SDXL ubersimple, local API) is treated as **production-ready** on the maintainer side for **generating** assets. The **blog** now consumes optional **`Image:`** front matter (hero + `og:image` / Twitter large card) and **no longer uses picsum** on listings/search/tags. **`scripts/comfyui/export_cover.py`** downloads the rendered PNG into `assets/images/` for you to **git commit**; optional work remains: **auto `Image:` patch**, **CI**, optional **standalone SDXL VAE** experiment.
+**Status (2026-05-12):** **ComfyUI** stack (SDXL ubersimple, local API) is treated as **production-ready** on the maintainer side for **generating** assets. The **blog** consumes optional **`Image:`** front matter (hero + `og:image` / Twitter large card). **Listings / tags / search** use **`Image:`** when set, otherwise **Lorem Picsum** with a **stable seed** derived from `page.id` (fallback `page.url`) (`list-card-thumb.twig`). **`scripts/comfyui/export_cover.py`** downloads the rendered PNG into `assets/images/` for you to **git commit**; optional work remains: **auto `Image:` patch**, **CI**, optional **standalone SDXL VAE** experiment.
 
 ---
 
@@ -73,7 +73,7 @@ Graph summary:
 | 1. **Assets tree** — e.g. `assets/images/...`; Git LFS policy if binaries grow | **Policy:** small PNGs in git OK for now |
 | 2. **Front matter** — optional **`Image:`** (site-relative `/assets/...` or absolute `https://...`) | **Shipped** (`post-template.md`, `65-Multilingual.php` meta header) |
 | 3. **Twig** — `post.twig` hero; `page-meta.twig` `og:image` + Twitter `summary_large_image` | **Shipped** |
-| 4. **Listing cards** — no picsum; use `Image:` when set else neutral placeholder | **Shipped** (`list-card-thumb.twig`, `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`) |
+| 4. **Listing cards** — `Image:` when set; else **Picsum** (`/seed/{page.id or url}/400/200`) | **Shipped** (`list-card-thumb.twig`, `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`) |
 | 5. **CSS** — responsive hero + `.post-body img` / `figure` | **Shipped** (`praderas-theme.css`) |
 | 6. **Lint** — `Image:` path exists when set | **Shipped** (`scripts/frontmatter_audit.py` scans `content/blog` + `content/blog/en`) |
 | 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Partial** — `scripts/comfyui/export_cover.py` saves PNG from the in-repo workflow; **auto `Image:` patch** still **Open** |
@@ -84,6 +84,8 @@ Graph summary:
 ## Image migration plan (in-repo PNGs)
 
 When a ship log (or any post) should ship a **real** cover instead of a placeholder:
+
+> **Note:** If **`Image:`** is omitted, cards still use **Lorem Picsum** with a stable seed (`list-card-thumb.twig`); the steps below are for **opting in** to a committed or absolute hero/thumbnail.
 
 1. **Naming** — Prefer `assets/images/day{NN}-<role>-<short-slug>.png` aligned with **`Series_Order`** (example: `day18-comfyui-sdxl-cover-responsive.png`). **Spanish and English** paired posts use the **same** `Image:` path.
 2. **Front matter** — Set `Image: /assets/images/...` in **both** `content/blog/...` and `content/blog/en/...` before merge; hero, Open Graph / Twitter, and listing thumbnails all read that single value.
@@ -112,6 +114,7 @@ When a ship log (or any post) should ship a **real** cover instead of a placehol
 ## Changelog (in-repo)
 
 - **2026-05-11 (follow-up):** Day 18 gains a **dedicated** committed cover PNG + `export_cover.py`; `.agents` image **migration plan**; checklist row 7 marked **Partial**.
-- **2026-05-11:** Day 18 — `Image:` hero + social meta + responsive CSS; picsum removed from listings; `frontmatter_audit` validates `Image:` paths; ComfyUI marked production-ready for **generation**; checklist updated.
+- **2026-05-12:** Listings/tags/search — **Picsum fallback** restored when `Image:` is unset (stable seed from `page.id`); neutral placeholder removed from default path.
+- **2026-05-11:** Day 18 — `Image:` hero + social meta + responsive CSS; `frontmatter_audit` validates `Image:` paths; ComfyUI marked production-ready for **generation**; checklist updated.
 - **2026-05-10:** Initial doc + `scripts/comfyui/sdxl_ubersimple.api.json` + Day 17 meta posts documenting validation and integration checklist.
 - **2026-05-10 (follow-up):** Added committed example PNG `assets/images/day17-comfyui-sdxl-example.png` and embedded it in Day 17 ES/EN posts.

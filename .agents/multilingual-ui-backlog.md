@@ -2,7 +2,7 @@
 
 **Purpose:** Track **non-post** surfaces that still mix languages or lack an EN route, so future agents do not rediscover the same gaps. **Canonical translation ledger** for posts remains `translation-migration-tracker.md`.
 
-**Last reviewed:** 2026-05-11 (Day 18: `Image:` hero, social meta, listing thumbnails / neutral placeholder, responsive image CSS; Day 18 **dedicated** ComfyUI PNG + `export_cover.py`; `.agents` image migration plan in `comfyui-cover-images.md`).
+**Last reviewed:** 2026-05-12 (Picsum **fallback** restored on cards when `Image:` unset; Day 18 `Image:` hero + social + responsive CSS + dedicated PNG + `export_cover.py` unchanged).
 
 ---
 
@@ -40,7 +40,7 @@
 ### Day 18 slice
 
 - **Optional `Image:`** on posts (`65-Multilingual.php` meta header): hero in `post.twig`, **`og:image`** + Twitter **`summary_large_image`** in `page-meta.twig` when set.
-- **Listings / search / tags:** `list-card-thumb.twig` — show `Image:` when present, else **neutral gradient** (picsum removed from `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`).
+- **Listings / search / tags:** `list-card-thumb.twig` — **`Image:`** when present, else **Picsum** with stable seed (`blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`).
 - **Responsive formatting:** `praderas-theme.css` rules for `.pradera-hero-*` and `.post-body img` / `figure` so layouts do not break on narrow viewports.
 
 ---
