@@ -20,7 +20,7 @@
 - `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.
 - `translation-batches.md` — **how to run translation in batches:** context-window rationale, whole-series rule, glossary updates, honest human wall-clock vs specialist estimates, merge checklist (read before shipping ES/EN pairs).
 - `multilingual-ui-backlog.md` — **non-post EN gaps** (search, archive, footers, sitemap index): what shipped vs pending for Twig/`content_lang` routes.
-- `comfyui-cover-images.md` — **optional ComfyUI cover pipeline:** validated SDXL `/prompt` flow, template `scripts/comfyui/sdxl_ubersimple.api.json`, **`scripts/comfyui/export_cover.py`** (save PNG to `assets/images/`), in-repo **image migration plan**, integration checklist (auto front-matter patch still optional).
+- `comfyui-cover-images.md` — **optional ComfyUI cover pipeline:** validated SDXL `/prompt` flow, template `scripts/comfyui/sdxl_ubersimple.api.json`, **`scripts/comfyui/export_cover.py`** (save PNG to `assets/images/`), in-repo **image migration plan**, integration checklist (**next:** auto `Image:` patch, **`ffmpeg`/weight** row 9, CI).
 - `image-prompt-guidelines.md` — **cover prompt coherence:** house tone + anchoring ComfyUI positives to article metadata (`Title`, `Description`, tags); use with `export_cover.py`.
 - `day5-consultant-feedback.md` — Day 5 sequence and status notes (visual + series completed, follow-up UX tweaks).
 
