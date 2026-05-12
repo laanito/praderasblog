@@ -2,11 +2,11 @@
 
 **Purpose:** Give future sessions a **single starting point** for how we validated ComfyUI from this repo, which graph worked, and what remains to **productize** (automation script, CI). This is **not** required to build or run the blog.
 
-**Status (2026-05-12):** **ComfyUI** stack (SDXL ubersimple, local API) is treated as **production-ready** on the maintainer side for **generating** assets. The **blog** consumes optional **`Image:`** front matter (hero + `og:image` / Twitter large card). **Blog articles** (`blog/…` ids) without **`Image:`** still get a **Picsum** hero and matching **social preview URL** (1200×630, stable seed; `post.twig`, `page-meta.twig`, `praderas-macros.twig`). **Listings / tags / search** use **`Image:`** or **Picsum** (400×200, same seed). **`scripts/comfyui/export_cover.py`** downloads the rendered PNG into `assets/images/` for you to **git commit**; optional work remains: **auto `Image:` patch** (checklist 7), **asset weight / encode** (checklist 9, e.g. **`ffmpeg`** locally), **CI** (checklist 8), optional **standalone SDXL VAE** experiment. **Prompt coherence:** `.agents/image-prompt-guidelines.md`.
+**Status (2026-05-12):** **ComfyUI** stack (SDXL ubersimple, local API) is treated as **production-ready** on the maintainer side for **generating** assets. The **blog** consumes optional **`Image:`** front matter (hero + `og:image` / Twitter large card). **Blog articles** (`blog/…` ids) without **`Image:`** still get a **Picsum** hero and matching **social preview URL** (1200×630, stable seed; `post.twig`, `page-meta.twig`, `praderas-macros.twig`). **Listings / tags / search** use **`Image:`** or **Picsum** (400×200, same seed). **`scripts/comfyui/export_cover.py`** downloads the PNG into `assets/images/` and can **`--patch-markdown`** to set/replace **`Image:`** (optional **`--skip-comfy`**, **`--dry-run-patch`**). Remaining optional work: **Translation_Key** auto-pair paths (row 7 polish), **asset weight / encode** (row 9, e.g. **`ffmpeg`**), **CI** (row 8), optional **standalone SDXL VAE** experiment. **Prompt coherence:** `.agents/image-prompt-guidelines.md`.
 
 ## Next steps (recommended order)
 
-1. **Close checklist row 7 (remainder)** — extend automation so a run can **suggest or write** the **`Image:`** line in paired Markdown after export (still human-review before merge).
+1. **Optional row 7 polish** — resolve **ES/EN** Markdown paths from **`Translation_Key`** so `--patch-markdown` is not hand-listed.
 2. **Ship checklist row 9** — optional **post-export** pipeline to **shrink** committed rasters (see table below): **`ffmpeg`** is available on maintainer machines; wire a documented encode/resize step (or `--ffmpeg` flag on `export_cover.py`) before git add.
 3. **Checklist row 8** — CI / secrets only if generation moves off the laptop.
 
@@ -82,7 +82,7 @@ Graph summary:
 | 4. **Listing cards** — `Image:` when set; else **Picsum** (`/seed/{page.id or url}/400/200`) | **Shipped** (`list-card-thumb.twig`, `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`) |
 | 5. **CSS** — responsive hero + `.post-body img` / `figure` | **Shipped** (`praderas-theme.css`) |
 | 6. **Lint** — `Image:` path exists when set | **Shipped** (`scripts/frontmatter_audit.py` scans `content/blog` + `content/blog/en`) |
-| 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Partial** — `scripts/comfyui/export_cover.py` saves PNG from the in-repo workflow; **auto `Image:` patch** still **Open** |
+| 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Partial** — `export_cover.py`: PNG + **`--patch-markdown`** / **`--skip-comfy`** / **`--image-value`** / **`--dry-run-patch`**; **Open** auto-resolve paired paths via **`Translation_Key`** |
 | 8. **CI / secrets** — optional | **Open** |
 | 9. **Asset weight** — cap bytes / dimensions after export (**`ffmpeg`** locally, or `oxipng` / `pngquant` for PNG-only); optional `--ffmpeg` / wrapper script; decide WebP vs PNG for `Image:` | **Open** |
 
@@ -98,9 +98,9 @@ When a ship log (or any post) should ship a **real** cover instead of a placehol
 2. **Front matter** — Set `Image: /assets/images/...` in **both** `content/blog/...` and `content/blog/en/...` before merge; hero, Open Graph / Twitter, and listing thumbnails all read that single value.
 3. **Generation** — With ComfyUI running locally, run:
 
-   `python3 scripts/comfyui/export_cover.py --output assets/images/<name>.png --positive "<CLIP positive>" --seed <int> --prefix <SaveImage prefix>`
+   `python3 scripts/comfyui/export_cover.py --output assets/images/<name>.png --positive "<CLIP positive>" --seed <int> --prefix <SaveImage prefix> [--patch-markdown content/blog/foo.md content/blog/en/bar.md]`
 
-   Commit the PNG with the article. In the series log, note **seed** and a one-line **intent** for the prompt (CLIP is fine in English) so a future run can reproduce or iterate.
+   Commit the PNG with the article. In the series log, note **seed** and a one-line **intent** for the prompt (CLIP is fine in English) so a future run can reproduce or iterate. When using **`--patch-markdown`**, review the diff before merge (same **`Image:`** path on paired ES/EN files).
 4. **Avoid silent reuse** — Do not point a new day’s `Image:` at an older entry’s PNG unless the article explicitly discusses that reuse (e.g. “same smoke test asset as Day 17”). Otherwise export a **dedicated** file for that day.
 5. **Weight / dimensions** — Baseline workflow is **1024×768**; Comfy outputs are often **~0.8–1.0 MB** PNGs. Before committing at scale:
    - **Optional (planned, checklist row 9):** run **`ffmpeg`** (or another encoder) locally to **resize** (e.g. max width **1600** keeping aspect) and/or **re-encode** — e.g. **WebP** (`libwebp`, quality ~80–85) if we standardize **`Image:`** on `.webp` and confirm hosting sends correct `Content-Type`, or stay **PNG** and use **`oxipng`** / **`pngquant`** for lossless / near-lossless shrink. Document chosen commands next to `export_cover.py` (or add `--reencode ffmpeg` once flags are frozen).
@@ -119,9 +119,11 @@ When a ship log (or any post) should ship a **real** cover instead of a placehol
 
 - **`assets/images/day17-comfyui-sdxl-example.png`** — **1024×768** PNG from the validated SDXL ubersimple graph (local smoke test). Day 17 posts use **`Image:`** here to demonstrate the pipeline on an earlier log entry.
 - **`assets/images/day18-comfyui-sdxl-cover-responsive.png`** — **1024×768** PNG generated for **Day 18** (paired ES/EN ship log): same graph, **seed `18052026`**, positive prompt documented in those posts; exported with `scripts/comfyui/export_cover.py` (or equivalent `POST /prompt` + `/view` flow).
+- **`assets/images/day19-comfyui-sdxl-export-frontmatter.png`** — **1024×768** PNG for **Day 19** (export + **`--patch-markdown`** demo): **seed `19052026`**, positive prompt in the EN ship log; same graph; `Image:` written into paired Markdown via `export_cover.py`.
 
 ## Changelog (in-repo)
 
+- **2026-05-12:** Day 19 — `export_cover.py` gains **`--patch-markdown`**, **`--skip-comfy`**, **`--image-value`**, **`--dry-run-patch`**; checklist row 7 updated; `assets/images/day19-comfyui-sdxl-export-frontmatter.png` + paired ES/EN log.
 - **2026-05-12 (plan):** **Next steps** section; checklist **row 9** (asset weight / **`ffmpeg`** or PNG optimizers); migration §5 expanded; row 1 notes encode pipeline.
 - **2026-05-12 (follow-up):** Blog **post** view + **og:image** use **Picsum** when `Image:` unset (`post.twig`, `page-meta.twig`, `praderas-macros.twig`); initial **`.agents/image-prompt-guidelines.md`** for Comfy positives tied to article metadata.
 - **2026-05-12:** Listings/tags/search — **Picsum fallback** restored when `Image:` is unset (stable seed from `page.id`); neutral placeholder removed from default path.

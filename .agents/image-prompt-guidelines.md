@@ -61,7 +61,7 @@ Assemble in this order (single paragraph or two short sentences):
 1. Read Title + Description + Tags (and Series if useful).
 2. Draft the **positive** string following §§1–3; read it aloud — if it sounds like stock photo SEO, simplify.
 3. Pick a **numeric seed**; document it in the ship log or commit message when the asset ships.
-4. Run `export_cover.py` with `--positive "..."` and commit the raster + **`Image:`** (paired ES/EN share the same path per `.agents/comfyui-cover-images.md`).
+4. Run `export_cover.py` with `--positive "..."` and, in one step, **`--patch-markdown`** on the paired `.md` files (or commit the raster and patch later with **`--skip-comfy`**). Use the same **`Image:`** path on ES and EN.
 5. **Optional (planned):** run an **encode / resize** pass to cap file weight — see **checklist row 9** in `.agents/comfyui-cover-images.md` (**`ffmpeg`**, WebP vs PNG, `oxipng`, etc.) before `git add` if the PNG is large.
 
 ---
@@ -76,5 +76,5 @@ Assemble in this order (single paragraph or two short sentences):
 
 ## Changelog (in-repo)
 
-- **2026-05-12:** Workflow step 5 — pointer to **asset weight** / **`ffmpeg`** (checklist row 9 in `comfyui-cover-images.md`).
+- **2026-05-12:** Workflow step 4 — **`--patch-markdown`** / **`--skip-comfy`**; step 5 — asset weight / **`ffmpeg`** (checklist row 9 in `comfyui-cover-images.md`).
 - **2026-05-12:** Initial guidelines (house tone + article linkage + prompt structure + workflow).
