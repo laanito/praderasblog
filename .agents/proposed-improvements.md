@@ -49,6 +49,7 @@
   - Translate all UI labels to Spanish (or fully bilingual), avoiding mixed English strings.
 - **Replace random placeholder images**
   - **Shipped (2026-05-11, Day 18; cards + post hero 2026-05-12; export patch 2026-05-12; WebP weight 2026-05-13):** optional **`Image:`** hero + **`og:image`** / Twitter; **`Image:`** or **Picsum** when unset; **`export_cover.py`** **`--patch-markdown`** / **`--webp`**; **`.webp`** covers (~50 KiB) replace multi‑MiB PNGs for Day 17–19 assets. See **`.agents/README.md`** hub. **`ffmpeg`** row 9 remainder / **CI** still open.
+  - **Planned — archive retrofit:** add **`Image:`** (shared ES/EN path, **WebP-only** in git) to older posts in **priority tiers** (*Reviving Praderas* Days **1–16** first, then series openers, then long tail). Full steps: `.agents/comfyui-cover-images.md` § *Retrofit plan*.
 - **Improve readability defaults**
   - Increase line-height and content width balance for long-form reading.
   - Add styles for code blocks, tables, and callouts used in technical posts.

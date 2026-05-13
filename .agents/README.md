@@ -18,7 +18,7 @@
 | `multilingual-ui-backlog.md` | Non-post EN gaps (search, archive, footers, etc.). |
 | `proposed-improvements.md` | Prioritized product backlog (phases, Priority 2 covers, etc.). |
 | `phase-5-6-plan.md` | Multilingual (Phase 5) vs JSON/API (Phase 6) roadmap detail. |
-| `comfyui-cover-images.md` | ComfyUI API, `export_cover.py`, WebP weight, checklist rows 7–9. |
+| `comfyui-cover-images.md` | ComfyUI API, `export_cover.py`, WebP weight, checklist rows 7–9, **archive cover retrofit plan** (tiers + batches). |
 | `image-prompt-guidelines.md` | House style + article-linked CLIP prompts before export. |
 | `post-template.md` | Authoring rules and optional fields for new posts. |
 | `day5-consultant-feedback.md` | Day 5 visual/series consultant notes (historical context). |
@@ -31,4 +31,5 @@
 
 ## Changelog (this index)
 
+- **2026-05-13 (follow-up):** Hub table — `comfyui-cover-images.md` now indexes **retrofit** playbook for older posts.
 - **2026-05-13:** Initial **README** — consolidation by **index + reading order**, not merging other files.

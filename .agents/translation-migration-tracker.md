@@ -2,7 +2,7 @@
 
 **Purpose:** Plan and record the move from Spanish-only posts to paired EN content (`content/blog/en/`, same **`Translation_Key`** as the Spanish file). This file is the **working ledger** for agents and humans: status, vocabulary, and language rules—not the public site.
 
-**Related:** `.agents/README.md` (hub index), `phase-5-6-plan.md` (Phase 5 goals), `post-template.md` (`Lang`, `Translation_Key`), `translation-batches.md` (batching rules, context explainer, honest time reporting), homepage pair `content/index.md` ↔ `content/en/index.md`.
+**Related:** `.agents/README.md` (hub index), `phase-5-6-plan.md` (Phase 5 goals), `post-template.md` (`Lang`, `Translation_Key`), `translation-batches.md` (batching rules, context explainer, honest time reporting), homepage pair `content/index.md` ↔ `content/en/index.md`. **Optional heroes on older pairs:** when retrofitting **`Image:`** on translated posts, follow the same **paired-path** rule as new work — see **`comfyui-cover-images.md`** § *Retrofit plan*.
 
 ---
 
@@ -168,6 +168,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-13 (follow-up):** Linked **cover retrofit** (archive tiers + batches) from **Related** — lives in `comfyui-cover-images.md` (not a separate tracker column).
 - **2026-05-13:** Day 20 ES/EN log (`praderas-day-20-image-webp-agents-readme-consolidation`) — **WebP** covers + **`README.md`** hub + `export_cover.py --webp` / `webp_cover.sh`.
 - **2026-05-12:** Day 19 ES/EN log (`praderas-day-19-export-cover-image-frontmatter-patch`) — `export_cover.py` **`--patch-markdown`** + **`--skip-comfy`**; `day19-comfyui-sdxl-export-frontmatter.webp`; `.agents` checklist row 7 + committed examples.
 - **2026-05-12 (post hero + prompts):** `post.twig` + `page-meta.twig` **Picsum** for `blog/…` without `Image:`; `praderas-macros.twig`; `.agents/image-prompt-guidelines.md`.
