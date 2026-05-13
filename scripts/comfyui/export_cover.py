@@ -31,6 +31,15 @@ Examples:
   python3 scripts/comfyui/export_cover.py \\
     --output assets/images/foo.png --positive "..." --seed 1 --prefix p \\
     --webp --webp-delete-png --patch-markdown content/blog/foo.md
+
+  # Day 20 style: dedicated cover for one ship log (paired ES/EN):
+  python3 scripts/comfyui/export_cover.py \\
+    --output assets/images/day20-comfyui-sdxl-webp-agents-index.png \\
+    --positive "Wide cinematic ... Praderas ..." \\
+    --seed 20052026 --prefix praderas_day20_export \\
+    --webp --webp-delete-png \\
+    --patch-markdown content/blog/reviviendo-praderas-dia-20-....md \\
+      content/blog/en/reviving-praderas-day-20-....md
 """
 
 from __future__ import annotations

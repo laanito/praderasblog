@@ -168,6 +168,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-14:** Day 20 ES/EN — **dedicated** hero asset `day20-comfyui-sdxl-webp-agents-index.webp` (no reuse of Day 18); `.agents` rules updated (`post-template`, `image-prompt-guidelines`, `comfyui-cover-images`).
 - **2026-05-13 (follow-up):** Linked **cover retrofit** (archive tiers + batches) from **Related** — lives in `comfyui-cover-images.md` (not a separate tracker column).
 - **2026-05-13:** Day 20 ES/EN log (`praderas-day-20-image-webp-agents-readme-consolidation`) — **WebP** covers + **`README.md`** hub + `export_cover.py --webp` / `webp_cover.sh`.
 - **2026-05-12:** Day 19 ES/EN log (`praderas-day-19-export-cover-image-frontmatter-patch`) — `export_cover.py` **`--patch-markdown`** + **`--skip-comfy`**; `day19-comfyui-sdxl-export-frontmatter.webp`; `.agents` checklist row 7 + committed examples.
