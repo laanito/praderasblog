@@ -10,7 +10,7 @@ Series_Slug: reviviendo-praderas
 Series_Order: 18
 Lang: es
 Translation_Key: praderas-day-18-cover-image-hero-social-responsive
-Image: /assets/images/day18-comfyui-sdxl-cover-responsive.png
+Image: /assets/images/day18-comfyui-sdxl-cover-responsive.webp
 ---
 
 # Reviviendo Praderas (Día 18) — portada seria en el blog
@@ -32,11 +32,11 @@ Ventana medida: **~3 min 30 s** de calendario en esta sesión (rama desde `main`
 4. **Listados** — `list-card-thumb.twig` + includes en `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`: miniatura desde **`Image:`** si el post la define; si no, **Picsum** con URL `https://picsum.photos/seed/…/400/200` y semilla estable (tras el merge se revirtió un intento de solo gradiente neutro, que dejaba las tarjetas sin foto útil).
 5. **`praderas-theme.css`** — `max-width: 100%`, `object-fit: contain`, `max-height` con `vh` en el hero; reglas para `.post-body img` / `figure` para que imágenes Markdown no rompan el cuerpo en móvil.
 6. **`scripts/frontmatter_audit.py`** — también recorre `content/blog/en/*.md` y comprueba que rutas `Image:` no HTTP existan en disco.
-7. **Día 18** — PNG **dedicado** generado con ComfyUI (ver sección siguiente); **Día 17** sigue usando el PNG de humo `day17-comfyui-sdxl-example.png` como referencia histórica del plan.
+7. **Día 18** — portada **dedicada** en **WebP** generada con ComfyUI (ver sección siguiente); **Día 17** sigue usando el raster de humo `day17-comfyui-sdxl-example.webp` como referencia histórica del plan.
 
 ## Imagen de esta entrada (ComfyUI / SDXL)
 
-Esta bitácora lleva **`Image: /assets/images/day18-comfyui-sdxl-cover-responsive.png`**: hero, vista previa social y miniatura de listado leen la misma ruta (sin duplicar `![](...)` en el cuerpo).
+Esta bitácora lleva **`Image: /assets/images/day18-comfyui-sdxl-cover-responsive.webp`**: hero, vista previa social y miniatura de listado leen la misma ruta (sin duplicar `![](...)` en el cuerpo).
 
 - **Grafo:** `scripts/comfyui/sdxl_ubersimple.api.json` (mismo que el plan del Día 17).
 - **Exporte reproducible:** `python3 scripts/comfyui/export_cover.py` con `--output` apuntando a ese fichero, **`--seed 18052026`**, prefijo de guardado distinto por tanda (p. ej. `praderas_day18_export`).
@@ -44,7 +44,7 @@ Esta bitácora lleva **`Image: /assets/images/day18-comfyui-sdxl-cover-responsiv
 
 > Wide cinematic editorial illustration for a Spanish tech blog named Praderas, soft green meadow at golden hour, subtle abstract UI wireframes and gentle grid lines suggesting responsive web layout and Open Graph cards, calm modern typography shapes, no readable text, no logos, peaceful professional atmosphere, high detail, tasteful color grading
 
-La política de **migración de imágenes** (nombres bajo `assets/images/`, par ES/EN con el mismo `Image:`, no reutilizar en silencio el PNG de otro día) está en **`.agents/comfyui-cover-images.md`**.
+La política de **migración de imágenes** (nombres bajo `assets/images/`, par ES/EN con el mismo `Image:`, no reutilizar en silencio el recurso de otro día) está en **`.agents/comfyui-cover-images.md`**.
 
 ## ComfyUI “production ready”
 
@@ -52,5 +52,5 @@ En documentación: la **instancia y el grafo SDXL** están listos para **produci
 
 ## Pendiente (siguiente PR cuando toque)
 
-- Cerrar el hueco del checklist: parche automático de front matter (`Image:`) tras generar PNG; hoy existe **`scripts/comfyui/export_cover.py`** solo para **exportar** el raster.  
+- Cerrar el hueco del checklist: parche automático de front matter (`Image:`) tras export; hoy **`scripts/comfyui/export_cover.py`** soporta **`--patch-markdown`** y **`--webp`**.  
 - CI opcional y política LFS si el peso de binarios crece.

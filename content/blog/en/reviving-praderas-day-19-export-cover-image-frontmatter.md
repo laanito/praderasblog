@@ -10,7 +10,7 @@ Series_Slug: reviviendo-praderas
 Series_Order: 19
 Lang: en
 Translation_Key: praderas-day-19-export-cover-image-frontmatter-patch
-Image: /assets/images/day19-comfyui-sdxl-export-frontmatter.png
+Image: /assets/images/day19-comfyui-sdxl-export-frontmatter.webp
 
 ---
 
@@ -30,7 +30,7 @@ This closes the **“script + `Image:`”** gap in **`.agents/comfyui-cover-imag
    - **`--image-value`** — explicit site path (`/assets/...`); if omitted, **derived** from **`--output`** against the repo root (`config/config.yml` + `content/`).
    - **`--skip-comfy`** — skips the API; requires an existing **`--output`** file and **`--patch-markdown`** (front-matter-only flow).
    - **`--dry-run-patch`** — prints patch actions without writing.
-2. **Day 19 PNG** — **`assets/images/day19-comfyui-sdxl-export-frontmatter.png`** (same SDXL ubersimple graph; **seed `19052026`**; positive CLIP below).
+2. **Day 19 PNG** — **`assets/images/day19-comfyui-sdxl-export-frontmatter.webp`** (same SDXL ubersimple graph; **seed `19052026`**; positive CLIP below).
 3. **`.agents/comfyui-cover-images.md`** — checklist **row 7**: export + **`--patch-markdown`** shipped; **open** optional **`Translation_Key`** path resolver. Plan **“next steps”** order: (1) that polish, (2) **row 9** (weight / **`ffmpeg`**), (3) **CI** (row 8).
 
 ## Positive CLIP prompt (this entry’s cover)
@@ -43,7 +43,7 @@ After the PNG exists (or using **`--skip-comfy`**):
 
 ```bash
 python3 scripts/comfyui/export_cover.py --skip-comfy \
-  --output assets/images/day19-comfyui-sdxl-export-frontmatter.png \
+  --output assets/images/day19-comfyui-sdxl-export-frontmatter.webp \
   --patch-markdown \
     content/blog/reviviendo-praderas-dia-19-export-cover-parche-image-frontmatter.md \
     content/blog/en/reviving-praderas-day-19-export-cover-image-frontmatter.md
