@@ -10,7 +10,7 @@ Series_Slug: reviviendo-praderas
 Series_Order: 19
 Lang: es
 Translation_Key: praderas-day-19-export-cover-image-frontmatter-patch
-Image: /assets/images/day19-comfyui-sdxl-export-frontmatter.png
+Image: /assets/images/day19-comfyui-sdxl-export-frontmatter.webp
 
 ---
 
@@ -30,7 +30,7 @@ Cierra el hueco **“script + `Image:`”** del checklist en **`.agents/comfyui-
    - **`--image-value`** — ruta del sitio explícita (`/assets/...`); si se omite, se **deduce** desde **`--output`** respecto a la raíz del repo (`config/config.yml` + `content/`).
    - **`--skip-comfy`** — no llama a la API; exige que **`--output`** ya exista y que haya **`--patch-markdown`** (flujo “solo front matter”).
    - **`--dry-run-patch`** — imprime qué haría el parche sin escribir.
-2. **PNG Día 19** — **`assets/images/day19-comfyui-sdxl-export-frontmatter.png`** (mismo grafo SDXL ubersimple; **seed `19052026`**; prompt orientado a “automatización / YAML / Git” en tono Praderas; ver EN gemelo para el texto CLIP).
+2. **PNG Día 19** — **`assets/images/day19-comfyui-sdxl-export-frontmatter.webp`** (mismo grafo SDXL ubersimple; **seed `19052026`**; prompt orientado a “automatización / YAML / Git” en tono Praderas; ver EN gemelo para el texto CLIP).
 3. **`.agents/comfyui-cover-images.md`** — fila **7** del checklist: export + **`--patch-markdown`** entregado; queda **abierto** el atajo opcional que resuelva rutas del par ES/EN por **`Translation_Key`** sin listar dos paths a mano. Orden **“next steps”** en el doc del plan: (1) ese pulido opcional, (2) **fila 9** (peso / **`ffmpeg`**), (3) **CI** (fila 8).
 
 ## Cómo reproducir el parche (ejemplo)
@@ -39,7 +39,7 @@ Tras generar el PNG (o con archivo ya existente):
 
 ```bash
 python3 scripts/comfyui/export_cover.py --skip-comfy \
-  --output assets/images/day19-comfyui-sdxl-export-frontmatter.png \
+  --output assets/images/day19-comfyui-sdxl-export-frontmatter.webp \
   --patch-markdown \
     content/blog/reviviendo-praderas-dia-19-export-cover-parche-image-frontmatter.md \
     content/blog/en/reviving-praderas-day-19-export-cover-image-frontmatter.md

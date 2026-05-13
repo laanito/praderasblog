@@ -10,6 +10,9 @@ After a successful export (or with --skip-comfy when the PNG already exists),
 optional --patch-markdown updates YAML front matter: set or replace Image:
 with a site-relative path (default derived from --output under repo root).
 
+With --webp, runs cwebp to write a sibling .webp (use --webp-delete-png to
+remove the PNG after encoding). Requires: brew install webp
+
 Examples:
   python3 scripts/comfyui/export_cover.py \\
     --output assets/images/day18-comfyui-sdxl-cover-responsive.png \\
@@ -24,10 +27,10 @@ Examples:
     --patch-markdown content/blog/reviviendo-praderas-dia-19-....md \\
       content/blog/en/reviving-praderas-day-19-....md
 
-  # Only set Image: in Markdown (PNG must already exist):
-  python3 scripts/comfyui/export_cover.py --skip-comfy \\
-    --output assets/images/existing.png \\
-    --patch-markdown content/blog/some-post.md
+  # Export + WebP + patch (brew install webp):
+  python3 scripts/comfyui/export_cover.py \\
+    --output assets/images/foo.png --positive "..." --seed 1 --prefix p \\
+    --webp --webp-delete-png --patch-markdown content/blog/foo.md
 """
 
 from __future__ import annotations
@@ -35,6 +38,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
 import sys
 import time
 import urllib.error
@@ -197,6 +201,40 @@ def run_comfy_export(
     print(f"wrote {out_path.resolve()} ({out_path.stat().st_size} bytes)")
 
 
+def encode_png_to_webp(png_path: Path, delete_png: bool) -> Path:
+    """Write sibling .webp using cwebp (Homebrew: brew install webp)."""
+    webp_path = png_path.with_suffix(".webp")
+    cmd = [
+        "cwebp",
+        "-q",
+        "82",
+        "-m",
+        "6",
+        "-af",
+        "-f",
+        "0",
+        "-sharp_yuv",
+        str(png_path),
+        "-o",
+        str(webp_path),
+    ]
+    try:
+        subprocess.run(cmd, check=True, capture_output=True)
+    except FileNotFoundError as e:
+        print(
+            "error: cwebp not on PATH (install: brew install webp)",
+            file=sys.stderr,
+        )
+        raise SystemExit(1) from e
+    except subprocess.CalledProcessError as e:
+        print(e.stderr.decode("utf-8", errors="replace"), file=sys.stderr)
+        raise SystemExit(1) from e
+    if delete_png and png_path.is_file():
+        png_path.unlink()
+    print(f"wrote {webp_path.resolve()} ({webp_path.stat().st_size} bytes)")
+    return webp_path
+
+
 def main() -> int:
     p = argparse.ArgumentParser(
         description="Export a cover PNG via local ComfyUI API; optionally patch Image: in Markdown."
@@ -240,12 +278,22 @@ def main() -> int:
     p.add_argument(
         "--image-value",
         default="",
-        help="Site path for Image: (default: derived from --output under repo root, e.g. /assets/images/foo.png)",
+        help="Site path for Image: (default: derived from --output under repo root, e.g. /assets/images/foo.webp)",
     )
     p.add_argument(
         "--dry-run-patch",
         action="store_true",
         help="Print patch actions without modifying Markdown",
+    )
+    p.add_argument(
+        "--webp",
+        action="store_true",
+        help="After PNG export (or with --skip-comfy on a .png), run cwebp to a sibling .webp (brew install webp)",
+    )
+    p.add_argument(
+        "--webp-delete-png",
+        action="store_true",
+        help="With --webp, delete the PNG after WebP is written",
     )
     args = p.parse_args()
 
@@ -276,10 +324,20 @@ def main() -> int:
         )
         run_comfy_export(base, wf_path, args.positive, args.seed, args.prefix, out_path)
 
-    repo_root = find_repo_root(out_path.parent)
+    canonical_out = out_path
+    if args.webp:
+        if canonical_out.suffix.lower() != ".png":
+            print("error: --webp requires --output to end in .png", file=sys.stderr)
+            return 1
+        if not canonical_out.is_file():
+            print(f"error: --webp requires existing PNG {canonical_out}", file=sys.stderr)
+            return 1
+        canonical_out = encode_png_to_webp(canonical_out, args.webp_delete_png)
+
+    repo_root = find_repo_root(canonical_out.parent)
     image_site = (args.image_value or "").strip()
     if not image_site:
-        image_site = default_image_site_path(repo_root, out_path)
+        image_site = default_image_site_path(repo_root, canonical_out)
 
     for md in patch_paths:
         if not md.is_file():

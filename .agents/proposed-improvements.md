@@ -48,7 +48,7 @@
 - **Unify interface language**
   - Translate all UI labels to Spanish (or fully bilingual), avoiding mixed English strings.
 - **Replace random placeholder images**
-  - **Shipped (2026-05-11, Day 18; cards + post hero 2026-05-12; export patch 2026-05-12):** optional **`Image:`** hero on posts + **`og:image`** / Twitter large card; listing/search/tag cards and **article view** use **`Image:`** or **Picsum** (stable seed) when unset; **`export_cover.py`** can **`--patch-markdown`** after Comfy export. In-body Markdown images get responsive rules in `praderas-theme.css`. ComfyUI remains the **optional generator**; see `.agents/image-prompt-guidelines.md`, `.agents/comfyui-cover-images.md`, **`export_cover.py`**, and Day 18’s dedicated PNG; **`ffmpeg`** row 9 / CI still open.
+  - **Shipped (2026-05-11, Day 18; cards + post hero 2026-05-12; export patch 2026-05-12; WebP weight 2026-05-13):** optional **`Image:`** hero + **`og:image`** / Twitter; **`Image:`** or **Picsum** when unset; **`export_cover.py`** **`--patch-markdown`** / **`--webp`**; **`.webp`** covers (~50 KiB) replace multi‑MiB PNGs for Day 17–19 assets. See **`.agents/README.md`** hub. **`ffmpeg`** row 9 remainder / **CI** still open.
 - **Improve readability defaults**
   - Increase line-height and content width balance for long-form reading.
   - Add styles for code blocks, tables, and callouts used in technical posts.

@@ -2,7 +2,7 @@
 
 **Purpose:** Plan and record the move from Spanish-only posts to paired EN content (`content/blog/en/`, same **`Translation_Key`** as the Spanish file). This file is the **working ledger** for agents and humans: status, vocabulary, and language rules—not the public site.
 
-**Related:** `phase-5-6-plan.md` (Phase 5 goals), `post-template.md` (`Lang`, `Translation_Key`), `translation-batches.md` (batching rules, context explainer, honest time reporting), homepage pair `content/index.md` ↔ `content/en/index.md`.
+**Related:** `.agents/README.md` (hub index), `phase-5-6-plan.md` (Phase 5 goals), `post-template.md` (`Lang`, `Translation_Key`), `translation-batches.md` (batching rules, context explainer, honest time reporting), homepage pair `content/index.md` ↔ `content/en/index.md`.
 
 ---
 
@@ -111,7 +111,8 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-day-14-batch-6-7-8-translation-finale-log` | `reviviendo-praderas-dia-14-batch-6-7-8-cierre-traducciones-y-reloj.md` | `reviving-praderas-day-14-batches-6-7-8-translation-finale-and-clock.md` | done | Daily log: batches 6–8 closure + ~9.5 min wall vs ~43.5–102.5 h band. |
 | `praderas-day-16-sitemap-robots-lang-log` | `reviviendo-praderas-dia-16-sitemap-robots-por-idioma.md` | `reviving-praderas-day-16-sitemap-and-robots-per-language.md` | done | Day 16 log: sitemap index + `sitemap-es.xml` / `sitemap-en.xml` (`PicoRobots` + theme Twig). |
 | `praderas-day-17-comfyui-cover-images-plan` | `reviviendo-praderas-dia-17-imagenes-portada-comfyui-plan.md` | `reviving-praderas-day-17-cover-images-comfyui-plan.md` | done | Day 17 log: ComfyUI cover pipeline planning + `.agents/comfyui-cover-images.md` + `scripts/comfyui/sdxl_ubersimple.api.json`. |
-| `praderas-day-19-export-cover-image-frontmatter-patch` | `reviviendo-praderas-dia-19-export-cover-parche-image-frontmatter.md` | `reviving-praderas-day-19-export-cover-image-frontmatter.md` | done | Day 19: `export_cover.py` **`--patch-markdown`**, **`--skip-comfy`**, **`--image-value`**, **`--dry-run-patch`**; `day19-comfyui-sdxl-export-frontmatter.png`; checklist row 7 narrowed (**Open:** `Translation_Key` auto-paths). |
+| `praderas-day-20-image-webp-agents-readme-consolidation` | `reviviendo-praderas-dia-20-peso-imagen-webp-indice-agents.md` | `reviving-praderas-day-20-image-weight-webp-agents-index.md` | done | Day 20: **WebP** for Day 17–19 covers (`cwebp`, `webp_cover.sh`, `export_cover.py --webp`); remove heavy PNGs; **`.agents/README.md`** hub; docs refresh. |
+| `praderas-day-19-export-cover-image-frontmatter-patch` | `reviviendo-praderas-dia-19-export-cover-parche-image-frontmatter.md` | `reviving-praderas-day-19-export-cover-image-frontmatter.md` | done | Day 19: `export_cover.py` **`--patch-markdown`**, **`--skip-comfy`**, **`--image-value`**, **`--dry-run-patch`**; `day19-comfyui-sdxl-export-frontmatter.webp`; checklist row 7 narrowed (**Open:** `Translation_Key` auto-paths). |
 | `praderas-day-18-cover-image-hero-social-responsive` | `reviviendo-praderas-dia-18-imagen-hero-og-responsive.md` | `reviving-praderas-day-18-cover-hero-og-responsive.md` | done | Day 18 slice + follow-ups: `Image:` / Picsum **hero + og** on `blog/…` posts (`praderas-macros.twig`), listing thumbs, `export_cover.py`, migration plan, **`image-prompt-guidelines.md`**. |
 | `tuqan-phase-0-strategic-foundation` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | done | Tuqan series opener; ES file canonical path `content/blog/` (not `blog/es/`). |
 
@@ -167,13 +168,14 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
-- **2026-05-12:** Day 19 ES/EN log (`praderas-day-19-export-cover-image-frontmatter-patch`) — `export_cover.py` **`--patch-markdown`** + **`--skip-comfy`**; `day19-comfyui-sdxl-export-frontmatter.png`; `.agents` checklist row 7 + committed examples.
+- **2026-05-13:** Day 20 ES/EN log (`praderas-day-20-image-webp-agents-readme-consolidation`) — **WebP** covers + **`README.md`** hub + `export_cover.py --webp` / `webp_cover.sh`.
+- **2026-05-12:** Day 19 ES/EN log (`praderas-day-19-export-cover-image-frontmatter-patch`) — `export_cover.py` **`--patch-markdown`** + **`--skip-comfy`**; `day19-comfyui-sdxl-export-frontmatter.webp`; `.agents` checklist row 7 + committed examples.
 - **2026-05-12 (post hero + prompts):** `post.twig` + `page-meta.twig` **Picsum** for `blog/…` without `Image:`; `praderas-macros.twig`; `.agents/image-prompt-guidelines.md`.
 - **2026-05-12:** Picsum **fallback** on blog / EN blog / tags / search cards when `Image:` unset (`list-card-thumb.twig`); `.agents` + Day 18 log copy aligned.
-- **2026-05-11 (follow-up):** Day 18 ES/EN — dedicated ComfyUI cover PNG (`day18-comfyui-sdxl-cover-responsive.png`), `scripts/comfyui/export_cover.py`, image migration plan in `comfyui-cover-images.md`; checklist script row → **Partial**.
+- **2026-05-11 (follow-up):** Day 18 ES/EN — dedicated ComfyUI cover raster (`day18-comfyui-sdxl-cover-responsive.webp` after Day 20), `scripts/comfyui/export_cover.py`, image migration plan in `comfyui-cover-images.md`; checklist script row → **Partial**.
 - **2026-05-11:** Day 18 ES/EN log (`praderas-day-18-cover-image-hero-social-responsive`) — `Image:` + social meta + listing thumbnails (initially neutral-only, later **Picsum** restored); ComfyUI generation marked production-ready in `.agents/comfyui-cover-images.md`; Day 17 posts gain `Image:` + copy edits.
 - **2026-05-10:** Day 17 ES/EN log (`praderas-day-17-comfyui-cover-images-plan`) — ComfyUI cover pipeline planning doc (`.agents/comfyui-cover-images.md`), API template `scripts/comfyui/sdxl_ubersimple.api.json`, links from `repo-context.md`, `post-template.md`, `proposed-improvements.md`.
-- **2026-05-10 (follow-up):** Added committed example PNG `assets/images/day17-comfyui-sdxl-example.png` and embedded it in Day 17 ES/EN posts (Markdown figure; superseded for hero by Día 18 `Image:` wiring).
+- **2026-05-10 (follow-up):** Added committed example raster `assets/images/day17-comfyui-sdxl-example.png` (later **WebP**, Day 20) in Day 17 ES/EN posts (Markdown figure; superseded for hero by Día 18 `Image:` wiring).
 - **2026-05-10 (follow-up):** Tuqan Phase 0 pair (`tuqan-phase-0-strategic-foundation`) — Spanish source moved from erroneous `content/blog/es/` to canonical `content/blog/`; front matter (Series), body copy, and `.agents` references aligned with repository facts; EN sibling matched.
 - **2026-05-10:** Day 16 ES/EN log (`praderas-day-16-sitemap-robots-lang-log`) — per-language sitemaps: `sitemap.xml` as index, `sitemap-es.xml` / `sitemap-en.xml` filtered via `Multilingual::inferLang`; theme templates `sitemap-index.twig`, `sitemap.twig`; `.agents/multilingual-ui-backlog.md` pending row cleared.
 - **2026-05-06:** UI backlog slice — paired search route (`content/search.md` ↔ `content/en/search.md`, `praderas-nav-search`), bilingual search template/behavior (`search.twig`, `search-behavior.twig`), language-safe result filtering in `PicoSearch`, and EN footer credit branch in `index.twig`.

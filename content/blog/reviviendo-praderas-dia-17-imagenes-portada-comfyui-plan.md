@@ -10,7 +10,7 @@ Series_Slug: reviviendo-praderas
 Series_Order: 17
 Lang: es
 Translation_Key: praderas-day-17-comfyui-cover-images-plan
-Image: /assets/images/day17-comfyui-sdxl-example.png
+Image: /assets/images/day17-comfyui-sdxl-example.webp
 ---
 
 # Reviviendo Praderas (Día 17) — portadas sin azar (plan + ComfyUI)
@@ -28,7 +28,7 @@ Tras cerrar el ítem SEO de sitemaps por idioma (Día 16), retomamos el hilo de 
 
 ## Ejemplo de salida (misma sesión, prueba local)
 
-Archivo en el repositorio: `assets/images/day17-comfyui-sdxl-example.png` (**1024×768**). Prompt positivo genérico (escritorio / terminal editorial, sin texto legible); solo para **ilustrar calidad** del grafo SDXL descrito arriba, no como portada definitiva de un artículo concreto. **Desde el Día 18** la misma ruta se referencia en el front matter como `Image:` y se muestra como **hero** encima del cuerpo (sin duplicar `![](...)` en Markdown).
+Archivo en el repositorio: `assets/images/day17-comfyui-sdxl-example.webp` (**1024×768**). Prompt positivo genérico (escritorio / terminal editorial, sin texto legible); solo para **ilustrar calidad** del grafo SDXL descrito arriba, no como portada definitiva de un artículo concreto. **Desde el Día 18** la misma ruta se referencia en el front matter como `Image:` y se muestra como **hero** encima del cuerpo (sin duplicar `![](...)` en Markdown).
 
 ### Qué quedó fuera en el Día 17 (y llegó después)
 

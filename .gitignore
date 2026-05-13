@@ -13,3 +13,7 @@ desktop.ini
 # Composer
 /composer.phar
 /vendor
+
+# Python
+__pycache__/
+*.py[cod]

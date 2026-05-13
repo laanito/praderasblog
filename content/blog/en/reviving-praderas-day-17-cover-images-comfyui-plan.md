@@ -10,7 +10,7 @@ Series_Slug: reviviendo-praderas
 Series_Order: 17
 Lang: en
 Translation_Key: praderas-day-17-comfyui-cover-images-plan
-Image: /assets/images/day17-comfyui-sdxl-example.png
+Image: /assets/images/day17-comfyui-sdxl-example.webp
 ---
 
 # Reviving Praderas (Day 17) — cover images without roulette (plan + ComfyUI)
@@ -28,7 +28,7 @@ After the per-language sitemap work (Day 16), we picked up **Priority 2** in `pr
 
 ## Example output (same session, local smoke test)
 
-Committed file: `assets/images/day17-comfyui-sdxl-example.png` (**1024×768**). Generic positive prompt (editorial desk / terminal mood, no readable text); meant only to **show the quality bar** of the SDXL graph above, not as the final cover for a specific post. **From Day 18 onward** the same path is referenced in front matter as `Image:` and rendered as the **hero** above the body (no duplicate `![](...)` in Markdown).
+Committed file: `assets/images/day17-comfyui-sdxl-example.webp` (**1024×768**). Generic positive prompt (editorial desk / terminal mood, no readable text); meant only to **show the quality bar** of the SDXL graph above, not as the final cover for a specific post. **From Day 18 onward** the same path is referenced in front matter as `Image:` and rendered as the **hero** above the body (no duplicate `![](...)` in Markdown).
 
 ### What stayed out on Day 17 (and shipped next)
 
