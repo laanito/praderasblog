@@ -31,5 +31,6 @@
 
 ## Changelog (this index)
 
+- **2026-05-14:** `post-template.md` / `image-prompt-guidelines.md` / `comfyui-cover-images.md` — **one dedicated `Image:` asset per article** (no borrowing another post’s cover).
 - **2026-05-13 (follow-up):** Hub table — `comfyui-cover-images.md` now indexes **retrofit** playbook for older posts.
 - **2026-05-13:** Initial **README** — consolidation by **index + reading order**, not merging other files.

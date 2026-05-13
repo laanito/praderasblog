@@ -2,7 +2,7 @@
 
 **Purpose:** Give future sessions a **single starting point** for how we validated ComfyUI from this repo, which graph worked, and what remains to **productize** (automation script, CI). This is **not** required to build or run the blog.
 
-**Status (2026-05-13):** Same stack as 2026-05-12 for **generation** and **Twig** consumption. **Committed Comfy covers (Day 17–19)** ship as **WebP** under **`assets/images/*.webp`** (~**45–64 KiB** vs ~**0.9–1.0 MiB** PNG) so heroes and social previews load with the page. **`export_cover.py`** supports **`--webp`** / **`--webp-delete-png`** after PNG download; **`scripts/comfyui/webp_cover.sh`** wraps **`cwebp`** (`brew install webp`). **Hub:** `.agents/README.md`. **Archive:** explicit **retrofit plan** (older posts + body assets) in § *Retrofit plan* below. Still **Open:** **`Translation_Key`** path helper (row 7 polish), optional **`ffmpeg`** extras (row 9), **CI** (row 8), **VAE** experiment. **Prompts:** `.agents/image-prompt-guidelines.md`.
+**Status (2026-05-13):** Same stack as 2026-05-12 for **generation** and **Twig** consumption. **Committed Comfy covers (Days 17–20)** ship as **WebP** under **`assets/images/*.webp`** (~**45–76 KiB** vs ~**0.9–1.0 MiB** PNG) so heroes and social previews load with the page. **`export_cover.py`** supports **`--webp`** / **`--webp-delete-png`** after PNG download; **`scripts/comfyui/webp_cover.sh`** wraps **`cwebp`** (`brew install webp`). **Hub:** `.agents/README.md`. **Archive:** explicit **retrofit plan** (older posts + body assets) in § *Retrofit plan* below. Still **Open:** **`Translation_Key`** path helper (row 7 polish), optional **`ffmpeg`** extras (row 9), **CI** (row 8), **VAE** experiment. **Prompts:** `.agents/image-prompt-guidelines.md`.
 
 ## Next steps (recommended order)
 
@@ -85,7 +85,7 @@ Graph summary:
 | 6. **Lint** — `Image:` path exists when set | **Shipped** (`scripts/frontmatter_audit.py` scans `content/blog` + `content/blog/en`) |
 | 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Partial** — `export_cover.py`: PNG + **`--patch-markdown`** / **`--skip-comfy`** / **`--image-value`** / **`--dry-run-patch`**; **Open** auto-resolve paired paths via **`Translation_Key`** |
 | 8. **CI / secrets** — optional | **Open** |
-| 9. **Asset weight** — WebP (`cwebp`) + optional **`ffmpeg`** / PNG optimizers | **Partial** — **`cwebp`** via **`export_cover.py --webp`** + **`webp_cover.sh`**; Day 17–19 **`.webp`** in repo; **Open** further **`ffmpeg`** tuning if needed |
+| 9. **Asset weight** — WebP (`cwebp`) + optional **`ffmpeg`** / PNG optimizers | **Partial** — **`cwebp`** via **`export_cover.py --webp`** + **`webp_cover.sh`**; Days **17–20** **`.webp`** in repo; **Open** further **`ffmpeg`** tuning if needed |
 
 ---
 
@@ -104,7 +104,7 @@ When a ship log (or any post) should ship a **real** cover instead of a placehol
    Or encode an existing PNG: `bash scripts/comfyui/webp_cover.sh assets/images/<name>.png` then set **`Image:`** to **`/<same-basename>.webp`** (and remove the PNG from git when satisfied).
 
    Commit the **WebP** (and drop the multi‑MiB PNG from the repo once converted). When using **`--patch-markdown`**, review the diff before merge (same **`Image:`** path on paired ES/EN files).
-4. **Avoid silent reuse** — Do not point a new day’s `Image:` at an older entry’s PNG unless the article explicitly discusses that reuse (e.g. “same smoke test asset as Day 17”). Otherwise export a **dedicated** file for that day.
+4. **One asset per article (hard rule)** — Each post that sets **`Image:`** must point at its **own** file under **`assets/images/`** (one basename per **`Translation_Key`**; Spanish and English twins **share** that single file). **Do not** reuse another article’s committed cover as a placeholder shortcut (e.g. Day 20 must not borrow Day 18’s raster). The **only** exception is when the **prose** explicitly documents reuse (e.g. Day 17 smoke-test reference). Otherwise run **`export_cover.py`** again with a new **`--output`** / **`--prefix`** / seed.
 5. **Weight / dimensions** — Baseline workflow is **1024×768**; raw Comfy **PNG** is often **~0.9–1.0 MiB** — too heavy for default `<img>` alongside HTML on slow links. **Shipped (Day 20):** **`cwebp`** at **quality ~82** yields **~45–65 KiB** WebP for our reference covers with acceptable PSNR. **`export_cover.py --webp [--webp-delete-png]`** or **`scripts/comfyui/webp_cover.sh`** encodes after export. Optional later: **`ffmpeg`** / **`oxipng`** if we standardize other formats or squeeze further. Revisit **Git LFS** (row 1) if the tree grows anyway.
 
 ---
@@ -134,7 +134,7 @@ Adjust tiers when analytics or search-console priorities exist; until then **A �
 
 1. **Pick a small batch** (e.g. 3–5 **`Translation_Key`** pairs or one series slice) so review stays light.
 2. **Produce art** — Comfy path: **`export_cover.py`** + **`--webp`** + house prompts (`.agents/image-prompt-guidelines.md`). Static path: design/export once, still **`cwebp`** before commit.
-3. **Naming** — Keep **`assets/images/<slug-or-dayNN>-<role>.webp`** predictable; avoid reusing another day’s file unless the article explicitly discusses reuse.
+3. **Naming** — Keep **`assets/images/<slug-or-dayNN>-<role>.webp`** predictable and **unique per `Translation_Key`** (never reuse another post’s basename as a shortcut); avoid reusing another day’s file unless the article explicitly discusses reuse.
 4. **Edit front matter** — Set identical **`Image:`** on **both** `content/blog/...` and `content/blog/en/...`; run **`python3 scripts/frontmatter_audit.py`**.
 5. **Ship** — One PR per batch (or folded into a daily log PR if that is the house rhythm); mention the batch in the tracker changelog or the day’s ship log so we do not double‑book the same pair.
 
@@ -157,9 +157,11 @@ Adjust tiers when analytics or search-console priorities exist; until then **A �
 - **`assets/images/day17-comfyui-sdxl-example.webp`** — **1024×768** WebP (~**54 KiB**), SDXL ubersimple smoke asset; Day 17 **`Image:`** demo.
 - **`assets/images/day18-comfyui-sdxl-cover-responsive.webp`** — **1024×768** WebP (~**47 KiB**); Day 18 paired log; **seed `18052026`** in series text.
 - **`assets/images/day19-comfyui-sdxl-export-frontmatter.webp`** — **1024×768** WebP (~**64 KiB**); Day 19 **`--patch-markdown`** demo; **seed `19052026`**.
+- **`assets/images/day20-comfyui-sdxl-webp-agents-index.webp`** — **1024×768** WebP (~**76 KiB**); Day 20 ship log (WebP weight + `.agents` hub); **seed `20052026`**.
 
 ## Changelog (in-repo)
 
+- **2026-05-14:** Day 20 **dedicated** cover (`day20-comfyui-sdxl-webp-agents-index.webp`); `.agents` + `post-template` clarify **one `Image:` asset per article** (no cross-post reuse).
 - **2026-05-13 (follow-up):** **Retrofit plan** § for archive heroes + future body assets (priority tiers A–D, batch procedure).
 - **2026-05-13:** Day 20 — committed covers **WebP** (remove multi‑MiB PNGs); **`export_cover.py --webp`**, **`webp_cover.sh`**; checklist **row 9 → Partial**; **`.agents/README.md`** hub.
 - **2026-05-12:** Day 19 — `export_cover.py` gains **`--patch-markdown`**, **`--skip-comfy`**, **`--image-value`**, **`--dry-run-patch`**; checklist row 7 updated; Day 19 PNG then **WebP** on 2026-05-13 + paired ES/EN log.

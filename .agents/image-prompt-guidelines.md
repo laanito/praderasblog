@@ -41,6 +41,7 @@ Then add **one or two short clauses** that translate the **topic** into **visual
 - Prefer **one clear metaphor** over a laundry list; CLIP saturates quickly.
 - If the post is a **ship log** or meta entry about the blog itself, lean on **Praderas + meadow + craft** imagery more heavily.
 - If the post is **newsy or political**, stay **abstract** — no identifiable public figures; no flags unless the article truly requires symbolism and you accept editorial risk.
+- **One export per `Translation_Key`** — After you pick the positive prompt and seed, write a **dedicated** `assets/images/<unique-basename>.webp` for that pair. **Never** reuse another day’s committed cover as the hero for a new ship log; paired ES/EN share **one** file, not one file across unrelated posts (see `comfyui-cover-images.md` § migration step 4).
 
 ---
 
@@ -76,6 +77,7 @@ Assemble in this order (single paragraph or two short sentences):
 
 ## Changelog (in-repo)
 
+- **2026-05-14:** Rules of thumb — **one export per `Translation_Key`**, no cross-post cover reuse (`comfyui-cover-images.md` step 4).
 - **2026-05-13:** Step 5 — **`cwebp`** / **`export_cover.py --webp`** as default weight fix; **`ffmpeg`** optional extra (row 9).
 - **2026-05-12:** Workflow step 4 — **`--patch-markdown`** / **`--skip-comfy`**; step 5 — asset weight / **`ffmpeg`** (checklist row 9 in `comfyui-cover-images.md`).
 - **2026-05-12:** Initial guidelines (house tone + article linkage + prompt structure + workflow).
