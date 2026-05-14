@@ -38,7 +38,7 @@ Tags: Desarrollo Web, Productividad
 - `Sistemas`
 - `Sociedad`
 
-Run `python3 scripts/frontmatter_audit.py` before PR to catch missing fields, date drift, and unknown tags.
+Run `python3 scripts/frontmatter_audit.py` before PR to catch missing fields, date drift, unknown tags, broken **`Image:`** paths, and invalid **`Translation_Key`** maps (more than two posts per key, or two files not split as one `content/blog/` + one `content/blog/en/`).
 
 ## Optional (Phase 5)
 

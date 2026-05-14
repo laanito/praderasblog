@@ -114,7 +114,7 @@
 ## Phase 3 (2026-04, completed in repo)
 - Front matter normalization pass across legacy posts: missing `Tags` filled, lowercase `tags` standardized to `Tags`, and one date outlier normalized.
 - Canonical taxonomy is now complete across all posts (`Tags` present everywhere).
-- Added `scripts/frontmatter_audit.py` (schema/date/taxonomy checks) for repeatable verification.
+- Added `scripts/frontmatter_audit.py` (schema/date/taxonomy, **`Image:`** paths, **`Translation_Key`** duplicate / ES+EN pairing) for repeatable verification.
 - Added `.agents/post-template.md` as starter editorial template for new entries.
 
 ## Phase 4 (SEO & discoverability, 2026-04)

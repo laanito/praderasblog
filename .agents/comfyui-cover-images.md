@@ -2,14 +2,13 @@
 
 **Purpose:** Give future sessions a **single starting point** for how we validated ComfyUI from this repo, which graph worked, and what remains to **productize** (automation script, CI). This is **not** required to build or run the blog.
 
-**Status (2026-05-14):** Same stack for **generation** and **Twig**. **Committed Comfy covers (Days 17–21)** ship as **WebP** under **`assets/images/*.webp`**. **`export_cover.py`** supports **`--webp`**, **`--patch-markdown`**, and **`--translation-key`** (patch ES+EN by shared key). **Hub:** `.agents/README.md`. **Archive:** **Retrofit plan** § below. Still **Open:** optional **`ffmpeg`** (row 9), **CI** (row 8), **VAE** experiment, optional **duplicate `Translation_Key`** guard in CI. **Prompts:** `.agents/image-prompt-guidelines.md`.
+**Status (2026-05-14):** Same stack for **generation** and **Twig**. **Committed Comfy covers (Days 17–21)** ship as **WebP** under **`assets/images/*.webp`**. **`export_cover.py`** supports **`--webp`**, **`--patch-markdown`**, and **`--translation-key`**. **`scripts/frontmatter_audit.py`** rejects ambiguous **`Translation_Key`** maps (supports **`--translation-key`**). **Hub:** `.agents/README.md`. **Archive:** **Retrofit plan** § below. Still **Open:** optional **`ffmpeg`** (row 9), **CI** (row 8), **VAE** experiment. **Prompts:** `.agents/image-prompt-guidelines.md`.
 
 ## Next steps (recommended order)
 
 1. **Optional row 9 remainder** — **`ffmpeg`** or host-specific encode if we ever need formats beyond **`cwebp`** WebP.
-2. **Checklist row 8** — CI / secrets only if generation moves off the laptop.
-3. **Optional guard** — fail CI (or a script) on **duplicate `Translation_Key`** values across `content/blog/**/*.md` so `--translation-key` never resolves to more than two files by accident.
-4. **Archive retrofit (editorial)** — when capacity allows, add **`Image:`** to older pairs in **tier order** (§ *Retrofit plan*); **`--translation-key`** lowers friction per batch.
+2. **Checklist row 8** — CI / secrets only if generation moves off the laptop; optional **GitHub Action** calling **`python3 scripts/frontmatter_audit.py`** on PRs.
+3. **Archive retrofit (editorial)** — when capacity allows, add **`Image:`** to older pairs in **tier order** (§ *Retrofit plan*); **`--translation-key`** lowers friction per batch.
 
 ---
 
@@ -82,7 +81,7 @@ Graph summary:
 | 3. **Twig** — `post.twig` hero; `page-meta.twig` `og:image` + Twitter `summary_large_image`; **`praderas-macros.twig`** resolves **`Image:`** or **Picsum** (blog posts only for hero/social when unset) | **Shipped** |
 | 4. **Listing cards** — `Image:` when set; else **Picsum** (`/seed/{page.id or url}/400/200`) | **Shipped** (`list-card-thumb.twig`, `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`) |
 | 5. **CSS** — responsive hero + `.post-body img` / `figure` | **Shipped** (`praderas-theme.css`) |
-| 6. **Lint** — `Image:` path exists when set | **Shipped** (`scripts/frontmatter_audit.py` scans `content/blog` + `content/blog/en`) |
+| 6. **Lint** — `Image:` path exists when set; **`Translation_Key`** maps to ≤2 posts and exactly one ES + one EN when duplicated | **Shipped** (`scripts/frontmatter_audit.py` scans `content/blog` + `content/blog/en`) |
 | 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Shipped** — `export_cover.py`: PNG + **`--patch-markdown`** / **`--translation-key`** (resolve ES+EN by key) / **`--skip-comfy`** / **`--image-value`** / **`--dry-run-patch`** + **`--webp`**; **Open** optional duplicate-key CI guard |
 | 8. **CI / secrets** — optional | **Open** |
 | 9. **Asset weight** — WebP (`cwebp`) + optional **`ffmpeg`** / PNG optimizers | **Partial** — **`cwebp`** via **`export_cover.py --webp`** + **`webp_cover.sh`**; Days **17–21** **`.webp`** in repo; **Open** further **`ffmpeg`** tuning if needed |
@@ -143,7 +142,7 @@ Adjust tiers when analytics or search-console priorities exist; until then **A �
 ### Out of scope for now (backlog ideas)
 
 - **Inventory script** — e.g. list Markdown files under `content/blog` missing **`Image:`** or still pointing at **`.png`**; add when batch size grows.
-- **CI: duplicate `Translation_Key`** — optional guard so **`--translation-key`** never matches more than two files by accident.
+- **CI wiring** — run **`python3 scripts/frontmatter_audit.py`** on every PR (logic already includes **`Translation_Key`** guard).
 
 ---
 
@@ -164,7 +163,8 @@ Adjust tiers when analytics or search-console priorities exist; until then **A �
 
 ## Changelog (in-repo)
 
-- **2026-05-14:** Day 21 — **`export_cover.py --translation-key`** (resolve ES+EN by **`Translation_Key`**); **`day21-comfyui-sdxl-translation-key-patch.webp`**; checklist **row 7 → Shipped** (optional duplicate-key CI still open).
+- **2026-05-14 (follow-up):** **`scripts/frontmatter_audit.py`** — **`Translation_Key`** duplicate / ES+EN pairing guard (supports **`export_cover.py --translation-key`** safely).
+- **2026-05-14:** Day 21 — **`export_cover.py --translation-key`** (resolve ES+EN by **`Translation_Key`**); **`day21-comfyui-sdxl-translation-key-patch.webp`**; checklist **row 7 → Shipped**.
 - **2026-05-13 (follow-up):** **Retrofit plan** § for archive heroes + future body assets (priority tiers A–D, batch procedure).
 - **2026-05-13:** Day 20 — committed covers **WebP** (remove multi‑MiB PNGs); **`export_cover.py --webp`**, **`webp_cover.sh`**; checklist **row 9 → Partial**; **`.agents/README.md`** hub.
 - **2026-05-12:** Day 19 — `export_cover.py` gains **`--patch-markdown`**, **`--skip-comfy`**, **`--image-value`**, **`--dry-run-patch`**; checklist row 7 updated; Day 19 PNG then **WebP** on 2026-05-13 + paired ES/EN log.

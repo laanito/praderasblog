@@ -27,7 +27,8 @@ En el **Día 19** documentamos **`--patch-markdown`**: tras exportar la portada,
 
 1. **`export_cover.py`** — flag **`--translation-key <KEY>`** (mutuamente excluyente con **`--patch-markdown`**). Resolución determinista: primero el markdown bajo **`content/blog/`**, después el de **`content/blog/en/`**. Si hay **0**, **1** o **más de 2** coincidencias, el comando **falla** con lista de rutas encontradas (evita parches ambiguos).
 2. **Portada del día** — raster **dedicado** **`day21-comfyui-sdxl-translation-key-patch.webp`** (mismo grafo SDXL ubersimple; **seed `21052026`**; prompt CLIP en la sección siguiente; ~**91 KiB** en este export). Misma regla que desde el **Día 20**: **un fichero por `Translation_Key`**, sin reusar portadas de otros días.
-3. **`.agents/comfyui-cover-images.md`** — fila **7** del checklist: **parche por clave** documentado; § migración y “pendientes” alineados con el nuevo flujo.
+3. **`.agents/comfyui-cover-images.md`** — fila **7** del checklist: **parche por clave** documentado; fila **6** amplía el lint con **`Translation_Key`** (misma PR, commit posterior).
+4. **`scripts/frontmatter_audit.py`** — si una **`Translation_Key`** aparece más de dos veces, o dos veces pero **no** como par ES+EN (`content/blog/` + `content/blog/en/`), el audit **falla** (coherente con **`--translation-key`**).
 
 ## Prompt positivo CLIP (portada Día 21)
 

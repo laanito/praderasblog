@@ -25,13 +25,13 @@
 
 ## Operational scripts (outside `.agents/` but tied to these docs)
 
-- `scripts/frontmatter_audit.py` — required fields, tags, **`Image:`** on-disk check.
+- `scripts/frontmatter_audit.py` — required fields, tags, **`Image:`** on-disk check, **`Translation_Key`** duplicate / ES+EN pairing guard.
 - `scripts/comfyui/export_cover.py` — Comfy export + optional **`--patch-markdown`**, **`--translation-key`**, **`--webp`**.
 - `scripts/comfyui/webp_cover.sh` — PNG → WebP via **`cwebp`** (`brew install webp`).
 
 ## Changelog (this index)
 
-- **2026-05-14:** Hub scripts line — `export_cover.py` gains **`--translation-key`** (see `comfyui-cover-images.md` checklist row 7).
+- **2026-05-14:** Hub scripts — `export_cover.py` **`--translation-key`**; `frontmatter_audit.py` **`Translation_Key`** guard (`comfyui-cover-images.md` rows 6–7).
 - **2026-05-14:** `post-template.md` / `image-prompt-guidelines.md` / `comfyui-cover-images.md` — **one dedicated `Image:` asset per article** (no borrowing another post’s cover).
 - **2026-05-13 (follow-up):** Hub table — `comfyui-cover-images.md` now indexes **retrofit** playbook for older posts.
 - **2026-05-13:** Initial **README** — consolidation by **index + reading order**, not merging other files.

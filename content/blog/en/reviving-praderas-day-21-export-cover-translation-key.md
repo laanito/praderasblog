@@ -27,7 +27,8 @@ Image: /assets/images/day21-comfyui-sdxl-translation-key-patch.webp
 
 1. **`export_cover.py`** — **`--translation-key <KEY>`** (mutually exclusive with **`--patch-markdown`**). Deterministic order: Spanish under **`content/blog/`** first, then English under **`content/blog/en/`**. If **0**, **1**, or **more than 2** matches, the command **fails** and prints the hits (avoids ambiguous patches).
 2. **Today’s cover** — dedicated raster **`day21-comfyui-sdxl-translation-key-patch.webp`** (same SDXL ubersimple graph; **seed `21052026`**; CLIP prompt below; ~**91 KiB** on this export). Same rule since **Day 20**: **one file per `Translation_Key`**, no borrowing another day’s art.
-3. **`.agents/comfyui-cover-images.md`** — checklist **row 7**: **key-based patch** documented; migration + backlog notes aligned.
+3. **`.agents/comfyui-cover-images.md`** — checklist **row 7** documented; **row 6** lint expanded for **`Translation_Key`** (same PR, later commit).
+4. **`scripts/frontmatter_audit.py`** — if a **`Translation_Key`** appears on more than two files, or twice without **one** `content/blog/` + **one** `content/blog/en/` split, the audit **fails** (matches **`--translation-key`** expectations).
 
 ## Positive CLIP prompt (Day 21 cover)
 

@@ -114,7 +114,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-day-18-cover-image-hero-social-responsive` | `reviviendo-praderas-dia-18-imagen-hero-og-responsive.md` | `reviving-praderas-day-18-cover-hero-og-responsive.md` | done | Day 18 slice + follow-ups: `Image:` / Picsum **hero + og** on `blog/…` posts (`praderas-macros.twig`), listing thumbs, `export_cover.py`, migration plan, **`image-prompt-guidelines.md`**. |
 | `praderas-day-19-export-cover-image-frontmatter-patch` | `reviviendo-praderas-dia-19-export-cover-parche-image-frontmatter.md` | `reviving-praderas-day-19-export-cover-image-frontmatter.md` | done | Day 19: `export_cover.py` **`--patch-markdown`**, **`--skip-comfy`**, **`--image-value`**, **`--dry-run-patch`**; `day19-comfyui-sdxl-export-frontmatter.webp`. Pair-path polish → **Day 21** **`--translation-key`**. |
 | `praderas-day-20-image-webp-agents-readme-consolidation` | `reviviendo-praderas-dia-20-peso-imagen-webp-indice-agents.md` | `reviving-praderas-day-20-image-weight-webp-agents-index.md` | done | Day 20: **WebP** for Day 17–19 covers (`cwebp`, `webp_cover.sh`, `export_cover.py --webp`); remove heavy PNGs; **`.agents/README.md`** hub; docs refresh. |
-| `praderas-day-21-export-cover-translation-key-flag` | `reviviendo-praderas-dia-21-export-cover-clave-traduccion.md` | `reviving-praderas-day-21-export-cover-translation-key.md` | done | Day 21: `export_cover.py` **`--translation-key`** (patch ES+EN by key); `day21-comfyui-sdxl-translation-key-patch.webp`; checklist row 7 shipped (**Open:** optional duplicate-key CI). |
+| `praderas-day-21-export-cover-translation-key-flag` | `reviviendo-praderas-dia-21-export-cover-clave-traduccion.md` | `reviving-praderas-day-21-export-cover-translation-key.md` | done | Day 21: `export_cover.py` **`--translation-key`**; `day21-comfyui-sdxl-translation-key-patch.webp`; checklist row 7 shipped; **`frontmatter_audit.py`** **`Translation_Key`** guard (same PR follow-up). |
 | `tuqan-phase-0-strategic-foundation` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | done | Tuqan series opener; ES file canonical path `content/blog/` (not `blog/es/`). |
 
 ## Batch migration plan (to avoid context overflow)
@@ -169,6 +169,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-14 (follow-up):** `frontmatter_audit.py` — **`Translation_Key`** duplicate / pairing checks (same PR as Day 21 `--translation-key`).
 - **2026-05-14:** Day 21 ES/EN log (`praderas-day-21-export-cover-translation-key-flag`) — **`export_cover.py --translation-key`** + `day21-comfyui-sdxl-translation-key-patch.webp`; tracker row; `comfyui-cover-images.md` checklist row 7 shipped.
 - **2026-05-14:** Day 20 ES/EN — **dedicated** hero asset `day20-comfyui-sdxl-webp-agents-index.webp` (no reuse of Day 18); `.agents` rules updated (`post-template`, `image-prompt-guidelines`, `comfyui-cover-images`).
 - **2026-05-13 (follow-up):** Linked **cover retrofit** (archive tiers + batches) from **Related** — lives in `comfyui-cover-images.md` (not a separate tracker column).
