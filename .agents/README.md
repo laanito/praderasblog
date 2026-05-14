@@ -18,19 +18,22 @@
 | `multilingual-ui-backlog.md` | Non-post EN gaps (search, archive, footers, etc.). |
 | `proposed-improvements.md` | Prioritized product backlog (phases, Priority 2 covers, etc.). |
 | `phase-5-6-plan.md` | Multilingual (Phase 5) vs JSON/API (Phase 6) roadmap detail. |
-| `comfyui-cover-images.md` | ComfyUI API, `export_cover.py`, WebP weight, checklist rows 7–9, **archive cover retrofit plan** (tiers + batches). |
+| `comfyui-cover-images.md` | ComfyUI API, `export_cover.py` (**`--translation-key`**, `--patch-markdown`, `--webp`), checklist rows 7–9, **archive cover retrofit plan** (tiers + batches). |
+| `retrofit-cover-queue.md` | **Tier A tick list** (*Reviviendo Praderas* Days 1–16): suggested **daily cadence** (≈2 pairs/day target, 1 pair floor) so hero backfill does not stall. |
 | `image-prompt-guidelines.md` | House style + article-linked CLIP prompts before export. |
 | `post-template.md` | Authoring rules and optional fields for new posts. |
 | `day5-consultant-feedback.md` | Day 5 visual/series consultant notes (historical context). |
 
 ## Operational scripts (outside `.agents/` but tied to these docs)
 
-- `scripts/frontmatter_audit.py` — required fields, tags, **`Image:`** on-disk check.
-- `scripts/comfyui/export_cover.py` — Comfy export + optional **`--patch-markdown`**, **`--webp`**.
+- `scripts/frontmatter_audit.py` — required fields, tags, **`Image:`** on-disk check, **`Translation_Key`** duplicate / ES+EN pairing guard.
+- `scripts/comfyui/export_cover.py` — Comfy export + optional **`--patch-markdown`**, **`--translation-key`**, **`--webp`**.
 - `scripts/comfyui/webp_cover.sh` — PNG → WebP via **`cwebp`** (`brew install webp`).
 
 ## Changelog (this index)
 
+- **2026-05-15:** **`retrofit-cover-queue.md`** — Tier A table + **daily cadence** (≈2 ES/EN pairs/day target) linked from `comfyui-cover-images.md` § *Retrofit plan*.
+- **2026-05-14:** Hub scripts — `export_cover.py` **`--translation-key`**; `frontmatter_audit.py` **`Translation_Key`** guard (`comfyui-cover-images.md` rows 6–7).
 - **2026-05-14:** `post-template.md` / `image-prompt-guidelines.md` / `comfyui-cover-images.md` — **one dedicated `Image:` asset per article** (no borrowing another post’s cover).
 - **2026-05-13 (follow-up):** Hub table — `comfyui-cover-images.md` now indexes **retrofit** playbook for older posts.
 - **2026-05-13:** Initial **README** — consolidation by **index + reading order**, not merging other files.

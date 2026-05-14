@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 1
 Lang: en
 Translation_Key: praderas-day-1-technical-audit
+Image: /assets/images/day01-comfyui-sdxl-technical-audit-hero.webp
+
 ---
 
 # Reviving Praderas (Day 1): technical audit and AI-agent improvement plan
@@ -61,6 +63,10 @@ Alongside this blog rebuild, we are starting a parallel technical log around a c
 **how an agent can help iteratively move a legacy PHP5 app toward modern PHP, without breaking everything in the process.**
 
 This will not be theory. We will document real decisions, trade-offs, mistakes, validation, and outcomes.
+
+## Cover (Tier A retrofit queue, 2026)
+
+Per **`.agents/retrofit-cover-queue.md`**, this post ships a dedicated **WebP** hero: **`Image: /assets/images/day01-comfyui-sdxl-technical-audit-hero.webp`** (~**106 KiB**, SDXL **1024×768**, seed **`01052026`**, Comfy prefix **`praderas_day01_retrofit`**). The ES/EN pair shares that path; patched with **`export_cover.py --translation-key praderas-day-1-technical-audit`** + **`--webp --webp-delete-png`**.
 
 ## Day 1 closing
 

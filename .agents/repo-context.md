@@ -21,7 +21,7 @@
 - `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.
 - `translation-batches.md` — **how to run translation in batches:** context-window rationale, whole-series rule, glossary updates, honest human wall-clock vs specialist estimates, merge checklist (read before shipping ES/EN pairs).
 - `multilingual-ui-backlog.md` — **non-post EN gaps** (search, archive, footers, sitemap index): what shipped vs pending for Twig/`content_lang` routes.
-- `comfyui-cover-images.md` — **optional ComfyUI cover pipeline:** SDXL `/prompt`, `export_cover.py` (PNG + **`--webp`** + **`--patch-markdown`**), **`webp_cover.sh`**, **WebP** covers in `assets/images/`, checklist (**row 9** partial).
+- `comfyui-cover-images.md` — **optional ComfyUI cover pipeline:** SDXL `/prompt`, `export_cover.py` (PNG + **`--webp`** + **`--patch-markdown`** + **`--translation-key`**), **`webp_cover.sh`**, **WebP** covers in `assets/images/`, checklist (**rows 6–7 shipped, 9** partial), **retrofit** § + **`retrofit-cover-queue.md`** (Tier A cadence).
 - `image-prompt-guidelines.md` — **cover prompt coherence:** house tone + anchoring ComfyUI positives to article metadata (`Title`, `Description`, tags); use with `export_cover.py`.
 - `post-template.md` — front matter conventions for new posts (`Image:` may target **`.webp`**).
 - `day5-consultant-feedback.md` — Day 5 sequence and status notes (visual + series completed, follow-up UX tweaks).
@@ -38,7 +38,7 @@
   - `categorias.md` category index (`Template: categories`) — URL typically `/categorias`
   - `blog/*.md` post content (Spanish URLs, `/blog/...`)
   - `blog/en/*.md` English posts (`/blog/en/...`)
-- `assets/` — static files served from site root (e.g. **`assets/images/*.webp`** for optional post **`Image:`** heroes and social previews; Comfy exports **PNG** then **`cwebp`** in-repo per **Day 20** / `comfyui-cover-images.md`). **Older posts** without **`Image:`** still use Picsum; a **retrofit** playbook (priority + batches) is in **`comfyui-cover-images.md`** § *Retrofit plan*.
+- `assets/` — static files served from site root (e.g. **`assets/images/*.webp`** for optional post **`Image:`** heroes and social previews; Comfy exports **PNG** then **`cwebp`** in-repo per **Day 20** / `comfyui-cover-images.md`). **Older posts** without **`Image:`** still use Picsum; a **retrofit** playbook (priority + batches) is in **`comfyui-cover-images.md`** § *Retrofit plan*; **Tier A tick list + daily cadence** in **`retrofit-cover-queue.md`**.
 - `themes/bootstrap-blog/`
   - `index.twig` base layout + sidebar + navbar
   - `blog.twig` listing cards (Spanish paginated `/blog`)
@@ -114,7 +114,7 @@
 ## Phase 3 (2026-04, completed in repo)
 - Front matter normalization pass across legacy posts: missing `Tags` filled, lowercase `tags` standardized to `Tags`, and one date outlier normalized.
 - Canonical taxonomy is now complete across all posts (`Tags` present everywhere).
-- Added `scripts/frontmatter_audit.py` (schema/date/taxonomy checks) for repeatable verification.
+- Added `scripts/frontmatter_audit.py` (schema/date/taxonomy, **`Image:`** paths, **`Translation_Key`** duplicate / ES+EN pairing) for repeatable verification.
 - Added `.agents/post-template.md` as starter editorial template for new entries.
 
 ## Phase 4 (SEO & discoverability, 2026-04)
