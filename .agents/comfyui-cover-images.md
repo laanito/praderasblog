@@ -170,9 +170,11 @@ Large ad-hoc batches are still fine; the cadence exists so **small daily progres
 - **`assets/images/day19-comfyui-sdxl-export-frontmatter.webp`** — **1024×768** WebP (~**64 KiB**); Day 19 **`--patch-markdown`** demo; **seed `19052026`**.
 - **`assets/images/day20-comfyui-sdxl-webp-agents-index.webp`** — **1024×768** WebP (~**76 KiB**); Day 20 ship log (WebP weight + `.agents` hub); **seed `20052026`**.
 - **`assets/images/day21-comfyui-sdxl-translation-key-patch.webp`** — **1024×768** WebP (~**91 KiB**); Day 21 **`--translation-key`** demo; **seed `21052026`**.
+- **`assets/images/day01-comfyui-sdxl-technical-audit-hero.webp`** — **1024×768** WebP (~**106 KiB**); **Tier A retrofit** Day 1 pair; **seed `01052026`**.
 
 ## Changelog (in-repo)
 
+- **2026-05-15 (Tier A retrofit):** **`day01-comfyui-sdxl-technical-audit-hero.webp`** — Day 1 ES/EN **`Image:`** via **`--translation-key`**; **`retrofit-cover-queue.md`** row 1 → **done**.
 - **2026-05-15:** **Retrofit cadence** — § *Daily cadence* + link to **`.agents/retrofit-cover-queue.md`** (Tier A tick table; target **2 pairs/day**, floor **1**).
 - **2026-05-14 (follow-up):** **`scripts/frontmatter_audit.py`** — **`Translation_Key`** duplicate / ES+EN pairing guard (supports **`export_cover.py --translation-key`** safely).
 - **2026-05-14:** Day 21 — **`export_cover.py --translation-key`** (resolve ES+EN by **`Translation_Key`**); **`day21-comfyui-sdxl-translation-key-patch.webp`**; checklist **row 7 → Shipped**.

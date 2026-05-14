@@ -24,7 +24,7 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 
 | Series_Order | `Translation_Key` | Hero `Image:` | Notes |
 |--------------|-------------------|---------------|-------|
-| 1 | `praderas-day-1-technical-audit` | todo | |
+| 1 | `praderas-day-1-technical-audit` | done | `day01-comfyui-sdxl-technical-audit-hero.webp` (~106 KiB); seed `01052026`; Tier A retrofit on open Day 21 PR leg. |
 | 2 | `praderas-day-2-phase-1-listing-search-pagination` | todo | |
 | 3 | `praderas-day-3-phase-2-navigation-categories-breadcrumbs-related` | todo | |
 | 4 | `praderas-day-4-phase-3-metadata-taxonomy-frontmatter-lint` | todo | |
@@ -47,4 +47,5 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 
 ## Changelog (this file)
 
+- **2026-05-15 (follow-up):** **Row 1 done** — Day 1 ES/EN hero WebP + `Image:` (`praderas-day-1-technical-audit`).
 - **2026-05-15:** Initial queue + **daily cadence** (target 2 pairs / floor 1 / ceiling discretionary).

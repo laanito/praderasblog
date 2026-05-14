@@ -169,6 +169,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-15 (Tier A retrofit):** **`retrofit-cover-queue.md`** row **1** → **done** — Day 1 ES/EN **`Image:`** + **`day01-comfyui-sdxl-technical-audit-hero.webp`** (`--translation-key praderas-day-1-technical-audit`).
 - **2026-05-15:** **`retrofit-cover-queue.md`** — Tier A tick table + **daily cadence** (~2 ES/EN pairs/day target, 1 pair floor); linked from **Related** + `multilingual-ui-backlog.md` “How to pick up work”.
 - **2026-05-14 (follow-up):** `frontmatter_audit.py` — **`Translation_Key`** duplicate / pairing checks (same PR as Day 21 `--translation-key`).
 - **2026-05-14:** Day 21 ES/EN log (`praderas-day-21-export-cover-translation-key-flag`) — **`export_cover.py --translation-key`** + `day21-comfyui-sdxl-translation-key-patch.webp`; tracker row; `comfyui-cover-images.md` checklist row 7 shipped.

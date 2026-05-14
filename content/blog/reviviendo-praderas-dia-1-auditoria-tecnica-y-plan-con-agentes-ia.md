@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 1
 Lang: es
 Translation_Key: praderas-day-1-technical-audit
+Image: /assets/images/day01-comfyui-sdxl-technical-audit-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 1): auditoría técnica y plan de mejoras con agentes de IA
@@ -63,6 +65,10 @@ Además de mejorar el blog, iniciaremos una bitácora técnica paralela sobre un
 No será teoría. Vamos a documentar decisiones reales, trade-offs, errores, validaciones y resultados.
 
 Si te interesan la modernización progresiva, la deuda técnica bien gestionada y el uso práctico de IA en software legacy, esta serie será para ti.
+
+## Portada (retrofit cola Tier A, 2026)
+
+Como parte de **`.agents/retrofit-cover-queue.md`**, este artículo gana un héroe **WebP** dedicado: **`Image: /assets/images/day01-comfyui-sdxl-technical-audit-hero.webp`** (~**106 KiB**, SDXL **1024×768**, seed **`01052026`**, prefijo Comfy **`praderas_day01_retrofit`**). El par ES/EN comparte la misma ruta; parche con **`export_cover.py --translation-key praderas-day-1-technical-audit`** + **`--webp --webp-delete-png`**.
 
 ## Cierre del Día 1
 
