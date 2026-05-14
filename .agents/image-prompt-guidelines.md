@@ -62,7 +62,7 @@ Assemble in this order (single paragraph or two short sentences):
 1. Read Title + Description + Tags (and Series if useful).
 2. Draft the **positive** string following §§1–3; read it aloud — if it sounds like stock photo SEO, simplify.
 3. Pick a **numeric seed**; document it in the ship log or commit message when the asset ships.
-4. Run `export_cover.py` with `--positive "..."` and, in one step, **`--patch-markdown`** on the paired `.md` files (or commit the raster and patch later with **`--skip-comfy`**). Use the same **`Image:`** path on ES and EN.
+4. Run `export_cover.py` with `--positive "..."` and, in one step, **`--patch-markdown`** on the paired `.md` files **or** **`--translation-key`** when both posts already exist under `content/blog/` + `content/blog/en/` (mutually exclusive with **`--patch-markdown`**). You can also commit the raster and patch later with **`--skip-comfy`**. Use the same **`Image:`** path on ES and EN.
 5. **Optional:** run **`cwebp`** (see **`scripts/comfyui/webp_cover.sh`** or **`export_cover.py --webp`**) so **`Image:`** points at a **~50 KiB WebP** instead of a **~1 MiB PNG**; then **`ffmpeg`** / other encoders only if needed (checklist row 9 in `comfyui-cover-images.md`).
 
 ---
@@ -77,6 +77,7 @@ Assemble in this order (single paragraph or two short sentences):
 
 ## Changelog (in-repo)
 
+- **2026-05-14:** Workflow step 4 — **`--translation-key`** as alternative to listing two Markdown paths.
 - **2026-05-14:** Rules of thumb — **one export per `Translation_Key`**, no cross-post cover reuse (`comfyui-cover-images.md` step 4).
 - **2026-05-13:** Step 5 — **`cwebp`** / **`export_cover.py --webp`** as default weight fix; **`ffmpeg`** optional extra (row 9).
 - **2026-05-12:** Workflow step 4 — **`--patch-markdown`** / **`--skip-comfy`**; step 5 — asset weight / **`ffmpeg`** (checklist row 9 in `comfyui-cover-images.md`).

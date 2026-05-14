@@ -2,7 +2,7 @@
 
 **Purpose:** Track **non-post** surfaces that still mix languages or lack an EN route, so future agents do not rediscover the same gaps. **Canonical translation ledger** for posts remains `translation-migration-tracker.md`.
 
-**Last reviewed:** 2026-05-13 (Day 20: **WebP** covers + **`README.md`** hub; Day 19 `export_cover` patch; Day 18 hero/Picsum + `image-prompt-guidelines.md`).
+**Last reviewed:** 2026-05-14 (Day 21: **`export_cover.py --translation-key`**; Day 20 **WebP** + **`README.md`** hub; Day 19 `--patch-markdown`; Day 18 hero/Picsum + `image-prompt-guidelines.md`).
 
 ---
 

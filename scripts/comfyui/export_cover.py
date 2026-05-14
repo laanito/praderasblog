@@ -6,9 +6,12 @@ and save the first SaveImage (node 6) PNG to a path inside this repo.
 Requires a running ComfyUI instance (default http://127.0.0.1:8188).
 Override with COMFYUI_URL.
 
-After a successful export (or with --skip-comfy when the PNG already exists),
+After a successful export (or with --skip-comfy when the PNG or WebP already exists),
 optional --patch-markdown updates YAML front matter: set or replace Image:
 with a site-relative path (default derived from --output under repo root).
+Optional --translation-key <KEY> finds the ES + EN posts under content/blog/
+that share that Translation_Key and patches both (mutually exclusive with
+--patch-markdown).
 
 With --webp, runs cwebp to write a sibling .webp (use --webp-delete-png to
 remove the PNG after encoding). Requires: brew install webp
@@ -40,6 +43,13 @@ Examples:
     --webp --webp-delete-png \\
     --patch-markdown content/blog/reviviendo-praderas-dia-20-....md \\
       content/blog/en/reviving-praderas-day-20-....md
+
+  # Day 21+: patch by Translation_Key (scans content/blog + content/blog/en):
+  python3 scripts/comfyui/export_cover.py \\
+    --output assets/images/day21-comfyui-sdxl-translation-key-patch.png \\
+    --positive "..." --seed 21052026 --prefix praderas_day21_export \\
+    --webp --webp-delete-png \\
+    --translation-key praderas-day-21-export-cover-translation-key-flag
 """
 
 from __future__ import annotations
@@ -62,6 +72,7 @@ POLL_MAX_S = 600.0
 
 FRONT_MATTER = re.compile(r"\A(---\s*\n)(.*?)(\n---\s*\n)(.*)\Z", re.DOTALL)
 IMAGE_LINE = re.compile(r"(?m)^Image:\s*.+$")
+TRANSLATION_KEY_LINE = re.compile(r"(?m)^Translation_Key:\s*(.+)\s*$")
 
 
 def _post_json(url: str, payload: dict, timeout: int = 30) -> dict:
@@ -91,6 +102,47 @@ def find_repo_root(start: Path) -> Path:
         if (d / "config" / "config.yml").is_file() and (d / "content").is_dir():
             return d
     return cur
+
+
+def markdown_paths_for_translation_key(repo_root: Path, key: str) -> list[Path]:
+    """Paths to ES + EN posts sharing this Translation_Key (exactly two expected).
+
+    Scans ``content/blog/*.md`` and ``content/blog/en/*.md``. Spanish hits sort
+    before English (``content/blog/en/``).
+    """
+    want = key.strip()
+    if not want:
+        return []
+    root = repo_root.resolve()
+    hits: list[Path] = []
+    for sub in ("content/blog", "content/blog/en"):
+        d = root / sub
+        if not d.is_dir():
+            continue
+        for md in sorted(d.glob("*.md")):
+            try:
+                text = md.read_text(encoding="utf-8")
+            except OSError as exc:
+                print(f"warning: skip {md}: {exc}", file=sys.stderr)
+                continue
+            m = FRONT_MATTER.match(text)
+            if not m:
+                continue
+            inner = m.group(2)
+            tm = TRANSLATION_KEY_LINE.search(inner)
+            if not tm:
+                continue
+            if tm.group(1).strip() != want:
+                continue
+            hits.append(md)
+
+    def sort_key(p: Path) -> tuple[int, str]:
+        rel = p.resolve().relative_to(root).as_posix()
+        is_en = rel.startswith("content/blog/en/")
+        return (1 if is_en else 0, rel)
+
+    hits.sort(key=sort_key)
+    return hits
 
 
 def default_image_site_path(repo_root: Path, output: Path) -> str:
@@ -285,6 +337,16 @@ def main() -> int:
         help="After export (or with --skip-comfy), set or replace Image: in these files",
     )
     p.add_argument(
+        "--translation-key",
+        default="",
+        metavar="KEY",
+        help=(
+            "After export (or with --skip-comfy), patch Image: on the two posts that "
+            "share this Translation_Key (scans content/blog + content/blog/en). "
+            "Mutually exclusive with --patch-markdown."
+        ),
+    )
+    p.add_argument(
         "--image-value",
         default="",
         help="Site path for Image: (default: derived from --output under repo root, e.g. /assets/images/foo.webp)",
@@ -310,13 +372,38 @@ def main() -> int:
 
     out_path: Path = args.output
     patch_paths = list(args.patch_markdown)
+    tk = (args.translation_key or "").strip()
+
+    if tk and patch_paths:
+        print(
+            "error: use --translation-key or --patch-markdown, not both",
+            file=sys.stderr,
+        )
+        return 1
+    if tk:
+        repo_root_tk = find_repo_root(out_path.parent)
+        patch_paths = markdown_paths_for_translation_key(repo_root_tk, tk)
+        if len(patch_paths) != 2:
+            print(
+                "error: "
+                f"Translation_Key {tk!r} matched {len(patch_paths)} file(s), "
+                "expected exactly 2 (one under content/blog/, one under content/blog/en/)",
+                file=sys.stderr,
+            )
+            for hit in patch_paths:
+                print(f"  {hit}", file=sys.stderr)
+            return 1
+        print("resolved Translation_Key -> " + " | ".join(str(p) for p in patch_paths))
 
     if args.skip_comfy:
         if not out_path.is_file():
             print(f"error: --skip-comfy requires existing file {out_path}", file=sys.stderr)
             return 1
         if not patch_paths:
-            print("error: --skip-comfy requires --patch-markdown", file=sys.stderr)
+            print(
+                "error: --skip-comfy requires --patch-markdown or --translation-key",
+                file=sys.stderr,
+            )
             return 1
     else:
         if not args.positive.strip():
