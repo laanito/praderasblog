@@ -2,7 +2,7 @@
 
 **Purpose:** Track **non-post** surfaces that still mix languages or lack an EN route, so future agents do not rediscover the same gaps. **Canonical translation ledger** for posts remains `translation-migration-tracker.md`.
 
-**Last reviewed:** 2026-05-14 (Day 21: **`export_cover.py --translation-key`**; Day 20 **WebP** + **`README.md`** hub; Day 19 `--patch-markdown`; Day 18 hero/Picsum + `image-prompt-guidelines.md`).
+**Last reviewed:** 2026-05-15 (retrofit **queue + cadence** in `retrofit-cover-queue.md`; Day 21 **`export_cover.py --translation-key`**; Day 20 **WebP** + **`README.md`** hub; Day 19 `--patch-markdown`; Day 18 hero/Picsum + `image-prompt-guidelines.md`).
 
 ---
 
@@ -58,3 +58,4 @@
 1. Read `translation-batches.md` + `translation-migration-tracker.md` for post batches.
 2. For UI-only changes, prefer **`content_lang`** branching in Twig or small **`65-Multilingual.php`** variables over duplicating content unless an EN **route** is required.
 3. When adding a paired top page under `content/en/`, set **`Translation_Key`** on **both** languages and update **`nav.twig`** if the page belongs in primary navigation.
+4. For **hero cover retrofit** on older *Reviviendo Praderas* pairs, use **`.agents/retrofit-cover-queue.md`** (daily cadence) + **`comfyui-cover-images.md`** § *Retrofit plan*.

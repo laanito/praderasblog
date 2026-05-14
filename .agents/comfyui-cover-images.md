@@ -131,9 +131,19 @@ When a ship log (or any post) should ship a **real** cover instead of a placehol
 
 Adjust tiers when analytics or search-console priorities exist; until then **A → B** is the clearest editorial win.
 
+### Daily cadence (steady backfill)
+
+Retrofit is easy to **defer indefinitely** unless it has a rhythm. Suggested operating mode:
+
+- **Target:** **two** ES/EN pairs per day (**two** new WebP heroes, **four** posts) when Comfy + review time allow.
+- **Floor:** **at least one** pair on any day you touch covers — keeps the habit alive.
+- **Queue:** Track Tier **A** progress in **`.agents/retrofit-cover-queue.md`** (tick **`done`** after each merge).
+
+Large ad-hoc batches are still fine; the cadence exists so **small daily progress** is always an acceptable outcome.
+
 ### Procedure (per batch)
 
-1. **Pick a small batch** (e.g. 3–5 **`Translation_Key`** pairs or one series slice) so review stays light.
+1. **Pick the next rows** from **`.agents/retrofit-cover-queue.md`** (or another tier slice) — e.g. **1–2** pairs for a daily PR, or **3–5** pairs when batching.
 2. **Produce art** — Comfy path: **`export_cover.py`** + **`--webp`** + house prompts (`.agents/image-prompt-guidelines.md`). Static path: design/export once, still **`cwebp`** before commit.
 3. **Naming** — Keep **`assets/images/<slug-or-dayNN>-<role>.webp`** predictable and **unique per `Translation_Key`** (never reuse another post’s basename as a shortcut); avoid reusing another day’s file unless the article explicitly discusses reuse.
 4. **Edit front matter** — Set identical **`Image:`** on **both** `content/blog/...` and `content/blog/en/...`; run **`python3 scripts/frontmatter_audit.py`**.
@@ -163,6 +173,7 @@ Adjust tiers when analytics or search-console priorities exist; until then **A �
 
 ## Changelog (in-repo)
 
+- **2026-05-15:** **Retrofit cadence** — § *Daily cadence* + link to **`.agents/retrofit-cover-queue.md`** (Tier A tick table; target **2 pairs/day**, floor **1**).
 - **2026-05-14 (follow-up):** **`scripts/frontmatter_audit.py`** — **`Translation_Key`** duplicate / ES+EN pairing guard (supports **`export_cover.py --translation-key`** safely).
 - **2026-05-14:** Day 21 — **`export_cover.py --translation-key`** (resolve ES+EN by **`Translation_Key`**); **`day21-comfyui-sdxl-translation-key-patch.webp`**; checklist **row 7 → Shipped**.
 - **2026-05-13 (follow-up):** **Retrofit plan** § for archive heroes + future body assets (priority tiers A–D, batch procedure).

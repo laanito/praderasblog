@@ -2,7 +2,7 @@
 
 **Purpose:** Plan and record the move from Spanish-only posts to paired EN content (`content/blog/en/`, same **`Translation_Key`** as the Spanish file). This file is the **working ledger** for agents and humans: status, vocabulary, and language rules—not the public site.
 
-**Related:** `.agents/README.md` (hub index), `phase-5-6-plan.md` (Phase 5 goals), `post-template.md` (`Lang`, `Translation_Key`), `translation-batches.md` (batching rules, context explainer, honest time reporting), homepage pair `content/index.md` ↔ `content/en/index.md`. **Optional heroes on older pairs:** when retrofitting **`Image:`** on translated posts, follow the same **paired-path** rule as new work — see **`comfyui-cover-images.md`** § *Retrofit plan*.
+**Related:** `.agents/README.md` (hub index), `phase-5-6-plan.md` (Phase 5 goals), `post-template.md` (`Lang`, `Translation_Key`), `translation-batches.md` (batching rules, context explainer, honest time reporting), homepage pair `content/index.md` ↔ `content/en/index.md`. **Optional heroes on older pairs:** when retrofitting **`Image:`** on translated posts, follow the same **paired-path** rule as new work — see **`comfyui-cover-images.md`** § *Retrofit plan* and tick progress in **`retrofit-cover-queue.md`**.
 
 ---
 
@@ -169,6 +169,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-15:** **`retrofit-cover-queue.md`** — Tier A tick table + **daily cadence** (~2 ES/EN pairs/day target, 1 pair floor); linked from **Related** + `multilingual-ui-backlog.md` “How to pick up work”.
 - **2026-05-14 (follow-up):** `frontmatter_audit.py` — **`Translation_Key`** duplicate / pairing checks (same PR as Day 21 `--translation-key`).
 - **2026-05-14:** Day 21 ES/EN log (`praderas-day-21-export-cover-translation-key-flag`) — **`export_cover.py --translation-key`** + `day21-comfyui-sdxl-translation-key-patch.webp`; tracker row; `comfyui-cover-images.md` checklist row 7 shipped.
 - **2026-05-14:** Day 20 ES/EN — **dedicated** hero asset `day20-comfyui-sdxl-webp-agents-index.webp` (no reuse of Day 18); `.agents` rules updated (`post-template`, `image-prompt-guidelines`, `comfyui-cover-images`).
