@@ -26,7 +26,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 - **English posts:** `content/blog/en/<slug>.md` → `/blog/en/<slug>`.
 - **Paired pages:** identical **`Translation_Key`** in front matter; optional **`Lang`**: `es` / `en`.
 - **UI copy in EN only:** `content/en/*.md` (e.g. `/en`, `/en/blog`, `/en/series`, `/en/categorias`).
-- **Tag taxonomy:** Canonical **`Tags` values stay Spanish** in Markdown (audit + URLs). **English UI labels** for tags are a **display map** in `plugins/65-Multilingual.php` (`tag_label_en`); see **Vocabulary** and `multilingual-ui-backlog.md`.
+- **Tag taxonomy:** Canonical **`Tags` values stay Spanish** in Markdown (audit + URLs). **English UI labels** and **category blurbs** load from **`scripts/tag_vocabulary.json`** via `plugins/65-Multilingual.php` (`tag_label_en`, `tag_blurb_es`, `tag_blurb_en` in Twig); see **Vocabulary** and `multilingual-ui-backlog.md`.
 
 ---
 
@@ -144,16 +144,31 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 | Context | ES (current) | EN (preferred) | Notes |
 |---------|--------------|----------------|--------|
+| **Tag source of truth** | `scripts/tag_vocabulary.json` | same file | `label_en`, `blurb_es`, `blurb_en` per canonical tag; audit enforces parity with `CANONICAL_TAGS`. |
 | Series name | Reviviendo Praderas | Reviving Praderas | EN posts use EN series title; same `Series_Slug`. |
 | Series name | Control de Tiempo Desacoplado | Decoupled time tracking | Same `Series_Slug: control-de-tiempo-desacoplado`; EN detail URLs use `/en/series/<slug>/`. |
-| Sidebar label | Artículos recientes | Recent posts | Keep sentence case in EN UI. |
-| Sidebar CTA | Ver archivo | View archive | Keep concise CTA wording. |
-| Roadmap wording | Fase 4: SEO y descubrimiento | Phase 4: SEO and discoverability | Prefer "discoverability" in EN series posts. |
-| Tag pills / hubs (UI EN) | Ciberseguridad, Privacidad, … | Cybersecurity, Privacy, … | Canonical YAML unchanged; labels from `tag_label_en` in `65-Multilingual.php`. |
-| Productivity guides (batch 5) | Guía Completa de … | “Complete guide” / concise EN title in post `Title` | Keep product names (Taskwarrior, Redmine, Etherpad, Focalboard, Nextcloud) unchanged. |
-| Mobile cluster (batch 6) | desarrollo móvil / frameworks | “mobile app development”, “frameworks” | Keep canonical tag `Aplicaciones Moviles` in YAML. |
-| Crypto posts | inversión / “token” hype | neutral/educational EN titles; disclaimers where needed | Not financial advice; figures go stale—prefer pointers to official docs. |
-| *(add)* | | | |
+| Nav (primary) | Inicio, Blog, Series, Categorías, Acerca | Home, Blog, Series, Categories, About | `nav.twig`; EN targets under `content/en/`. |
+| Breadcrumb home | Inicio | Home | `content_lang` branch in templates. |
+| Sidebar label | Artículos recientes | Recent posts | Sentence case in EN. |
+| Sidebar CTA | Ver archivo | View archive | Links to `/archivo` or `/en/archivo`. |
+| Sidebar search button | Buscar | Search | `sidebar.twig`. |
+| Listing CTA | Leer más → | Read more → | `blog.twig` (ES `/blog`), `blog-en.twig`, `tags.twig`, `search.twig`. |
+| Blog pager (ES `/blog`) | Entradas anteriores / Entradas recientes | — | Spanish-only route by design; `blog.twig`. |
+| Blog pager (EN `/en/blog`) | — | Older posts / Newer posts | `blog-en.twig` + `10-Pagination.php` filter `blog/en/*`. |
+| Blog pager indicator | Página N de M | Page N of M | Listing templates. |
+| Post date line | Publicado el … | Published on … | `post.twig`. |
+| Related block | Entradas relacionadas | Related posts | `post.twig` `aria-label`. |
+| Post nav | Entradas anteriores y posteriores | Previous and next posts | `post.twig`. |
+| Tag hub title | Resultados de la búsqueda para etiqueta: | Posts tagged: | `tags.twig` (filter view). |
+| Categories footnote | … buscador del lateral | … or search | EN links to `en/search` (Day 15+). |
+| Roadmap wording | Fase 4: SEO y descubrimiento | Phase 4: SEO and discoverability | EN series posts. |
+| Tag pills / hubs (UI EN) | Ciberseguridad, Privacidad, … | Cybersecurity, Privacy, … | Canonical YAML unchanged; display from `tag_vocabulary.json`. |
+| Productivity guides (batch 5) | Guía Completa de … | “Complete guide” / concise EN `Title` | Product names unchanged (Taskwarrior, Redmine, Etherpad, Focalboard, Nextcloud). |
+| Mobile cluster (batch 6) | desarrollo móvil / frameworks | mobile app development, frameworks | Canonical tag `Aplicaciones Moviles` in YAML. |
+| Security cluster (batch 3) | ciberseguridad, privacidad | cybersecurity, privacy | Paired posts + Day 11 UI slice. |
+| Crypto posts (batch 7) | inversión / token hype | neutral/educational EN; disclaimers | Not financial advice; prefer official docs over stale figures. |
+| SQL schema name (CTD series) | `control_tiempo` | keep `control_tiempo` in SQL snippets | EN posts explain; ORM may translate field names separately. |
+| Editorial eras (home) | 2020 human / 2023–24 IA prose / 2026 IA-led engineering | same facts in EN | Keep `index.md` ↔ `en/index.md` aligned. |
 
 ---
 
@@ -169,6 +184,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-19:** Phase 5 UI closure — `scripts/tag_vocabulary.json` (canonical tag labels + blurbs); `65-Multilingual.php` exposes `tag_blurb_es` / `tag_blurb_en`; `categories.twig` reads plugin maps; EN `/en/blog` pagination; vocabulary table expanded; `multilingual-ui-backlog.md` marked closed (bilingual YAML `Tags` deferred).
 - **2026-05-15 (Tier A retrofit):** **`retrofit-cover-queue.md`** row **1** → **done** — Day 1 ES/EN **`Image:`** + **`day01-comfyui-sdxl-technical-audit-hero.webp`** (`--translation-key praderas-day-1-technical-audit`).
 - **2026-05-15:** **`retrofit-cover-queue.md`** — Tier A tick table + **daily cadence** (~2 ES/EN pairs/day target, 1 pair floor); linked from **Related** + `multilingual-ui-backlog.md` “How to pick up work”.
 - **2026-05-14 (follow-up):** `frontmatter_audit.py` — **`Translation_Key`** duplicate / pairing checks (same PR as Day 21 `--translation-key`).

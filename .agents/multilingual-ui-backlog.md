@@ -2,7 +2,9 @@
 
 **Purpose:** Track **non-post** surfaces that still mix languages or lack an EN route, so future agents do not rediscover the same gaps. **Canonical translation ledger** for posts remains `translation-migration-tracker.md`.
 
-**Last reviewed:** 2026-05-15 (retrofit **queue + cadence** in `retrofit-cover-queue.md`; Day 21 **`export_cover.py --translation-key`**; Day 20 **WebP** + **`README.md`** hub; Day 19 `--patch-markdown`; Day 18 hero/Picsum + `image-prompt-guidelines.md`).
+**Last reviewed:** 2026-05-19 (Phase 5 UI **closed** — vocabulary JSON, EN blog pagination, categories/search footnote fix).
+
+**Status:** **Phase 5 multilingual UI is complete** for the current product model (Spanish canonical `Tags` in YAML; English display via `scripts/tag_vocabulary.json`). **Phase 6** (JSON endpoints) is tracked in `phase-5-6-plan.md`.
 
 ---
 
@@ -10,7 +12,7 @@
 
 ### Day 11 slice
 
-- English **display labels** for canonical Spanish tag names (`tag_label_en` in `65-Multilingual.php`); URLs keep `?tag=<canonical Spanish key>`.
+- English **display labels** for canonical Spanish tag names (`tag_label_en` from `scripts/tag_vocabulary.json` via `65-Multilingual.php`); URLs keep `?tag=<canonical Spanish key>`.
 - **`/en/tags`** paired with Spanish `tags` (`Translation_Key: praderas-nav-tags`); `tags.twig` filters post cards by language.
 - **`/en/about-picocms`** paired with `acerca-de-picocms` (`Translation_Key: praderas-nav-about-picocms`); EN nav **About** targets the EN page.
 - **`sidebar.twig`**, **`post.twig`**, **`categories.twig`**, **`breadcrumbs.twig`**: tag hubs, pills, archive CTA copy, breadcrumb `aria-label`, EN footer on `post.twig`.
@@ -43,19 +45,29 @@
 - **Listings / search / tags:** `list-card-thumb.twig` — **`Image:`** when present, else **Picsum** with stable seed (`blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`).
 - **Responsive formatting:** `praderas-theme.css` rules for `.pradera-hero-*` and `.post-body img` / `figure` so layouts do not break on narrow viewports.
 
+### Day 22 slice (Phase 5 vocabulary + UI closure)
+
+- **`scripts/tag_vocabulary.json`** — single source for `label_en`, `blurb_es`, `blurb_en` per canonical tag; loaded by `65-Multilingual.php`.
+- **`categories.twig`** — removed duplicated inline blurbs; EN footnote links to **`en/search`** (stale “Spanish-only search” copy removed).
+- **`/en/blog` pagination** — `10-Pagination.php` filters `blog/en/*`; `blog-en.twig` uses `paged_pages` + EN pager labels.
+- **`frontmatter_audit.py`** — validates vocabulary JSON ↔ `CANONICAL_TAGS`.
+- **Vocabulary table** in `translation-migration-tracker.md` expanded (UI chrome, batches, series).
+
 ---
 
-## Pending (prioritized)
+## Deferred (not required for Phase 5 “done”)
 
 | Item | Route / surface | Notes |
 |------|-----------------|-------|
-| **Optional: EN tag vocabulary** | Front matter `Tags` | Today we intentionally keep **one** YAML tag set; migrating to bilingual keys would be a **large** content + tooling change—only if product explicitly wants distinct taxonomies. |
+| **Bilingual YAML `Tags`** | Front matter `Tags` | Would be a **large** content + tooling + URL migration. Current model: **one** Spanish canonical set + EN display map. Revisit only if product explicitly wants distinct taxonomies. |
 
 ---
 
 ## How to pick up work
 
-1. Read `translation-batches.md` + `translation-migration-tracker.md` for post batches.
-2. For UI-only changes, prefer **`content_lang`** branching in Twig or small **`65-Multilingual.php`** variables over duplicating content unless an EN **route** is required.
-3. When adding a paired top page under `content/en/`, set **`Translation_Key`** on **both** languages and update **`nav.twig`** if the page belongs in primary navigation.
-4. For **hero cover retrofit** on older *Reviviendo Praderas* pairs, use **`.agents/retrofit-cover-queue.md`** (daily cadence) + **`comfyui-cover-images.md`** § *Retrofit plan*.
+1. Read `translation-batches.md` + `translation-migration-tracker.md` for post batches (all **done**).
+2. For **new canonical tags**, add a row to `scripts/tag_vocabulary.json` and `CANONICAL_TAGS` in `frontmatter_audit.py`, then run the audit.
+3. For UI-only changes, prefer **`content_lang`** branching in Twig or extend **`tag_vocabulary.json`** / `65-Multilingual.php` over duplicating content unless an EN **route** is required.
+4. When adding a paired top page under `content/en/`, set **`Translation_Key`** on **both** languages and update **`nav.twig`** if the page belongs in primary navigation.
+5. For **hero cover retrofit** on older *Reviviendo Praderas* pairs, use **`.agents/retrofit-cover-queue.md`** (daily cadence) + **`comfyui-cover-images.md`** § *Retrofit plan*.
+6. **Next major bucket:** Phase 6 JSON (`phase-5-6-plan.md`).

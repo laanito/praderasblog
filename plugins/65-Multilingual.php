@@ -12,10 +12,15 @@
  * - Spanish posts: content/blog/*.md → /blog/slug (default)
  * - English posts: content/blog/en/*.md → /blog/en/slug
  * - English top pages: content/en/*.md → /en/slug (e.g. /en/series, /en/categorias)
+ *
+ * Tag display vocabulary (labels + category blurbs): scripts/tag_vocabulary.json
  */
 class Multilingual extends AbstractPicoPlugin
 {
     private $alternatesByKey = array();
+
+    /** @var array<string, array{label_en: string, blurb_es: string, blurb_en: string}>|null */
+    private static $tagVocabulary = null;
 
     public function onMetaHeaders(array &$headers)
     {
@@ -100,18 +105,62 @@ class Multilingual extends AbstractPicoPlugin
         }
         $twigVariables['hreflang_alternates'] = $hreflang;
 
-        // Display-only English labels for canonical Spanish tag names (URLs still use ES keys in ?tag=).
-        $twigVariables['tag_label_en'] = array(
-            'Aplicaciones Moviles' => 'Mobile apps',
-            'Ciberseguridad' => 'Cybersecurity',
-            'Crypto' => 'Crypto',
-            'Desarrollo Web' => 'Web development',
-            'Economia' => 'Economy',
-            'Inteligencia Artificial' => 'Artificial intelligence',
-            'Privacidad' => 'Privacy',
-            'Productividad' => 'Productivity',
-            'Sistemas' => 'Systems',
-            'Sociedad' => 'Society',
+        $tagMaps = self::buildTagTwigMaps();
+        $twigVariables['tag_label_en'] = $tagMaps['label_en'];
+        $twigVariables['tag_blurb_es'] = $tagMaps['blurb_es'];
+        $twigVariables['tag_blurb_en'] = $tagMaps['blurb_en'];
+    }
+
+    /**
+     * Canonical tag vocabulary (Spanish keys in YAML/URLs; EN labels + blurbs for UI).
+     *
+     * @return array<string, array{label_en: string, blurb_es: string, blurb_en: string}>
+     */
+    public static function loadTagVocabulary()
+    {
+        if (self::$tagVocabulary !== null) {
+            return self::$tagVocabulary;
+        }
+        $path = dirname(__DIR__) . '/scripts/tag_vocabulary.json';
+        if (!is_readable($path)) {
+            self::$tagVocabulary = array();
+            return self::$tagVocabulary;
+        }
+        $raw = json_decode(file_get_contents($path), true);
+        if (!is_array($raw) || !isset($raw['tags']) || !is_array($raw['tags'])) {
+            self::$tagVocabulary = array();
+            return self::$tagVocabulary;
+        }
+        self::$tagVocabulary = $raw['tags'];
+        return self::$tagVocabulary;
+    }
+
+    /**
+     * @return array{label_en: array<string, string>, blurb_es: array<string, string>, blurb_en: array<string, string>}
+     */
+    private static function buildTagTwigMaps()
+    {
+        $labelEn = array();
+        $blurbEs = array();
+        $blurbEn = array();
+        foreach (self::loadTagVocabulary() as $canonical => $row) {
+            if (!is_array($row)) {
+                continue;
+            }
+            if (isset($row['label_en'])) {
+                $labelEn[$canonical] = $row['label_en'];
+            }
+            if (isset($row['blurb_es'])) {
+                $blurbEs[$canonical] = $row['blurb_es'];
+            }
+            if (isset($row['blurb_en'])) {
+                $blurbEn[$canonical] = $row['blurb_en'];
+            }
+        }
+        return array(
+            'label_en' => $labelEn,
+            'blurb_es' => $blurbEs,
+            'blurb_en' => $blurbEn,
         );
     }
 

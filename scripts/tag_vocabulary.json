@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "tags": {
+    "Aplicaciones Moviles": {
+      "label_en": "Mobile apps",
+      "blurb_es": "Desarrollo y buenas prácticas en móviles.",
+      "blurb_en": "Mobile development and good practices."
+    },
+    "Ciberseguridad": {
+      "label_en": "Cybersecurity",
+      "blurb_es": "Protección de datos y entornos conectados.",
+      "blurb_en": "Data protection and connected environments."
+    },
+    "Crypto": {
+      "label_en": "Crypto",
+      "blurb_es": "Blockchain, activos y economía digital.",
+      "blurb_en": "Blockchain, assets, and digital economy."
+    },
+    "Desarrollo Web": {
+      "label_en": "Web development",
+      "blurb_es": "Herramientas, APIs y arquitectura en la web.",
+      "blurb_en": "Tools, APIs, and web architecture."
+    },
+    "Economia": {
+      "label_en": "Economy",
+      "blurb_es": "Tendencias y análisis económico.",
+      "blurb_en": "Trends and economic analysis."
+    },
+    "Inteligencia Artificial": {
+      "label_en": "Artificial intelligence",
+      "blurb_es": "IA aplicada, producto y debate social.",
+      "blurb_en": "Applied AI, product, and social debate."
+    },
+    "Privacidad": {
+      "label_en": "Privacy",
+      "blurb_es": "Control personal, redes y datos.",
+      "blurb_en": "Personal control, social networks, and data."
+    },
+    "Productividad": {
+      "label_en": "Productivity",
+      "blurb_es": "Herramientas, flujos y teletrabajo.",
+      "blurb_en": "Tools, workflows, and remote work."
+    },
+    "Sistemas": {
+      "label_en": "Systems",
+      "blurb_es": "Infra, software libre y administración.",
+      "blurb_en": "Infra, free software, and administration."
+    },
+    "Sociedad": {
+      "label_en": "Society",
+      "blurb_es": "Tecnología y contexto social.",
+      "blurb_en": "Technology and social context."
+    }
+  }
+}

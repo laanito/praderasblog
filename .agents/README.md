@@ -15,7 +15,7 @@
 | `repo-context.md` | Repo layout, live URL, Phase 5 behaviour, “where does X live?”. |
 | `translation-migration-tracker.md` | Pairing status, `Translation_Key` naming, tracker changelog. |
 | `translation-batches.md` | How to batch ES→EN work without splitting series across PRs. |
-| `multilingual-ui-backlog.md` | Non-post EN gaps (search, archive, footers, etc.). |
+| `multilingual-ui-backlog.md` | Non-post EN UI (Phase 5 **closed**); deferred items only. |
 | `proposed-improvements.md` | Prioritized product backlog (phases, Priority 2 covers, etc.). |
 | `phase-5-6-plan.md` | Multilingual (Phase 5) vs JSON/API (Phase 6) roadmap detail. |
 | `comfyui-cover-images.md` | ComfyUI API, `export_cover.py` (**`--translation-key`**, `--patch-markdown`, `--webp`), checklist rows 7–9, **archive cover retrofit plan** (tiers + batches). |
@@ -26,12 +26,14 @@
 
 ## Operational scripts (outside `.agents/` but tied to these docs)
 
-- `scripts/frontmatter_audit.py` — required fields, tags, **`Image:`** on-disk check, **`Translation_Key`** duplicate / ES+EN pairing guard.
+- `scripts/frontmatter_audit.py` — required fields, tags, **`Image:`** on-disk check, **`Translation_Key`** duplicate / ES+EN pairing guard, **`tag_vocabulary.json`** parity with canonical tags.
+- `scripts/tag_vocabulary.json` — canonical tag **`label_en`** + **`blurb_es`** / **`blurb_en`** (loaded by `65-Multilingual.php`).
 - `scripts/comfyui/export_cover.py` — Comfy export + optional **`--patch-markdown`**, **`--translation-key`**, **`--webp`**.
 - `scripts/comfyui/webp_cover.sh` — PNG → WebP via **`cwebp`** (`brew install webp`).
 
 ## Changelog (this index)
 
+- **2026-05-19:** Phase 5 UI closure — `tag_vocabulary.json`, vocabulary audit, EN `/en/blog` pagination; `multilingual-ui-backlog.md` marked complete.
 - **2026-05-15:** **`retrofit-cover-queue.md`** — Tier A table + **daily cadence** (≈2 ES/EN pairs/day target) linked from `comfyui-cover-images.md` § *Retrofit plan*.
 - **2026-05-14:** Hub scripts — `export_cover.py` **`--translation-key`**; `frontmatter_audit.py` **`Translation_Key`** guard (`comfyui-cover-images.md` rows 6–7).
 - **2026-05-14:** `post-template.md` / `image-prompt-guidelines.md` / `comfyui-cover-images.md` — **one dedicated `Image:` asset per article** (no borrowing another post’s cover).

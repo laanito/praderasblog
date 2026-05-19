@@ -1,35 +1,8 @@
 {% extends "index.twig" %}
 
 {% set is_en = content_lang is defined and content_lang == 'en' %}
-
-{% set tag_blurbs_es = {
-  'Aplicaciones Moviles': 'Desarrollo y buenas prácticas en móviles.',
-  'Ciberseguridad': 'Protección de datos y entornos conectados.',
-  'Crypto': 'Blockchain, activos y economía digital.',
-  'Desarrollo Web': 'Herramientas, APIs y arquitectura en la web.',
-  'Economia': 'Tendencias y análisis económico.',
-  'Inteligencia Artificial': 'IA aplicada, producto y debate social.',
-  'Privacidad': 'Control personal, redes y datos.',
-  'Productividad': 'Herramientas, flujos y teletrabajo.',
-  'Sistemas': 'Infra, software libre y administración.',
-  'Sociedad': 'Tecnología y contexto social.'
-} %}
-
-{% set tag_blurbs_en = {
-  'Aplicaciones Moviles': 'Mobile development and good practices.',
-  'Ciberseguridad': 'Data protection and connected environments.',
-  'Crypto': 'Blockchain, assets, and digital economy.',
-  'Desarrollo Web': 'Tools, APIs, and web architecture.',
-  'Economia': 'Trends and economic analysis.',
-  'Inteligencia Artificial': 'Applied AI, product, and social debate.',
-  'Privacidad': 'Personal control, social networks, and data.',
-  'Productividad': 'Tools, workflows, and remote work.',
-  'Sistemas': 'Infra, free software, and administration.',
-  'Sociedad': 'Technology and social context.'
-} %}
-
-{% set tag_blurbs = is_en ? tag_blurbs_en : tag_blurbs_es %}
 {% set _tag_label_en = tag_label_en|default({}) %}
+{% set tag_blurbs = is_en ? tag_blurb_en|default({}) : tag_blurb_es|default({}) %}
 {% set _tag_hub = is_en ? ("en/tags"|link) : ("tags"|link) %}
 
 {% block breadcrumb %}
@@ -68,7 +41,7 @@
 </div>
 <p class="small text-muted mt-3 mb-0">
 {% if is_en %}
-You can also use the alphabetical list on <a href="{{ 'en/tags'|link }}">tags</a> or the sidebar <a href="{{ "search"|link }}">search</a> (search UI still Spanish-only for now).
+You can also use the alphabetical list on <a href="{{ 'en/tags'|link }}">tags</a> or <a href="{{ 'en/search'|link }}">search</a>.
 {% else %}
 También puedes usar el listado alfabético en <a href="{{ 'tags'|link }}">etiquetas</a> o el <a href="{{ "search"|link }}">buscador</a> del lateral.
 {% endif %}
