@@ -25,8 +25,8 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 | Series_Order | `Translation_Key` | Hero `Image:` | Notes |
 |--------------|-------------------|---------------|-------|
 | 1 | `praderas-day-1-technical-audit` | done | `day01-comfyui-sdxl-technical-audit-hero.webp` (~106 KiB); seed `01052026`; Tier A retrofit on open Day 21 PR leg. |
-| 2 | `praderas-day-2-phase-1-listing-search-pagination` | todo | |
-| 3 | `praderas-day-3-phase-2-navigation-categories-breadcrumbs-related` | todo | |
+| 2 | `praderas-day-2-phase-1-listing-search-pagination` | done | `day02-comfyui-sdxl-phase1-listing-search-pagination-hero.webp` (~57 KiB); seed `02052026`; Day 22 PR. |
+| 3 | `praderas-day-3-phase-2-navigation-categories-breadcrumbs-related` | done | `day03-comfyui-sdxl-phase2-navigation-breadcrumbs-hero.webp` (~75 KiB); seed `03052026`; Day 22 PR. |
 | 4 | `praderas-day-4-phase-3-metadata-taxonomy-frontmatter-lint` | todo | |
 | 5 | `praderas-day-5-visual-polish` | todo | |
 | 6 | `praderas-day-6-series-and-collections` | todo | |
@@ -47,5 +47,6 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 
 ## Changelog (this file)
 
+- **2026-05-19:** **Rows 2–3 done** — Tier A retrofit Days 2–3 WebP + `Image:` (`praderas-day-2-*`, `praderas-day-3-*`); Day 22 ship log documents Phase 5 UI closure + this batch.
 - **2026-05-15 (follow-up):** **Row 1 done** — Day 1 ES/EN hero WebP + `Image:` (`praderas-day-1-technical-audit`).
 - **2026-05-15:** Initial queue + **daily cadence** (target 2 pairs / floor 1 / ceiling discretionary).

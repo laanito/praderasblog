@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 2
 Lang: en
 Translation_Key: praderas-day-2-phase-1-listing-search-pagination
+Image: /assets/images/day02-comfyui-sdxl-phase1-listing-search-pagination-hero.webp
+
 ---
 
 # Reviving Praderas (Day 2) — Phase 1: listing, search, pagination (with AI as copilot)
