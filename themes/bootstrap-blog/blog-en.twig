@@ -9,7 +9,7 @@
 <body class="praderas-site">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark pradera-nav">
             <div class="container">
-            <a href="{{ pradera_home_url|default("index"|link) }}" class="navbar-brand">{{ site_title }}</a>
+            <a href="{{ pradera_home_url|default("en/index"|link) }}" class="navbar-brand">{{ site_title }}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 {% include 'nav.twig' %}
@@ -20,14 +20,14 @@
    <div class="container mt-5">
            <div class="row">
 		<div class="col-lg-8 pradera-main">
-		{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Home', 'url': pradera_home_url|default("index"|link) }, { 'label': 'Blog' } ] } only %}
+		{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': 'Home', 'url': pradera_home_url|default("en/index"|link) }, { 'label': 'Blog' } ] } only %}
 		<header class="pradera-list-header mb-4">
 			<h1 class="fw-bolder mb-1">{{ meta.title }}</h1>
 		</header>
-	    {% set en_shown = 0 %}
-	    {% for page in pages|sort_by("time")|reverse %}
-	    {% if page.id is defined and page.id starts with 'blog/en/' and page.title %}
-	    {% if en_shown % 2 == 0 %}<div class="row">{% endif %}
+	   {% if paged_pages %}
+	    {% for page_pair in paged_pages|sort_by("time")|reverse|batch(2) %}
+		<div class="row">
+			{% for page in page_pair %}
 			<div class="col-lg-6">
 			<div class="pradera-post-card card mb-4">
 				<a href="{{ page.url }}">{% include 'list-card-thumb.twig' with { 'page': page } only %}</a>
@@ -39,11 +39,29 @@
 				</div>
 			</div>
 			</div>
-	    {% set en_shown = en_shown + 1 %}
-	    {% if en_shown % 2 == 0 %}</div>{% endif %}
-	    {% endif %}
-	    {% endfor %}
-	    {% if en_shown % 2 == 1 %}</div>{% endif %}
+			{% endfor %}
+		</div>
+	  {% endfor %}
+	  {% endif %}
+	  {% if total_pages is defined and total_pages > 1 and page_number is defined %}
+	  <nav class="pradera-blog-pagination d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center gap-2 my-4" aria-label="Blog pages">
+		<div>
+		{% if prev_page_url is defined and prev_page_url %}
+		<a href="{{ prev_page_url }}" class="btn btn-outline-primary" id="prev_page_link">← Older posts</a>
+		{% else %}
+		<span class="btn btn-outline-secondary disabled" aria-disabled="true">← Older posts</span>
+		{% endif %}
+		</div>
+		<p class="text-muted small m-0 align-self-center">Page {{ page_number }} of {{ total_pages }}</p>
+		<div>
+		{% if next_page_url is defined and next_page_url %}
+		<a href="{{ next_page_url }}" class="btn btn-outline-primary" id="next_page_link">Newer posts →</a>
+		{% else %}
+		<span class="btn btn-outline-secondary disabled" aria-disabled="true">Newer posts →</span>
+		{% endif %}
+		</div>
+	  </nav>
+	  {% endif %}
 	  </div>
 	<div class="col-lg-4">
 	    {% include 'sidebar.twig' %}

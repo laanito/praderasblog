@@ -63,7 +63,7 @@
   - `40-PicoSearch.php`
   - `50-BlogNeighbors.php` — on `blog/*` posts: `post_prev_in_time`, `post_next_in_time` (chronological), `related_posts` (shared tags, max 5); on `categorias` page: `tag_post_counts` (map tag → int)
   - `60-SeriesCollections.php` — series routes (`/series/<slug>/`), series index context, and post-level series navigation data (used in sidebar widget); **per-language** series maps (ES vs EN posts)
-  - `65-Multilingual.php` — `Lang` / `Translation_Key` metadata, `hreflang` + `og:locale` context, `alternate_language_page`, `pradera_home_url`, `content_lang` / `html_lang`
+  - `65-Multilingual.php` — `Lang` / `Translation_Key` metadata, `hreflang` + `og:locale` context, `alternate_language_page`, `pradera_home_url`, `content_lang` / `html_lang`, tag display maps from **`scripts/tag_vocabulary.json`** (`tag_label_en`, `tag_blurb_es`, `tag_blurb_en`)
   - `PicoTags.php`
   - `PicoRobots/`
 
@@ -144,7 +144,7 @@
 
 ## Confirmed Technical/UX Issues
 - (Resolved in tree for Phase 1) Historically, `blog.twig` was corrupted and showed broken HTML, inconsistent search `id`s, and no visible pager. **Current `blog.twig` + `sidebar.twig` / `search-behavior.twig` in this repo** address the listing, search, and pagination UI; verify again after deploy.
-- UI language: Phase 5 improves **sidebar + post chrome** on English routes; footer legal line may still be Spanish on `blog.twig` / `post.twig` and English on `blog-en.twig` — acceptable short-term; full unification remains Priority 2 in `proposed-improvements.md`.
+- UI language: Phase 5 **complete** for EN routes (`content_lang` branching, `tag_vocabulary.json`, paired `content/en/*` hubs). **`/blog`** (Spanish listing) intentionally keeps Spanish pager/footer in `blog.twig`; **`/en/blog`** uses `blog-en.twig` with English chrome and pagination.
 - `config/config.yml` points to `https://blog.praderas.org`; user-reported canonical site is `https://praderas.org` (domain strategy mismatch).
 - Phase 3 fixed known metadata gaps in repo; re-run `python3 scripts/frontmatter_audit.py` after future content imports to prevent regressions.
 

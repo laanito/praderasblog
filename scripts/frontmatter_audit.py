@@ -3,10 +3,15 @@
 
 Also ensures each non-empty Translation_Key maps to at most one ES and one EN
 file under content/blog/ — required for export_cover.py --translation-key.
+
+Tag display vocabulary (labels + blurbs) lives in scripts/tag_vocabulary.json and
+is loaded by plugins/65-Multilingual.php; this audit keeps that file aligned with
+CANONICAL_TAGS.
 """
 
 from __future__ import annotations
 
+import json
 import pathlib
 import re
 import sys
@@ -62,6 +67,43 @@ def _is_en_blog_post(repo_root: pathlib.Path, post: pathlib.Path) -> bool:
         and parts[1] == "blog"
         and parts[2] == "en"
     )
+
+
+def check_tag_vocabulary_json(repo_root: pathlib.Path, errors: list) -> None:
+    """scripts/tag_vocabulary.json must cover every canonical tag with label + blurbs."""
+    path = repo_root / "scripts" / "tag_vocabulary.json"
+    if not path.is_file():
+        errors.append(f"Missing tag vocabulary file: {path}")
+        return
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        errors.append(f"{path}: invalid JSON ({exc})")
+        return
+    tags = raw.get("tags")
+    if not isinstance(tags, dict):
+        errors.append(f"{path}: expected top-level 'tags' object")
+        return
+    vocab_keys = set(tags.keys())
+    missing = CANONICAL_TAGS - vocab_keys
+    extra = vocab_keys - CANONICAL_TAGS
+    if missing:
+        errors.append(
+            f"{path}: missing vocabulary rows for canonical tags: {sorted(missing)}"
+        )
+    if extra:
+        errors.append(
+            f"{path}: vocabulary rows not in CANONICAL_TAGS: {sorted(extra)}"
+        )
+    for tag in CANONICAL_TAGS:
+        row = tags.get(tag)
+        if not isinstance(row, dict):
+            errors.append(f"{path}: tag {tag!r} must be an object")
+            continue
+        for field in ("label_en", "blurb_es", "blurb_en"):
+            val = row.get(field, "")
+            if not isinstance(val, str) or not val.strip():
+                errors.append(f"{path}: tag {tag!r} missing non-empty {field}")
 
 
 def check_translation_key_pairs(
@@ -124,6 +166,7 @@ def main() -> int:
         check_image_field(repo_root, post, fm, errors)
 
     check_translation_key_pairs(repo_root, posts, errors)
+    check_tag_vocabulary_json(repo_root, errors)
 
     if errors:
         print("Frontmatter audit FAILED:")
