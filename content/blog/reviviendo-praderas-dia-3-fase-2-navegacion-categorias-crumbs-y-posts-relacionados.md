@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 3
 Lang: es
 Translation_Key: praderas-day-3-phase-2-navigation-categories-breadcrumbs-related
+Image: /assets/images/day03-comfyui-sdxl-phase2-navigation-breadcrumbs-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 3) — Fase 2: que el sitio te diga dónde estás (con IA haciendo el pesado)

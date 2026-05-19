@@ -115,6 +115,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-day-19-export-cover-image-frontmatter-patch` | `reviviendo-praderas-dia-19-export-cover-parche-image-frontmatter.md` | `reviving-praderas-day-19-export-cover-image-frontmatter.md` | done | Day 19: `export_cover.py` **`--patch-markdown`**, **`--skip-comfy`**, **`--image-value`**, **`--dry-run-patch`**; `day19-comfyui-sdxl-export-frontmatter.webp`. Pair-path polish → **Day 21** **`--translation-key`**. |
 | `praderas-day-20-image-webp-agents-readme-consolidation` | `reviviendo-praderas-dia-20-peso-imagen-webp-indice-agents.md` | `reviving-praderas-day-20-image-weight-webp-agents-index.md` | done | Day 20: **WebP** for Day 17–19 covers (`cwebp`, `webp_cover.sh`, `export_cover.py --webp`); remove heavy PNGs; **`.agents/README.md`** hub; docs refresh. |
 | `praderas-day-21-export-cover-translation-key-flag` | `reviviendo-praderas-dia-21-export-cover-clave-traduccion.md` | `reviving-praderas-day-21-export-cover-translation-key.md` | done | Day 21: `export_cover.py` **`--translation-key`**; `day21-comfyui-sdxl-translation-key-patch.webp`; checklist row 7 shipped; **`frontmatter_audit.py`** **`Translation_Key`** guard (same PR follow-up). |
+| `praderas-day-22-phase-5-vocabulary-tier-a-retrofit-log` | `reviviendo-praderas-dia-22-cierre-fase-5-vocabulario-y-retrofit-tier-a.md` | `reviving-praderas-day-22-phase-5-vocabulary-closure-and-tier-a-retrofit.md` | done | Day 22: Phase 5 UI closure recap (merged PR A) + Tier A retrofit rows 2–3 WebP; `day22-comfyui-sdxl-phase5-vocabulary-tier-a-retrofit-hero.webp`. |
 | `tuqan-phase-0-strategic-foundation` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | done | Tuqan series opener; ES file canonical path `content/blog/` (not `blog/es/`). |
 
 ## Batch migration plan (to avoid context overflow)
@@ -184,6 +185,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-19 (follow-up):** Day 22 ES/EN log (`praderas-day-22-phase-5-vocabulary-tier-a-retrofit-log`) — documents merged Phase 5 UI PR + Tier A retrofit Days 2–3 heroes; tracker row; `retrofit-cover-queue.md` rows 2–3 → done.
 - **2026-05-19:** Phase 5 UI closure — `scripts/tag_vocabulary.json` (canonical tag labels + blurbs); `65-Multilingual.php` exposes `tag_blurb_es` / `tag_blurb_en`; `categories.twig` reads plugin maps; EN `/en/blog` pagination; vocabulary table expanded; `multilingual-ui-backlog.md` marked closed (bilingual YAML `Tags` deferred).
 - **2026-05-15 (Tier A retrofit):** **`retrofit-cover-queue.md`** row **1** → **done** — Day 1 ES/EN **`Image:`** + **`day01-comfyui-sdxl-technical-audit-hero.webp`** (`--translation-key praderas-day-1-technical-audit`).
 - **2026-05-15:** **`retrofit-cover-queue.md`** — Tier A tick table + **daily cadence** (~2 ES/EN pairs/day target, 1 pair floor); linked from **Related** + `multilingual-ui-backlog.md` “How to pick up work”.
