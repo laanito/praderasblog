@@ -70,4 +70,4 @@
 3. For UI-only changes, prefer **`content_lang`** branching in Twig or extend **`tag_vocabulary.json`** / `65-Multilingual.php` over duplicating content unless an EN **route** is required.
 4. When adding a paired top page under `content/en/`, set **`Translation_Key`** on **both** languages and update **`nav.twig`** if the page belongs in primary navigation.
 5. For **hero cover retrofit** on older *Reviviendo Praderas* pairs, use **`.agents/retrofit-cover-queue.md`** (daily cadence) + **`comfyui-cover-images.md`** § *Retrofit plan*.
-6. **Next major bucket:** Phase 6 JSON (`phase-5-6-plan.md`).
+6. **Phase 6 JSON:** v1 listing + per-post shipped (`blog-json-api.md`, `70-BlogJson.php`); v1.1 extras (`search.json`, etc.) in `phase-5-6-plan.md`.

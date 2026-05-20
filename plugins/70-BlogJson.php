@@ -1,0 +1,385 @@
+<?php
+
+/**
+ * Phase 6 — Machine-readable JSON for blog posts (agents, RAG, tooling).
+ *
+ * Endpoints (cache-friendly paths, no HTML chrome):
+ * - GET /blog.json           — Spanish posts (content/blog/*, not blog/en/*)
+ * - GET /blog/en.json        — English posts (content/blog/en/*)
+ * - GET /blog/{slug}.json    — single Spanish article
+ * - GET /blog/en/{slug}.json — single English article
+ *
+ * Schema: .agents/blog-json-api.md
+ */
+class BlogJson extends AbstractPicoPlugin
+{
+    const API_VERSION = 2;
+
+    /** @var string|null listing-es|listing-en|post */
+    private $jsonRoute = null;
+
+    /** @var string|null Pico page id, e.g. blog/foo or blog/en/foo */
+    private $jsonPostId = null;
+
+    public function onRequestUrl(&$url)
+    {
+        if ($url === 'blog.json') {
+            $this->jsonRoute = 'listing-es';
+            return;
+        }
+        if ($url === 'blog/en.json') {
+            $this->jsonRoute = 'listing-en';
+            return;
+        }
+        if (preg_match('~^blog/en/([^/]+)\\.json$~', $url, $matches)) {
+            $this->jsonRoute = 'post';
+            $this->jsonPostId = 'blog/en/' . $matches[1];
+            return;
+        }
+        if (preg_match('~^blog/([^/]+)\\.json$~', $url, $matches)) {
+            $this->jsonRoute = 'post';
+            $this->jsonPostId = 'blog/' . $matches[1];
+            return;
+        }
+
+        $this->setEnabled(false);
+    }
+
+    public function onRequestFile(&$file)
+    {
+        if ($this->jsonRoute === null) {
+            return;
+        }
+
+        $pico = $this->getPico();
+        $ext = $pico->getConfig('content_ext');
+        $contentDir = $pico->getConfig('content_dir');
+
+        if ($this->jsonRoute === 'listing-es') {
+            $file = $contentDir . 'blog' . $ext;
+        } elseif ($this->jsonRoute === 'listing-en') {
+            $file = $contentDir . 'en/blog' . $ext;
+        } elseif ($this->jsonPostId !== null) {
+            $candidate = $contentDir . $this->jsonPostId . $ext;
+            if (file_exists($candidate)) {
+                $file = $candidate;
+            }
+        }
+    }
+
+    public function onPageRendering(&$twigTemplate, array &$twigVariables)
+    {
+        if ($this->jsonRoute === null) {
+            return;
+        }
+
+        $pico = $this->getPico();
+        $pages = $pico->getPages();
+        $baseUrl = rtrim($pico->getBaseUrl(), '/');
+        $schemaVersion = '1.0';
+        $cacheMaxAge = 3600;
+        $alternatesByKey = $this->buildAlternatesByKey($pages);
+
+        if ($this->jsonRoute === 'listing-es' || $this->jsonRoute === 'listing-en') {
+            $lang = ($this->jsonRoute === 'listing-en') ? 'en' : 'es';
+            $blogPages = $this->collectBlogPosts($pages, $lang);
+            $items = array();
+            foreach ($blogPages as $page) {
+                $items[] = $this->serializeListingItem($page, $baseUrl, $alternatesByKey);
+            }
+
+            $this->emitJson(
+                array(
+                    'meta' => array(
+                        'schema_version' => $schemaVersion,
+                        'generated_at' => gmdate('c'),
+                        'language' => $lang,
+                        'count' => count($items),
+                    ),
+                    'posts' => $items,
+                ),
+                $cacheMaxAge
+            );
+        }
+
+        if ($this->jsonRoute === 'post') {
+            $page = $this->findPageById($pages, $this->jsonPostId);
+            if ($page === null) {
+                $this->emitJsonError(404, 'Post not found');
+            }
+
+            $lang = class_exists('Multilingual', false) ? Multilingual::inferLang($page) : 'es';
+            $this->emitJson(
+                array(
+                    'meta' => array(
+                        'schema_version' => $schemaVersion,
+                        'generated_at' => gmdate('c'),
+                        'language' => $lang,
+                    ),
+                    'post' => $this->serializePostDetail($page, $baseUrl, $alternatesByKey),
+                ),
+                $cacheMaxAge
+            );
+        }
+    }
+
+    /**
+     * @param array[] $pages
+     * @param string  $lang es|en
+     *
+     * @return array[]
+     */
+    private function collectBlogPosts(array $pages, $lang)
+    {
+        $out = array();
+        foreach ($pages as $page) {
+            if (!isset($page['id'], $page['date']) || !$page['date']) {
+                continue;
+            }
+            $id = $page['id'];
+            if (strpos($id, 'blog/') !== 0) {
+                continue;
+            }
+            if ($lang === 'es') {
+                if (strpos($id, 'blog/en/') === 0) {
+                    continue;
+                }
+            } else {
+                if (strpos($id, 'blog/en/') !== 0) {
+                    continue;
+                }
+            }
+            if (class_exists('Multilingual', false) && Multilingual::inferLang($page) !== $lang) {
+                continue;
+            }
+            $out[] = $page;
+        }
+
+        usort($out, function ($a, $b) {
+            return strtotime($b['date']) - strtotime($a['date']);
+        });
+
+        return $out;
+    }
+
+    /**
+     * @param array[] $pages
+     *
+     * @return array<string, array<string, array>>
+     */
+    private function buildAlternatesByKey(array $pages)
+    {
+        $map = array();
+        foreach ($pages as $page) {
+            if (!isset($page['id'], $page['meta'])) {
+                continue;
+            }
+            $key = $this->readTranslationKey($page['meta']);
+            if ($key === '') {
+                continue;
+            }
+            $lang = class_exists('Multilingual', false) ? Multilingual::inferLang($page) : 'es';
+            if (!isset($map[$key])) {
+                $map[$key] = array();
+            }
+            $map[$key][$lang] = $page;
+        }
+        return $map;
+    }
+
+    /**
+     * @param array[] $pages
+     * @param string  $id
+     *
+     * @return array|null
+     */
+    private function findPageById(array $pages, $id)
+    {
+        foreach ($pages as $page) {
+            if (isset($page['id']) && $page['id'] === $id) {
+                return $page;
+            }
+        }
+        return null;
+    }
+
+    private function serializeListingItem(array $page, $baseUrl, array $alternatesByKey)
+    {
+        $meta = isset($page['meta']) ? $page['meta'] : array();
+        $lang = class_exists('Multilingual', false) ? Multilingual::inferLang($page) : 'es';
+        $key = $this->readTranslationKey($meta);
+
+        return array(
+            'slug' => $this->pageSlug($page),
+            'id' => $page['id'],
+            'title' => $this->readMetaString($meta, array('title', 'Title'), isset($page['title']) ? $page['title'] : ''),
+            'description' => $this->readMetaString($meta, array('description', 'Description'), ''),
+            'date' => isset($page['date']) ? $page['date'] : '',
+            'author' => $this->readMetaString($meta, array('author', 'Author'), ''),
+            'tags' => $this->parseTags($meta),
+            'lang' => $lang,
+            'translation_key' => $key !== '' ? $key : null,
+            'url' => $this->absoluteUrl($page, $baseUrl),
+            'alternate_url' => $this->resolveAlternateUrl($key, $lang, $alternatesByKey, $baseUrl),
+            'image' => $this->readMetaString($meta, array('image', 'Image'), '') ?: null,
+            'reading_time_minutes' => $this->estimateReadingMinutes($page),
+        );
+    }
+
+    private function serializePostDetail(array $page, $baseUrl, array $alternatesByKey)
+    {
+        $item = $this->serializeListingItem($page, $baseUrl, $alternatesByKey);
+        $meta = isset($page['meta']) ? $page['meta'] : array();
+
+        $item['content'] = isset($page['raw_content']) ? $page['raw_content'] : '';
+        $item['content_format'] = 'markdown';
+        $item['series'] = $this->readMetaString($meta, array('series', 'Series'), '') ?: null;
+        $item['series_slug'] = $this->readMetaString($meta, array('series_slug', 'Series_Slug'), '') ?: null;
+        $seriesOrder = $this->readMetaString($meta, array('series_order', 'Series_Order'), '');
+        $item['series_order'] = $seriesOrder !== '' ? (int) $seriesOrder : null;
+        $item['modified_at'] = $this->pageModifiedAt($page);
+
+        return $item;
+    }
+
+    private function pageSlug(array $page)
+    {
+        $id = isset($page['id']) ? $page['id'] : '';
+        if (strpos($id, 'blog/en/') === 0) {
+            return substr($id, strlen('blog/en/'));
+        }
+        if (strpos($id, 'blog/') === 0) {
+            return substr($id, strlen('blog/'));
+        }
+        return $id;
+    }
+
+    private function absoluteUrl(array $page, $baseUrl)
+    {
+        if (isset($page['url']) && $page['url'] !== '') {
+            $url = $page['url'];
+            if (strpos($url, 'http://') === 0 || strpos($url, 'https://') === 0) {
+                return $url;
+            }
+            return $baseUrl . '/' . ltrim($url, '/');
+        }
+        return $baseUrl;
+    }
+
+    private function resolveAlternateUrl($translationKey, $lang, array $alternatesByKey, $baseUrl)
+    {
+        if ($translationKey === '' || !isset($alternatesByKey[$translationKey])) {
+            return null;
+        }
+        $pair = $alternatesByKey[$translationKey];
+        $alt = null;
+        if ($lang === 'es' && isset($pair['en'])) {
+            $alt = $pair['en'];
+        } elseif ($lang === 'en' && isset($pair['es'])) {
+            $alt = $pair['es'];
+        }
+        if ($alt === null) {
+            return null;
+        }
+        return $this->absoluteUrl($alt, $baseUrl);
+    }
+
+    private function readTranslationKey(array $meta)
+    {
+        if (isset($meta['translation_key']) && is_string($meta['translation_key'])) {
+            return trim($meta['translation_key']);
+        }
+        if (isset($meta['Translation_Key']) && is_string($meta['Translation_Key'])) {
+            return trim($meta['Translation_Key']);
+        }
+        return '';
+    }
+
+    private function readMetaString(array $meta, array $keys, $fallback)
+    {
+        foreach ($keys as $key) {
+            if (isset($meta[$key]) && is_string($meta[$key]) && trim($meta[$key]) !== '') {
+                return trim($meta[$key]);
+            }
+        }
+        return is_string($fallback) ? trim($fallback) : '';
+    }
+
+    private function parseTags(array $meta)
+    {
+        $raw = null;
+        if (isset($meta['tags'])) {
+            $raw = $meta['tags'];
+        } elseif (isset($meta['Tags'])) {
+            $raw = $meta['Tags'];
+        }
+        if ($raw === null) {
+            return array();
+        }
+        if (is_array($raw)) {
+            return array_values(array_filter(array_map('trim', $raw)));
+        }
+        if (!is_string($raw)) {
+            return array();
+        }
+        $parts = preg_split('/\s*,\s*/', $raw);
+        return array_values(array_filter(array_map('trim', $parts)));
+    }
+
+    private function estimateReadingMinutes(array $page)
+    {
+        $text = '';
+        if (isset($page['raw_content'])) {
+            $text = $page['raw_content'];
+        } elseif (isset($page['content'])) {
+            $text = strip_tags($page['content']);
+        }
+        $words = str_word_count($text);
+        if ($words < 1) {
+            return null;
+        }
+        return max(1, (int) round($words / 200));
+    }
+
+    private function pageModifiedAt(array $page)
+    {
+        if (!empty($page['modificationTime']) && is_int($page['modificationTime'])) {
+            return gmdate('c', $page['modificationTime']);
+        }
+        $pico = $this->getPico();
+        $path = $pico->getConfig('content_dir') . $page['id'] . $pico->getConfig('content_ext');
+        if (isset($page['id']) && file_exists($path)) {
+            return gmdate('c', filemtime($path));
+        }
+        return null;
+    }
+
+    private function emitJson(array $payload, $cacheMaxAge)
+    {
+        header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
+        header('Content-Type: application/json; charset=utf-8');
+        if ($cacheMaxAge > 0) {
+            header('Cache-Control: public, max-age=' . (int) $cacheMaxAge);
+        }
+        echo json_encode(
+            $payload,
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
+        );
+        exit;
+    }
+
+    private function emitJsonError($statusCode, $message)
+    {
+        $code = (int) $statusCode;
+        header($_SERVER['SERVER_PROTOCOL'] . ' ' . $code);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode(
+            array(
+                'error' => $message,
+                'status' => $code,
+            ),
+            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+        );
+        exit;
+    }
+}

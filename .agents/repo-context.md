@@ -17,7 +17,7 @@
 ## Agent docs (backlog & roadmaps)
 - **`README.md`** — **hub index:** reading order + one-line map of every `.agents/*.md` file (start here for consolidation).
 - `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
-- `phase-5-6-plan.md` — Phase **5** (multilingual) **first slice shipped** (2026-04-28); Phase **6** (JSON) still future; read before extending either.
+- `phase-5-6-plan.md` — Phase **5** shipped; Phase **6** (JSON) **v1 in progress** (2026-05-20): `70-BlogJson.php`, `.agents/blog-json-api.md`.
 - `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.
 - `translation-batches.md` — **how to run translation in batches:** context-window rationale, whole-series rule, glossary updates, honest human wall-clock vs specialist estimates, merge checklist (read before shipping ES/EN pairs).
 - `multilingual-ui-backlog.md` — **non-post EN gaps** (search, archive, footers, sitemap index): what shipped vs pending for Twig/`content_lang` routes.
@@ -64,6 +64,7 @@
   - `50-BlogNeighbors.php` — on `blog/*` posts: `post_prev_in_time`, `post_next_in_time` (chronological), `related_posts` (shared tags, max 5); on `categorias` page: `tag_post_counts` (map tag → int)
   - `60-SeriesCollections.php` — series routes (`/series/<slug>/`), series index context, and post-level series navigation data (used in sidebar widget); **per-language** series maps (ES vs EN posts)
   - `65-Multilingual.php` — `Lang` / `Translation_Key` metadata, `hreflang` + `og:locale` context, `alternate_language_page`, `pradera_home_url`, `content_lang` / `html_lang`, tag display maps from **`scripts/tag_vocabulary.json`** (`tag_label_en`, `tag_blurb_es`, `tag_blurb_en`)
+  - `70-BlogJson.php` — Phase 6 JSON: `/blog.json`, `/blog/en.json`, `/blog/{slug}.json`, `/blog/en/{slug}.json` (see `.agents/blog-json-api.md`)
   - `PicoTags.php`
   - `PicoRobots/`
 

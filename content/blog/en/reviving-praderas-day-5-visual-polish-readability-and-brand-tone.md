@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 5
 Lang: en
 Translation_Key: praderas-day-5-visual-polish
+Image: /assets/images/day05-comfyui-sdxl-visual-polish-readability-hero.webp
+
 ---
 
 # Reviving Praderas (Day 5) — polishing form, not only function
