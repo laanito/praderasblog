@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 5
 Lang: es
 Translation_Key: praderas-day-5-visual-polish
+Image: /assets/images/day05-comfyui-sdxl-visual-polish-readability-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 5) — Cuando toca cuidar la forma, no solo la función

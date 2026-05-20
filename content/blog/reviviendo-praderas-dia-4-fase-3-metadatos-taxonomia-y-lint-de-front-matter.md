@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 4
 Lang: es
 Translation_Key: praderas-day-4-phase-3-metadata-taxonomy-frontmatter-lint
+Image: /assets/images/day04-comfyui-sdxl-phase3-metadata-taxonomy-frontmatter-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 4) — Fase 3: ordenar metadatos sin llorar

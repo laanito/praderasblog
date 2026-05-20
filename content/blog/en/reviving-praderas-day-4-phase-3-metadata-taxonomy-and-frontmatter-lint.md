@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 4
 Lang: en
 Translation_Key: praderas-day-4-phase-3-metadata-taxonomy-frontmatter-lint
+Image: /assets/images/day04-comfyui-sdxl-phase3-metadata-taxonomy-frontmatter-hero.webp
+
 ---
 
 # Reviving Praderas (Day 4) — Phase 3: cleaning metadata without drama

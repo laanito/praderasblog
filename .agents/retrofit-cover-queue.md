@@ -27,8 +27,8 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 | 1 | `praderas-day-1-technical-audit` | done | `day01-comfyui-sdxl-technical-audit-hero.webp` (~106 KiB); seed `01052026`; Tier A retrofit on open Day 21 PR leg. |
 | 2 | `praderas-day-2-phase-1-listing-search-pagination` | done | `day02-comfyui-sdxl-phase1-listing-search-pagination-hero.webp` (~57 KiB); seed `02052026`; Day 22 PR. |
 | 3 | `praderas-day-3-phase-2-navigation-categories-breadcrumbs-related` | done | `day03-comfyui-sdxl-phase2-navigation-breadcrumbs-hero.webp` (~75 KiB); seed `03052026`; Day 22 PR. |
-| 4 | `praderas-day-4-phase-3-metadata-taxonomy-frontmatter-lint` | todo | |
-| 5 | `praderas-day-5-visual-polish` | todo | |
+| 4 | `praderas-day-4-phase-3-metadata-taxonomy-frontmatter-lint` | done | `day04-comfyui-sdxl-phase3-metadata-taxonomy-frontmatter-hero.webp` (~112 KiB); seed `04052026`; Day 23 PR. |
+| 5 | `praderas-day-5-visual-polish` | done | `day05-comfyui-sdxl-visual-polish-readability-hero.webp` (~55 KiB); seed `05052026`; Day 23 PR. |
 | 6 | `praderas-day-6-series-and-collections` | todo | |
 | 7 | `praderas-day-7-phase-4-seo-discoverability` | todo | |
 | 8 | `praderas-phase-5-multilingual` | todo | Day 8 announcement pair (key name omits `day-8`). |
@@ -47,6 +47,7 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 
 ## Changelog (this file)
 
+- **2026-05-20:** **Rows 4–5 done** — Tier A retrofit Days 4–5 WebP + `Image:`; Day 23 ship log + Phase 6 JSON slice 1.
 - **2026-05-19:** **Rows 2–3 done** — Tier A retrofit Days 2–3 WebP + `Image:` (`praderas-day-2-*`, `praderas-day-3-*`); Day 22 ship log documents Phase 5 UI closure + this batch.
 - **2026-05-15 (follow-up):** **Row 1 done** — Day 1 ES/EN hero WebP + `Image:` (`praderas-day-1-technical-audit`).
 - **2026-05-15:** Initial queue + **daily cadence** (target 2 pairs / floor 1 / ceiling discretionary).
