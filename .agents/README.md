@@ -7,6 +7,7 @@
 1. **`repo-context.md`** — architecture, directory map, how Pico + theme + plugins fit together, links into content conventions.
 2. **`translation-migration-tracker.md`** — canonical **ES↔EN post ledger**, backlog table, vocabulary, changelog for paired work.
 3. **`post-template.md`** — front matter fields, `Image:` / `Translation_Key` / `Lang` expectations.
+4. **`editorial-guidelines.md`** — human-first articles (what/why/how); JSON for agents is secondary.
 
 ## All documents (quick map)
 
@@ -23,6 +24,7 @@
 | `retrofit-cover-queue.md` | **Tier A tick list** (*Reviviendo Praderas* Days 1–16): suggested **daily cadence** (≈2 pairs/day target, 1 pair floor) so hero backfill does not stall. |
 | `image-prompt-guidelines.md` | House style + article-linked CLIP prompts before export. |
 | `post-template.md` | Authoring rules and optional fields for new posts. |
+| `editorial-guidelines.md` | Human-readable posts: explain decisions in prose, not command-only logs. |
 | `day5-consultant-feedback.md` | Day 5 visual/series consultant notes (historical context). |
 
 ## Operational scripts (outside `.agents/` but tied to these docs)
@@ -34,6 +36,7 @@
 
 ## Changelog (this index)
 
+- **2026-05-20 (follow-up):** `editorial-guidelines.md` — human-first writing; Phase 6 v1.1–v1.2 roadmap in `blog-json-api.md` / `phase-5-6-plan.md`.
 - **2026-05-20:** Phase 6 v1 — `blog-json-api.md`, `plugins/70-BlogJson.php` (Day 23).
 - **2026-05-19:** Phase 5 UI closure — `tag_vocabulary.json`, vocabulary audit, EN `/en/blog` pagination; `multilingual-ui-backlog.md` marked complete.
 - **2026-05-15:** **`retrofit-cover-queue.md`** — Tier A table + **daily cadence** (≈2 ES/EN pairs/day target) linked from `comfyui-cover-images.md` § *Retrofit plan*.

@@ -51,3 +51,7 @@ Run `python3 scripts/frontmatter_audit.py` before PR to catch missing fields, da
 - **Dedicated file per post** — If you set **`Image:`**, it must target a **new** raster for that article (paired ES/EN use the **same** path). **Do not** point **`Image:`** at another post’s `assets/images/...` file to save time; the exception is when the **body text** explicitly explains reuse (see **“Avoid silent reuse”** in `comfyui-cover-images.md`).
 
 For **migration work** (many posts, series, PR sizing), read `.agents/translation-batches.md` first: batches, glossary, and plain-language “context” rules for agents and for meta posts.
+
+## Writing for humans (required for new posts)
+
+Read **`.agents/editorial-guidelines.md`**. Articles target **human readers** first: explain **what, why, how, benefits, and scope** in prose. JSON feeds (`/blog.json`, etc.) are for agents; they do **not** replace narrative. Avoid ship logs that are only command dumps — commands belong in a short subsection **after** the explanation.

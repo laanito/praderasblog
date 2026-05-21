@@ -1,0 +1,67 @@
+# Editorial guidelines — human readers first
+
+**Purpose:** Keep *Reviviendo Praderas* and the wider blog **readable for people**, even when the stack also ships JSON feeds and agent tooling. Agents should read this **before** drafting or extending ship logs and technical posts.
+
+**Applies to:** `content/blog/*.md`, `content/blog/en/*.md`, and any future meta posts about phases or refactors. **Does not** replace `post-template.md` (front matter) or `translation-batches.md` (ES↔EN workflow).
+
+---
+
+## Primary audience
+
+1. **Human readers** — developers, maintainers, and curious visitors who want to understand **what changed, why, and what we learned**.
+2. **Agents and RAG** — secondary consumers via `/blog.json`, per-post `.json`, and (planned) `search.json` and `/for-ai-agents`. They must **not** drive article shape; prose comes first.
+
+JSON endpoints exist so machines can ingest **the same story** without scraping HTML. They are **not** a substitute for explaining decisions in natural language.
+
+---
+
+## What a good article contains
+
+Write in **complete sentences and short sections** (Spanish or English per file). Each technical post or ship log should make clear:
+
+| Question | Reader should leave knowing… |
+|----------|------------------------------|
+| **What** | Which user-visible or maintainability problem we addressed. |
+| **Why** | Why this approach vs alternatives (trade-offs, constraints, Pico flat-file model). |
+| **How** | Architecture at a **conceptual** level — plugins, theme, content layout — not only file paths. |
+| **Benefits** | What improves for readers, SEO, operators, or future agents. |
+| **Scope** | What we deliberately **did not** do yet (links to backlog / next slice). |
+
+**Examples of missing narrative (avoid):** a post that is only a sequence of shell commands with no paragraph on *why* we added a JSON plugin, what agents gain, or why a **Pico plugin** (`70-BlogJson.php`) fits the flat-file CMS instead of a separate service.
+
+**Examples of good balance:** two or three paragraphs on goals and design, then an optional **“Reproducción”** or **“Comandos”** subsection for operators who need copy-paste steps.
+
+---
+
+## Command blocks and logs
+
+- **Commands are supplementary** — use them after the explanation, not as the body of the article.
+- **Ship logs** may include tables (WebP, seeds, PR links) but must still open with **context** (wall-clock order of magnitude, which track: retrofit vs phase, what “done” means).
+- **Do not** publish a “Day N” post that is only a changelog of `git`/`curl`/`python3` lines unless the title explicitly says “appendix” and a sibling post carries the narrative (prefer a single post with both).
+
+When JSON or search work ships, the human post (if any) should explain:
+
+- **Goal** — e.g. machine-readable posts without nav chrome.
+- **Why a plugin** — same request lifecycle as Pico, no second server, cache-friendly dedicated paths (see `phase-5-6-plan.md`).
+- **Benefits** — RAG, auditing, integrations; HTML remains canonical for SEO and browsing.
+- **What’s next** — point to `.agents/blog-json-api.md` and Phase 6 backlog, not only endpoint URLs.
+
+---
+
+## Relationship to agent docs
+
+| Doc | Role |
+|-----|------|
+| **This file** | Tone, structure, human-vs-agent balance for **articles**. |
+| `post-template.md` | Required YAML fields and tags. |
+| `blog-json-api.md` | Contract for **machines** (endpoints, schema). |
+| `phase-5-6-plan.md` | Roadmap slices (what to build next). |
+| `retrofit-cover-queue.md` | Cover backfill progress (often **no** new article per PR). |
+
+**Short PRs** that only update `.agents/*`, queue ticks, and `Image:` on legacy pairs **do not require** a new ship log article — see `retrofit-cover-queue.md` daily cadence.
+
+---
+
+## Changelog
+
+- **2026-05-20:** Initial guidelines — human-first writing; Phase 6 narrative expectations; command-block limits; short PRs without meta posts.

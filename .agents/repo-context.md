@@ -16,6 +16,7 @@
 
 ## Agent docs (backlog & roadmaps)
 - **`README.md`** — **hub index:** reading order + one-line map of every `.agents/*.md` file (start here for consolidation).
+- **`editorial-guidelines.md`** — **human-first articles:** what/why/how in prose; JSON for agents is secondary; avoid command-only ship logs.
 - `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
 - `phase-5-6-plan.md` — Phase **5** shipped; Phase **6** (JSON) **v1 in progress** (2026-05-20): `70-BlogJson.php`, `.agents/blog-json-api.md`.
 - `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.
@@ -150,6 +151,7 @@
 - Phase 3 fixed known metadata gaps in repo; re-run `python3 scripts/frontmatter_audit.py` after future content imports to prevent regressions.
 
 ## Agent Guardrails for Future Work
+- **Articles are for humans first** — read `editorial-guidelines.md`. Explain goals, trade-offs, and benefits in written language; use command blocks only as supplements. JSON endpoints (`70-BlogJson.php`) do not replace that narrative. Short PRs may update `.agents/*` and retrofit covers **without** a new ship log post.
 - For **UI-only** changes (e.g. sidebar, typography), assume **human design review** may be needed: agents can meet functional acceptance while still under-delivering on “feel” until a second pass.
 - Keep this repo as a **content-first static-like CMS**; avoid introducing heavy backend complexity.
 - Prioritize:

@@ -31,6 +31,18 @@ With `rewrite_url: true`, use the paths below as-is (no `.md` suffix).
 
 ---
 
+## Planned (Phase 6 v1.1 → v1.2)
+
+| Item | Target | Purpose |
+|------|--------|---------|
+| **`GET /search.json`** | v1.1 | Agent-facing search (language-scoped, reuse `PicoSearch` ranking) without HTML. |
+| **Agent-oriented fields** | v1.1 | Add to listings and detail: `word_count`, `estimated_tokens`; ensure `modified_at` on list items (already on single-post in v1). |
+| **`/for-ai-agents`** | v1.2 | Public discovery page (skill-style): endpoints, schema version, language/tag rules, example `curl`s — for tools that do not read `.agents/` in the repo. |
+
+Roadmap detail: **`phase-5-6-plan.md`** § Phase 6. Human-facing rationale for JSON belongs in articles per **`editorial-guidelines.md`**, not only in this file.
+
+---
+
 ## Response headers
 
 - `Content-Type: application/json; charset=utf-8`
@@ -128,4 +140,5 @@ curl -sS 'http://localhost:8080/blog.json'
 
 ## Changelog
 
+- **2026-05-20 (follow-up):** Planned v1.1/v1.2 table (`search.json`, agent fields, `/for-ai-agents`).
 - **2026-05-20:** v1 — `70-BlogJson.php`, four endpoints, schema documented (Day 23).
