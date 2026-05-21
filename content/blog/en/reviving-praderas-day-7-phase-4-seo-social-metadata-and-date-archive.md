@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 7
 Lang: en
 Translation_Key: praderas-day-7-phase-4-seo-discoverability
+Image: /assets/images/day07-comfyui-sdxl-seo-discoverability-hero.webp
+
 ---
 
 # Reviving Praderas (Day 7) — Phase 4: helping Google and humans find things without drama

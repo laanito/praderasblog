@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 6
 Lang: en
 Translation_Key: praderas-day-6-series-and-collections
+Image: /assets/images/day06-comfyui-sdxl-series-collections-hero.webp
+
 ---
 
 # Reviving Praderas (Day 6) — when navigation needs a model, not a patch

@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 6
 Lang: es
 Translation_Key: praderas-day-6-series-and-collections
+Image: /assets/images/day06-comfyui-sdxl-series-collections-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 6) — cuando una mejora de navegación necesita modelo, no parche
