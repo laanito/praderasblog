@@ -1,9 +1,9 @@
-# Blog JSON API (Phase 6 v1)
+# Blog JSON API (Phase 6)
 
 **Purpose:** Machine-consumable blog data for agents, RAG pipelines, and tooling — without scraping HTML nav, sidebars, or Twig chrome.
 
 **Implementation:** `plugins/70-BlogJson.php`  
-**Status:** **v1 listing + per-post** shipped 2026-05-20 (Day 23 slice).  
+**Status:** **v1.1** shipped 2026-05-24 (Day 24): `search.json`, agent fields on listings, schema **1.1**. v1 listing + per-post shipped 2026-05-20 (Day 23).  
 **Canonical roadmap:** `phase-5-6-plan.md` § Phase 6
 
 ---
@@ -26,20 +26,18 @@ With `rewrite_url: true`, use the paths below as-is (no `.md` suffix).
 | GET | `/blog/en.json` | `en` | All English posts under `content/blog/en/*.md` |
 | GET | `/blog/{slug}.json` | `es` | Single Spanish article (`slug` = filename without extension) |
 | GET | `/blog/en/{slug}.json` | `en` | Single English article |
+| GET | `/search.json?q=…` | `es` | Blog search (requires `q`; reuses `PicoSearch` ranking) |
+| GET | `/en/search.json?q=…` | `en` | English blog search |
 
-**Not in v1:** `search.json`, tag query params, static pre-generation, sitemap entries for JSON URLs.
+**Not yet:** tag query params on listings, static pre-generation, sitemap entries for JSON URLs, `/for-ai-agents` (v1.2).
 
 ---
 
-## Planned (Phase 6 v1.1 → v1.2)
+## Planned (Phase 6 v1.2)
 
 | Item | Target | Purpose |
 |------|--------|---------|
-| **`GET /search.json`** | v1.1 | Agent-facing search (language-scoped, reuse `PicoSearch` ranking) without HTML. |
-| **Agent-oriented fields** | v1.1 | Add to listings and detail: `word_count`, `estimated_tokens`; ensure `modified_at` on list items (already on single-post in v1). |
 | **`/for-ai-agents`** | v1.2 | Public discovery page (skill-style): endpoints, schema version, language/tag rules, example `curl`s — for tools that do not read `.agents/` in the repo. |
-
-Roadmap detail: **`phase-5-6-plan.md`** § Phase 6. Human-facing rationale for JSON belongs in articles per **`editorial-guidelines.md`**, not only in this file.
 
 ---
 
@@ -50,23 +48,23 @@ Roadmap detail: **`phase-5-6-plan.md`** § Phase 6. Human-facing rationale for J
 
 ---
 
-## Schema version 1.0
+## Schema version 1.1
 
 ### Listing (`/blog.json`, `/blog/en.json`)
 
 ```json
 {
   "meta": {
-    "schema_version": "1.0",
-    "generated_at": "2026-05-20T14:00:00+00:00",
+    "schema_version": "1.1",
+    "generated_at": "2026-05-24T14:00:00+00:00",
     "language": "es",
-    "count": 56
+    "count": 57
   },
   "posts": [ /* listing items */ ]
 }
 ```
 
-### Listing item (`posts[]`)
+### Listing item (`posts[]` and `results[]`)
 
 | Field | Type | Notes |
 |-------|------|-------|
@@ -83,6 +81,27 @@ Roadmap detail: **`phase-5-6-plan.md`** § Phase 6. Human-facing rationale for J
 | `alternate_url` | string \| null | Paired translation URL when `translation_key` resolves |
 | `image` | string \| null | Site-relative `Image:` when set |
 | `reading_time_minutes` | int \| null | ~200 wpm from markdown body |
+| `word_count` | int \| null | Body word count (v1.1) |
+| `estimated_tokens` | int \| null | Rough `ceil(strlen(body) / 4)` for context budgeting (v1.1) |
+| `modified_at` | string \| null | ISO 8601 from file mtime (v1.1 on listings too) |
+| `search_rank` | float | **Search responses only** — relevance score from `PicoSearch` |
+
+### Search (`/search.json`, `/en/search.json`)
+
+Requires query parameter **`q`**. Missing `q` → **400** `{"error":"Missing required query parameter: q","status":400}`.
+
+```json
+{
+  "meta": {
+    "schema_version": "1.1",
+    "generated_at": "2026-05-24T14:00:00+00:00",
+    "language": "es",
+    "query": "multilingue",
+    "count": 2
+  },
+  "results": [ /* listing items + search_rank */ ]
+}
+```
 
 ### Single post (`/blog/...json`, `/blog/en/...json`)
 
@@ -91,11 +110,10 @@ Wraps one object under `post` with **all listing fields** plus:
 | Field | Type | Notes |
 |-------|------|-------|
 | `content` | string | Markdown body (no YAML front matter) |
-| `content_format` | string | Always `"markdown"` in v1 |
+| `content_format` | string | Always `"markdown"` |
 | `series` | string \| null | `Series` when set |
 | `series_slug` | string \| null | `Series_Slug` |
 | `series_order` | int \| null | `Series_Order` |
-| `modified_at` | string \| null | ISO 8601 from file mtime |
 
 `meta` on single-post responses includes `schema_version`, `generated_at`, and `language` (no `count`).
 
@@ -103,13 +121,16 @@ Wraps one object under `post` with **all listing fields** plus:
 
 | Status | Body |
 |--------|------|
+| 400 | `{"error":"Missing required query parameter: q","status":400}` (search only) |
 | 404 | `{"error":"Post not found","status":404}` |
+| 503 | `{"error":"Search plugin unavailable","status":503}` |
 
 ---
 
 ## Language and tags
 
 - **Listings are language-pure:** Spanish feed never includes `blog/en/*`; English feed only `blog/en/*`.
+- **Search is language-pure** and scoped to blog posts (not hub pages).
 - **`tags` stay Spanish** in JSON even on EN posts — matches YAML and `/tags/?tag=...` URLs. For EN display labels use `scripts/tag_vocabulary.json` separately.
 
 ---
@@ -119,13 +140,15 @@ Wraps one object under `post` with **all listing fields** plus:
 ```bash
 curl -sS 'https://blog.praderas.org/blog.json' | head
 curl -sS 'https://blog.praderas.org/blog/en.json' | jq '.meta.count'
+curl -sS 'https://blog.praderas.org/search.json?q=multilingue' | jq '.results[0].title'
 curl -sS 'https://blog.praderas.org/blog/reviviendo-praderas-dia-4-fase-3-metadatos-taxonomy-y-lint-de-front-matter.json' | jq '.post.title'
 ```
 
 Local stack (PHP + Composer):
 
 ```bash
-curl -sS 'http://localhost:8080/blog.json'
+curl -sS 'http://localhost:8080/search.json?q=traduccion'
+curl -sS 'http://localhost:8080/blog.json' | jq '.posts[0] | {word_count, estimated_tokens}'
 ```
 
 ---
@@ -140,5 +163,6 @@ curl -sS 'http://localhost:8080/blog.json'
 
 ## Changelog
 
-- **2026-05-20 (follow-up):** Planned v1.1/v1.2 table (`search.json`, agent fields, `/for-ai-agents`).
-- **2026-05-20:** v1 — `70-BlogJson.php`, four endpoints, schema documented (Day 23).
+- **2026-05-24:** v1.1 — `/search.json`, `/en/search.json`, `word_count`, `estimated_tokens`, `modified_at` on listings; `PicoSearch::searchBlogPosts()`; schema **1.1** (Day 24).
+- **2026-05-20 (follow-up):** Planned v1.2 (`/for-ai-agents`).
+- **2026-05-20:** v1 — `70-BlogJson.php`, four endpoints, schema 1.0 documented (Day 23).

@@ -8,14 +8,18 @@
  * - GET /blog/en.json        — English posts (content/blog/en/*)
  * - GET /blog/{slug}.json    — single Spanish article
  * - GET /blog/en/{slug}.json — single English article
+ * - GET /search.json?q=…     — Spanish blog search (Phase 6 v1.1)
+ * - GET /en/search.json?q=…  — English blog search
  *
  * Schema: .agents/blog-json-api.md
  */
 class BlogJson extends AbstractPicoPlugin
 {
-    const API_VERSION = 2;
+    const API_VERSION = 3;
 
-    /** @var string|null listing-es|listing-en|post */
+    const SCHEMA_VERSION = '1.1';
+
+    /** @var string|null listing-es|listing-en|post|search-es|search-en */
     private $jsonRoute = null;
 
     /** @var string|null Pico page id, e.g. blog/foo or blog/en/foo */
@@ -29,6 +33,14 @@ class BlogJson extends AbstractPicoPlugin
         }
         if ($url === 'blog/en.json') {
             $this->jsonRoute = 'listing-en';
+            return;
+        }
+        if ($url === 'search.json') {
+            $this->jsonRoute = 'search-es';
+            return;
+        }
+        if ($url === 'en/search.json') {
+            $this->jsonRoute = 'search-en';
             return;
         }
         if (preg_match('~^blog/en/([^/]+)\\.json$~', $url, $matches)) {
@@ -59,6 +71,10 @@ class BlogJson extends AbstractPicoPlugin
             $file = $contentDir . 'blog' . $ext;
         } elseif ($this->jsonRoute === 'listing-en') {
             $file = $contentDir . 'en/blog' . $ext;
+        } elseif ($this->jsonRoute === 'search-es') {
+            $file = $contentDir . 'search' . $ext;
+        } elseif ($this->jsonRoute === 'search-en') {
+            $file = $contentDir . 'en/search' . $ext;
         } elseif ($this->jsonPostId !== null) {
             $candidate = $contentDir . $this->jsonPostId . $ext;
             if (file_exists($candidate)) {
@@ -76,9 +92,46 @@ class BlogJson extends AbstractPicoPlugin
         $pico = $this->getPico();
         $pages = $pico->getPages();
         $baseUrl = rtrim($pico->getBaseUrl(), '/');
-        $schemaVersion = '1.0';
+        $schemaVersion = self::SCHEMA_VERSION;
         $cacheMaxAge = 3600;
         $alternatesByKey = $this->buildAlternatesByKey($pages);
+
+        if ($this->jsonRoute === 'search-es' || $this->jsonRoute === 'search-en') {
+            $lang = ($this->jsonRoute === 'search-en') ? 'en' : 'es';
+            $query = isset($_GET['q']) ? trim((string) $_GET['q']) : '';
+            if ($query === '') {
+                $this->emitJsonError(400, 'Missing required query parameter: q');
+            }
+
+            $searchPlugin = $this->getSearchPlugin();
+            if ($searchPlugin === null) {
+                $this->emitJsonError(503, 'Search plugin unavailable');
+            }
+
+            $hits = $searchPlugin->searchBlogPosts($pages, $query, $lang);
+            $items = array();
+            foreach ($hits as $page) {
+                $item = $this->serializeListingItem($page, $baseUrl, $alternatesByKey);
+                if (isset($page['search_rank'])) {
+                    $item['search_rank'] = (float) $page['search_rank'];
+                }
+                $items[] = $item;
+            }
+
+            $this->emitJson(
+                array(
+                    'meta' => array(
+                        'schema_version' => $schemaVersion,
+                        'generated_at' => gmdate('c'),
+                        'language' => $lang,
+                        'query' => $query,
+                        'count' => count($items),
+                    ),
+                    'results' => $items,
+                ),
+                $cacheMaxAge
+            );
+        }
 
         if ($this->jsonRoute === 'listing-es' || $this->jsonRoute === 'listing-en') {
             $lang = ($this->jsonRoute === 'listing-en') ? 'en' : 'es';
@@ -223,6 +276,9 @@ class BlogJson extends AbstractPicoPlugin
             'alternate_url' => $this->resolveAlternateUrl($key, $lang, $alternatesByKey, $baseUrl),
             'image' => $this->readMetaString($meta, array('image', 'Image'), '') ?: null,
             'reading_time_minutes' => $this->estimateReadingMinutes($page),
+            'word_count' => $this->countWords($page),
+            'estimated_tokens' => $this->estimateTokens($page),
+            'modified_at' => $this->pageModifiedAt($page),
         );
     }
 
@@ -326,19 +382,55 @@ class BlogJson extends AbstractPicoPlugin
         return array_values(array_filter(array_map('trim', $parts)));
     }
 
+    private function pageBodyText(array $page)
+    {
+        if (isset($page['raw_content'])) {
+            return $page['raw_content'];
+        }
+        if (isset($page['content'])) {
+            return strip_tags($page['content']);
+        }
+        return '';
+    }
+
+    private function countWords(array $page)
+    {
+        $words = str_word_count($this->pageBodyText($page));
+        return $words > 0 ? $words : null;
+    }
+
+    /**
+     * Rough token budget for RAG chunking (~4 chars per token for Latin scripts).
+     */
+    private function estimateTokens(array $page)
+    {
+        $text = $this->pageBodyText($page);
+        if ($text === '') {
+            return null;
+        }
+        return max(1, (int) ceil(strlen($text) / 4));
+    }
+
     private function estimateReadingMinutes(array $page)
     {
-        $text = '';
-        if (isset($page['raw_content'])) {
-            $text = $page['raw_content'];
-        } elseif (isset($page['content'])) {
-            $text = strip_tags($page['content']);
-        }
-        $words = str_word_count($text);
-        if ($words < 1) {
+        $words = $this->countWords($page);
+        if ($words === null || $words < 1) {
             return null;
         }
         return max(1, (int) round($words / 200));
+    }
+
+    /**
+     * @return PicoSearch|null
+     */
+    private function getSearchPlugin()
+    {
+        if (!class_exists('PicoSearch', false)) {
+            return null;
+        }
+        $search = new PicoSearch();
+        $search->setPico($this->getPico());
+        return $search;
     }
 
     private function pageModifiedAt(array $page)

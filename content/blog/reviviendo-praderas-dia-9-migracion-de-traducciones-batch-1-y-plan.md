@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 9
 Lang: es
 Translation_Key: praderas-day-9-translation-migration-batch-1
+Image: /assets/images/day09-comfyui-sdxl-translation-migration-batch1-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 9) — traducción con método: plan, batch 1 y números

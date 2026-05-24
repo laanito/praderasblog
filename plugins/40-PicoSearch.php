@@ -100,6 +100,57 @@ class PicoSearch extends AbstractPicoPlugin
             });
         }
 
+        return $this->rankPages($pages);
+    }
+
+    /**
+     * Blog-only search for JSON agents (Phase 6). Reuses HTML ranking; explicit language.
+     *
+     * @param array[] $pages
+     * @param string  $terms
+     * @param string  $lang es|en
+     *
+     * @return array[]
+     */
+    public function searchBlogPosts(array $pages, $terms, $lang)
+    {
+        $this->search_terms = trim($terms);
+        if ($this->search_terms === '') {
+            return array();
+        }
+
+        $lang = ($lang === 'en') ? 'en' : 'es';
+        $pages = array_filter($pages, function ($page) use ($lang) {
+            if (!isset($page['id'], $page['date']) || !$page['date']) {
+                return false;
+            }
+            $id = $page['id'];
+            if (strpos($id, 'blog/') !== 0) {
+                return false;
+            }
+            if ($lang === 'es' && strpos($id, 'blog/en/') === 0) {
+                return false;
+            }
+            if ($lang === 'en' && strpos($id, 'blog/en/') !== 0) {
+                return false;
+            }
+            if (class_exists('Multilingual', false) && Multilingual::inferLang($page) !== $lang) {
+                return false;
+            }
+            return true;
+        });
+
+        return $this->rankPages($pages, $lang);
+    }
+
+    /**
+     * @param array[]     $pages
+     * @param string|null $langOverride For stopwords when there is no current page (JSON).
+     *
+     * @return array[]
+     */
+    private function rankPages(array $pages, $langOverride = null)
+    {
         $pico = $this->getPico();
         $excludes = $pico->getConfig('search_excludes');
         if (!empty($excludes)) {
@@ -108,29 +159,31 @@ class PicoSearch extends AbstractPicoPlugin
             }
         }
 
-        if (isset($this->search_terms)) {
-            $pages = array_map(function ($page) {
-                $page['search_rank'] = $this->getSearchRankForPage($page);
-                return $page;
-            }, $pages);
-
-            $pages = array_filter($pages, function ($page) {
-                return $page['search_rank'] > 0;
-            });
-
-            uasort($pages, function ($a, $b) {
-                if ($a['search_rank'] == $b['search_rank']) {
-                    return 0;
-                }
-
-                return $a['search_rank'] > $b['search_rank'] ? -1 : 1;
-            });
+        if (!isset($this->search_terms) || $this->search_terms === '') {
+            return array();
         }
+
+        $pages = array_map(function ($page) use ($langOverride) {
+            $page['search_rank'] = $this->getSearchRankForPage($page, $langOverride);
+            return $page;
+        }, $pages);
+
+        $pages = array_filter($pages, function ($page) {
+            return $page['search_rank'] > 0;
+        });
+
+        uasort($pages, function ($a, $b) {
+            if ($a['search_rank'] == $b['search_rank']) {
+                return 0;
+            }
+
+            return $a['search_rank'] > $b['search_rank'] ? -1 : 1;
+        });
 
         return $pages;
     }
 
-    public function getSearchRankForPage($page) {
+    public function getSearchRankForPage($page, $langOverride = null) {
         // If there's an exact match in the title, skip a bunch of work and give it a very high score
         $escaped_search_terms = preg_quote($this->search_terms, '/');
         if (preg_match("/\b$escaped_search_terms\b/iu", $page['title']) === 1) {
@@ -138,8 +191,8 @@ class PicoSearch extends AbstractPicoPlugin
         }
 
         $searchTerms = preg_split('/\s+/', $this->search_terms);
-        $keyTerms = array_filter($searchTerms, function ($searchTerm) {
-            return !$this->isLowValueWord($searchTerm);
+        $keyTerms = array_filter($searchTerms, function ($searchTerm) use ($langOverride) {
+            return !$this->isLowValueWord($searchTerm, $langOverride);
         });
 
         // Only search through key terms if any exist
@@ -149,17 +202,17 @@ class PicoSearch extends AbstractPicoPlugin
 
         return array_sum(
             array_map(
-                function ($searchTerm) use ($page) {
-                    return $this->getSearchRankForString($searchTerm, $page['title']) +
-                        $this->getSearchRankForString($searchTerm, $page['raw_content']) * 0.2;
+                function ($searchTerm) use ($page, $langOverride) {
+                    return $this->getSearchRankForString($searchTerm, $page['title'], $langOverride) +
+                        $this->getSearchRankForString($searchTerm, $page['raw_content'], $langOverride) * 0.2;
                 },
                 $searchTerms
             )
         );
     }
 
-    public function getSearchRankForString($searchTerm, $content) {
-        $searchTermValue = $this->isLowValueWord($searchTerm) ? 0.2 : 1;
+    public function getSearchRankForString($searchTerm, $content, $langOverride = null) {
+        $searchTermValue = $this->isLowValueWord($searchTerm, $langOverride) ? 0.2 : 1;
         $escapedSearchTerm = preg_quote($searchTerm, '/');
 
         $fullWordMatches = preg_match_all("/\b$escapedSearchTerm\b/iu", $content);
@@ -176,12 +229,16 @@ class PicoSearch extends AbstractPicoPlugin
         return min($inWordMatches, 3) * 0.05 * $searchTermValue;
     }
 
-    public function isLowValueWord($word) {
+    public function isLowValueWord($word, $langOverride = null) {
         $w = mb_strtolower($word);
         $lang = 'es';
-        $page = $this->getPico()->getCurrentPage();
-        if ($page !== null && class_exists('Multilingual', false)) {
-            $lang = Multilingual::inferLang($page);
+        if ($langOverride === 'en' || $langOverride === 'es') {
+            $lang = $langOverride;
+        } else {
+            $page = $this->getPico()->getCurrentPage();
+            if ($page !== null && class_exists('Multilingual', false)) {
+                $lang = Multilingual::inferLang($page);
+            }
         }
         if ($lang === 'en') {
             $list = $this->getPluginConfig('low_value_words_en') ?: array();

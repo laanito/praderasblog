@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 8
 Lang: es
 Translation_Key: praderas-phase-5-multilingual
+Image: /assets/images/day08-comfyui-sdxl-phase5-multilingual-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 8) — Fase 5: dos idiomas sin romper URLs históricas
