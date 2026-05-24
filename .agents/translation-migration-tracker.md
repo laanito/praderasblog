@@ -117,6 +117,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-day-21-export-cover-translation-key-flag` | `reviviendo-praderas-dia-21-export-cover-clave-traduccion.md` | `reviving-praderas-day-21-export-cover-translation-key.md` | done | Day 21: `export_cover.py` **`--translation-key`**; `day21-comfyui-sdxl-translation-key-patch.webp`; checklist row 7 shipped; **`frontmatter_audit.py`** **`Translation_Key`** guard (same PR follow-up). |
 | `praderas-day-22-phase-5-vocabulary-tier-a-retrofit-log` | `reviviendo-praderas-dia-22-cierre-fase-5-vocabulario-y-retrofit-tier-a.md` | `reviving-praderas-day-22-phase-5-vocabulary-closure-and-tier-a-retrofit.md` | done | Day 22: Phase 5 UI closure recap (merged PR A) + Tier A retrofit rows 2–3 WebP; `day22-comfyui-sdxl-phase5-vocabulary-tier-a-retrofit-hero.webp`. |
 | `praderas-day-23-tier-a-days-4-5-phase-6-blog-json-log` | `reviviendo-praderas-dia-23-retrofit-tier-a-dias-4-5-y-json-fase-6.md` | `reviving-praderas-day-23-tier-a-days-4-5-and-phase-6-json.md` | done | Day 23: Tier A retrofit rows 4–5 WebP + Phase 6 `70-BlogJson.php` / `blog-json-api.md`. |
+| `praderas-day-24-tier-a-days-8-9-phase-6-search-json-log` | `reviviendo-praderas-dia-24-retrofit-tier-a-dias-8-9-y-busqueda-json.md` | `reviving-praderas-day-24-tier-a-days-8-9-and-search-json.md` | done | Day 24: Tier A retrofit rows 8–9 WebP + Phase 6 v1.1 `search.json` + listing agent fields. |
 | `tuqan-phase-0-strategic-foundation` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | done | Tuqan series opener; ES file canonical path `content/blog/` (not `blog/es/`). |
 
 ## Batch migration plan (to avoid context overflow)
@@ -186,6 +187,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-24:** Day 24 ES/EN log — Tier A retrofit Days 8–9 heroes + Phase 6 v1.1 (`search.json`, listing `word_count` / `estimated_tokens` / `modified_at`); `retrofit-cover-queue.md` rows 8–9 → done.
 - **2026-05-20:** Day 23 ES/EN log — Tier A retrofit Days 4–5 heroes + Phase 6 JSON v1 (`70-BlogJson.php`); `retrofit-cover-queue.md` rows 4–5 → done.
 - **2026-05-19 (follow-up):** Day 22 ES/EN log (`praderas-day-22-phase-5-vocabulary-tier-a-retrofit-log`) — documents merged Phase 5 UI PR + Tier A retrofit Days 2–3 heroes; tracker row; `retrofit-cover-queue.md` rows 2–3 → done.
 - **2026-05-19:** Phase 5 UI closure — `scripts/tag_vocabulary.json` (canonical tag labels + blurbs); `65-Multilingual.php` exposes `tag_blurb_es` / `tag_blurb_en`; `categories.twig` reads plugin maps; EN `/en/blog` pagination; vocabulary table expanded; `multilingual-ui-backlog.md` marked closed (bilingual YAML `Tags` deferred).

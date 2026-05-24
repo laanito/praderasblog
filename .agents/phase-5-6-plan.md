@@ -1,7 +1,7 @@
 # Phases 5 & 6 — Multilingual and AI-Ready (JSON) — Adopted backlog
 
 **Source:** Adapted from strategic planning (April 2026), consolidated for this repository.  
-**Status:** **Phase 5 shipped** (2026-04-28 → 2026-05-19). **Phase 6 v1 shipped** (2026-05-20): `plugins/70-BlogJson.php`, **`.agents/blog-json-api.md`**. **Next slices (backlog):** `search.json`, richer agent-oriented schema fields, public **`/for-ai-agents`** discovery page (skill-style doc for machines). See § Phase 6 roadmap below.  
+**Status:** **Phase 5 shipped** (2026-04-28 → 2026-05-19). **Phase 6 v1.1 shipped** (2026-05-24): `search.json`, listing agent fields, schema **1.1**. **Phase 6 v1** (2026-05-20): `plugins/70-BlogJson.php`, **`.agents/blog-json-api.md`**. **Next slice (backlog):** public **`/for-ai-agents`** discovery page (v1.2). See § Phase 6 roadmap below.  
 **Supersedes:** One-off copy of an external `PHASE_5_MULTILINGUAL_…` file; this file is the **canonical** reference in-repo.
 
 ---
@@ -76,8 +76,8 @@ Two endpoints (exact paths TBD; cache-friendly):
 
 | Slice | Deliverable | Notes |
 |-------|-------------|--------|
-| **v1.1 — Search** | `GET /search.json?q=…` (and language scope) | Reuse `40-PicoSearch.php` ranking; lets agents query without scraping `/search/<term>` HTML. |
-| **v1.1 — Schema** | `word_count`, `estimated_tokens`, `modified_at` on **listings** too | v1 single-post already exposes `modified_at`; align naming and add token estimate (~chars/4 or word-based). |
+| **v1.1 — Search** | `GET /search.json?q=…` (and language scope) | **Shipped 2026-05-24** — `PicoSearch::searchBlogPosts()` + `70-BlogJson.php`. |
+| **v1.1 — Schema** | `word_count`, `estimated_tokens`, `modified_at` on **listings** too | **Shipped 2026-05-24** — schema version **1.1**. |
 | **v1.2 — Discovery** | **`/for-ai-agents`** (HTML or markdown page + optional `.json` index) | Skill-style entry: available endpoints, schema version, language rules, canonical tags, “start here” links — for tools that do not read `.agents/` in git. |
 
 **Editorial:** Human-facing explanation of Phase 6 choices lives in **`.agents/editorial-guidelines.md`**; future ship logs should describe goals/benefits in prose, not only `curl` examples.
@@ -119,6 +119,7 @@ Two endpoints (exact paths TBD; cache-friendly):
 
 - **2026-04-30:** “For future agents” now points to `translation-batches.md` for translation PR workflow.
 - **2026-04-29:** Added `.agents/translation-migration-tracker.md` (ES→EN backlog, vocabulary stub, editorial-era reference); homepages `index.md` / `en/index.md` aligned with explicit production model (2020 / 2023–24 / 2026).
+- **2026-05-24:** Phase 6 **v1.1** — `search.json`, `/en/search.json`, listing `word_count` / `estimated_tokens` / `modified_at`; Day 24 ship log; Tier A retrofit rows 8–9.
 - **2026-05-20 (follow-up):** Editorial guidelines + Phase 6 **v1.1/v1.2 roadmap** (`search.json`, agent schema fields, `/for-ai-agents`); Tier A retrofit rows 6–7 (docs-only PR, no new article).
 - **2026-05-20:** Phase 6 **v1 slice** — `70-BlogJson.php` + `blog-json-api.md` (Day 23); listing + single-post JSON for ES/EN.
 - **2026-05-19:** Phase 5 **UI closure** — `scripts/tag_vocabulary.json`, `tag_blurb_*` Twig context, EN blog pagination, vocabulary audit guard; `multilingual-ui-backlog.md` closed for current model.

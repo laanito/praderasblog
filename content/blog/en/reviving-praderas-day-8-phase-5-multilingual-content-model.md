@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 8
 Lang: en
 Translation_Key: praderas-phase-5-multilingual
+Image: /assets/images/day08-comfyui-sdxl-phase5-multilingual-hero.webp
+
 ---
 
 # Reviving Praderas (Day 8) — Phase 5: bilingual without rewriting history
