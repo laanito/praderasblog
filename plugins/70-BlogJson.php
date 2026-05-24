@@ -428,9 +428,16 @@ class BlogJson extends AbstractPicoPlugin
         if (!class_exists('PicoSearch', false)) {
             return null;
         }
-        $search = new PicoSearch();
-        $search->setPico($this->getPico());
-        return $search;
+        $pico = $this->getPico();
+        try {
+            $plugin = $pico->getPlugin('PicoSearch');
+            if ($plugin instanceof PicoSearch) {
+                return $plugin;
+            }
+        } catch (RuntimeException $e) {
+            // Plugin not registered; fall back to a dedicated instance.
+        }
+        return new PicoSearch($pico);
     }
 
     private function pageModifiedAt(array $page)
@@ -446,6 +453,15 @@ class BlogJson extends AbstractPicoPlugin
         return null;
     }
 
+    private function jsonEncodeFlags()
+    {
+        $flags = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT;
+        if (defined('JSON_INVALID_UTF8_SUBSTITUTE')) {
+            $flags |= JSON_INVALID_UTF8_SUBSTITUTE;
+        }
+        return $flags;
+    }
+
     private function emitJson(array $payload, $cacheMaxAge)
     {
         header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
@@ -453,10 +469,11 @@ class BlogJson extends AbstractPicoPlugin
         if ($cacheMaxAge > 0) {
             header('Cache-Control: public, max-age=' . (int) $cacheMaxAge);
         }
-        echo json_encode(
-            $payload,
-            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT
-        );
+        $json = json_encode($payload, $this->jsonEncodeFlags());
+        if ($json === false) {
+            $this->emitJsonError(500, 'JSON encoding failed');
+        }
+        echo $json;
         exit;
     }
 
@@ -465,13 +482,18 @@ class BlogJson extends AbstractPicoPlugin
         $code = (int) $statusCode;
         header($_SERVER['SERVER_PROTOCOL'] . ' ' . $code);
         header('Content-Type: application/json; charset=utf-8');
-        echo json_encode(
+        $json = json_encode(
             array(
                 'error' => $message,
                 'status' => $code,
             ),
-            JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+            $this->jsonEncodeFlags() & ~JSON_PRETTY_PRINT
         );
+        if ($json === false) {
+            echo '{"error":"JSON encoding failed","status":500}';
+        } else {
+            echo $json;
+        }
         exit;
     }
 }
