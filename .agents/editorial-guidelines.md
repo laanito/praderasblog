@@ -1,15 +1,17 @@
 # Editorial guidelines — human readers first
 
-**Purpose:** Keep *Reviviendo Praderas* and the wider blog **readable for people**, even when the stack also ships JSON feeds and agent tooling. Agents should read this **before** drafting or extending ship logs and technical posts.
+**Purpose:** Keep *Reviviendo Praderas* and the wider blog **readable for people**, even when the stack also ships JSON feeds and agent tooling.
 
-**Applies to:** `content/blog/*.md`, `content/blog/en/*.md`, and any future meta posts about phases or refactors. **Does not** replace `post-template.md` (front matter) or `translation-batches.md` (ES↔EN workflow).
+**Applies to:** `content/blog/*.md`, `content/blog/en/*.md`, and any future meta posts about phases or refactors.
+
+**New article workflow (agents):** Read **`.agents/article-authoring-guide.md` first** — mandatory reading order, structure template, anti-patterns, and pre-merge checklist. This file covers **tone and narrative**; the authoring guide covers **process end-to-end**. Still use `post-template.md` (YAML) and `translation-batches.md` (ES↔EN batches).
 
 ---
 
 ## Primary audience
 
 1. **Human readers** — developers, maintainers, and curious visitors who want to understand **what changed, why, and what we learned**.
-2. **Agents and RAG** — secondary consumers via `/blog.json`, per-post `.json`, and (planned) `search.json` and `/for-ai-agents`. They must **not** drive article shape; prose comes first.
+2. **Agents and RAG** — secondary consumers via `/blog.json`, per-post `.json`, `/search.json`, and `/for-ai-agents`. They must **not** drive article shape; prose comes first.
 
 JSON endpoints exist so machines can ingest **the same story** without scraping HTML. They are **not** a substitute for explaining decisions in natural language.
 
@@ -44,7 +46,19 @@ When JSON or search work ships, the human post (if any) should explain:
 - **Goal** — e.g. machine-readable posts without nav chrome.
 - **Why a plugin** — same request lifecycle as Pico, no second server, cache-friendly dedicated paths (see `phase-5-6-plan.md`).
 - **Benefits** — RAG, auditing, integrations; HTML remains canonical for SEO and browsing.
-- **What’s next** — point to `.agents/blog-json-api.md` and Phase 6 backlog, not only endpoint URLs.
+- **What’s next** — point to `blog-json-api.md` and `proposed-improvements.md` (open backlog), not only endpoint URLs.
+
+---
+
+## Do not assume reader context
+
+An agent (or external tool) that only sees one task description **does not** know:
+
+- Prior series posts (Reviviendo Praderas Day N, Tuqan Phase/Stage N).
+- Legacy stack terms (PEAR, PSR-4, ISO 9001, Docker-only migration).
+- What was shipped last week in another repository.
+
+**Always include** a short background section and define jargon on first use. Thin posts that jump straight to “we merged PR #X” without *why* are **not** acceptable — see anti-patterns in `article-authoring-guide.md` (Tuqan Stage 3 lesson).
 
 ---
 
@@ -52,10 +66,13 @@ When JSON or search work ships, the human post (if any) should explain:
 
 | Doc | Role |
 |-----|------|
+| **`article-authoring-guide.md`** | **Start here for new posts** — checklist, paths, series, anti-patterns. |
 | **This file** | Tone, structure, human-vs-agent balance for **articles**. |
 | `post-template.md` | Required YAML fields and tags. |
+| `visual-qa-backlog.md` | Layout/tables/code QA process after publish or theme PRs. |
 | `blog-json-api.md` | Contract for **machines** (endpoints, schema). |
-| `phase-5-6-plan.md` | Roadmap slices (what to build next). |
+| `phase-5-6-plan.md` | Phase 5/6 **shipped** reference + JSON extras still open. |
+| `proposed-improvements.md` | **Open** product backlog (visual QA, Tier B+ covers, etc.). |
 | `retrofit-cover-queue.md` | Cover backfill progress (often **no** new article per PR). |
 
 **Short PRs** that only update `.agents/*`, queue ticks, and `Image:` on legacy pairs **do not require** a new ship log article — see `retrofit-cover-queue.md` daily cadence.
@@ -64,4 +81,5 @@ When JSON or search work ships, the human post (if any) should explain:
 
 ## Changelog
 
+- **2026-05-26:** Point to `article-authoring-guide.md`; “do not assume context”; `visual-qa-backlog.md` link.
 - **2026-05-20:** Initial guidelines — human-first writing; Phase 6 narrative expectations; command-block limits; short PRs without meta posts.

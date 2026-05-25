@@ -5,7 +5,7 @@
 - **Primary live URL:** `https://blog.praderas.org/` (not `https://praderas.org/`).
 - **Language:** Spanish-first site with **Phase 5** English subtree (`content/blog/en/`, `content/en/`); theme labels switch for EN pages where wired (`content_lang`).
 - **Current active theme:** `bootstrap-blog` (configured in `config/config.yml`).
-- **Content size:** Spanish posts under `content/blog/*.md` plus incremental English posts under `content/blog/en/` (see tracker for pair coverage).
+- **Content size:** ~79 Spanish + ~79 English posts under `content/blog/` (158 total per `frontmatter_audit.py`); paired via `Translation_Key` — see `translation-migration-tracker.md`.
 
 ## High-Level Architecture
 - **Core runtime:** `index.php` boots Pico and loads `config/`, `plugins/`, and `themes/`.
@@ -14,18 +14,15 @@
 - **Rendering:** Twig templates in `themes/bootstrap-blog`.
 - **Extensions:** Custom plugins in `plugins/` for pagination, search, tags, robots/sitemap. **Optional:** local ComfyUI HTTP API for AI-generated cover images — see `.agents/comfyui-cover-images.md` (not part of production `index.php` runtime).
 
-## Agent docs (backlog & roadmaps)
-- **`README.md`** — **hub index:** reading order + one-line map of every `.agents/*.md` file (start here for consolidation).
-- **`editorial-guidelines.md`** — **human-first articles:** what/why/how in prose; JSON for agents is secondary; avoid command-only ship logs.
-- `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
-- `phase-5-6-plan.md` — Phase **5** shipped; Phase **6** (JSON) **v1 in progress** (2026-05-20): `70-BlogJson.php`, `.agents/blog-json-api.md`.
-- `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.
-- `translation-batches.md` — **how to run translation in batches:** context-window rationale, whole-series rule, glossary updates, honest human wall-clock vs specialist estimates, merge checklist (read before shipping ES/EN pairs).
-- `multilingual-ui-backlog.md` — **non-post EN gaps** (search, archive, footers, sitemap index): what shipped vs pending for Twig/`content_lang` routes.
-- `comfyui-cover-images.md` — **optional ComfyUI cover pipeline:** SDXL `/prompt`, `export_cover.py` (PNG + **`--webp`** + **`--patch-markdown`** + **`--translation-key`**), **`webp_cover.sh`**, **WebP** covers in `assets/images/`, checklist (**rows 6–7 shipped, 9** partial), **retrofit** § + **`retrofit-cover-queue.md`** (Tier A cadence).
-- `image-prompt-guidelines.md` — **cover prompt coherence:** house tone + anchoring ComfyUI positives to article metadata (`Title`, `Description`, tags); use with `export_cover.py`.
-- `post-template.md` — front matter conventions for new posts (`Image:` may target **`.webp`**).
-- `day5-consultant-feedback.md` — Day 5 sequence and status notes (visual + series completed, follow-up UX tweaks).
+## Agent documentation
+
+**Hub:** `.agents/README.md` — reading order, active vs reference vs historical docs, script index.
+
+**Backlog (open work):** `proposed-improvements.md`, `visual-qa-backlog.md`, `retrofit-cover-queue.md` (Tier B+).
+
+**New posts:** `article-authoring-guide.md` → `editorial-guidelines.md` → `post-template.md`.
+
+Phase-by-phase ship narrative lives in *Reviviendo Praderas* posts (`content/blog/reviviendo-praderas-dia-*`), not in this file.
 
 ## Directory Map
 - `content/`
@@ -65,21 +62,14 @@
   - `50-BlogNeighbors.php` — on `blog/*` posts: `post_prev_in_time`, `post_next_in_time` (chronological), `related_posts` (shared tags, max 5); on `categorias` page: `tag_post_counts` (map tag → int)
   - `60-SeriesCollections.php` — series routes (`/series/<slug>/`), series index context, and post-level series navigation data (used in sidebar widget); **per-language** series maps (ES vs EN posts)
   - `65-Multilingual.php` — `Lang` / `Translation_Key` metadata, `hreflang` + `og:locale` context, `alternate_language_page`, `pradera_home_url`, `content_lang` / `html_lang`, tag display maps from **`scripts/tag_vocabulary.json`** (`tag_label_en`, `tag_blurb_es`, `tag_blurb_en`)
-  - `70-BlogJson.php` — Phase 6 JSON: `/blog.json`, `/blog/en.json`, `/blog/{slug}.json`, `/blog/en/{slug}.json` (see `.agents/blog-json-api.md`)
+  - `70-BlogJson.php` — JSON: `/blog.json`, `/blog/en.json`, per-post `.json`, `/search.json`, `/en/search.json` (see `blog-json-api.md`)
   - `PicoTags.php`
   - `PicoRobots/`
 
 ## Content Front Matter Conventions
-- Common fields used: `Title`, `Description`, `Date`, `Author`, `Template`, `Tags`. Optional bilingual: `Lang`, `Translation_Key` (same key on paired ES/EN files).
-- Current coverage in `content/blog`:
-  - `Description`: 56/56
-  - `Date`: 56/56
-  - `Author`: 56/56
-  - `Template: post`: 56/56
-  - `Tags`: 56/56 (normalized in Phase 3)
-- Existing tag taxonomy includes:
-  - `Aplicaciones Moviles`, `Ciberseguridad`, `Crypto`, `Desarrollo Web`, `Economia`,
-    `Inteligencia Artificial`, `Privacidad`, `Productividad`, `Sistemas`, `Sociedad`.
+- Common fields: `Title`, `Description`, `Date`, `Author`, `Template`, `Tags`. Bilingual: `Lang`, `Translation_Key` (same key on paired ES/EN files). Optional: `Image:`, `Series` / `Series_Slug` / `Series_Order`.
+- **Audit:** `python3 scripts/frontmatter_audit.py` — required fields, canonical tags, `Image:` paths, `Translation_Key` pairing (158 posts as of 2026-05-26).
+- **Canonical tags** (Spanish in YAML): `Aplicaciones Moviles`, `Ciberseguridad`, `Crypto`, `Desarrollo Web`, `Economia`, `Inteligencia Artificial`, `Privacidad`, `Productividad`, `Sistemas`, `Sociedad`. EN labels: `scripts/tag_vocabulary.json`.
 
 ## Plugin Behavior Summary
 - **Pagination (`10-Pagination.php`)**
@@ -99,67 +89,39 @@
   - Serves `robots.txt`; **`sitemap.xml`** is a **sitemap index** listing `sitemap-es.xml` and `sitemap-en.xml`, each a `<urlset>` filtered by `Multilingual::inferLang` (Day 16).
   - Theme overrides: `themes/bootstrap-blog/sitemap-index.twig`, `sitemap.twig`.
 
-## Phase 1 theme work (2026-04, completed in repo)
-- `themes/bootstrap-blog/blog.twig` was rebuilt: malformed trailing HTML/JS is removed, pagination is visible, layout matches the rest of the site.
-- Shared `sidebar.twig` + `search-behavior.twig`: one search field (`#search_input`, `#search_submit`) wired for click and Enter, Spanish labels, **Artículos recientes** (5) replaces the default “Side Widget” placeholder, category tag links are URL-escaped in the partial.
-- **Human feedback (post-launch):** the first “recent posts” pass shipped as plain, unstyled links. Review said the block *worked* but looked unpolished. A follow-up (list group + `sidebar-recent` CSS) made it *better*; the maintainer is fine leaving it as-is for now (not a final art direction, just acceptable). Document this so the next pass does not assume the UI is “finished.”
-- `index.twig` and `post.twig` use the same sidebar and search behavior; **`html lang`** is driven by `Multilingual` (`html_lang`) after Phase 5.
-- `config/config.yml` sets Spanish labels for the pagination plugin (`pagination_prev_text` / `pagination_next_text`) for any consumer of the plugin’s link strings; the blog template uses explicit Spanish labels for the pager UI.
-- If `gh` (GitHub CLI) is unavailable, open a pull request from the branch manually after `git push`.
+## Implemented capabilities (summary)
 
-## Phase 2 (2026-04, completed in repo)
-- Primary **navbar** was fixed to four items in Phase 2; after Day 6 series rollout it is now five items: Inicio, Blog, Series, Categorías, Acerca.
-- **`/categorias`**: new markdown page + `categories.twig` lists each site tag (with short blurb, post count, link to `/tags/?tag=...`).
-- **Breadcrumbs** on `index` (Inicio on home), `blog`, `post` (chained through first tag when present), `search`, `tags`, and `categorias`.
-- **Article footer** (only `content/blog/*` with `post` template): *Te puede interesar* (tag overlap) + prev/next by **time** via `50-BlogNeighbors.php`.
+Phases 1–6 and Day 5/6 consultant work are **shipped** in this repo. Detail: *Reviviendo Praderas* Días 2–25 posts; JSON contract: `blog-json-api.md`; open product work: `proposed-improvements.md`.
 
-## Phase 3 (2026-04, completed in repo)
-- Front matter normalization pass across legacy posts: missing `Tags` filled, lowercase `tags` standardized to `Tags`, and one date outlier normalized.
-- Canonical taxonomy is now complete across all posts (`Tags` present everywhere).
-- Added `scripts/frontmatter_audit.py` (schema/date/taxonomy, **`Image:`** paths, **`Translation_Key`** duplicate / ES+EN pairing) for repeatable verification.
-- Added `.agents/post-template.md` as starter editorial template for new entries.
+| Area | In tree today |
+|------|----------------|
+| Listing / search / nav | Rebuilt `blog.twig`, shared sidebar + search, five-item nav, `/categorias`, breadcrumbs, related + prev/next |
+| Metadata | Normalized `Tags`, `frontmatter_audit.py`, `post-template.md` |
+| SEO / archive | `page-meta.twig`, `/archivo`, per-lang sitemaps |
+| Multilingual | `65-Multilingual.php`, `/blog/en/…`, `/en/…` hubs, `tag_vocabulary.json`, language switcher |
+| Series | `60-SeriesCollections.php`, `/series/…`, sidebar widget |
+| JSON / agents | `70-BlogJson.php`, `/for-ai-agents`, schema 1.1 |
+| Covers | Comfy + WebP pipeline; Tier A retrofit **complete** (`retrofit-cover-queue.md`) |
 
-## Phase 4 (SEO & discoverability, 2026-04)
-- Shared SEO/social head partial (`page-meta.twig`): canonical URL, Open Graph, Twitter Cards; article vs website `og:type` for `blog/*` vs other pages.
-- **`base_url`** in `config/config.yml` documents canonical deployment host (`https://blog.praderas.org`); root-domain redirects remain infrastructure-side.
-- **`/archivo`**: year/month grouped index of **Spanish** `blog/*` posts only (`archive.twig` excludes `blog/en/*`), linked from sidebar “Archivo”.
-- Search page (`content/search.md`) includes `Description` for cleaner snippets/metadata where applicable.
+**Post-body layout debt** (narrow column, tables, code): `visual-qa-backlog.md` — not the same as Day 5 shell polish.
 
-## Phase 5 (Multilingual — first slice, 2026-04-28)
-- **URLs:** no migration for existing Spanish posts; English lives under `/blog/en/...` and top-level EN under `/en/...`.
-- **Metadata:** optional `Lang`, `Translation_Key` (see `.agents/post-template.md`); plugin **`65-Multilingual.php`** wires alternates for Twig + `hreflang` + `og:locale` / `og:locale:alternate`.
-- **Theme:** `lang-switcher.twig`, `blog-en.twig`, bilingual `nav.twig` / `sidebar.twig` strings, dynamic `html lang` on `index` / `post` / `blog` / `blog-en`.
-- **Plugins:** pagination excludes EN from `/blog`; neighbors + related + series maps respect language; `PicoSearch` uses English stopwords on EN pages.
-- **Article:** Día 8 ES `content/blog/reviviendo-praderas-dia-8-fase-5-multilingue-modelo-y-metadatos.md` + EN twin in `content/blog/en/`.
-
-## Day 5/6 (consultant track completed through series)
-- **Visual / usability (Day 5):** delivered via `praderas-theme.css` and template updates; Día 5 post + consultant follow-up merged. External review ~8,7/10 after first live deploy; a second small CSS/Twig pass closed the main nits.
-- **Series / collections (Day 6):** implemented with front matter `Series` / `Series_Slug` / `Series_Order`, index routes under `/series/...`, top-nav `Series` link, and a sidebar series widget on post pages.
-- **Legacy series mapping:** “Control de Tiempo Desacoplado” was retrofitted across 13 historical posts (kickoff to React users chapter) using the same series fields.
-- Details: `.agents/day5-consultant-feedback.md`, backlog: `proposed-improvements.md` (Day 5 section).
-
-## Live Site Findings (Current State)
+## Live site (verify after deploy)
 - Main nav (ES): **Inicio** (Bienvenidos), **Blog**, **Series**, **Categorías** (highlight also on `/tags`), **Acerca** → `acerca-de-picocms`. On EN pages: **Home**, **Blog** → `/en/blog`, **Series** → `/en/series`, **Categories** → `/en/categorias` (highlight also on `/en/tags`), **About** → `/en/about-picocms` (`nav.twig`).
 - Sidebar on most pages includes: search, **Archivo** link card, category tags, and **Artículos recientes** (list-group + `sidebar-recent` styles; **Praderas** theme layer styles tags as pills with hover). On post pages that belong to a series, a **Serie** widget (prev/next/index) appears above categories.
 - Blog listing, tag, and search cards use **`Image:`** when present, otherwise **Lorem Picsum** (`list-card-thumb.twig`). **Blog article** pages (`post.twig`, `id` under `blog/…`) use the **same seed** for listing thumb, **hero** (1200×630), and **`og:image` / Twitter** when `Image:` is unset (`page-meta.twig` + `praderas-macros.twig`).
 - URL routing is canonical on subdomain (`blog.praderas.org`); treat `base_url` as the canonical origin for links and social meta. Root domain behaviour without redirects is a deployment/DNS concern outside this repo.
 
-## Confirmed Technical/UX Issues
-- (Resolved in tree for Phase 1) Historically, `blog.twig` was corrupted and showed broken HTML, inconsistent search `id`s, and no visible pager. **Current `blog.twig` + `sidebar.twig` / `search-behavior.twig` in this repo** address the listing, search, and pagination UI; verify again after deploy.
-- UI language: Phase 5 **complete** for EN routes (`content_lang` branching, `tag_vocabulary.json`, paired `content/en/*` hubs). **`/blog`** (Spanish listing) intentionally keeps Spanish pager/footer in `blog.twig`; **`/en/blog`** uses `blog-en.twig` with English chrome and pagination.
-- `config/config.yml` points to `https://blog.praderas.org`; user-reported canonical site is `https://praderas.org` (domain strategy mismatch).
-- Phase 3 fixed known metadata gaps in repo; re-run `python3 scripts/frontmatter_audit.py` after future content imports to prevent regressions.
+## Known constraints
+- **`/blog`** listing stays Spanish chrome; **`/en/blog`** is English (`blog-en.twig`).
+- **`base_url`:** `https://blog.praderas.org` in `config/config.yml` (root `praderas.org` redirects are infra-side).
+- Re-run **`frontmatter_audit.py`** after bulk imports.
 
-## Agent Guardrails for Future Work
-- **Articles are for humans first** — read `editorial-guidelines.md`. Explain goals, trade-offs, and benefits in written language; use command blocks only as supplements. JSON endpoints (`70-BlogJson.php`) do not replace that narrative. Short PRs may update `.agents/*` and retrofit covers **without** a new ship log post.
-- For **UI-only** changes (e.g. sidebar, typography), assume **human design review** may be needed: agents can meet functional acceptance while still under-delivering on “feel” until a second pass.
-- Keep this repo as a **content-first static-like CMS**; avoid introducing heavy backend complexity.
-- Prioritize:
-  1. Fixing template integrity and navigation/search behavior.
-  2. Metadata consistency (tags, date normalization).
-  3. Progressive UX improvements without breaking existing URLs.
-- Preserve current slug paths under `content/blog` to avoid SEO regressions.
-- Treat `themes/bootstrap-blog/blog.twig.bak` as historical reference only; verify before reuse.
+## Agent guardrails
+- **Human-first articles:** `article-authoring-guide.md`, `editorial-guidelines.md`. JSON feeds supplement prose; they do not replace it.
+- **Docs-only / cover PRs** may skip a new ship log — see `retrofit-cover-queue.md`.
+- **Theme changes:** check `visual-qa-backlog.md` (prose width, tables, code).
+- **Content-first CMS** — avoid heavy backend; preserve Spanish post slugs under `content/blog/`.
+- `blog.twig.bak` is historical only.
 
 ## Quick Operational Notes
 - **PHP on the agent machine:** Many developer environments (including some Cursor sandboxes) **do not have `php` on PATH**. Do **not** treat `php -l` or a local Pico boot as a merge gate unless you have confirmed PHP is installed. Prefer **`python3 scripts/frontmatter_audit.py`** for content checks; leave PHP syntax/runtime verification to **CI or a human** with a local stack.
@@ -179,3 +141,4 @@
   - `/en/tags` and `/en/tags?tag=Ciberseguridad` (sample)
   - `/en/about-picocms`
   - `/blog/en/<post>` (sample paired content)
+  - `/blog.json`, `/search.json?q=test`, `/for-ai-agents`
