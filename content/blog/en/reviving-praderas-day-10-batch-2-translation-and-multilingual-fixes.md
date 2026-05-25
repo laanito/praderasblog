@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 10
 Lang: en
 Translation_Key: praderas-day-10-batch-2-multilingual-hubs
+Image: /assets/images/day10-comfyui-sdxl-batch2-multilingual-hubs-hero.webp
+
 ---
 
 # Reviving Praderas (Day 10) — what shipped today and why

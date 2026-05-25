@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 14
 Lang: es
 Translation_Key: praderas-day-14-batch-6-7-8-translation-finale-log
+Image: /assets/images/day14-comfyui-sdxl-batch678-translation-finale-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 14) — qué cerramos hoy

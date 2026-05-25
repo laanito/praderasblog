@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 11
 Lang: es
 Translation_Key: praderas-day-11-batch-3-security-ui
+Image: /assets/images/day11-comfyui-sdxl-batch3-security-privacy-ui-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 11) — qué se hizo y por qué

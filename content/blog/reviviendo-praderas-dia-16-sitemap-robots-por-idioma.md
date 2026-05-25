@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 16
 Lang: es
 Translation_Key: praderas-day-16-sitemap-robots-lang-log
+Image: /assets/images/day16-comfyui-sdxl-day16-sitemap-robots-lang-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 16) — sitemaps por idioma
