@@ -1,8 +1,10 @@
 # Editorial guidelines — human readers first
 
-**Purpose:** Keep *Reviviendo Praderas* and the wider blog **readable for people**, even when the stack also ships JSON feeds and agent tooling. Agents should read this **before** drafting or extending ship logs and technical posts.
+**Purpose:** Keep *Reviviendo Praderas* and the wider blog **readable for people**, even when the stack also ships JSON feeds and agent tooling.
 
-**Applies to:** `content/blog/*.md`, `content/blog/en/*.md`, and any future meta posts about phases or refactors. **Does not** replace `post-template.md` (front matter) or `translation-batches.md` (ES↔EN workflow).
+**Applies to:** `content/blog/*.md`, `content/blog/en/*.md`, and any future meta posts about phases or refactors.
+
+**New article workflow (agents):** Read **`.agents/article-authoring-guide.md` first** — mandatory reading order, structure template, anti-patterns, and pre-merge checklist. This file covers **tone and narrative**; the authoring guide covers **process end-to-end**. Still use `post-template.md` (YAML) and `translation-batches.md` (ES↔EN batches).
 
 ---
 
@@ -48,12 +50,26 @@ When JSON or search work ships, the human post (if any) should explain:
 
 ---
 
+## Do not assume reader context
+
+An agent (or external tool) that only sees one task description **does not** know:
+
+- Prior series posts (Reviviendo Praderas Day N, Tuqan Phase/Stage N).
+- Legacy stack terms (PEAR, PSR-4, ISO 9001, Docker-only migration).
+- What was shipped last week in another repository.
+
+**Always include** a short background section and define jargon on first use. Thin posts that jump straight to “we merged PR #X” without *why* are **not** acceptable — see anti-patterns in `article-authoring-guide.md` (Tuqan Stage 3 lesson).
+
+---
+
 ## Relationship to agent docs
 
 | Doc | Role |
 |-----|------|
+| **`article-authoring-guide.md`** | **Start here for new posts** — checklist, paths, series, anti-patterns. |
 | **This file** | Tone, structure, human-vs-agent balance for **articles**. |
 | `post-template.md` | Required YAML fields and tags. |
+| `visual-qa-backlog.md` | Layout/tables/code QA process after publish or theme PRs. |
 | `blog-json-api.md` | Contract for **machines** (endpoints, schema). |
 | `phase-5-6-plan.md` | Roadmap slices (what to build next). |
 | `retrofit-cover-queue.md` | Cover backfill progress (often **no** new article per PR). |
@@ -64,4 +80,5 @@ When JSON or search work ships, the human post (if any) should explain:
 
 ## Changelog
 
+- **2026-05-26:** Point to `article-authoring-guide.md`; “do not assume context”; `visual-qa-backlog.md` link.
 - **2026-05-20:** Initial guidelines — human-first writing; Phase 6 narrative expectations; command-block limits; short PRs without meta posts.

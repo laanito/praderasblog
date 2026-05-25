@@ -45,14 +45,29 @@
 - **Reference:** `.agents/day5-consultant-feedback.md`.
 
 ## Priority 2 - Usability and Content Readability
+
+### Agent authoring (documentation — 2026-05-26)
+
+- **Status:** **Shipped in repo** — `.agents/article-authoring-guide.md` (mandatory workflow for new posts), expanded pointers in `editorial-guidelines.md`, `post-template.md`, hub `README.md`. Addresses thin/out-of-context articles (e.g. external agent on Tuqan Stage 3).
+
+### Visual quality — article body (backlog — 2026-05-26)
+
+**Canonical detail:** `.agents/visual-qa-backlog.md` (issue IDs **V-01–V-10**, validation process, implementation slices **S1–S3**).
+
+- **Reading column too narrow (V-01)** — `.pradera-main--reading` capped at **42rem** inside `col-lg-8`; desktop feels cramped on technical posts with tables.
+- **Tables (V-02, V-05)** — Markdown tables lack Praderas-specific styling; poor headers and mobile overflow handling.
+- **Code snippets (V-03)** — `pre`/`code` need brand-aligned colors and spacing; inline code still uses Bootstrap pink accent.
+- **Process** — Fixed sample URLs (Day 25, Tuqan posts), viewport checklist (375 / 768 / 1280 / 1536), PR sign-off template; optional Playwright screenshots later.
+- **Suggested order:** S1 prose width → S2 tables → S3 code (theme: `praderas-theme.css`).
+
 - **Unify interface language**
   - Translate all UI labels to Spanish (or fully bilingual), avoiding mixed English strings.
 - **Replace random placeholder images**
   - **Shipped (2026-05-11, Day 18; cards + post hero 2026-05-12; export patch 2026-05-12; WebP weight 2026-05-13):** optional **`Image:`** hero + **`og:image`** / Twitter; **`Image:`** or **Picsum** when unset; **`export_cover.py`** **`--patch-markdown`** / **`--webp`**; **`.webp`** covers (~50 KiB) replace multi‑MiB PNGs for Day 17–19 assets. See **`.agents/README.md`** hub. **`ffmpeg`** row 9 remainder / **CI** still open.
   - **Shipped — Tier A retrofit (2026-05-25):** Days **1–16** of *Reviviendo Praderas* now have committed **`Image:`** WebP heroes (queue complete in `.agents/retrofit-cover-queue.md`). **Next — Tier B+:** series openers and long tail per `.agents/comfyui-cover-images.md` § *Retrofit plan* (~2 ES/EN pairs/day habit).
-- **Improve readability defaults**
-  - Increase line-height and content width balance for long-form reading.
-  - Add styles for code blocks, tables, and callouts used in technical posts.
+- **Improve readability defaults** — **partially shipped (Day 5); gaps tracked in `visual-qa-backlog.md`**
+  - Line-height ~1.75 shipped; **content max-width and table/code polish remain open** (see V-01–V-03).
+  - Callouts used in technical posts — still optional/future.
 - **Improve accessibility baseline**
   - Better alt text policy for post images.
   - Visible keyboard focus on links/buttons.

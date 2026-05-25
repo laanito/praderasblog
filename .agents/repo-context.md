@@ -16,7 +16,9 @@
 
 ## Agent docs (backlog & roadmaps)
 - **`README.md`** — **hub index:** reading order + one-line map of every `.agents/*.md` file (start here for consolidation).
+- **`article-authoring-guide.md`** — **how to write a new post** (mandatory agent workflow, checklist, anti-patterns).
 - **`editorial-guidelines.md`** — **human-first articles:** what/why/how in prose; JSON for agents is secondary; avoid command-only ship logs.
+- **`visual-qa-backlog.md`** — prose width, tables, code blocks; visual QA process for theme changes.
 - `proposed-improvements.md` — prioritized backlog and phases 1–6 summary.
 - `phase-5-6-plan.md` — Phase **5** shipped; Phase **6** (JSON) **v1 in progress** (2026-05-20): `70-BlogJson.php`, `.agents/blog-json-api.md`.
 - `translation-migration-tracker.md` — ES→EN migration ledger: translation backlog table, editorial-era reference, vocabulary, checklist for new pairs.

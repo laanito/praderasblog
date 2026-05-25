@@ -1,5 +1,8 @@
 # Post Template (Phase 3)
 
+**Before writing:** `.agents/article-authoring-guide.md` (full workflow for agents).  
+**Tone:** `.agents/editorial-guidelines.md`.
+
 Use this as starter front matter for new posts under `content/blog/`.
 
 ```yaml
@@ -54,4 +57,9 @@ For **migration work** (many posts, series, PR sizing), read `.agents/translatio
 
 ## Writing for humans (required for new posts)
 
-Read **`.agents/editorial-guidelines.md`**. Articles target **human readers** first: explain **what, why, how, benefits, and scope** in prose. JSON feeds (`/blog.json`, etc.) are for agents; they do **not** replace narrative. Avoid ship logs that are only command dumps — commands belong in a short subsection **after** the explanation.
+1. **`.agents/article-authoring-guide.md`** — structure, checklist, anti-patterns.  
+2. **`.agents/editorial-guidelines.md`** — what / why / how / benefits / scope in prose.
+
+JSON feeds (`/blog.json`, etc.) are for machines; they do **not** replace narrative. Avoid ship logs that are only command dumps — commands belong in a short subsection **after** the explanation.
+
+After merge, if the post uses **tables or code blocks**, note layout checks in **`.agents/visual-qa-backlog.md`** (sample URLs + viewports).

@@ -5,9 +5,11 @@
 ## Start here
 
 1. **`repo-context.md`** — architecture, directory map, how Pico + theme + plugins fit together, links into content conventions.
-2. **`translation-migration-tracker.md`** — canonical **ES↔EN post ledger**, backlog table, vocabulary, changelog for paired work.
-3. **`post-template.md`** — front matter fields, `Image:` / `Translation_Key` / `Lang` expectations.
-4. **`editorial-guidelines.md`** — human-first articles (what/why/how); JSON for agents is secondary.
+2. **`article-authoring-guide.md`** — **how to create a new blog article** (mandatory for agents; reading order + checklist).
+3. **`translation-migration-tracker.md`** — canonical **ES↔EN post ledger**, backlog table, vocabulary, changelog for paired work.
+4. **`post-template.md`** — front matter fields, `Image:` / `Translation_Key` / `Lang` expectations.
+5. **`editorial-guidelines.md`** — human-first tone (what/why/how); JSON for agents is secondary.
+6. **`visual-qa-backlog.md`** — article layout, tables, code styling; validation process before/after theme PRs.
 
 ## All documents (quick map)
 
@@ -24,7 +26,9 @@
 | `retrofit-cover-queue.md` | **Tier A tick list** (*Reviviendo Praderas* Days 1–16): suggested **daily cadence** (≈2 pairs/day target, 1 pair floor) so hero backfill does not stall. |
 | `image-prompt-guidelines.md` | House style + article-linked CLIP prompts before export. |
 | `post-template.md` | Authoring rules and optional fields for new posts. |
+| `article-authoring-guide.md` | **New post workflow** for any agent: anti-patterns, structure, pre-merge checklist. |
 | `editorial-guidelines.md` | Human-readable posts: explain decisions in prose, not command-only logs. |
+| `visual-qa-backlog.md` | Visual debt (narrow prose, tables, code) + repeatable QA process. |
 | `day5-consultant-feedback.md` | Day 5 visual/series consultant notes (historical context). |
 
 ## Operational scripts (outside `.agents/` but tied to these docs)
@@ -36,6 +40,7 @@
 
 ## Changelog (this index)
 
+- **2026-05-26:** `article-authoring-guide.md` + `visual-qa-backlog.md`; hub reading order updated.
 - **2026-05-25:** Day 25 — Tier A queue **complete** (rows 10–16), `/for-ai-agents`, Tuqan [PR #44](https://github.com/laanito/tuqan/pull/44) blog post.
 - **2026-05-24:** Day 24 — Tier A retrofit rows 8–9 + Phase 6 v1.1 (`search.json`, schema 1.1); `blog-json-api.md` updated.
 - **2026-05-20 (follow-up):** `editorial-guidelines.md` — human-first writing; Phase 6 v1.1–v1.2 roadmap in `blog-json-api.md` / `phase-5-6-plan.md`.
