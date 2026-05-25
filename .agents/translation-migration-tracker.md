@@ -121,6 +121,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `praderas-day-25-tier-a-complete-tuqan-for-ai-agents-log` | `reviviendo-praderas-dia-25-tier-a-cierre-tuqan-y-para-agentes.md` | `reviving-praderas-day-25-tier-a-complete-tuqan-for-ai-agents.md` | done | Day 25: Tier A rows 10–16 WebP + `/for-ai-agents` v1.2. |
 | `praderas-for-ai-agents` | _(use `content/for-ai-agents.md`)_ | _(use `content/en/for-ai-agents.md`)_ | done | Phase 6 discovery hub `/for-ai-agents` ↔ `/en/for-ai-agents`. |
 | `tuqan-php8-docker-migration-plan` | `tuqan-php8-docker-migration-plan.md` | `tuqan-php8-docker-migration-plan.md` | done | Tuqan PR #44 — PHP 8, Docker-only dev, testing plan (`Series_Order: 2`). |
+| `tuqan-stage-3-config-secrets-query-safety` | `tuqan-stage-3-config-secrets-query-safety.md` | `tuqan-stage-3-config-secrets-query-safety.md` | done | Stage 3 — env config + `consultaPreparada()` on critical paths (`Series_Order: 3`). |
 | `tuqan-phase-0-strategic-foundation` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | done | Tuqan series opener; ES file canonical path `content/blog/` (not `blog/es/`). |
 
 ## Batch migration plan (to avoid context overflow)
@@ -190,6 +191,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 
 ## Changelog (in-repo)
 
+- **2026-05-26:** Tuqan Stage 3 ES/EN post — config externalization + prepared statements on critical paths; hero `tuqan-stage-3-config-secrets-hero.webp`.
 - **2026-05-25:** Day 25 ES/EN log — Tier A rows 10–16 heroes + `/for-ai-agents`; Tuqan PR #44 post pair; tracker rows `praderas-for-ai-agents`, `tuqan-php8-docker-migration-plan`.
 - **2026-05-24:** Day 24 ES/EN log — Tier A retrofit Days 8–9 heroes + Phase 6 v1.1 (`search.json`, listing `word_count` / `estimated_tokens` / `modified_at`); `retrofit-cover-queue.md` rows 8–9 → done.
 - **2026-05-20:** Day 23 ES/EN log — Tier A retrofit Days 4–5 heroes + Phase 6 JSON v1 (`70-BlogJson.php`); `retrofit-cover-queue.md` rows 4–5 → done.
