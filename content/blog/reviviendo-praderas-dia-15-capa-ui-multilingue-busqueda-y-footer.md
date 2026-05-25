@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 15
 Lang: es
 Translation_Key: praderas-day-15-ui-search-footer-log
+Image: /assets/images/day15-comfyui-sdxl-day15-search-footer-ui-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 15) — cierre de la cola UI prevista

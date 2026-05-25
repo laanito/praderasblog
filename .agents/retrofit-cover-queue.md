@@ -18,7 +18,7 @@
 
 **Docs-only PRs:** ticking queue rows + updating `.agents/*` does **not** require a new *Reviviendo Praderas* article — see **`editorial-guidelines.md`**.
 
-At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** active days of cover work (spread across calendar weeks as needed).
+At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** active days of cover work (spread across calendar weeks as needed). **Status (2026-05-25):** Tier A rows **1–16** are **`done`** — see Day 25 ship log; next work is **Tier B+** in `comfyui-cover-images.md`.
 
 ---
 
@@ -35,13 +35,13 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 | 7 | `praderas-day-7-phase-4-seo-discoverability` | done | `day07-comfyui-sdxl-seo-discoverability-hero.webp` (~68 KiB); seed `07052026`; docs PR 2026-05-20. |
 | 8 | `praderas-phase-5-multilingual` | done | `day08-comfyui-sdxl-phase5-multilingual-hero.webp` (~75 KiB); seed `08052026`; Day 24 PR. |
 | 9 | `praderas-day-9-translation-migration-batch-1` | done | `day09-comfyui-sdxl-translation-migration-batch1-hero.webp` (~57 KiB); seed `09052026`; Day 24 PR. |
-| 10 | `praderas-day-10-batch-2-multilingual-hubs` | todo | |
-| 11 | `praderas-day-11-batch-3-security-ui` | todo | |
-| 12 | `praderas-day-12-batch-4-archive-blog-log` | todo | |
-| 13 | `praderas-day-13-batch-5-productivity-log` | todo | |
-| 14 | `praderas-day-14-batch-6-7-8-translation-finale-log` | todo | |
-| 15 | `praderas-day-15-ui-search-footer-log` | todo | |
-| 16 | `praderas-day-16-sitemap-robots-lang-log` | todo | |
+| 10 | `praderas-day-10-batch-2-multilingual-hubs` | done | `day10-comfyui-sdxl-batch2-multilingual-hubs-hero.webp` (~102 KiB); seed `10052026`; Day 25 batch. |
+| 11 | `praderas-day-11-batch-3-security-ui` | done | `day11-comfyui-sdxl-batch3-security-privacy-ui-hero.webp` (~114 KiB); seed `11052026`; Day 25 batch. |
+| 12 | `praderas-day-12-batch-4-archive-blog-log` | done | `day12-comfyui-sdxl-batch4-ai-archive-blog-hero.webp` (~111 KiB); seed `12052026`; Day 25 batch. |
+| 13 | `praderas-day-13-batch-5-productivity-log` | done | `day13-comfyui-sdxl-batch5-productivity-tools-hero.webp` (~60 KiB); seed `13052026`; Day 25 batch. |
+| 14 | `praderas-day-14-batch-6-7-8-translation-finale-log` | done | `day14-comfyui-sdxl-batch678-translation-finale-hero.webp` (~106 KiB); seed `14052026`; Day 25 batch. |
+| 15 | `praderas-day-15-ui-search-footer-log` | done | `day15-comfyui-sdxl-day15-search-footer-ui-hero.webp` (~56 KiB); seed `15052026`; Day 25 batch. |
+| 16 | `praderas-day-16-sitemap-robots-lang-log` | done | `day16-comfyui-sdxl-day16-sitemap-robots-lang-hero.webp` (~69 KiB); seed `16052026`; Day 25 batch. |
 
 **Status values:** `todo` · `done` (and optionally `n/a` if a row is intentionally skipped — document why in **Notes**).
 
@@ -49,6 +49,7 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 
 ## Changelog (this file)
 
+- **2026-05-25:** **Rows 10–16 done** — batch script `scripts/comfyui/batch_tier_a_10_16.sh`; Tier A queue **complete**; Day 25 ship log.
 - **2026-05-24:** **Rows 8–9 done** — Phase 5 multilingual + batch-1 migration plan WebP + `Image:`; Day 24 ship log documents retrofit + Phase 6 v1.1 `search.json`.
 - **2026-05-20 (follow-up):** **Rows 6–7 done** — series/collections + SEO/discoverability WebP + `Image:`; no new ship log article (docs-only PR).
 - **2026-05-20:** **Rows 4–5 done** — Tier A retrofit Days 4–5 WebP + `Image:`; Day 23 ship log + Phase 6 JSON slice 1.

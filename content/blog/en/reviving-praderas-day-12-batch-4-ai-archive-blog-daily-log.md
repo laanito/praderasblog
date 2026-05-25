@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 12
 Lang: en
 Translation_Key: praderas-day-12-batch-4-archive-blog-log
+Image: /assets/images/day12-comfyui-sdxl-batch4-ai-archive-blog-hero.webp
+
 ---
 
 # Reviving Praderas (Day 12) — transparency on the merge and this log pair

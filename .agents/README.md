@@ -36,6 +36,7 @@
 
 ## Changelog (this index)
 
+- **2026-05-25:** Day 25 — Tier A queue **complete** (rows 10–16), `/for-ai-agents`, Tuqan [PR #44](https://github.com/laanito/tuqan/pull/44) blog post.
 - **2026-05-24:** Day 24 — Tier A retrofit rows 8–9 + Phase 6 v1.1 (`search.json`, schema 1.1); `blog-json-api.md` updated.
 - **2026-05-20 (follow-up):** `editorial-guidelines.md` — human-first writing; Phase 6 v1.1–v1.2 roadmap in `blog-json-api.md` / `phase-5-6-plan.md`.
 - **2026-05-20:** Phase 6 v1 — `blog-json-api.md`, `plugins/70-BlogJson.php` (Day 23).

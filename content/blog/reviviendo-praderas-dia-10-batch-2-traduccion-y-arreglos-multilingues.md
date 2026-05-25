@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 10
 Lang: es
 Translation_Key: praderas-day-10-batch-2-multilingual-hubs
+Image: /assets/images/day10-comfyui-sdxl-batch2-multilingual-hubs-hero.webp
+
 ---
 
 # Reviviendo Praderas (Día 10) — qué se hizo hoy y por qué

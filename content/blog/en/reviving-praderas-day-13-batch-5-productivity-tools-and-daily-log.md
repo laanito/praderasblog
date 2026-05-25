@@ -10,6 +10,8 @@ Series_Slug: reviviendo-praderas
 Series_Order: 13
 Lang: en
 Translation_Key: praderas-day-13-batch-5-productivity-log
+Image: /assets/images/day13-comfyui-sdxl-batch5-productivity-tools-hero.webp
+
 ---
 
 # Reviving Praderas (Day 13) — what shipped and why
