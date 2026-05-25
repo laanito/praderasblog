@@ -109,7 +109,7 @@ Order: **S1 → S2 → S3** (biggest reader impact first).
 
 | Doc | Role |
 |-----|------|
-| `proposed-improvements.md` | Priority 2 summary + link here |
+| `proposed-improvements.md` | Open backlog § Article body visuals + link here |
 | `day5-consultant-feedback.md` | Original visual sequence (historical) |
 | `article-authoring-guide.md` | Points authors to visual QA after publish |
 | `editorial-guidelines.md` | Prose quality; does not replace layout QA |

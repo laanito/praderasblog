@@ -11,7 +11,7 @@
 ## Primary audience
 
 1. **Human readers** — developers, maintainers, and curious visitors who want to understand **what changed, why, and what we learned**.
-2. **Agents and RAG** — secondary consumers via `/blog.json`, per-post `.json`, and (planned) `search.json` and `/for-ai-agents`. They must **not** drive article shape; prose comes first.
+2. **Agents and RAG** — secondary consumers via `/blog.json`, per-post `.json`, `/search.json`, and `/for-ai-agents`. They must **not** drive article shape; prose comes first.
 
 JSON endpoints exist so machines can ingest **the same story** without scraping HTML. They are **not** a substitute for explaining decisions in natural language.
 
@@ -46,7 +46,7 @@ When JSON or search work ships, the human post (if any) should explain:
 - **Goal** — e.g. machine-readable posts without nav chrome.
 - **Why a plugin** — same request lifecycle as Pico, no second server, cache-friendly dedicated paths (see `phase-5-6-plan.md`).
 - **Benefits** — RAG, auditing, integrations; HTML remains canonical for SEO and browsing.
-- **What’s next** — point to `.agents/blog-json-api.md` and Phase 6 backlog, not only endpoint URLs.
+- **What’s next** — point to `blog-json-api.md` and `proposed-improvements.md` (open backlog), not only endpoint URLs.
 
 ---
 
@@ -71,7 +71,8 @@ An agent (or external tool) that only sees one task description **does not** kno
 | `post-template.md` | Required YAML fields and tags. |
 | `visual-qa-backlog.md` | Layout/tables/code QA process after publish or theme PRs. |
 | `blog-json-api.md` | Contract for **machines** (endpoints, schema). |
-| `phase-5-6-plan.md` | Roadmap slices (what to build next). |
+| `phase-5-6-plan.md` | Phase 5/6 **shipped** reference + JSON extras still open. |
+| `proposed-improvements.md` | **Open** product backlog (visual QA, Tier B+ covers, etc.). |
 | `retrofit-cover-queue.md` | Cover backfill progress (often **no** new article per PR). |
 
 **Short PRs** that only update `.agents/*`, queue ticks, and `Image:` on legacy pairs **do not require** a new ship log article — see `retrofit-cover-queue.md` daily cadence.

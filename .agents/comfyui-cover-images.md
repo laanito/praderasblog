@@ -17,7 +17,7 @@
 - Replace **random / placeholder** hero imagery with something **deterministic or controllable**.
 - Keep the **Markdown-first** author flow: ideally the human/agent edits **front matter + body**; image generation is an **optional step** (local script, post-save hook, or CI), not a hard dependency of `index.php`.
 
-Two complementary tracks (see also `proposed-improvements.md` Priority 2):
+Two complementary tracks (see also `proposed-improvements.md` § Cover retrofit):
 
 1. **Closed vocabulary** — `Cover: productivity` style keys mapped to static assets in-repo (zero GPU).
 2. **ComfyUI** — tailored raster from `Title` / `Description` / house style prompt, then commit **`Image:`** pointing at a file under `assets/` (or CDN URL). **Prompt discipline:** `.agents/image-prompt-guidelines.md` (tone + article linkage).
