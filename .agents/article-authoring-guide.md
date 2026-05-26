@@ -124,7 +124,7 @@ Copy and tick before opening a PR:
 - [ ] First use of acronyms explained (or linked to a prior explainer post).
 - [ ] EN links target `/blog/en/...` where pairs exist.
 - [ ] Row added/updated in `translation-migration-tracker.md`.
-- [ ] `Image:` set to **dedicated** WebP (or planned in PR description with export command).
+- [ ] `Image:` set to a **new dedicated** WebP for this post (paired ES/EN must share the exact same path). For any post in an existing series (Tuqan — Modernización, Reviviendo Praderas, etc.), a new hero is the default. Reuse of another post’s image is only acceptable in rare cases and **must** be explicitly documented in the body text + noted in the PR description. Meta/process posts are not exempt.
 - [ ] `python3 scripts/frontmatter_audit.py` exits 0.
 - [ ] No secrets, credentials, or `.env` contents in markdown.
 
