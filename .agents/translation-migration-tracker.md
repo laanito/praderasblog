@@ -123,6 +123,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `tuqan-php8-docker-migration-plan` | `tuqan-php8-docker-migration-plan.md` | `tuqan-php8-docker-migration-plan.md` | done | Tuqan PR #44 — PHP 8, Docker-only dev, testing plan (`Series_Order: 2`). |
 | `tuqan-stage-3-config-secrets-query-safety` | `tuqan-stage-3-config-secrets-query-safety.md` | `tuqan-stage-3-config-secrets-query-safety.md` | done | Stage 3 — env config + `consultaPreparada()` on critical paths (`Series_Order: 3`). |
 | `tuqan-agentic-lessons-root-cause` | `tuqan-agentic-lessons-root-cause.md` | `tuqan-agentic-lessons-root-cause.md` | done | Meta post on agentic operation (short-circuits vs root cause); Stage 7 lessons; dedicated hero (`Series_Order: 4`). |
+| `tuqan-agentic-lessons-missing-commit` | `tuqan-agentic-lessons-missing-commit.md` | `tuqan-agentic-lessons-missing-commit.md` | done | Part 2 of agentic lessons: the concrete "missing commit" failure on a login PR after the Test + Fix Loop rule existed; dedicated new hero (`Series_Order: 5`). |
 | `tuqan-phase-0-strategic-foundation` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | done | Tuqan series opener; ES file canonical path `content/blog/` (not `blog/es/`). |
 
 ## Batch migration plan (to avoid context overflow)
