@@ -3,7 +3,7 @@
 **Purpose:** Machine-consumable blog data for agents, RAG pipelines, and tooling — without scraping HTML nav, sidebars, or Twig chrome.
 
 **Implementation:** `plugins/70-BlogJson.php`  
-**Status:** **v1.1** shipped 2026-05-24 (Day 24): `search.json`, agent fields on listings, schema **1.1**. v1 listing + per-post shipped 2026-05-20 (Day 23).  
+**Status:** **v1.2** shipped 2026-05-28: listing `?tag=` filter, static snapshot script. **v1.1** (Day 24): `search.json`, agent fields. **v1** (Day 23): listings + per-post.  
 **Canonical roadmap:** `phase-5-6-plan.md` § Phase 6
 
 ---
@@ -23,7 +23,9 @@ With `rewrite_url: true`, use the paths below as-is (no `.md` suffix).
 | Method | Path | Language | Description |
 |--------|------|----------|-------------|
 | GET | `/blog.json` | `es` | All Spanish posts under `content/blog/*.md` (excludes `blog/en/*`) |
+| GET | `/blog.json?tag=…` | `es` | Spanish posts whose canonical `Tags` include the given tag (exact match) |
 | GET | `/blog/en.json` | `en` | All English posts under `content/blog/en/*.md` |
+| GET | `/blog/en.json?tag=…` | `en` | English posts filtered by canonical Spanish tag name |
 | GET | `/blog/{slug}.json` | `es` | Single Spanish article (`slug` = filename without extension) |
 | GET | `/blog/en/{slug}.json` | `en` | Single English article |
 | GET | `/search.json?q=…` | `es` | Blog search (requires `q`; reuses `PicoSearch` ranking) |
@@ -31,7 +33,9 @@ With `rewrite_url: true`, use the paths below as-is (no `.md` suffix).
 
 **Discovery (v1.2):** [`/for-ai-agents`](https://blog.praderas.org/for-ai-agents) (ES) · [`/en/for-ai-agents`](https://blog.praderas.org/en/for-ai-agents) (EN) — `Translation_Key: praderas-for-ai-agents`.
 
-**Not yet:** tag query params on listings, static pre-generation, sitemap entries for JSON URLs.
+**Static snapshots:** `python3 scripts/pregenerate_blog_json.py` → `generated/json/blog.json`, `blog-en.json` (listing fields only; for deploy mirrors).
+
+**Not yet:** sitemap entries for JSON URLs.
 
 ---
 
@@ -42,21 +46,26 @@ With `rewrite_url: true`, use the paths below as-is (no `.md` suffix).
 
 ---
 
-## Schema version 1.1
+## Schema version 1.2
 
 ### Listing (`/blog.json`, `/blog/en.json`)
+
+Optional query: **`?tag=<canonical Spanish tag>`** — filters `posts[]` to items whose `tags` array includes an exact match (same names as YAML `Tags`, e.g. `Desarrollo Web`).
 
 ```json
 {
   "meta": {
-    "schema_version": "1.1",
-    "generated_at": "2026-05-24T14:00:00+00:00",
+    "schema_version": "1.2",
+    "generated_at": "2026-05-28T12:00:00+00:00",
     "language": "es",
-    "count": 57
+    "count": 12,
+    "tag_filter": "Desarrollo Web"
   },
   "posts": [ /* listing items */ ]
 }
 ```
+
+When no `tag` query is present, `tag_filter` is omitted from `meta`.
 
 ### Listing item (`posts[]` and `results[]`)
 

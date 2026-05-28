@@ -17,3 +17,6 @@ desktop.ini
 # Python
 __pycache__/
 *.py[cod]
+
+# Generated JSON listing snapshots (regenerate with scripts/pregenerate_blog_json.py)
+/generated/json/*.json

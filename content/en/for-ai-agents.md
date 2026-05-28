@@ -14,7 +14,7 @@ Full contract in the repo: [`.agents/blog-json-api.md`](https://github.com/laani
 
 ## Current schema
 
-- **`schema_version`:** `1.1`
+- **`schema_version`:** `1.2` (listings support optional `?tag=` filter)
 - **Languages:** listings and search are **language-pure** (`es` vs `en`); JSON `tags` stay **canonical Spanish** (same as YAML `Tags`).
 
 ## Endpoints
@@ -22,7 +22,9 @@ Full contract in the repo: [`.agents/blog-json-api.md`](https://github.com/laani
 | Method | Path | Purpose |
 |--------|------|---------|
 | GET | `/blog.json` | Spanish post listing |
+| GET | `/blog.json?tag=…` | Spanish listing filtered by canonical tag (Spanish name) |
 | GET | `/blog/en.json` | English post listing |
+| GET | `/blog/en.json?tag=…` | English listing filtered by the same canonical tag |
 | GET | `/blog/{slug}.json` | Spanish article + markdown body |
 | GET | `/blog/en/{slug}.json` | English article + markdown body |
 | GET | `/search.json?q=…` | Spanish search (same ranking as `/search/…`) |

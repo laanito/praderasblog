@@ -14,7 +14,7 @@ Contrato detallado en el repositorio: [`.agents/blog-json-api.md`](https://githu
 
 ## Esquema actual
 
-- **`schema_version`:** `1.1`
+- **`schema_version`:** `1.2` (listings support optional `?tag=` filter)
 - **Idiomas:** listados y búsqueda **puros por idioma** (`es` vs `en`); las etiquetas en JSON permanecen en **español canónico** (igual que el YAML `Tags`).
 
 ## Endpoints
@@ -22,7 +22,9 @@ Contrato detallado en el repositorio: [`.agents/blog-json-api.md`](https://githu
 | Método | Ruta | Uso |
 |--------|------|-----|
 | GET | `/blog.json` | Listado de artículos en español |
+| GET | `/blog.json?tag=…` | Listado ES filtrado por etiqueta canónica (español) |
 | GET | `/blog/en.json` | Listado en inglés |
+| GET | `/blog/en.json?tag=…` | Listado EN filtrado por la misma etiqueta canónica |
 | GET | `/blog/{slug}.json` | Artículo ES + cuerpo markdown |
 | GET | `/blog/en/{slug}.json` | Artículo EN + cuerpo markdown |
 | GET | `/search.json?q=…` | Búsqueda ES (mismo ranking que `/search/…`) |

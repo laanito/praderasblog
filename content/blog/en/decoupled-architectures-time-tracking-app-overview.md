@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 1
 Lang: en
 Translation_Key: praderas-ctd-01
+Image: /assets/images/ctd-01-decoupled-time-tracking-hero.webp
+
 ---
 
 In this article series we walk through building **decoupled architectures**. The end goal is a **time-tracking application** for a small company. Along the way we break down each component—from server setup to a **React** user interface.
