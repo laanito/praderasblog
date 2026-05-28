@@ -31,29 +31,28 @@
 
 ## Open backlog (prioritized)
 
-### 1. Article body visuals — **high**
+### 1. Article body visuals — **follow-up QA**
 
-**Owner doc:** `.agents/visual-qa-backlog.md` (issues V-01–V-10, QA process, slices S1–S3).
+**Owner doc:** `.agents/visual-qa-backlog.md`. **S1–S3 shipped 2026-05-28** (prose ~50–52rem, tables, code colors, table scroll wrap).
 
-- Narrow prose column (~42rem cap on `.pradera-main--reading`).
-- Table styling and mobile overflow.
-- Code / `pre` / inline `code` brand alignment.
+- Spot-check live sample URLs after deploy; tune if measure still feels tight on xl screens.
 
 ### 2. Cover retrofit Tier B+ — **medium (editorial habit)**
 
-**Owner docs:** `retrofit-cover-queue.md` (Tier A **complete**), `comfyui-cover-images.md` § *Retrofit plan*.
+**Owner docs:** `retrofit-cover-queue.md` (Tier A **complete**; Tier B started), `comfyui-cover-images.md` § *Retrofit plan*.
 
-- Series openers and long-tail posts still on Picsum when `Image:` unset.
-- Cadence: ~2 ES/EN pairs/day when capacity allows.
+- **Done 2026-05-28:** CTD-01 + Tuqan Phase 0 openers (2 pairs).
+- Continue long-tail / remaining series openers when capacity allows (~2 pairs/day).
 
 ### 3. Comfy / CI hygiene — **low**
 
 - `ffmpeg` / asset pipeline row 9 (`comfyui-cover-images.md`).
-- Optional PR job: `frontmatter_audit.py`.
+- **Done 2026-05-28:** GitHub Action runs `frontmatter_audit.py` + `pregenerate_blog_json.py` on PR/push.
 
-### 4. Phase 6 extras — **low**
+### 4. Phase 6 extras — **mostly done**
 
-- JSON tag filters, static pre-generation (`phase-5-6-plan.md` § Extras).
+- **Done 2026-05-28:** Listing `?tag=` filter (schema **1.2**); `scripts/pregenerate_blog_json.py` → `generated/json/`.
+- **Open:** sitemap policy for JSON URLs (`phase-5-6-plan.md` § Extras).
 
 ### 5. Accessibility & polish — **low**
 
@@ -76,6 +75,7 @@
 
 ## Changelog
 
+- **2026-05-28:** Visual S1–S3; Tier B covers (CTD-01, Tuqan Phase 0); Phase 6 tag filter + static JSON script + CI audit workflow.
 - **2026-05-26:** Consolidated — removed duplicate P0–P4 and phase-1–6 essay; shipped table + open backlog only.
 - **2026-05-26:** Added agent authoring + visual QA pointers (prior long form).
 - **2026-04-24:** Initial phased backlog.

@@ -10,6 +10,8 @@
  * - GET /blog/en/{slug}.json — single English article
  * - GET /search.json?q=…     — Spanish blog search (Phase 6 v1.1)
  * - GET /en/search.json?q=…  — English blog search
+ * - GET /blog.json?tag=…     — listing filter by canonical tag (v1.2)
+ * - GET /blog/en.json?tag=…  — English listing filter
  *
  * Schema: .agents/blog-json-api.md
  */
@@ -17,7 +19,7 @@ class BlogJson extends AbstractPicoPlugin
 {
     const API_VERSION = 3;
 
-    const SCHEMA_VERSION = '1.1';
+    const SCHEMA_VERSION = '1.2';
 
     /** @var string|null listing-es|listing-en|post|search-es|search-en */
     private $jsonRoute = null;
@@ -135,20 +137,26 @@ class BlogJson extends AbstractPicoPlugin
 
         if ($this->jsonRoute === 'listing-es' || $this->jsonRoute === 'listing-en') {
             $lang = ($this->jsonRoute === 'listing-en') ? 'en' : 'es';
-            $blogPages = $this->collectBlogPosts($pages, $lang);
+            $tagFilter = $this->readTagFilter();
+            $blogPages = $this->collectBlogPosts($pages, $lang, $tagFilter);
             $items = array();
             foreach ($blogPages as $page) {
                 $items[] = $this->serializeListingItem($page, $baseUrl, $alternatesByKey);
             }
 
+            $meta = array(
+                'schema_version' => $schemaVersion,
+                'generated_at' => gmdate('c'),
+                'language' => $lang,
+                'count' => count($items),
+            );
+            if ($tagFilter !== '') {
+                $meta['tag_filter'] = $tagFilter;
+            }
+
             $this->emitJson(
                 array(
-                    'meta' => array(
-                        'schema_version' => $schemaVersion,
-                        'generated_at' => gmdate('c'),
-                        'language' => $lang,
-                        'count' => count($items),
-                    ),
+                    'meta' => $meta,
                     'posts' => $items,
                 ),
                 $cacheMaxAge
@@ -182,7 +190,7 @@ class BlogJson extends AbstractPicoPlugin
      *
      * @return array[]
      */
-    private function collectBlogPosts(array $pages, $lang)
+    private function collectBlogPosts(array $pages, $lang, $tagFilter = '')
     {
         $out = array();
         foreach ($pages as $page) {
@@ -203,6 +211,9 @@ class BlogJson extends AbstractPicoPlugin
                 }
             }
             if (class_exists('Multilingual', false) && Multilingual::inferLang($page) !== $lang) {
+                continue;
+            }
+            if ($tagFilter !== '' && !$this->pageHasTag($page, $tagFilter)) {
                 continue;
             }
             $out[] = $page;
@@ -359,6 +370,22 @@ class BlogJson extends AbstractPicoPlugin
             }
         }
         return is_string($fallback) ? trim($fallback) : '';
+    }
+
+    private function readTagFilter()
+    {
+        if (!isset($_GET['tag'])) {
+            return '';
+        }
+        $tag = trim((string) $_GET['tag']);
+        return $tag;
+    }
+
+    private function pageHasTag(array $page, $tagFilter)
+    {
+        $meta = isset($page['meta']) ? $page['meta'] : array();
+        $tags = $this->parseTags($meta);
+        return in_array($tagFilter, $tags, true);
     }
 
     private function parseTags(array $meta)

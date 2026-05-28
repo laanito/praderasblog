@@ -30,11 +30,10 @@ Ship logs: Días 8–16. Translation ledger: `translation-migration-tracker.md`.
 
 **Editorial:** Human posts explain goals/trade-offs — `editorial-guidelines.md`; not command-only logs.
 
-### Extras (not started)
+### Extras
 
-- Tag filter query params on JSON listings.
-- Static JSON pre-generation at deploy.
-- Sitemap policy for JSON URLs (likely omit).
+- **Done 2026-05-28:** Listing `?tag=` filter (schema **1.2**); `scripts/pregenerate_blog_json.py` + CI; `/for-ai-agents` pages updated.
+- **Open:** Sitemap policy for JSON URLs (likely omit).
 
 ---
 

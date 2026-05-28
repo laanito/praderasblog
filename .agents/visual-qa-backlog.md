@@ -103,6 +103,8 @@ Add the URL you changed if the PR touches a specific template.
 
 Order: **S1 → S2 → S3** (biggest reader impact first).
 
+**Status (2026-05-28):** **S1–S3 implemented** in `praderas-theme.css` + `js/scripts.js` (table wrap). **S4** live spot-check after deploy.
+
 ---
 
 ## Relationship to other docs

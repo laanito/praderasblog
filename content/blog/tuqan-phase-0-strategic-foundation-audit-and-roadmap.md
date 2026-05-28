@@ -10,6 +10,8 @@ Translation_Key: tuqan-phase-0-strategic-foundation
 Series: Tuqan — Modernización
 Series_Slug: tuqan-modernization
 Series_Order: 1
+Image: /assets/images/tuqan-phase-0-strategic-foundation-hero.webp
+
 ---
 
 # Tuqan Phase 0 — fundación estratégica, auditoría y roadmap inicial
