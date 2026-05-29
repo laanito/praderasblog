@@ -73,9 +73,3 @@ The main changes from this cycle (landing page + logout + Twig patch + plan upda
 
 The hero image for this article was generated specifically to reflect the tension between repeatedly applying patches and deciding to strengthen the foundations. It follows the same calm Praderas editorial style used in the previous article of this series.
 
----
-
-**Related articles in the series:**
-
-- [Tuqan — Agentic Operation Lessons: Short-Circuits vs Root Causes](/blog/en/tuqan-agentic-lessons-root-cause)
-- [Tuqan — Agentic Operation Lessons (Part 2): The Missing Commit](/blog/en/tuqan-agentic-lessons-missing-commit)
