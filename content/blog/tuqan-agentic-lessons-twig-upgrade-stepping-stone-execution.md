@@ -116,10 +116,3 @@ Todo el trabajo está en la rama `feat/stage-8-twig-upgrade` del repositorio de 
 
 La imagen de portada fue generada específicamente para este artículo, manteniendo el mismo estilo editorial calmado de Praderas (casa de madera al atardecer en el prado dorado) que usamos en el artículo anterior de la serie. Representa el momento de reforzar el primer pilar de verdad sin dramatismo, mientras el prado sigue en calma.
 
----
-
-**Artículos relacionados de la serie:**
-
-- [Tuqan — Lecciones de operación con agentes (3): cuando los parches dejan de ser atajos](/blog/tuqan-agentic-lessons-core-modernization-stepping-stone)
-- [Tuqan — Lecciones de operación con agentes (2): el commit que no llegó](/blog/tuqan-agentic-lessons-missing-commit)
-- [Tuqan — Lecciones de operación con agentes: cortocircuitos vs. causas raíz](/blog/tuqan-agentic-lessons-root-cause)

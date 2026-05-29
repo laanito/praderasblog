@@ -116,10 +116,3 @@ All the work lives on the `feat/stage-8-twig-upgrade` branch of the Tuqan reposi
 
 The cover image was generated specifically for this article, maintaining the same calm Praderas editorial style (wooden house at golden hour in the meadow) we used in the previous article of the series. It represents the moment of deliberately reinforcing the first real structural element without drama, while the meadow remains peaceful.
 
----
-
-**Related articles in the series:**
-
-- [Tuqan — Agentic Operation Lessons (3): When Patches Stop Being Shortcuts](/blog/en/tuqan-agentic-lessons-core-modernization-stepping-stone)
-- [Tuqan — Agentic Operation Lessons (2): The Commit That Never Arrived](/blog/en/tuqan-agentic-lessons-missing-commit)
-- [Tuqan — Agentic Operation Lessons: Short-Circuits vs Root Causes](/blog/en/tuqan-agentic-lessons-root-cause)
