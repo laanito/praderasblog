@@ -102,10 +102,6 @@ docker compose exec app ./scripts/init-db.sh
 
 All the work lives in PR #59 of the Tuqan repository.
 
-**Related reading**
-- [Tuqan — Agentic Lessons (5): Modernizing Composer Dependencies](https://praderas.org/blog/en/tuqan-agentic-lessons-composer-deps-modernization)
-- Migration plan and full evidence in the `.agents/` folder of the Tuqan repo
-
 ---
 
 *Written immediately after the session, while details and emotions were still fresh.*
