@@ -126,6 +126,8 @@ The user summarized it at the end: “2407 changed lines, this is the good pace.
 
 We now have 100% real database login, the complete real legacy menu loaded and rendered in a usable way, the first module (Usuarios) with listing and GET forms working inside the new layout system, and —critically— two agent debugging anti-patterns now publicly documented so they don’t cost us the same amount of time again.
 
+This article complements [PR #60](https://github.com/laanito/tuqan/pull/60) (branch `feat/stage-8.3-gettext-login-menu-data`) and the living documentation in `.agents/STAGE-CHECKLISTS.md` (Stage 8.4 — Full Menu Structure + First Real Module) and `MIGRATION-PLAN.md` in the Tuqan repository.
+
 ## What Comes Next
 
 POST handling, validation, password logic, flash messages, and the “Borrar” action for Usuarios. Then the next branch in the menu tree. One module at a time. No heroic sprints.

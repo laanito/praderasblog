@@ -126,6 +126,8 @@ El usuario lo resumió al final: “2407 changed lines, this is the good pace.�
 
 Tenemos login real 100%, menú legacy completo cargado y renderizado de forma usable, primer módulo (Usuarios) con listado y formularios GET funcionando dentro de la nueva estructura de layouts, y —críticamente— dos anti-patrones de depuración del agente ahora documentados públicamente para que no se repitan igual de caro la próxima vez.
 
+Este artículo complementa [PR #60](https://github.com/laanito/tuqan/pull/60) (rama `feat/stage-8.3-gettext-login-menu-data`) y la documentación viva en `.agents/STAGE-CHECKLISTS.md` (Stage 8.4 — Full Menu Structure + First Real Module) y `MIGRATION-PLAN.md` del repositorio de Tuqan.
+
 ## Lo que viene
 
 POST, validación, contraseñas, mensajes flash y acción “Borrar” para Usuarios. Luego el siguiente nodo del menú. Un módulo por vez. Sin saltos heroicos.
