@@ -1,3 +1,5 @@
-Hero generated via xAI Imagine (image_gen) for this specific article.
+Hero generated via xAI Imagine (image_gen) for this specific article (one-time exception only — see project MEMORY.md "praderasblog Article Conventions" and .agents/BLOG-POSTING.md).
 Prompt summary: Calm Praderas editorial style — wooden house at golden hour in golden meadow. Foreground: large legacy menu hierarchy paper being folded into a new vertical wooden sidebar panel mounted on the house. Open PHP book with "{id}" route syntax circled in red. Small robot agent + glowing "opcache" stamp with big red X crossed out by human hand. Human gently correcting. Warm peaceful lighting, thoughtful non-dramatic mood, 16:9, matching previous Tuqan series hero tone.
-Placed as .png (some previous Tuqan heroes use png alongside webp variants).
+
+WebP version (preferred format) created from the PNG using: cwebp -q 88 -m 6 (233 KB output).
+Future Tuqan heroes must be generated with ComfyUI + SDXL + proper WebP export.

@@ -10,7 +10,7 @@ Translation_Key: tuqan-2407-lines-sidebar-first-module-debug-patterns
 Series: Tuqan — Modernización
 Series_Slug: tuqan-modernization
 Series_Order: 10
-Image: /assets/images/tuqan-2407-lines-sidebar-first-module-debug-patterns-hero.png
+Image: /assets/images/tuqan-2407-lines-sidebar-first-module-debug-patterns-hero.webp
 ---
 
 # Tuqan — Cuando el volumen real del menú te obliga a tomar decisiones de verdad
