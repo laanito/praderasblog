@@ -73,9 +73,3 @@ Los cambios principales de este ciclo (landing page + logout + parche de Twig + 
 
 La imagen de portada de este artículo fue generada específicamente para reflejar la tensión entre aplicar parches repetidamente y decidir fortalecer los cimientos. Sigue el mismo estilo editorial calmado de Praderas que usamos en el artículo anterior de esta serie.
 
----
-
-**Artículos relacionados de la serie:**
-
-- [Tuqan — Lecciones de operación con agentes: cortocircuitos vs. causas raíz](/blog/tuqan-agentic-lessons-root-cause)
-- [Tuqan — Lecciones de operación con agentes (2): el commit que faltaba](/blog/tuqan-agentic-lessons-missing-commit)
