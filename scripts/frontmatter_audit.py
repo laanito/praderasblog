@@ -17,7 +17,7 @@ import re
 import sys
 
 REQUIRED = ["Title", "Description", "Date", "Author", "Template", "Tags"]
-REQUIRED_MITL_POST = ["Title", "Description", "Date", "Author", "Template"]
+REQUIRED_MITL_POST = ["Title", "Description", "Date", "Author", "Template", "Lang", "Translation_Key"]
 MITL_POST_TEMPLATE = "man-in-the-loop-post"
 MITL_HUB_TEMPLATE = "man-in-the-loop-feed"
 CANONICAL_TAGS = {
@@ -143,36 +143,82 @@ def check_translation_key_pairs(
                 )
 
 
-def check_man_in_the_loop(repo_root: pathlib.Path, errors: list) -> int:
-    """Human section: no Tags/Series; lighter required fields."""
+def _is_en_mitl_post(repo_root: pathlib.Path, post: pathlib.Path) -> bool:
+    rel = post.resolve().relative_to(repo_root.resolve())
+    return len(rel.parts) >= 3 and rel.parts[0:3] == ("content", "man-in-the-loop", "en")
+
+
+def check_mitl_translation_pairs(repo_root: pathlib.Path, mitl_posts: list[pathlib.Path], errors: list) -> None:
+    by_key: dict[str, list[pathlib.Path]] = {}
+    for post in mitl_posts:
+        fm = parse_frontmatter(post)
+        if not fm:
+            continue
+        raw = fm.get("Translation_Key", "").strip().strip('"').strip("'")
+        if not raw:
+            errors.append(f"{post}: Man in the loop posts require Translation_Key")
+            continue
+        by_key.setdefault(raw, []).append(post)
+
+    for key in sorted(by_key):
+        paths = sorted(by_key[key], key=lambda p: str(p))
+        if len(paths) != 2:
+            errors.append(
+                f"Translation_Key {key!r}: expected exactly 2 MITL files (ES+EN), got {len(paths)}"
+            )
+            for p in paths:
+                errors.append(f"  - {p}")
+            continue
+        a, b = paths[0], paths[1]
+        if _is_en_mitl_post(repo_root, a) == _is_en_mitl_post(repo_root, b):
+            errors.append(
+                f"Translation_Key {key!r}: expected one ES + one EN MITL file; got: {a} | {b}"
+            )
+
+
+def check_man_in_the_loop(repo_root: pathlib.Path, errors: list) -> tuple[int, list[pathlib.Path]]:
+    """Human section: bilingual pairs; no Tags/Series."""
     count = 0
-    hub = repo_root / "content/man-in-the-loop.md"
-    if hub.is_file():
-        fm = parse_frontmatter(hub)
-        if fm.get("Template", "") != MITL_HUB_TEMPLATE:
-            errors.append(f"{hub}: Template must be {MITL_HUB_TEMPLATE!r}")
+    mitl_posts: list[pathlib.Path] = []
+    for hub in (repo_root / "content/man-in-the-loop.md", repo_root / "content/en/man-in-the-loop.md"):
+        if hub.is_file():
+            fm = parse_frontmatter(hub)
+            if fm.get("Template", "") != MITL_HUB_TEMPLATE:
+                errors.append(f"{hub}: Template must be {MITL_HUB_TEMPLATE!r}")
     mitl_dir = repo_root / "content/man-in-the-loop"
     if mitl_dir.is_dir():
         for post in sorted(mitl_dir.glob("*.md")):
             count += 1
-            fm = parse_frontmatter(post)
-            if not fm:
-                errors.append(f"{post}: missing YAML frontmatter")
-                continue
-            for key in REQUIRED_MITL_POST:
-                if not fm.get(key):
-                    errors.append(f"{post}: missing required field '{key}'")
-            if fm.get("Template", "") != MITL_POST_TEMPLATE:
-                errors.append(f"{post}: Template must be {MITL_POST_TEMPLATE!r}")
-            if fm.get("Tags", "").strip():
-                errors.append(f"{post}: Man in the loop posts must not use Tags")
-            for key in ("Series", "Series_Slug", "Series_Order", "Translation_Key"):
-                if fm.get(key, "").strip():
-                    errors.append(f"{post}: must not set {key} (outside blog taxonomy)")
-            date = fm.get("Date", "")
-            if date and not DATE_RE.match(date):
-                errors.append(f"{post}: non-standard Date format '{date}'")
-    return count
+            mitl_posts.append(post)
+            _audit_mitl_post(post, errors)
+        en_dir = mitl_dir / "en"
+        if en_dir.is_dir():
+            for post in sorted(en_dir.glob("*.md")):
+                count += 1
+                mitl_posts.append(post)
+                _audit_mitl_post(post, errors)
+    check_mitl_translation_pairs(repo_root, mitl_posts, errors)
+    return count, mitl_posts
+
+
+def _audit_mitl_post(post: pathlib.Path, errors: list) -> None:
+    fm = parse_frontmatter(post)
+    if not fm:
+        errors.append(f"{post}: missing YAML frontmatter")
+        return
+    for key in REQUIRED_MITL_POST:
+        if not fm.get(key):
+            errors.append(f"{post}: missing required field '{key}'")
+    if fm.get("Template", "") != MITL_POST_TEMPLATE:
+        errors.append(f"{post}: Template must be {MITL_POST_TEMPLATE!r}")
+    if fm.get("Tags", "").strip():
+        errors.append(f"{post}: Man in the loop posts must not use Tags")
+    for key in ("Series", "Series_Slug", "Series_Order"):
+        if fm.get(key, "").strip():
+            errors.append(f"{post}: must not set {key}")
+    date = fm.get("Date", "")
+    if date and not DATE_RE.match(date):
+        errors.append(f"{post}: non-standard Date format '{date}'")
 
 
 def main() -> int:
@@ -183,7 +229,7 @@ def main() -> int:
         if root.is_dir():
             posts.extend(sorted(root.glob("*.md")))
     errors = []
-    mitl_count = check_man_in_the_loop(repo_root, errors)
+    mitl_count, _mitl_posts = check_man_in_the_loop(repo_root, errors)
     for post in posts:
         fm = parse_frontmatter(post)
         if not fm:

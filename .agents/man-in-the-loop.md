@@ -2,13 +2,15 @@
 
 **Purpose:** A **separate** publication area for articles written by people, not the AI-driven blog pipeline.
 
-**URLs:**
-- Hub (infinite scroll): `/man-in-the-loop`
-- Posts: `/man-in-the-loop/{slug}`
-- Feed JSON: `/man-in-the-loop.json?page=1&limit=8`
+**URLs (bilingual):**
+
+| Lang | Hub | Post | Feed JSON |
+|------|-----|------|-----------|
+| ES | `/man-in-the-loop` | `/man-in-the-loop/{slug}` | `/man-in-the-loop.json` |
+| EN | `/en/man-in-the-loop` | `/man-in-the-loop/en/{slug}` | `/en/man-in-the-loop.json` |
 
 **Plugin:** `plugins/75-ManInTheLoop.php`  
-**Templates:** `man-in-the-loop-feed.twig`, `man-in-the-loop-post.twig`, `css/praderas-mitl.css`
+**Templates:** `man-in-the-loop-feed.twig`, `man-in-the-loop-post.twig`, `mitl-sidebar.twig`, `css/praderas-mitl.css`
 
 ---
 
@@ -16,19 +18,19 @@
 
 | System | Why |
 |--------|-----|
-| `/blog`, `/en/blog` listings | Different editorial model |
+| `/blog`, `/en/blog` | Different editorial model |
 | Tags / `/categorias` | No taxonomy |
 | `/archivo` | No shared archive |
 | Series (`/series`) | No `Series_*` fields |
-| `/blog.json`, search | Machine blog only |
-| ES/EN pairing | Spanish-only section for now |
+| `/blog.json`, site search | Machine blog only |
 
 ---
 
-## Authoring a new post
+## Authoring a new post (ES + EN pair)
 
-1. Create `content/man-in-the-loop/your-slug.md`
-2. Front matter:
+1. `content/man-in-the-loop/your-slug.md` (`Lang: es`)
+2. `content/man-in-the-loop/en/your-slug.md` (`Lang: en`)
+3. Same `Translation_Key` on both; **no** `Tags` or `Series_*`
 
 ```yaml
 ---
@@ -37,16 +39,19 @@ Description: ...
 Date: YYYY-MM-DD HH:MMAM
 Template: man-in-the-loop-post
 Author: ...
+Lang: es   # or en
+Translation_Key: mitl-your-stable-key
 ---
 ```
 
-3. **Do not** set `Tags`, `Series`, `Translation_Key`, or `Image:` (optional later if you add heroes).
 4. Run `python3 scripts/frontmatter_audit.py` before merge.
+
+Hub pages: `content/man-in-the-loop.md` + `content/en/man-in-the-loop.md` with `Translation_Key: mitl-nav-hub`.
 
 ---
 
-## Design
+## UX
 
-- Single-column feed (Blogspot-style), no sidebar on hub or posts.
-- Infinite scroll loads more via `man-in-the-loop.json`.
-- Nav: **Man in the loop** between Blog and Series.
+- **Feed:** infinite scroll + **sidebar** (anchor links on hub; jump between articles on post pages).
+- **Language switcher** via `65-Multilingual.php` + `Translation_Key`.
+- Nav: **Man in the loop** (ES and EN).

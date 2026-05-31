@@ -3,11 +3,9 @@
 /**
  * Man in the loop — human-written articles (separate from AI-driven blog).
  *
- * - Hub: /man-in-the-loop (Template: man-in-the-loop-feed)
- * - Posts: /man-in-the-loop/{slug} (Template: man-in-the-loop-post)
- * - Infinite scroll feed: GET /man-in-the-loop.json?page=1&limit=8
- *
- * Not included in blog search, series, archive, tags, or /blog.json.
+ * - Hub ES: /man-in-the-loop  |  Hub EN: /en/man-in-the-loop
+ * - Posts ES: /man-in-the-loop/{slug}  |  EN: /man-in-the-loop/en/{slug}
+ * - Feed JSON: /man-in-the-loop.json  |  /en/man-in-the-loop.json
  */
 class ManInTheLoop extends AbstractPicoPlugin
 {
@@ -15,13 +13,20 @@ class ManInTheLoop extends AbstractPicoPlugin
 
     const MAX_LIMIT = 20;
 
-    /** @var string|null */
+    /** @var bool */
     private $jsonRoute = false;
+
+    /** @var string es|en */
+    private $jsonLang = 'es';
 
     public function onRequestUrl(&$url)
     {
         if ($url === 'man-in-the-loop.json') {
             $this->jsonRoute = true;
+            $this->jsonLang = 'es';
+        } elseif ($url === 'en/man-in-the-loop.json') {
+            $this->jsonRoute = true;
+            $this->jsonLang = 'en';
         }
     }
 
@@ -31,7 +36,9 @@ class ManInTheLoop extends AbstractPicoPlugin
             return;
         }
         $pico = $this->getPico();
-        $hub = $pico->getConfig('content_dir') . 'man-in-the-loop' . $pico->getConfig('content_ext');
+        $hubId = $this->jsonLang === 'en' ? 'en/man-in-the-loop' : 'man-in-the-loop';
+        $hub = $pico->getConfig('content_dir') . str_replace('/', DIRECTORY_SEPARATOR, $hubId)
+            . $pico->getConfig('content_ext');
         if (file_exists($hub)) {
             $file = $hub;
         }
@@ -42,7 +49,7 @@ class ManInTheLoop extends AbstractPicoPlugin
         $pico = $this->getPico();
 
         if ($this->jsonRoute) {
-            $this->emitFeedJson($pico);
+            $this->emitFeedJson($pico, $this->jsonLang);
             return;
         }
 
@@ -52,30 +59,71 @@ class ManInTheLoop extends AbstractPicoPlugin
         }
 
         $id = $current['id'];
-        if ($id === 'man-in-the-loop') {
-            $batch = $this->collectPosts($pico, 1, self::DEFAULT_LIMIT);
+        $lang = class_exists('Multilingual', false) ? Multilingual::inferLang($current) : 'es';
+        $isEn = ($lang === 'en');
+        $twigVariables['mitl_lang'] = $lang;
+        $twigVariables['mitl_hub_url'] = $isEn ? '/en/man-in-the-loop' : '/man-in-the-loop';
+        $twigVariables['mitl_json_url'] = $isEn ? '/en/man-in-the-loop.json' : '/man-in-the-loop.json';
+
+        $allInLang = $this->collectMitlPages($pico, $lang);
+        $twigVariables['mitl_sidebar_nav'] = $this->buildSidebarNav($allInLang, $pico);
+
+        if ($id === 'man-in-the-loop' || $id === 'en/man-in-the-loop') {
+            $batch = $this->collectPosts($pico, $lang, 1, self::DEFAULT_LIMIT);
             $twigVariables['mitl_initial_posts'] = $batch['posts'];
             $twigVariables['mitl_has_more'] = !empty($batch['meta']['has_more']);
             $twigVariables['mitl_page_size'] = self::DEFAULT_LIMIT;
+            $twigVariables['mitl_active_slug'] = null;
             return;
         }
 
-        if (strpos($id, 'man-in-the-loop/') === 0) {
-            $twigVariables['mitl_hub_url'] = rtrim($pico->getBaseUrl(), '/') . '/man-in-the-loop';
+        if ($this->isMitlPostId($id)) {
+            $slug = $this->slugFromPostId($id, $lang);
+            $twigVariables['mitl_active_slug'] = $slug;
+            $nav = $this->buildPostNeighbors($allInLang, $id);
+            $twigVariables['mitl_post_prev'] = $nav['prev'];
+            $twigVariables['mitl_post_next'] = $nav['next'];
         }
+    }
+
+    private function isMitlPostId($id)
+    {
+        if (strpos($id, 'man-in-the-loop/en/') === 0) {
+            return true;
+        }
+        if (strpos($id, 'man-in-the-loop/') === 0 && strpos($id, 'man-in-the-loop/en/') !== 0) {
+            return true;
+        }
+        return false;
+    }
+
+    private function slugFromPostId($id, $lang)
+    {
+        if ($lang === 'en' && strpos($id, 'man-in-the-loop/en/') === 0) {
+            return substr($id, strlen('man-in-the-loop/en/'));
+        }
+        if (strpos($id, 'man-in-the-loop/') === 0) {
+            return substr($id, strlen('man-in-the-loop/'));
+        }
+        return $id;
     }
 
     /**
      * @return array[]
      */
-    private function collectMitlPages($pico)
+    private function collectMitlPages($pico, $lang)
     {
         $out = array();
         foreach ($pico->getPages() as $page) {
             if (!isset($page['id'], $page['date']) || !$page['date']) {
                 continue;
             }
-            if (strpos($page['id'], 'man-in-the-loop/') !== 0) {
+            $id = $page['id'];
+            if (!$this->isMitlPostId($id)) {
+                continue;
+            }
+            $pageLang = class_exists('Multilingual', false) ? Multilingual::inferLang($page) : 'es';
+            if ($pageLang !== $lang) {
                 continue;
             }
             $template = isset($page['meta']['template']) ? strtolower((string) $page['meta']['template']) : '';
@@ -92,12 +140,61 @@ class ManInTheLoop extends AbstractPicoPlugin
         return $out;
     }
 
+    private function buildSidebarNav(array $pages, $pico)
+    {
+        $baseUrl = rtrim($pico->getBaseUrl(), '/');
+        $nav = array();
+        foreach ($pages as $page) {
+            $slug = $this->slugFromPostId(
+                $page['id'],
+                class_exists('Multilingual', false) ? Multilingual::inferLang($page) : 'es'
+            );
+            $nav[] = array(
+                'slug' => $slug,
+                'anchor' => 'mitl-entry-' . preg_replace('/[^a-z0-9-]+/i', '-', $slug),
+                'title' => $this->readMetaString(
+                    isset($page['meta']) ? $page['meta'] : array(),
+                    array('title', 'Title'),
+                    isset($page['title']) ? $page['title'] : ''
+                ),
+                'date' => isset($page['date']) ? $page['date'] : '',
+                'url' => $this->absoluteUrl($page, $baseUrl),
+            );
+        }
+        return $nav;
+    }
+
+    private function buildPostNeighbors(array $pages, $currentId)
+    {
+        $ids = array_column($pages, 'id');
+        $pos = array_search($currentId, $ids, true);
+        if ($pos === false) {
+            return array('prev' => null, 'next' => null);
+        }
+        $baseUrl = rtrim($this->getPico()->getBaseUrl(), '/');
+        $prev = $pos > 0 ? $this->serializeNavItem($pages[$pos - 1], $baseUrl) : null;
+        $next = $pos < count($pages) - 1 ? $this->serializeNavItem($pages[$pos + 1], $baseUrl) : null;
+        return array('prev' => $prev, 'next' => $next);
+    }
+
+    private function serializeNavItem(array $page, $baseUrl)
+    {
+        return array(
+            'title' => $this->readMetaString(
+                isset($page['meta']) ? $page['meta'] : array(),
+                array('title', 'Title'),
+                isset($page['title']) ? $page['title'] : ''
+            ),
+            'url' => $this->absoluteUrl($page, $baseUrl),
+        );
+    }
+
     /**
      * @return array{posts: array[], meta: array}
      */
-    private function collectPosts($pico, $page, $limit)
+    private function collectPosts($pico, $lang, $page, $limit)
     {
-        $all = $this->collectMitlPages($pico);
+        $all = $this->collectMitlPages($pico, $lang);
         $page = max(1, (int) $page);
         $limit = max(1, min((int) $limit, self::MAX_LIMIT));
         $offset = ($page - 1) * $limit;
@@ -105,7 +202,7 @@ class ManInTheLoop extends AbstractPicoPlugin
         $baseUrl = rtrim($pico->getBaseUrl(), '/');
         $items = array();
         foreach ($slice as $p) {
-            $items[] = $this->serializeFeedItem($p, $baseUrl);
+            $items[] = $this->serializeFeedItem($p, $baseUrl, $lang);
         }
 
         return array(
@@ -116,13 +213,15 @@ class ManInTheLoop extends AbstractPicoPlugin
                 'count' => count($items),
                 'total' => count($all),
                 'has_more' => $offset + count($slice) < count($all),
+                'language' => $lang,
             ),
         );
     }
 
-    private function serializeFeedItem(array $page, $baseUrl)
+    private function serializeFeedItem(array $page, $baseUrl, $lang)
     {
         $meta = isset($page['meta']) ? $page['meta'] : array();
+        $slug = $this->slugFromPostId($page['id'], $lang);
         $excerpt = $this->readMetaString($meta, array('description', 'Description'), '');
         if ($excerpt === '' && isset($page['raw_content'])) {
             $plain = trim(strip_tags($page['raw_content']));
@@ -134,7 +233,8 @@ class ManInTheLoop extends AbstractPicoPlugin
         }
 
         return array(
-            'slug' => substr($page['id'], strlen('man-in-the-loop/')),
+            'slug' => $slug,
+            'anchor' => 'mitl-entry-' . preg_replace('/[^a-z0-9-]+/i', '-', $slug),
             'title' => $this->readMetaString($meta, array('title', 'Title'), isset($page['title']) ? $page['title'] : ''),
             'description' => $excerpt,
             'date' => isset($page['date']) ? $page['date'] : '',
@@ -165,11 +265,11 @@ class ManInTheLoop extends AbstractPicoPlugin
         return $baseUrl;
     }
 
-    private function emitFeedJson($pico)
+    private function emitFeedJson($pico, $lang)
     {
         $page = isset($_GET['page']) ? (int) $_GET['page'] : 1;
         $limit = isset($_GET['limit']) ? (int) $_GET['limit'] : self::DEFAULT_LIMIT;
-        $data = $this->collectPosts($pico, $page, $limit);
+        $data = $this->collectPosts($pico, $lang, $page, $limit);
 
         header($_SERVER['SERVER_PROTOCOL'] . ' 200 OK');
         header('Content-Type: application/json; charset=utf-8');

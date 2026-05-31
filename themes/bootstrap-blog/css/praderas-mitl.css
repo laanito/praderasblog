@@ -6,7 +6,20 @@
 }
 
 .praderas-mitl__column {
-  max-width: 42rem;
+  max-width: none;
+}
+
+.praderas-mitl__sidebar {
+  position: sticky;
+  top: 5.5rem;
+  max-height: calc(100vh - 6rem);
+  overflow-y: auto;
+}
+
+.praderas-mitl__sidebar-nav .list-group-item.active {
+  background-color: rgba(31, 95, 68, 0.12);
+  border-color: var(--pradera-border, #e7e1d8);
+  color: var(--pradera-ink, #1c1917);
 }
 
 .praderas-mitl__kicker {

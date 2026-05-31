@@ -1,0 +1,20 @@
+{% set is_en = content_lang is defined and content_lang == 'en' %}
+<aside class="praderas-mitl__sidebar card" role="navigation" aria-label="{{ is_en ? 'Articles in this section' : 'Artículos de esta sección' }}">
+	<div class="card-header">{{ is_en ? 'In this section' : 'En esta sección' }}</div>
+	<nav class="list-group list-group-flush praderas-mitl__sidebar-nav" id="mitl-sidebar-nav">
+		{% for item in mitl_sidebar_nav|default([]) %}
+		{% set is_active = (mitl_active_slug is defined and mitl_active_slug == item.slug) %}
+		{% if mitl_on_feed|default(false) %}
+		<a href="#{{ item.anchor }}" class="list-group-item list-group-item-action praderas-mitl__sidebar-link{% if is_active %} active{% endif %}" data-mitl-anchor="{{ item.anchor }}">
+			<span class="d-block fw-semibold text-break">{{ item.title }}</span>
+			<span class="d-block small text-muted">{{ item.date }}</span>
+		</a>
+		{% else %}
+		<a href="{{ item.url }}" class="list-group-item list-group-item-action praderas-mitl__sidebar-link{% if is_active %} active{% endif %}">
+			<span class="d-block fw-semibold text-break">{{ item.title }}</span>
+			<span class="d-block small text-muted">{{ item.date }}</span>
+		</a>
+		{% endif %}
+		{% endfor %}
+	</nav>
+</aside>

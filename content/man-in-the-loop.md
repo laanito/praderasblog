@@ -2,6 +2,8 @@
 Title: Man in the loop
 Description: Textos escritos por personas, fuera del flujo editorial del blog asistido por IA. Sin series, categorías ni archivo compartido.
 Template: man-in-the-loop-feed
+Lang: es
+Translation_Key: mitl-nav-hub
 Robots: index, follow
 ---
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ html_lang|default('es') }}">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -10,7 +10,7 @@
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark pradera-nav">
             <div class="container">
             <a href="{{ pradera_home_url|default("index"|link) }}" class="navbar-brand">{{ site_title }}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Alternar navegación"><span class="navbar-toggler-icon"></span></button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ (content_lang is defined and content_lang == 'en') ? 'Toggle navigation' : 'Alternar navegación' }}"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 {% include 'nav.twig' %}
             </div>
@@ -18,16 +18,16 @@
    </nav>
 
    <div class="container mt-5 praderas-mitl__outer">
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-8 praderas-mitl__column">
+        <div class="row">
+            <div class="col-lg-8 praderas-mitl__column">
                 <header class="praderas-mitl__masthead mb-4">
-                    <p class="praderas-mitl__kicker text-uppercase small mb-1">Escrito por personas</p>
+                    <p class="praderas-mitl__kicker text-uppercase small mb-1">{{ (content_lang is defined and content_lang == 'en') ? 'Written by people' : 'Escrito por personas' }}</p>
                     <h1 class="fw-bolder mb-2">{{ meta.title }}</h1>
                     {% if meta.description %}<p class="text-muted lead mb-0">{{ meta.description }}</p>{% endif %}
                     <div class="praderas-mitl__intro pradera-prose mt-3">{{ content }}</div>
                 </header>
 
-                <div id="mitl-feed" class="praderas-mitl__feed" data-page="1" data-limit="{{ mitl_page_size|default(8) }}" data-has-more="{{ mitl_has_more|default(false) ? '1' : '0' }}" aria-live="polite">
+                <div id="mitl-feed" class="praderas-mitl__feed" data-page="1" data-limit="{{ mitl_page_size|default(8) }}" data-has-more="{{ mitl_has_more|default(false) ? '1' : '0' }}" data-json-url="{{ mitl_json_url|default('/man-in-the-loop.json') }}" aria-live="polite">
                     {% for item in mitl_initial_posts|default([]) %}
                     {% include 'mitl-feed-item.twig' with { item: item } only %}
                     {% endfor %}
@@ -35,6 +35,9 @@
 
                 <div id="mitl-feed-status" class="praderas-mitl__status text-muted small text-center py-4" hidden></div>
                 <div id="mitl-feed-sentinel" class="praderas-mitl__sentinel" aria-hidden="true"></div>
+            </div>
+            <div class="col-lg-4">
+                {% include 'mitl-sidebar.twig' with { mitl_on_feed: true } only %}
             </div>
         </div>
    </div>
