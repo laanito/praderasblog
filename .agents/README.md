@@ -27,7 +27,8 @@
 | `comfyui-cover-images.md` | ComfyUI + `export_cover.py` |
 | `image-prompt-guidelines.md` | Cover prompt style |
 | `phase-5-6-plan.md` | Phase 5/6 goals + JSON **extras** still open |
-| `blog-json-api.md` | `/blog.json`, `search.json` contract (schema 1.1) |
+| `blog-json-api.md` | `/blog.json`, `search.json` contract (schema 1.2) |
+| `man-in-the-loop.md` | Human-written section (`/man-in-the-loop`) |
 
 ---
 

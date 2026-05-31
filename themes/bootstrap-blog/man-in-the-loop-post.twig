@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="{{ html_lang|default('es') }}">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+{% include 'page-meta.twig' %}
+    <link rel="stylesheet" href="{{ theme_url }}/css/praderas-mitl.css" />
+</head>
+<body class="praderas-site praderas-mitl">
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark pradera-nav">
+            <div class="container">
+            <a href="{{ pradera_home_url|default("index"|link) }}" class="navbar-brand">{{ site_title }}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ (content_lang is defined and content_lang == 'en') ? 'Toggle navigation' : 'Alternar navegación' }}"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {% include 'nav.twig' %}
+            </div>
+        </div>
+   </nav>
+
+   <div class="container mt-5 praderas-mitl__outer">
+        <div class="row">
+            <div class="col-lg-8 praderas-mitl__column">
+                {% set is_en = content_lang is defined and content_lang == 'en' %}
+                {% set _hub_label = is_en ? 'Man in the loop' : 'Man in the loop' %}
+                {% set _hub_link = is_en ? ("en/man-in-the-loop"|link) : ("man-in-the-loop"|link) %}
+                {% include 'breadcrumbs.twig' with { 'crumbs': [
+                    { 'label': is_en ? 'Home' : 'Inicio', 'url': pradera_home_url|default("index"|link) },
+                    { 'label': _hub_label, 'url': _hub_link },
+                    { 'label': meta.title }
+                ] } only %}
+
+                <article class="pradera-article praderas-mitl__article">
+                    <header class="mb-4">
+                        <p class="praderas-mitl__kicker text-uppercase small mb-1">{{ is_en ? 'Written by a person' : 'Escrito por una persona' }}</p>
+                        <h1 class="fw-bolder mb-2">{{ meta.title }}</h1>
+                        <p class="text-muted fst-italic mb-0">{{ meta.date }}{% if meta.author %} · {{ meta.author }}{% endif %}</p>
+                    </header>
+                    {% if meta.image|default('')|trim != '' %}
+                    <figure class="pradera-hero-figure mb-4">
+                        {% set _hero_alt = meta.Image_Alt|default(meta.image_alt|default(meta.title)) %}
+                        <img class="pradera-hero-img img-fluid rounded shadow-sm" src="{{ meta.image|e('html_attr') }}" alt="{{ _hero_alt|e('html_attr') }}" loading="lazy" decoding="async" />
+                    </figure>
+                    {% endif %}
+                    <section class="post-body praderas-mitl__body">
+                        {{ content }}
+                    </section>
+                    <nav class="praderas-mitl__post-nav d-flex flex-column flex-sm-row justify-content-between gap-3 mt-5 pt-3 border-top" aria-label="{{ is_en ? 'Adjacent articles' : 'Artículos adyacentes' }}">
+                        <div class="flex-fill">
+                        {% if mitl_post_prev is defined and mitl_post_prev %}
+                        <a href="{{ mitl_post_prev.url }}" class="text-decoration-none" rel="prev">
+                            <span class="text-muted small d-block">← {{ is_en ? 'Newer' : 'Más reciente' }}</span>
+                            <span class="fw-semibold">{{ mitl_post_prev.title }}</span>
+                        </a>
+                        {% endif %}
+                        </div>
+                        <div class="flex-fill text-sm-end">
+                        {% if mitl_post_next is defined and mitl_post_next %}
+                        <a href="{{ mitl_post_next.url }}" class="text-decoration-none" rel="next">
+                            <span class="text-muted small d-block">{{ is_en ? 'Older' : 'Más antiguo' }} →</span>
+                            <span class="fw-semibold">{{ mitl_post_next.title }}</span>
+                        </a>
+                        {% endif %}
+                        </div>
+                    </nav>
+                    <p class="mt-4 mb-0"><a href="{{ _hub_link }}" class="praderas-mitl__back">← {{ is_en ? 'Back to feed' : 'Volver al listado' }}</a></p>
+                </article>
+            </div>
+            <div class="col-lg-4">
+                {% include 'mitl-sidebar.twig' with { mitl_on_feed: false } only %}
+            </div>
+        </div>
+   </div>
+
+    <footer class="py-5 bg-dark pradera-footer">
+        <div class="container">
+            <p class="m-0 text-center pradera-footer__credit">Basado en <a href="https://github.com/cutterkom/pico-blog-cms" rel="noopener">Pico Blog Theme</a> (K. Brunner). <a href="http://picocms.org/">Pico CMS</a> (G. Pellegrom).</p>
+        </div>
+    </footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ theme_url }}/js/scripts.js"></script>
+</body>
+</html>

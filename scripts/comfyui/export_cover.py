@@ -44,7 +44,7 @@ Examples:
     --patch-markdown content/blog/reviviendo-praderas-dia-20-....md \\
       content/blog/en/reviving-praderas-day-20-....md
 
-  # Day 21+: patch by Translation_Key (scans content/blog + content/blog/en):
+  # MITL + blog: patch by Translation_Key (scans blog + man-in-the-loop trees):
   python3 scripts/comfyui/export_cover.py \\
     --output assets/images/day21-comfyui-sdxl-translation-key-patch.png \\
     --positive "..." --seed 21052026 --prefix praderas_day21_export \\
@@ -107,15 +107,20 @@ def find_repo_root(start: Path) -> Path:
 def markdown_paths_for_translation_key(repo_root: Path, key: str) -> list[Path]:
     """Paths to ES + EN posts sharing this Translation_Key (exactly two expected).
 
-    Scans ``content/blog/*.md`` and ``content/blog/en/*.md``. Spanish hits sort
-    before English (``content/blog/en/``).
+    Scans ``content/blog/``, ``content/blog/en/``, ``content/man-in-the-loop/``,
+    and ``content/man-in-the-loop/en/``. Spanish hits sort before English.
     """
     want = key.strip()
     if not want:
         return []
     root = repo_root.resolve()
     hits: list[Path] = []
-    for sub in ("content/blog", "content/blog/en"):
+    for sub in (
+        "content/blog",
+        "content/blog/en",
+        "content/man-in-the-loop",
+        "content/man-in-the-loop/en",
+    ):
         d = root / sub
         if not d.is_dir():
             continue
@@ -138,7 +143,7 @@ def markdown_paths_for_translation_key(repo_root: Path, key: str) -> list[Path]:
 
     def sort_key(p: Path) -> tuple[int, str]:
         rel = p.resolve().relative_to(root).as_posix()
-        is_en = rel.startswith("content/blog/en/")
+        is_en = "/en/" in rel or rel.startswith("content/en/")
         return (1 if is_en else 0, rel)
 
     hits.sort(key=sort_key)

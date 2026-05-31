@@ -31,34 +31,38 @@
 
 ## Open backlog (prioritized)
 
-### 1. Article body visuals — **follow-up QA**
+### 1. Man in the loop (human section) — **shipped (branch PR)**
 
-**Owner doc:** `.agents/visual-qa-backlog.md`. **S1–S3 shipped 2026-05-28** (prose ~50–52rem, tables, code colors, table scroll wrap).
+**Owner doc:** `.agents/man-in-the-loop.md`. Hub `/man-in-the-loop`, bilingual ES/EN pairs, infinite scroll + sidebar, excluded from blog taxonomy/tags/series/archive. **Heroes:** required per post (`Image:` + `man-in-the-loop-post.twig`); first cover `mitl-skynet-not-so-easy-hero.webp`. **Follow-up:** hub optional hero; feed thumbnails optional.
 
-- Spot-check live sample URLs after deploy; tune if measure still feels tight on xl screens.
+### 2. Article body visuals — **follow-up QA**
 
-### 2. Cover retrofit Tier B+ — **medium (editorial habit)**
+**Owner doc:** `.agents/visual-qa-backlog.md`. **S1–S3 shipped** (prose, tables, code).
 
-**Owner docs:** `retrofit-cover-queue.md` (Tier A **complete**; Tier B started), `comfyui-cover-images.md` § *Retrofit plan*.
+- Spot-check live sample URLs after deploy.
 
-- **Done 2026-05-28:** CTD-01 + Tuqan Phase 0 openers (2 pairs).
-- Continue long-tail / remaining series openers when capacity allows (~2 pairs/day).
+### 3. Cover retrofit Tier B+ — **medium (editorial habit)**
 
-### 3. Comfy / CI hygiene — **low**
+**Owner docs:** `retrofit-cover-queue.md`, `scripts/list_missing_hero_images.py`.
 
-- `ffmpeg` / asset pipeline row 9 (`comfyui-cover-images.md`).
-- **Done 2026-05-28:** GitHub Action runs `frontmatter_audit.py` + `pregenerate_blog_json.py` on PR/push.
+- Tier B openers: CTD-01 + Tuqan Phase 0 done.
+- Continue ~2 pairs/day when capacity allows.
 
-### 4. Phase 6 extras — **mostly done**
+### 4. Comfy hygiene — **low**
 
-- **Done 2026-05-28:** Listing `?tag=` filter (schema **1.2**); `scripts/pregenerate_blog_json.py` → `generated/json/`.
-- **Open:** sitemap policy for JSON URLs (`phase-5-6-plan.md` § Extras).
+- **`ffmpeg`** row 9 (`comfyui-cover-images.md`).
+- **Covers stay on laptop** — no Comfy in CI; run `frontmatter_audit.py` locally before PR.
 
-### 5. Accessibility & polish — **low**
+### 5. Phase 6 extras — **done**
 
-- Alt text policy for heroes; keyboard focus audit; muted text / badge contrast.
+- Tag filter, static JSON script, **sitemap policy** (JSON URLs omitted from sitemap).
 
-### 6. Deferred product bets — **only if requested**
+### 6. Accessibility — **partial**
+
+- **Done:** `:focus-visible` outlines; darker muted text; hero `alt` uses `Image_Alt` or title.
+- **Open:** systematic keyboard audit; hero alt policy doc.
+
+### 7. Deferred product bets — **only if requested**
 
 - Bilingual YAML `Tags` (separate taxonomies) — see `multilingual-ui-backlog.md`.
 - Search highlighted snippets in HTML results.

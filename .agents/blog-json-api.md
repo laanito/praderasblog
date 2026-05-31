@@ -33,9 +33,9 @@ With `rewrite_url: true`, use the paths below as-is (no `.md` suffix).
 
 **Discovery (v1.2):** [`/for-ai-agents`](https://blog.praderas.org/for-ai-agents) (ES) · [`/en/for-ai-agents`](https://blog.praderas.org/en/for-ai-agents) (EN) — `Translation_Key: praderas-for-ai-agents`.
 
-**Static snapshots:** `python3 scripts/pregenerate_blog_json.py` → `generated/json/blog.json`, `blog-en.json` (listing fields only; for deploy mirrors).
+**Static snapshots:** `python3 scripts/pregenerate_blog_json.py` → `generated/json/blog.json`, `blog-en.json` (listing fields only; for deploy mirrors). Run locally before deploy; **not** in CI.
 
-**Not yet:** sitemap entries for JSON URLs.
+**Sitemap policy (decided):** JSON routes (`/blog.json`, `/search.json`, per-post `.json`, `/man-in-the-loop.json`) are **not** listed in `sitemap.xml`. They are API surfaces, not HTML pages. HTML posts (including `/man-in-the-loop/…`) remain in `sitemap-es.xml` when `sitemap` is not disabled.
 
 ---
 

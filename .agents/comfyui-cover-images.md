@@ -2,12 +2,12 @@
 
 **Purpose:** Give future sessions a **single starting point** for how we validated ComfyUI from this repo, which graph worked, and what remains to **productize** (automation script, CI). This is **not** required to build or run the blog.
 
-**Status (2026-05-14):** Same stack for **generation** and **Twig**. **Committed Comfy covers (Days 17–21)** ship as **WebP** under **`assets/images/*.webp`**. **`export_cover.py`** supports **`--webp`**, **`--patch-markdown`**, and **`--translation-key`**. **`scripts/frontmatter_audit.py`** rejects ambiguous **`Translation_Key`** maps (supports **`--translation-key`**). **Hub:** `.agents/README.md`. **Archive:** **Retrofit plan** § below. Still **Open:** optional **`ffmpeg`** (row 9), **CI** (row 8), **VAE** experiment. **Prompts:** `.agents/image-prompt-guidelines.md`.
+**Status (2026-05-28):** Generation stays **on the laptop** (ComfyUI local). **No CI** for covers or Comfy. Before PR: run **`python3 scripts/frontmatter_audit.py`** locally. Still **Open:** optional **`ffmpeg`** (row 9), **VAE** experiment. **Prompts:** `.agents/image-prompt-guidelines.md`.
 
 ## Next steps (recommended order)
 
 1. **Optional row 9 remainder** — **`ffmpeg`** or host-specific encode if we ever need formats beyond **`cwebp`** WebP.
-2. **Checklist row 8** — CI / secrets only if generation moves off the laptop; optional **GitHub Action** calling **`python3 scripts/frontmatter_audit.py`** on PRs.
+2. **Checklist row 8** — **Closed:** audit runs **locally** only; generation does not move to CI.
 3. **Archive retrofit (editorial)** — when capacity allows, add **`Image:`** to older pairs in **tier order** (§ *Retrofit plan*); **`--translation-key`** lowers friction per batch.
 
 ---
@@ -81,9 +81,9 @@ Graph summary:
 | 3. **Twig** — `post.twig` hero; `page-meta.twig` `og:image` + Twitter `summary_large_image`; **`praderas-macros.twig`** resolves **`Image:`** or **Picsum** (blog posts only for hero/social when unset) | **Shipped** |
 | 4. **Listing cards** — `Image:` when set; else **Picsum** (`/seed/{page.id or url}/400/200`) | **Shipped** (`list-card-thumb.twig`, `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`) |
 | 5. **CSS** — responsive hero + `.post-body img` / `figure` | **Shipped** (`praderas-theme.css`) |
-| 6. **Lint** — `Image:` path exists when set; **`Translation_Key`** maps to ≤2 posts and exactly one ES + one EN when duplicated | **Shipped** (`scripts/frontmatter_audit.py` scans `content/blog` + `content/blog/en`) |
-| 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Shipped** — `export_cover.py`: PNG + **`--patch-markdown`** / **`--translation-key`** (resolve ES+EN by key) / **`--skip-comfy`** / **`--image-value`** / **`--dry-run-patch`** + **`--webp`**; **Open** optional duplicate-key CI guard |
-| 8. **CI / secrets** — optional | **Open** |
+| 6. **Lint** — `Image:` path exists when set; **`Translation_Key`** maps to ≤2 posts and exactly one ES + one EN when duplicated | **Shipped** (`frontmatter_audit.py`: blog + **`content/man-in-the-loop/`** pairs) |
+| 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Shipped** — `export_cover.py`: PNG + **`--patch-markdown`** / **`--translation-key`** (blog + **MITL** trees) / **`--skip-comfy`** / **`--image-value`** / **`--dry-run-patch`** + **`--webp`**; **Open** optional duplicate-key CI guard |
+| 8. **CI / secrets** — optional | **N/A** (local generation; audit before PR on laptop) |
 | 9. **Asset weight** — WebP (`cwebp`) + optional **`ffmpeg`** / PNG optimizers | **Partial** — **`cwebp`** via **`export_cover.py --webp`** + **`webp_cover.sh`**; Days **17–21** **`.webp`** in repo; **Open** further **`ffmpeg`** tuning if needed |
 
 ---
@@ -152,7 +152,7 @@ Large ad-hoc batches are still fine; the cadence exists so **small daily progres
 ### Out of scope for now (backlog ideas)
 
 - **Inventory script** — e.g. list Markdown files under `content/blog` missing **`Image:`** or still pointing at **`.png`**; add when batch size grows.
-- **CI wiring** — run **`python3 scripts/frontmatter_audit.py`** on every PR (logic already includes **`Translation_Key`** guard).
+- **Inventory** — **`scripts/list_missing_hero_images.py`** lists posts still on Picsum (Tier B+ planning).
 
 ---
 

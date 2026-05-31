@@ -36,6 +36,7 @@ Phase-by-phase ship narrative lives in *Reviviendo Praderas* posts (`content/blo
   - `categorias.md` category index (`Template: categories`) — URL typically `/categorias`
   - `blog/*.md` post content (Spanish URLs, `/blog/...`)
   - `blog/en/*.md` English posts (`/blog/en/...`)
+  - `man-in-the-loop.md` + `man-in-the-loop/*.md` — **human-written** section (`/man-in-the-loop`, not in blog archive/tags/series/JSON)
 - `assets/` — static files served from site root (e.g. **`assets/images/*.webp`** for optional post **`Image:`** heroes and social previews; Comfy exports **PNG** then **`cwebp`** in-repo per **Day 20** / `comfyui-cover-images.md`). **Older posts** without **`Image:`** still use Picsum; a **retrofit** playbook (priority + batches) is in **`comfyui-cover-images.md`** § *Retrofit plan*; **Tier A tick list + daily cadence** in **`retrofit-cover-queue.md`**.
 - `themes/bootstrap-blog/`
   - `index.twig` base layout + sidebar + navbar

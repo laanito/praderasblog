@@ -186,7 +186,10 @@ class Multilingual extends AbstractPicoPlugin
         if (strpos($id, 'blog/en/') === 0) {
             return 'en';
         }
-        if (strpos($id, 'en/') === 0) {
+        if (strpos($id, 'man-in-the-loop/en/') === 0) {
+            return 'en';
+        }
+        if ($id === 'en/man-in-the-loop' || strpos($id, 'en/') === 0) {
             return 'en';
         }
         return 'es';
