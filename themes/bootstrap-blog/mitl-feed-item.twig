@@ -1,0 +1,6 @@
+<article class="praderas-mitl__entry">
+    <h2 class="praderas-mitl__entry-title h4 mb-1"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+    <p class="praderas-mitl__entry-meta text-muted small mb-2">{{ item.date }}{% if item.author %} · {{ item.author }}{% endif %}</p>
+    {% if item.description %}<p class="praderas-mitl__entry-excerpt mb-2">{{ item.description }}</p>{% endif %}
+    <p class="mb-0"><a class="praderas-mitl__read-more" href="{{ item.url }}">Seguir leyendo</a></p>
+</article>

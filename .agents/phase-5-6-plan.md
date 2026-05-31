@@ -33,7 +33,7 @@ Ship logs: Días 8–16. Translation ledger: `translation-migration-tracker.md`.
 ### Extras
 
 - **Done 2026-05-28:** Listing `?tag=` filter (schema **1.2**); `scripts/pregenerate_blog_json.py` + CI; `/for-ai-agents` pages updated.
-- **Open:** Sitemap policy for JSON URLs (likely omit).
+- **Done:** Sitemap policy — JSON API URLs omitted; HTML only in language sitemaps (`blog-json-api.md`).
 
 ---
 

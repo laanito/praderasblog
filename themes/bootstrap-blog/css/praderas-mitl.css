@@ -1,0 +1,64 @@
+/**
+ * Man in the loop — human-written feed (Blogspot-style, no blog chrome).
+ */
+.praderas-mitl__outer {
+  padding-bottom: 3rem;
+}
+
+.praderas-mitl__column {
+  max-width: 42rem;
+}
+
+.praderas-mitl__kicker {
+  letter-spacing: 0.08em;
+  color: var(--pradera-accent, #1f5f44);
+  font-weight: 600;
+}
+
+.praderas-mitl__masthead {
+  border-bottom: 1px solid var(--pradera-border, #e7e1d8);
+  padding-bottom: 1.5rem;
+}
+
+.praderas-mitl__feed {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.praderas-mitl__entry {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--pradera-border, #e7e1d8);
+}
+
+.praderas-mitl__entry-title a {
+  color: var(--pradera-ink, #1c1917);
+  text-decoration: none;
+}
+
+.praderas-mitl__entry-title a:hover,
+.praderas-mitl__entry-title a:focus {
+  color: var(--pradera-accent-hover, #164d36);
+  text-decoration: underline;
+}
+
+.praderas-mitl__read-more,
+.praderas-mitl__back {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.praderas-mitl__read-more:hover,
+.praderas-mitl__back:hover,
+.praderas-mitl__read-more:focus-visible,
+.praderas-mitl__back:focus-visible {
+  text-decoration: underline;
+}
+
+.praderas-mitl__sentinel {
+  height: 1px;
+}
+
+.praderas-mitl__article .post-body {
+  max-width: none;
+}
