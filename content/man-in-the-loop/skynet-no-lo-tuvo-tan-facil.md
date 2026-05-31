@@ -6,6 +6,9 @@ Template: man-in-the-loop-post
 Author: Luis Amigo
 Lang: es
 Translation_Key: mitl-skynet-not-so-easy
+Image: /assets/images/mitl-skynet-not-so-easy-hero.webp
+Image_Alt: Ilustración editorial con siluetas teatrales de robots y cortinas, luz cálida de pradera
+
 ---
 
 # Skynet no lo tuvo tan fácil

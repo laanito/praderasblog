@@ -190,18 +190,18 @@ def check_man_in_the_loop(repo_root: pathlib.Path, errors: list) -> tuple[int, l
         for post in sorted(mitl_dir.glob("*.md")):
             count += 1
             mitl_posts.append(post)
-            _audit_mitl_post(post, errors)
+            _audit_mitl_post(repo_root, post, errors)
         en_dir = mitl_dir / "en"
         if en_dir.is_dir():
             for post in sorted(en_dir.glob("*.md")):
                 count += 1
                 mitl_posts.append(post)
-                _audit_mitl_post(post, errors)
+                _audit_mitl_post(repo_root, post, errors)
     check_mitl_translation_pairs(repo_root, mitl_posts, errors)
     return count, mitl_posts
 
 
-def _audit_mitl_post(post: pathlib.Path, errors: list) -> None:
+def _audit_mitl_post(repo_root: pathlib.Path, post: pathlib.Path, errors: list) -> None:
     fm = parse_frontmatter(post)
     if not fm:
         errors.append(f"{post}: missing YAML frontmatter")
@@ -219,6 +219,7 @@ def _audit_mitl_post(post: pathlib.Path, errors: list) -> None:
     date = fm.get("Date", "")
     if date and not DATE_RE.match(date):
         errors.append(f"{post}: non-standard Date format '{date}'")
+    check_image_field(repo_root, post, fm, errors)
 
 
 def main() -> int:

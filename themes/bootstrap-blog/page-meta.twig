@@ -38,8 +38,10 @@
 {% endif %}
 <meta property="og:url" content="{{ canonical_url }}" />
 {% set _blog_post = current_page.id is defined and current_page.id starts with 'blog/' %}
+{% set _mitl_post = current_page.id is defined and (current_page.id starts with 'man-in-the-loop/' or current_page.id starts with 'en/man-in-the-loop/') %}
+{% set _article_post = _blog_post or _mitl_post %}
 {% set _picsum_seed = (current_page.id|default(current_page.url|default('post')))|replace({'/':'-'}) %}
-{% set _resolved_cover = _blog_post ? pradera.resolve_visual_cover_url(meta.image|default(''), _picsum_seed, 1200, 630) : (meta.image|default('')|trim) %}
+{% set _resolved_cover = _article_post ? pradera.resolve_visual_cover_url(meta.image|default(''), _picsum_seed, 1200, 630) : (meta.image|default('')|trim) %}
 {% set pradera_social_image_url = '' %}
 {% if _resolved_cover != '' %}
 	{% if _resolved_cover|slice(0, 8) == 'https://' or _resolved_cover|slice(0, 7) == 'http://' %}
@@ -52,7 +54,7 @@
 <meta property="og:image" content="{{ pradera_social_image_url|e('html_attr') }}" />
 <meta property="og:image:alt" content="{{ page_title_string|e('html_attr') }}" />
 {% endif %}
-{% if current_page.id is defined and current_page.id starts with 'blog/' %}
+{% if _article_post %}
 <meta property="og:type" content="article" />
 {% else %}
 <meta property="og:type" content="website" />

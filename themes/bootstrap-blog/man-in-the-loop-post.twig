@@ -35,6 +35,12 @@
                         <h1 class="fw-bolder mb-2">{{ meta.title }}</h1>
                         <p class="text-muted fst-italic mb-0">{{ meta.date }}{% if meta.author %} · {{ meta.author }}{% endif %}</p>
                     </header>
+                    {% if meta.image|default('')|trim != '' %}
+                    <figure class="pradera-hero-figure mb-4">
+                        {% set _hero_alt = meta.Image_Alt|default(meta.image_alt|default(meta.title)) %}
+                        <img class="pradera-hero-img img-fluid rounded shadow-sm" src="{{ meta.image|e('html_attr') }}" alt="{{ _hero_alt|e('html_attr') }}" loading="lazy" decoding="async" />
+                    </figure>
+                    {% endif %}
                     <section class="post-body praderas-mitl__body">
                         {{ content }}
                     </section>

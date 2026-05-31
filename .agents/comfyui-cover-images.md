@@ -81,8 +81,8 @@ Graph summary:
 | 3. **Twig** — `post.twig` hero; `page-meta.twig` `og:image` + Twitter `summary_large_image`; **`praderas-macros.twig`** resolves **`Image:`** or **Picsum** (blog posts only for hero/social when unset) | **Shipped** |
 | 4. **Listing cards** — `Image:` when set; else **Picsum** (`/seed/{page.id or url}/400/200`) | **Shipped** (`list-card-thumb.twig`, `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`) |
 | 5. **CSS** — responsive hero + `.post-body img` / `figure` | **Shipped** (`praderas-theme.css`) |
-| 6. **Lint** — `Image:` path exists when set; **`Translation_Key`** maps to ≤2 posts and exactly one ES + one EN when duplicated | **Shipped** (`scripts/frontmatter_audit.py` scans `content/blog` + `content/blog/en`) |
-| 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Shipped** — `export_cover.py`: PNG + **`--patch-markdown`** / **`--translation-key`** (resolve ES+EN by key) / **`--skip-comfy`** / **`--image-value`** / **`--dry-run-patch`** + **`--webp`**; **Open** optional duplicate-key CI guard |
+| 6. **Lint** — `Image:` path exists when set; **`Translation_Key`** maps to ≤2 posts and exactly one ES + one EN when duplicated | **Shipped** (`frontmatter_audit.py`: blog + **`content/man-in-the-loop/`** pairs) |
+| 7. **Script** — POST `/prompt` + write PNG + patch front matter | **Shipped** — `export_cover.py`: PNG + **`--patch-markdown`** / **`--translation-key`** (blog + **MITL** trees) / **`--skip-comfy`** / **`--image-value`** / **`--dry-run-patch`** + **`--webp`**; **Open** optional duplicate-key CI guard |
 | 8. **CI / secrets** — optional | **N/A** (local generation; audit before PR on laptop) |
 | 9. **Asset weight** — WebP (`cwebp`) + optional **`ffmpeg`** / PNG optimizers | **Partial** — **`cwebp`** via **`export_cover.py --webp`** + **`webp_cover.sh`**; Days **17–21** **`.webp`** in repo; **Open** further **`ffmpeg`** tuning if needed |
 

@@ -41,8 +41,12 @@ Template: man-in-the-loop-post
 Author: ...
 Lang: es   # or en
 Translation_Key: mitl-your-stable-key
+Image: /assets/images/mitl-your-stable-key-hero.webp
+Image_Alt: Short accessible description of the cover (same on ES + EN)
 ---
 ```
+
+**Hero images:** Same rules as the AI blog — one **WebP** per `Translation_Key`, shared `Image:` on both ES and EN posts. Generate with `scripts/comfyui/export_cover.py` (`--translation-key mitl-…` scans `content/man-in-the-loop/`). Post template renders the hero above the body; OG/Twitter use `page-meta.twig` article covers.
 
 4. Run `python3 scripts/frontmatter_audit.py` before merge.
 

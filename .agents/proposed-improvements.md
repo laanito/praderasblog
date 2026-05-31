@@ -31,9 +31,9 @@
 
 ## Open backlog (prioritized)
 
-### 1. Man in the loop (human section) — **new**
+### 1. Man in the loop (human section) — **shipped (branch PR)**
 
-**Owner doc:** `.agents/man-in-the-loop.md`. Hub `/man-in-the-loop`, infinite scroll feed, excluded from blog taxonomy.
+**Owner doc:** `.agents/man-in-the-loop.md`. Hub `/man-in-the-loop`, bilingual ES/EN pairs, infinite scroll + sidebar, excluded from blog taxonomy/tags/series/archive. **Heroes:** required per post (`Image:` + `man-in-the-loop-post.twig`); first cover `mitl-skynet-not-so-easy-hero.webp`. **Follow-up:** hub optional hero; feed thumbnails optional.
 
 ### 2. Article body visuals — **follow-up QA**
 
