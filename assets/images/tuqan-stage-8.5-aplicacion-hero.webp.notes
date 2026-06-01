@@ -1,0 +1,12 @@
+Hero image for Tuqan Stage 8.5 article (Aplicación fully navigable).
+
+Generated with:
+- ComfyUI (v0.20.1) + SDXL
+- Workflow: sdxl_ubersimple.api.json (via scripts/comfyui/export_cover.py)
+- Positive prompt: "Professional modern software interface for quality and environmental management system, clean collapsible left sidebar navigation, multiple admin modules visible, modern tech aesthetic, high detail, cinematic lighting, SDXL style"
+- Seed: 11062026
+- Date: 2026-06-11
+
+This follows the strict Tuqan hero policy: always ComfyUI + SDXL for series consistency, always deliver .webp.
+
+No initial xAI Imagine generation was used.
