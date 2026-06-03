@@ -1,0 +1,12 @@
+Hero image for Tuqan article on automating the agentic testing loop (Stage 8.6+ follow-ups).
+
+Generated with:
+- ComfyUI (v0.20.1) + SDXL
+- Workflow: sdxl_ubersimple.api.json (via scripts/comfyui/export_cover.py)
+- Positive prompt: "Professional modern developer terminal interface showing a fully agentic AI loop for software modernization: main agent parsing tasks from .agents/STAGE-CHECKLISTS.md, editing PHP code in Dockerized legacy app, running automated verification script verify-8.6.sh and psql assertions for DB state after POSTs and patches, git commit push to GitHub, opening PR; second reviewer Q&A agent checking the changes for errors; clean sidebar menu of Tuqan quality management app visible, multiple terminals with Docker, test results, high detail cinematic lighting, SDXL style"
+- Seed: 3062026
+- Date: 2026-06-03
+
+This follows the strict Tuqan hero policy: always ComfyUI + SDXL for series consistency, always deliver .webp + .notes. No xAI Imagine was used.
+
+The image represents the vision of a closed agentic loop: checklist-driven tasks, implement (code + patches), automated test/verify (script + DB asserts + CI), push, PR, reviewer agent (Q&A), merge, repeat.
