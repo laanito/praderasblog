@@ -4,7 +4,7 @@ Description: Cómo convertir la estrategia de verificación documentada (checkli
 Date: 2026-06-03 11:00PM
 Template: post
 Author: Luis Amigo
-Tags: Desarrollo Web, Sistemas, Productividad, Tuqan, Agentes IA, Testing, Automatización
+Tags: Desarrollo Web, Sistemas, Productividad, Inteligencia Artificial
 Lang: es
 Translation_Key: tuqan-agentic-testing-loop
 Series: Tuqan — Modernización

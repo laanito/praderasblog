@@ -4,7 +4,7 @@ Description: Turning the documented verification strategy (checklists as task so
 Date: 2026-06-03 11:00PM
 Template: post
 Author: Luis Amigo
-Tags: Web Development, Systems, Productivity, Tuqan, AI Agents, Testing, Automation
+Tags: Desarrollo Web, Sistemas, Productividad, Inteligencia Artificial
 Lang: en
 Translation_Key: tuqan-agentic-testing-loop
 Series: Tuqan — Modernización
