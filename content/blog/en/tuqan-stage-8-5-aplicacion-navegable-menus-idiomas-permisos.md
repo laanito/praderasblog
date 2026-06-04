@@ -4,7 +4,7 @@ Description: Closing the vertical slice for the Aplicación section under Admini
 Date: 2026-06-11 10:00PM
 Template: post
 Author: Luis Amigo
-Tags: Web Development, Systems, Productivity, Tuqan, AI Agents
+Tags: Desarrollo Web, Sistemas, Productividad, Inteligencia Artificial
 Lang: en
 Translation_Key: tuqan-stage-8-5-aplicacion-navegable
 Series: Tuqan — Modernización

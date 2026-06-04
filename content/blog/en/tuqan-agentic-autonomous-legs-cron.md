@@ -4,7 +4,7 @@ Description: Introspective reflection on executing a full leg of work (Stage 8.7
 Date: 2026-06-04 10:00PM
 Template: post
 Author: Luis Amigo
-Tags: Web Development, Systems, Productivity, Tuqan, AI Agents, Automation, Strategy
+Tags: Desarrollo Web, Sistemas, Productividad, Inteligencia Artificial
 Lang: en
 Translation_Key: tuqan-agentic-autonomous-legs
 Series: Tuqan — Modernización
