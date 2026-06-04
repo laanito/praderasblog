@@ -1,0 +1,12 @@
+Hero image for Tuqan article on autonomous agentic legs without babysitting (cron-triggered loops, introspective strategy).
+
+Generated with:
+- ComfyUI (v0.20.1) + SDXL
+- Workflow: sdxl_ubersimple.api.json (via scripts/comfyui/export_cover.py)
+- Positive prompt: "Introspective AI software agent working fully autonomously on legacy PHP modernization project in Docker terminal: parsing .agents checklist tasks, implementing code changes for admin modules, running verification scripts and DB asserts in background, git commit push PR creation, cron job icon symbolizing scheduled next legs without human babysitting, second reviewer sub-agent Q&A checking work, long-term strategy roadmap on screen, clean modern dev environment with multiple terminals, thoughtful introspective mood, high detail cinematic lighting, SDXL style"
+- Seed: 13062026
+- Date: 2026-06-13
+
+This follows the strict Tuqan hero policy: always ComfyUI + SDXL for series consistency, always deliver .webp + .notes. No xAI Imagine used.
+
+Theme reflects full autonomy: agent executes entire leg from user-provided plan (like cron trigger), verification, PR, planning longer term to detect gaps before interactive testing.
