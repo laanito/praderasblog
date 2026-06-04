@@ -1,7 +1,7 @@
 ---
 Title: Tuqan — Agentic Lessons (11): Aplicación Fully Navigable (Profiles, Companies, Menus, Languages, and Permissions)
 Description: Closing the vertical slice for the Aplicación section under Administration. Full Perfiles, real Empresas, and modern pages for Menus, Idiomas, and Permisos. The entire submenu is now navigable before we dive into POST handling.
-Date: 2026-06-11 10:00PM
+Date: 2026-06-02 10:00PM
 Template: post
 Author: Luis Amigo
 Tags: Web Development, Systems, Productivity, Tuqan, AI Agents

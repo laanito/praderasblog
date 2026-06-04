@@ -1,7 +1,7 @@
 ---
 Title: Tuqan — Lecciones de operación con agentes (11): Aplicación completamente navegable (Perfiles, Empresas, Menús, Idiomas y Permisos)
 Description: Cierre de la vertical slice de la sección Aplicación bajo Administración. Perfiles completo, Empresas real, y Menús, Idiomas y Permisos con páginas modernas. Todo el submenú ahora es navegable antes de entrar en la fase de POST.
-Date: 2026-06-11 10:00PM
+Date: 2026-06-02 10:00PM
 Template: post
 Author: Luis Amigo
 Tags: Desarrollo Web, Sistemas, Productividad, Tuqan, Agentes IA
