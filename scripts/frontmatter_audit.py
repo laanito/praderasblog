@@ -58,6 +58,14 @@ def check_image_field(repo_root: pathlib.Path, post: pathlib.Path, fm: dict, err
     target = repo_root / rel
     if not target.is_file():
         errors.append(f"{post}: Image path not found on disk: {raw} (resolved {target})")
+    if raw.endswith(".webp"):
+        social_rel = raw[:-5] + "-social.jpg"
+        social_target = repo_root / social_rel.lstrip("/")
+        if not social_target.is_file():
+            errors.append(
+                f"{post}: social JPEG missing for WebP hero: {social_rel} "
+                f"(run python3 scripts/generate_social_jpg.py)"
+            )
 
 
 def _is_en_blog_post(repo_root: pathlib.Path, post: pathlib.Path) -> bool:

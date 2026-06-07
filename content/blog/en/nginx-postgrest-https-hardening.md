@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 3
 Lang: en
 Translation_Key: praderas-ctd-03
+Image: /assets/images/ctd-03-nginx-postgrest-https-hero.webp
+
 ---
 
 We are assembling a decoupled **time-tracking** stack. After standing up **PostgREST**, the next move is safer exposure: **Nginx** as a reverse proxy and **Certbot** for **HTTPS**.

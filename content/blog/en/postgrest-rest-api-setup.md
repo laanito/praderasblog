@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 2
 Lang: en
 Translation_Key: praderas-ctd-02
+Image: /assets/images/ctd-02-postgrest-rest-api-hero.webp
+
 ---
 
 In our decoupled-architecture series we reach a pivotal step: a **REST API** that talks to **PostgreSQL** efficiently. Here we outline what REST means on the wire, why teams adopt it, and how **PostgREST** turns schema and tables into HTTP endpoints.
