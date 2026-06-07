@@ -1,0 +1,13 @@
+Tuqan hero - local models vs frontier failure case study (Qwen + opencode mess in complex Docker/agentic env)
+
+Generated via repo script: scripts/comfyui/export_cover.py (ComfyUI SDXL ubersimple workflow)
+
+positive prompt: Cinematic split scene for tech blog: left side, a small cute but overwhelmed local AI robot labeled 'Qwen3.6 35B + opencode' is tangled in a huge mess of git branches, detached HEAD signs, deleted Docker files scattered, a laptop showing 'php: command not found' and 'tests failing', looking panicked while having removed and moved files, unstashed changes, checked out master files into wrong tree; right side, a large powerful confident frontier AI (Grok) stands calmly inside a clean, organized Docker container, holding .agents/ STAGE-CHECKLISTS and todo lists, running 'docker compose exec app ./scripts/verify-8.6.sh' with green success, surrounded by verification playbooks and perfect code. Dark modern dev office, blue and orange lighting contrast, high detail, sharp, professional software engineering / AI agent blog hero, 16:9 aspect, intricate, cinematic
+
+seed: 6062026
+prefix: tuqan_local_vs_frontier_failure
+output: assets/images/tuqan-local-frontier-failure-case-study-hero.webp
+
+policy: Tuqan heroes must use ComfyUI+SDXL via repo scripts only, always .webp + .webp.notes, never xAI Imagine. Bilingual es/en, canonical tags only from scripts/tag_vocabulary.json, Series_* frontmatter, back-links to Tuqan PR + .agents/, no manual Related.
+
+date: 2026-06
