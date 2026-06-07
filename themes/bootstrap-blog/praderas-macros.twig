@@ -7,3 +7,24 @@
 https://picsum.photos/seed/{{ picsum_seed|e('url') }}/{{ width }}/{{ height }}
 {% endif %}
 {% endmacro %}
+
+{# Social preview (OG/Twitter): absolute HTTPS URL, 2:1 JPEG sibling for committed WebP heroes. #}
+{% macro resolve_social_preview_url(meta_image, picsum_seed, base_url, is_article) %}
+{% set cover = meta_image|default('')|trim %}
+{% if is_article and cover == '' %}
+https://picsum.photos/seed/{{ picsum_seed|e('url') }}/1200/630
+{% elseif cover == '' %}
+{% else %}
+{% set path = cover %}
+{% if path|slice(0, 4) != 'http' %}
+{% if path|slice(-5) == '.webp' %}
+{% set path = path|slice(0, -5) ~ '-social.jpg' %}
+{% endif %}
+{% set path = (path|slice(0, 1) == '/') ? path : '/' ~ path %}
+{% set base = base_url|default('')|trim('/') %}
+{{ base ~ path }}
+{% else %}
+{{ path }}
+{% endif %}
+{% endif %}
+{% endmacro %}

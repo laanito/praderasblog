@@ -52,14 +52,17 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 | Series | `Translation_Key` | Hero `Image:` | Notes |
 |--------|-------------------|---------------|-------|
 | Control de Tiempo Desacoplado | `praderas-ctd-01` | done | `ctd-01-decoupled-time-tracking-hero.webp` — series opener ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-02` | done | `ctd-02-postgrest-rest-api-hero.webp` — PostgREST REST API ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-03` | done | `ctd-03-nginx-postgrest-https-hero.webp` — Nginx + HTTPS ES/EN. |
 | Tuqan — Modernización | `tuqan-phase-0-strategic-foundation` | done | `tuqan-phase-0-strategic-foundation-hero.webp` — Phase 0 ES/EN. |
 
-Next Tier B candidates: other series `Series_Order: 1` posts still on Picsum; see `comfyui-cover-images.md` § *Retrofit plan*.
+Next Tier B candidates: CTD `Series_Order` 4+ and other series openers still on Picsum; see `comfyui-cover-images.md` § *Retrofit plan*.
 
 ---
 
 ## Changelog (this file)
 
+- **2026-05-31:** Tier B rows **CTD-02** + **CTD-03** — PostgREST + Nginx HTTPS heroes (no new ship log).
 - **2026-05-28:** Tier B rows **CTD-01** + **Tuqan Phase 0** — dedicated WebP heroes (no new ship log).
 
 - **2026-05-25:** **Rows 10–16 done** — batch script `scripts/comfyui/batch_tier_a_10_16.sh`; Tier A queue **complete**; Day 25 ship log.

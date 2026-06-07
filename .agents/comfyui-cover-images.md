@@ -76,9 +76,9 @@ Graph summary:
 
 | Step | Status |
 |------|--------|
-| 1. **Assets tree** — e.g. `assets/images/...`; Git LFS if binaries grow; **WebP** for Comfy covers (row 9) | **Policy:** **`.webp`** for committed SDXL covers from **Day 20**; PNG remains Comfy’s wire format until conversion |
+| 1. **Assets tree** — e.g. `assets/images/...`; Git LFS if binaries grow; **WebP** for page heroes + **`*-social.jpg`** (1200×630) for OG/Twitter | **Policy:** **`.webp`** on-page from **Day 20**; **`scripts/generate_social_jpg.py`** (or `export_cover.py --webp`) writes the JPEG sibling |
 | 2. **Front matter** — optional **`Image:`** (site-relative `/assets/...` or absolute `https://...`) | **Shipped** (`post-template.md`, `65-Multilingual.php` meta header) |
-| 3. **Twig** — `post.twig` hero; `page-meta.twig` `og:image` + Twitter `summary_large_image`; **`praderas-macros.twig`** resolves **`Image:`** or **Picsum** (blog posts only for hero/social when unset) | **Shipped** |
+| 3. **Twig** — `post.twig` hero; `page-meta.twig` `og:image` + Twitter `summary_large_image` via **`*-social.jpg`** (1200×630) derived from WebP heroes; **`praderas-macros.twig`** resolves **`Image:`** or **Picsum** | **Shipped** |
 | 4. **Listing cards** — `Image:` when set; else **Picsum** (`/seed/{page.id or url}/400/200`) | **Shipped** (`list-card-thumb.twig`, `blog.twig`, `blog-en.twig`, `tags.twig`, `search.twig`) |
 | 5. **CSS** — responsive hero + `.post-body img` / `figure` | **Shipped** (`praderas-theme.css`) |
 | 6. **Lint** — `Image:` path exists when set; **`Translation_Key`** maps to ≤2 posts and exactly one ES + one EN when duplicated | **Shipped** (`frontmatter_audit.py`: blog + **`content/man-in-the-loop/`** pairs) |

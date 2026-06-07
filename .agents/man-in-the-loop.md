@@ -46,7 +46,7 @@ Image_Alt: Short accessible description of the cover (same on ES + EN)
 ---
 ```
 
-**Hero images:** Same rules as the AI blog — one **WebP** per `Translation_Key`, shared `Image:` on both ES and EN posts. Generate with `scripts/comfyui/export_cover.py` (`--translation-key mitl-…` scans `content/man-in-the-loop/`). Post template renders the hero above the body; OG/Twitter use `page-meta.twig` article covers.
+**Hero images:** Same rules as the AI blog — one **WebP** per `Translation_Key`, shared `Image:` on both ES and EN posts, plus a **`*-social.jpg`** (1200×630) sibling for OG/Twitter. Generate with `scripts/comfyui/export_cover.py` (`--translation-key mitl-…` scans `content/man-in-the-loop/`). Post template renders the WebP hero; `page-meta.twig` points social cards at the JPEG.
 
 4. Run `python3 scripts/frontmatter_audit.py` before merge.
 

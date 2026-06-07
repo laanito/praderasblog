@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 2
 Lang: es
 Translation_Key: praderas-ctd-02
+Image: /assets/images/ctd-02-postgrest-rest-api-hero.webp
+
 ---
 
 En nuestra serie de desarrollo de arquitecturas desacopladas, llegamos a un paso crucial: la implementación de una API REST que nos permitirá interactuar con nuestra base de datos PostgreSQL de manera eficiente. En este artículo, exploraremos qué es una API REST, cuáles son sus ventajas y cómo podemos lograr esto utilizando PostgREST.

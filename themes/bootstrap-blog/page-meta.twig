@@ -20,6 +20,10 @@
 {% endif %}
 
 {% set canonical_url = current_page.url|default(base_url) %}
+{% if canonical_url|slice(0, 4) != 'http' %}
+	{% set _canon_path = (canonical_url|slice(0, 1) == '/') ? canonical_url : '/' ~ canonical_url %}
+	{% set canonical_url = base_url|default('')|trim('/') ~ _canon_path %}
+{% endif %}
 <link rel="canonical" href="{{ canonical_url }}" />
 
 <meta property="og:locale" content="{{ og_locale|default('es_ES') }}" />
@@ -41,18 +45,15 @@
 {% set _mitl_post = current_page.id is defined and (current_page.id starts with 'man-in-the-loop/' or current_page.id starts with 'en/man-in-the-loop/') %}
 {% set _article_post = _blog_post or _mitl_post %}
 {% set _picsum_seed = (current_page.id|default(current_page.url|default('post')))|replace({'/':'-'}) %}
-{% set _resolved_cover = _article_post ? pradera.resolve_visual_cover_url(meta.image|default(''), _picsum_seed, 1200, 630) : (meta.image|default('')|trim) %}
-{% set pradera_social_image_url = '' %}
-{% if _resolved_cover != '' %}
-	{% if _resolved_cover|slice(0, 8) == 'https://' or _resolved_cover|slice(0, 7) == 'http://' %}
-		{% set pradera_social_image_url = _resolved_cover %}
-	{% else %}
-		{% set _base = base_url|default('')|trim('/') %}
-		{% set _path = (_resolved_cover|slice(0, 1) == '/') ? _resolved_cover : '/' ~ _resolved_cover %}
-		{% set pradera_social_image_url = _base ~ _path %}
-	{% endif %}
+{% set _social_alt = meta.Image_Alt|default(meta.image_alt|default(page_title_string)) %}
+{% set pradera_social_image_url = pradera.resolve_social_preview_url(meta.image|default(''), _picsum_seed, base_url, _article_post)|trim %}
+{% if pradera_social_image_url != '' %}
 <meta property="og:image" content="{{ pradera_social_image_url|e('html_attr') }}" />
-<meta property="og:image:alt" content="{{ page_title_string|e('html_attr') }}" />
+<meta property="og:image:secure_url" content="{{ pradera_social_image_url|e('html_attr') }}" />
+<meta property="og:image:alt" content="{{ _social_alt|e('html_attr') }}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/jpeg" />
 {% endif %}
 {% if _article_post %}
 <meta property="og:type" content="article" />
@@ -60,13 +61,14 @@
 <meta property="og:type" content="website" />
 {% endif %}
 
-<meta name="twitter:card" content="{{ (_resolved_cover|default('')|trim != '') ? 'summary_large_image' : 'summary' }}" />
+<meta name="twitter:card" content="{{ pradera_social_image_url != '' ? 'summary_large_image' : 'summary' }}" />
 <meta name="twitter:title" content="{{ page_title_string }}" />
 {% if meta.description %}
 <meta name="twitter:description" content="{{ meta.description|striptags }}" />
 {% endif %}
-{% if _resolved_cover|default('')|trim != '' %}
+{% if pradera_social_image_url != '' %}
 <meta name="twitter:image" content="{{ pradera_social_image_url|e('html_attr') }}" />
+<meta name="twitter:image:alt" content="{{ _social_alt|e('html_attr') }}" />
 {% endif %}
 
 <link rel="icon" type="image/x-icon" href="{{ theme_url }}/assets/favicon.ico" />
