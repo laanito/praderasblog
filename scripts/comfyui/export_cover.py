@@ -67,6 +67,10 @@ import uuid
 from pathlib import Path
 
 DEFAULT_WORKFLOW = Path(__file__).resolve().parent / "sdxl_ubersimple.api.json"
+SCRIPTS_DIR = Path(__file__).resolve().parents[1]
+if str(SCRIPTS_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS_DIR))
+from generate_social_jpg import social_jpg_path_for_file, write_social_jpg  # noqa: E402
 POLL_INTERVAL_S = 1.0
 POLL_MAX_S = 600.0
 
@@ -434,6 +438,9 @@ def main() -> int:
             print(f"error: --webp requires existing PNG {canonical_out}", file=sys.stderr)
             return 1
         canonical_out = encode_png_to_webp(canonical_out, args.webp_delete_png)
+        social_dest = social_jpg_path_for_file(canonical_out)
+        write_social_jpg(canonical_out, social_dest)
+        print(f"wrote {social_dest.resolve()} ({social_dest.stat().st_size} bytes)")
 
     repo_root = find_repo_root(canonical_out.parent)
     image_site = (args.image_value or "").strip()

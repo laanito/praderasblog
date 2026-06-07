@@ -31,38 +31,42 @@
 
 ## Open backlog (prioritized)
 
-### 1. Man in the loop (human section) — **shipped (branch PR)**
+### 1. Man in the loop (human section) — **shipped**
 
-**Owner doc:** `.agents/man-in-the-loop.md`. Hub `/man-in-the-loop`, bilingual ES/EN pairs, infinite scroll + sidebar, excluded from blog taxonomy/tags/series/archive. **Heroes:** required per post (`Image:` + `man-in-the-loop-post.twig`); first cover `mitl-skynet-not-so-easy-hero.webp`. **Follow-up:** hub optional hero; feed thumbnails optional.
+**Owner doc:** `.agents/man-in-the-loop.md`. Hub `/man-in-the-loop`, bilingual ES/EN pairs, infinite scroll + sidebar, excluded from blog taxonomy/tags/series/archive.
 
-### 2. Article body visuals — **follow-up QA**
+### 2. Twitter / OG social previews — **shipped (this PR)**
+
+**Fix:** `page-meta.twig` serves **`*-social.jpg`** (1200×630) for `og:image` / `twitter:image` instead of WebP heroes; batch backfill via `scripts/generate_social_jpg.py`; audit enforces JPEG sibling when `Image:` ends in `.webp`.
+
+### 3. Article body visuals — **follow-up QA**
 
 **Owner doc:** `.agents/visual-qa-backlog.md`. **S1–S3 shipped** (prose, tables, code).
 
 - Spot-check live sample URLs after deploy.
 
-### 3. Cover retrofit Tier B+ — **medium (editorial habit)**
+### 4. Cover retrofit Tier B+ — **medium (editorial habit)**
 
 **Owner docs:** `retrofit-cover-queue.md`, `scripts/list_missing_hero_images.py`.
 
-- Tier B openers: CTD-01 + Tuqan Phase 0 done.
-- Continue ~2 pairs/day when capacity allows.
+- Tier B: CTD-01–03 + Tuqan Phase 0 done.
+- Continue ~2 pairs/day when capacity allows (CTD-04+ next).
 
-### 4. Comfy hygiene — **low**
+### 5. Comfy hygiene — **low**
 
-- **`ffmpeg`** row 9 (`comfyui-cover-images.md`).
+- **`ffmpeg`** row 9 — now used for `*-social.jpg` generation (`generate_social_jpg.py`).
 - **Covers stay on laptop** — no Comfy in CI; run `frontmatter_audit.py` locally before PR.
 
-### 5. Phase 6 extras — **done**
+### 6. Phase 6 extras — **done**
 
 - Tag filter, static JSON script, **sitemap policy** (JSON URLs omitted from sitemap).
 
-### 6. Accessibility — **partial**
+### 7. Accessibility — **partial**
 
 - **Done:** `:focus-visible` outlines; darker muted text; hero `alt` uses `Image_Alt` or title.
 - **Open:** systematic keyboard audit; hero alt policy doc.
 
-### 7. Deferred product bets — **only if requested**
+### 8. Deferred product bets — **only if requested**
 
 - Bilingual YAML `Tags` (separate taxonomies) — see `multilingual-ui-backlog.md`.
 - Search highlighted snippets in HTML results.
@@ -79,6 +83,7 @@
 
 ## Changelog
 
+- **2026-05-31:** Twitter/OG fix (`*-social.jpg`); Tier B retrofit CTD-02 + CTD-03; `generate_social_jpg.py` backfill.
 - **2026-05-28:** Visual S1–S3; Tier B covers (CTD-01, Tuqan Phase 0); Phase 6 tag filter + static JSON script + CI audit workflow.
 - **2026-05-26:** Consolidated — removed duplicate P0–P4 and phase-1–6 essay; shipped table + open backlog only.
 - **2026-05-26:** Added agent authoring + visual QA pointers (prior long form).
