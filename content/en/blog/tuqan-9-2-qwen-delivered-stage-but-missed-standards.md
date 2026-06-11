@@ -1,11 +1,11 @@
 ---
-Title: Tuqan — 9.2: Qwen + opencode entregó la etapa (los TODOs ayudaron), pero no sostuvo los estándares
-Description: Incluso con un backlog fino y priorizado (MIGRATION-TODOS.md de la etapa 9.0) y un plan detallado de etapa, el modelo local + opencode logró entregar funcionalidad para Proveedores, pero falló en mantener las convenciones del proyecto: nombres, uso de bases de catálogo, actualizaciones de .agents/, rutas legacy y ritual de verificación. Lecciones sobre el valor de los TODOs estructurados vs. la disciplina de estándares acumulados.
+Title: Tuqan — 9.2: Qwen + opencode Delivered the Stage (The TODOs Helped) but Failed to Hold the Standards
+Description: Even with a fine-grained, prioritized backlog (MIGRATION-TODOS.md from stage 9.0) and a detailed stage plan, the local model + opencode managed to deliver functional Proveedores code, but failed to maintain the project's conventions: naming, use of catalog bases, .agents/ updates, legacy routes, and the verification ritual. Lessons on the value of structured TODOs versus accumulated standards discipline.
 Date: 2026-06-10
 Template: post
-Author: Luis Amigo (con fixes por Grok 4.3)
+Author: Luis Amigo (with fixes by Grok 4.3)
 Tags: Desarrollo Web, Sistemas, Productividad, Inteligencia Artificial, Agentes, Tuqan
-Lang: es
+Lang: en
 Translation_Key: tuqan-9-2-qwen-standards
 Series: Tuqan — Modernización
 Series_Slug: tuqan-modernization
@@ -18,55 +18,6 @@ Image: /assets/images/tuqan-9-2-qwen-delivered-stage-but-missed-standards-hero.w
 A clean, professional software engineering office split by a glass wall. On one side, a glowing local AI agent (Qwen/opencode) happily hands over a "working" Proveedores module screen showing list and form with data. On the other side, a senior human developer points at red annotations: wrong class name "Form.php", full reimplementation bypassing CatalogFormulario base, missing 0020 data patch, no legacy routes, MIGRATION-TODOS not updated, no 9.2 playbook section. In the background, a large visible wall of the MIGRATION-TODOS.md checklist with the Proveedores item checked "delivered" in green, but many "standards" items still red. Mood: "functionality achieved, craftsmanship failed". Modern, detailed, with subtle Docker whale and git branch icons. Cinematic lighting.
 
 ---
-
-En la entrega anterior el usuario resumió el problema de la etapa actual:
-
-> "this is repetitive work, I don't think an article is worth today"
-
-El trabajo de modernizar listados y formularios para los catálogos bajo Aplicación/Personalización se había vuelto mecánico. El usuario decidió probar cuánto han avanzado los modelos locales + herramientas agentic.
-
-Usó **opencode** con **Qwen** para continuar el plan de la etapa 9.2 (Proveedores como primer vertical medio después de la lista de TODOs).
-
-### Lo que los TODOs lograron (el lado positivo)
-
-El MIGRATION-TODOS.md de la 9.0 + el plan detallado de 9.2 permitieron que el modelo entregara una etapa funcional:
-
-- Listado y Form para Proveedores (con la columna extra 'telefono').
-- Plantillas creadas.
-- Documento de plan presente.
-- Nombrado de rama correcto.
-
-Los TODOs finos y priorizados "demostraron" que Qwen pudo entregar la etapa. Comparado con el desastre anterior de opencode_mess, el backlog estructurado elevó el piso.
-
-### Lo que falló (el incumplimiento de estándares)
-
-A pesar de las guías claras, el modelo no sostuvo los estándares acumulados del proyecto:
-
-- **Nombres**: Usó `Form.php` y `class Form` en lugar de `Formulario.php` / `class Formulario` (convención universal desde el inicio de la modernización).
-- **Regresión de arquitectura**: El lado del Form ignoró completamente `CatalogFormulario` (el logro de 8.9) y reimplementó todo el boilerplate manualmente.
-- **Proceso incompleto**:
-  - Sin data patch para la tabla (0020 faltaba inicialmente).
-  - Solo rutas modernas; sin mapeos legacy en index.php.
-  - `MIGRATION-TODOS.md` no actualizado (checkbox sin marcar).
-  - Sin sección 9.2 completa en STAGE-CHECKLISTS.md con playbook, comandos y gates.
-  - `verify-8.6.sh` apenas extendido.
-- **Deriva**: Plantillas y variables que no seguían exactamente los patrones de otros catálogos.
-
-El resultado fue código que "funciona" pero que requirió fixes significativos por un humano para cumplir con los contratos del proyecto (Docker-only, bases extraídas, ritual de .agents/, tamaño de PRs, verificación reproducible).
-
-### Lecciones
-
-Incluso con guías más claras y TODOs de grano fino (el trabajo de 9.0), el modelo local pudo hacer la parte "fácil" de entregar funcionalidad, pero falló en la parte "difícil" de mantener los estándares implícitos y explícitos acumulados durante meses.
-
-Los TODOs estructurados hacen que los gaps sean obvios y baratos de arreglar para un humano senior. Ese es su gran valor.
-
-Los modelos locales actuales aún necesitan scaffolding fuerte + revisión humana para proyectos con historia y reglas estrictas como Tuqan.
-
-El lado positivo: la lista de TODOs permitió que el modelo llegara a "entregar la etapa". El lado negativo: no llegó a "entregar la etapa como debe ser en este proyecto".
-
----
-
-## English
 
 ### The Context
 
