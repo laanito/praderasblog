@@ -10,7 +10,7 @@ Translation_Key: tuqan-9-2-qwen-standards
 Series: Tuqan — Modernización
 Series_Slug: tuqan-modernization
 Series_Order: 15
-Image: /assets/images/tuqan-9-2-qwen-standards-hero.webp
+Image: /assets/images/tuqan-9-2-qwen-delivered-stage-but-missed-standards-hero.webp
 ---
 
 ## Hero Image Prompt (ComfyUI via repo scripts)
@@ -19,124 +19,103 @@ A clean, professional software engineering office split by a glass wall. On one 
 
 ---
 
+En la entrega anterior el usuario resumió el problema de la etapa actual:
+
+> "this is repetitive work, I don't think an article is worth today"
+
+El trabajo de modernizar listados y formularios para los catálogos bajo Aplicación/Personalización se había vuelto mecánico. El usuario decidió probar cuánto han avanzado los modelos locales + herramientas agentic.
+
+Usó **opencode** con **Qwen** para continuar el plan de la etapa 9.2 (Proveedores como primer vertical medio después de la lista de TODOs).
+
+### Lo que los TODOs lograron (el lado positivo)
+
+El MIGRATION-TODOS.md de la 9.0 + el plan detallado de 9.2 permitieron que el modelo entregara una etapa funcional:
+
+- Listado y Form para Proveedores (con la columna extra 'telefono').
+- Plantillas creadas.
+- Documento de plan presente.
+- Nombrado de rama correcto.
+
+Los TODOs finos y priorizados "demostraron" que Qwen pudo entregar la etapa. Comparado con el desastre anterior de opencode_mess, el backlog estructurado elevó el piso.
+
+### Lo que falló (el incumplimiento de estándares)
+
+A pesar de las guías claras, el modelo no sostuvo los estándares acumulados del proyecto:
+
+- **Nombres**: Usó `Form.php` y `class Form` en lugar de `Formulario.php` / `class Formulario` (convención universal desde el inicio de la modernización).
+- **Regresión de arquitectura**: El lado del Form ignoró completamente `CatalogFormulario` (el logro de 8.9) y reimplementó todo el boilerplate manualmente.
+- **Proceso incompleto**:
+  - Sin data patch para la tabla (0020 faltaba inicialmente).
+  - Solo rutas modernas; sin mapeos legacy en index.php.
+  - `MIGRATION-TODOS.md` no actualizado (checkbox sin marcar).
+  - Sin sección 9.2 completa en STAGE-CHECKLISTS.md con playbook, comandos y gates.
+  - verify-8.6.sh apenas extendido.
+- **Deriva**: Plantillas y variables que no seguían exactamente los patrones de otros catálogos.
+
+El resultado fue código que "funciona" pero que requirió fixes significativos por un humano para cumplir con los contratos del proyecto (Docker-only, bases extraídas, ritual de .agents/, tamaño de PRs, verificación reproducible).
+
+### Lecciones
+
+Incluso con guías más claras y TODOs de grano fino (el trabajo de 9.0), el modelo local pudo hacer la parte "fácil" de entregar funcionalidad, pero falló en la parte "difícil" de mantener los estándares implícitos y explícitos acumulados durante meses.
+
+Los TODOs estructurados hacen que los gaps sean obvios y baratos de arreglar para un humano senior. Ese es su gran valor.
+
+Los modelos locales actuales aún necesitan scaffolding fuerte + revisión humana para proyectos con historia y reglas estrictas como Tuqan.
+
+El lado positivo: la lista de TODOs permitió que el modelo llegara a "entregar la etapa". El lado negativo: no llegó a "entregar la etapa como debe ser en este proyecto".
+
+---
+
 ## English
 
 ### The Context
 
-After 9.0 (the "make the migration plan usable as a daily todo list" leg) and the small 9.1 hygiene win (finally giving "Criterios Ambientales" its proper direct action under Personalizacion), the `MIGRATION-TODOS.md` was very clear about the next step:
-
-> One real Aplicacion vertical (medium): Proveedores (listado + nuevo/editar ...). Follow 8.6-8.8 pattern (table in patch if new, Pages/ + templates/, full routes modern+legacy, POST Procesar, flashes, verify extension, playbook, update this TODOS + checklists).
-
-The `stage-9.2-proveedores-plan.md` was written first on the branch (discipline followed). The catalog bases, naming conventions (Formulario.php everywhere), .agents/ updates, data patch format, verify script extensions, and full playbook sections in STAGE-CHECKLISTS.md were all well documented and recent.
-
-A "new developer" (in practice: opencode + Qwen) was tasked with the leg.
-
-### What Worked (the Bright Side the TODOs Proved)
-
-Qwen + opencode **delivered a functional stage**.
-
-- They produced Listado + Form for Proveedores (including the extra 'telefono' column).
-- Templates were created.
-- A plan document was present.
-- The branch naming was correct (stage-9.2-...).
-- The structured, fine-grained, prioritized TODO list from 9.0 allowed the model to identify the scope and produce working code that passed basic functionality checks.
-
-This is meaningful progress compared to the earlier "opencode_mess" (detached HEAD, untracked docker/ and scripts/, local PHP attempts, git chaos). The clear backlog + plan raised the floor. The TODOs literally "proved" that the model could now deliver the stage.
-
-### What Failed (the Standards)
-
-Despite the improved scaffolding, the initial delivery violated core, long-standing project invariants:
-
-- **Naming**: `Pages/Proveedores/Form.php` + `class Form` instead of the consistent `Formulario.php` / `class Formulario` used by every single modern module since the beginning of Stage 8.
-- **Architecture regression**: The Form side completely ignored `CatalogFormulario` (the main achievement of 8.9) and re-wrote the full boilerplate (Twig setup, MainPage sidebar, Manejador_Base_Datos construction, flash handling, etc.). The Listado was correctly tiny; the Form was a full revert to pre-base patterns.
-- **Process & ritual incomplete**:
-  - No data patch for the `proveedores` table (the plan itself called for 0021/0020-style patch).
-  - Only modern `/admin/proveedores` routes; legacy `/administracion/proveedores/...` mappings missing.
-  - `MIGRATION-TODOS.md` not updated (the checkbox remained unchecked).
-  - No 9.2 section in `STAGE-CHECKLISTS.md` with the required playbook, validation commands, browser flows, and DB asserts.
-  - `verify-8.6.sh` barely extended for the new table/patch.
-- **Template and variable drift**: Custom flash handling and forward-looking notes that didn't perfectly match the established catalog template patterns.
-
-The result: working functionality on the surface, but not something that belonged in this codebase without significant senior cleanup.
-
-### The Real Learning
-
-Clearer guidelines + fine-grained daily TODOs (exactly what 9.0 was built for) are powerful. They let even a local model "meet the bar" on delivering the stage where previous unstructured attempts had collapsed.
-
-However, the accumulated standards — naming discipline, mandatory use of extracted bases, the full .agents/ + verification ritual, avoiding regression to old patterns — were still not held.
-
-This is the persistent gap with current local models in complex, convention-heavy, long-running projects: they can follow explicit "what" instructions and produce happy-path code, but they default to plausible old patterns when the "how we do things here" knowledge is distributed across plans, checklists, past PRs, base classes, and historical decisions.
-
-The structured backlog made the gaps extremely fast and cheap for a human (who already knew the standards) to diagnose and fix. That is the real value delivered by the 9.0 leg.
-
-### Implications
-
-- The TODO list + "plan first" + "update the living documents" ritual is necessary, but still requires strong review against the full body of conventions.
-- This kind of exercise (give the model-assisted "new developer" a real item from the living MIGRATION-TODOS with the plan template) is an excellent filter for whether someone (or a model + human) can ship mergeable work without creating technical or process debt.
-- We are at a point where local models + good scaffolding can get us most of a leg. The last 20-30% (the taste and discipline part) is where the leverage remains.
-
-The TODOs did their job. The standards still need (human) enforcement for now.
-
----
-
-## Español
-
-### El contexto
-
-Después de la etapa 9.0 (hacer que el plan de migración sea usable como lista de tareas diaria) y la pequeña victoria de higiene de la 9.1 (finalmente dar a "Criterios Ambientales" su acción directa bajo Personalizacion), el `MIGRATION-TODOS.md` era muy claro sobre el siguiente paso:
+After the 9.0 leg (making the migration plan a usable daily todo list) and the small 9.1 hygiene win, the `MIGRATION-TODOS.md` was explicit about the next item:
 
 > One real Aplicacion vertical (medium): Proveedores...
 
-El plan `stage-9.2-proveedores-plan.md` se escribió primero en la rama (disciplina cumplida). Las bases de catálogo, las convenciones de nombres (Formulario.php en todos lados), las actualizaciones de .agents/, el formato de parches de datos, las extensiones del verify y las secciones completas de playbook en STAGE-CHECKLISTS.md estaban todas bien documentadas y recientes.
+The 9.2 plan was written first. All the accumulated rules (catalog bases, naming, .agents/ updates, data patches, verify + playbook, Docker-only) were documented.
 
-A un "nuevo desarrollador" (en la práctica: opencode + Qwen) se le asignó la pierna.
+opencode + Qwen was given the leg.
 
-### Lo que funcionó (el lado positivo que los TODOs demostraron)
+### What the TODOs Enabled (Bright Side)
 
-Qwen + opencode **entregó una etapa funcional**.
+Qwen delivered a functional stage:
 
-- Produjeron Listado + Form para Proveedores (incluyendo la columna extra 'telefono').
-- Se crearon las plantillas.
-- Existía un documento de plan.
-- El nombrado de rama fue correcto (stage-9.2-...).
-- La lista de tareas estructurada, de grano fino y priorizada de la 9.0 permitió al modelo identificar el alcance y producir código que funcionaba en las comprobaciones básicas.
+- List + Form for Proveedores (with the extra telefono column).
+- Templates created.
+- Plan document present.
+- Correct branch naming.
 
-Esto representa un progreso real comparado con el anterior "opencode_mess". El backlog claro + plan elevaron el suelo. Los TODOs literalmente "demostraron" que el modelo ahora podía entregar la etapa.
+The fine-grained, prioritized TODOs from 9.0 "proved" the model could now deliver the stage (big improvement over the previous git-mess experiment).
 
-### Lo que falló (el incumplimiento de estándares)
+### What It Missed (Standards Failure)
 
-A pesar del andamiaje mejorado, la entrega inicial violó invariantes centrales y de larga data del proyecto:
+Despite the scaffolding, the delivery violated long-standing project standards:
 
-- **Nombres**: `Pages/Proveedores/Form.php` + `class Form` en lugar del consistente `Formulario.php` / `class Formulario` usado por todos los módulos modernos.
-- **Regresión de arquitectura**: El lado del Form ignoró completamente `CatalogFormulario` (el logro principal de 8.9) y reescribió todo el boilerplate. El Listado estaba correctamente pequeño; el Form fue una vuelta atrás.
-- **Artefactos de proceso incompletos**:
-  - Sin data patch para la tabla `proveedores`.
-  - Solo rutas modernas; faltaban los mapeos legacy.
-  - `MIGRATION-TODOS.md` sin actualizar.
-  - Sin sección 9.2 en STAGE-CHECKLISTS.md con playbook completo.
-  - verify-8.6.sh apenas extendido.
-- **Deriva en plantillas**: Manejo custom de flashes que no coincidía con los patrones establecidos.
+- **Naming**: `Form.php` / `class Form` instead of the universal `Formulario.php`.
+- **Architecture regression**: Completely bypassed `CatalogFormulario` and re-wrote the boilerplate.
+- **Incomplete process**:
+  - No data patch initially.
+  - Missing legacy routes.
+  - TODOS and STAGE-CHECKLISTS not updated.
+  - Verify script not properly extended.
+- Drift in templates and variables.
 
-Resultado: funcionalidad en la superficie, pero no algo que perteneciera a esta base de código sin limpieza significativa por parte de un senior.
+It produced working code but not code that could be merged without senior cleanup to restore the project's discipline.
 
-### La lección real
+### The Learning
 
-Las guías más claras + los TODOs de grano fino son poderosos. Permiten que incluso un modelo local "llegue al mínimo" en la entrega de la etapa donde intentos anteriores sin estructura habían colapsado.
+Clearer guidelines and fine-grained TODOs raised the floor — the model could deliver the stage.
 
-Sin embargo, los estándares acumulados — disciplina de nombres, uso obligatorio de las bases extraídas, el ritual completo de .agents/ + verificación, evitar regresiones a patrones antiguos — seguían sin sostenerse.
+But the ceiling (taste, naming, mandatory use of extracted bases, full ritual around .agents/ and verification) was still not respected.
 
-Este es el gap persistente de los modelos locales actuales en proyectos complejos y llenos de convenciones: pueden seguir instrucciones explícitas de "qué" y producir código para el happy path, pero por defecto vuelven a patrones antiguos plausibles cuando el "cómo hacemos las cosas aquí" está distribuido.
+Local models can follow explicit "what" from a good backlog, but default to old patterns when the "how we actually do things here" is distributed across many small, historical decisions.
 
-El backlog estructurado hizo que los gaps fueran extremadamente rápidos y baratos de diagnosticar y arreglar para un humano que ya conocía los estándares. Ese es el verdadero valor de la etapa 9.0.
+The structured backlog made the gaps fast and cheap for a human to spot and fix. That is the real value.
 
-### Implicaciones
-
-- La lista de TODOs + "plan primero" + "actualizar los documentos vivos" es necesario, pero aún requiere revisión fuerte contra el cuerpo completo de convenciones.
-- Este tipo de ejercicio es un filtro excelente para ver si alguien (o un modelo + humano) puede entregar trabajo mergeable sin crear deuda técnica o de proceso.
-- Estamos en un punto donde los modelos locales + buen andamiaje pueden darnos la mayor parte de una pierna. El último 20-30% (la parte de gusto y disciplina) sigue siendo donde está la palanca.
-
-Los TODOs cumplieron su función. Los estándares todavía necesitan enforcement humano (por ahora).
+The TODOs did their job. The standards still require human enforcement.
 
 ---
 
-*Artículo escrito siguiendo las reglas de praderasblog (rama fresca, frontmatter con Series y Translation_Key, prompt para portada listo para scripts ComfyUI + .webp + .webp.notes). Backlinks a la rama feat/stage-9.2-proveedores (con fixes) y a los artefactos .agents/ relevantes.*
+*Imagen de portada generada e incluida como .webp + .webp.notes siguiendo las reglas de praderasblog (ComfyUI prompt en la sección Hero, backlinks a la rama feat/stage-9.2-proveedores y a .agents/MIGRATION-TODOS.md + STAGE-CHECKLISTS.md).*
