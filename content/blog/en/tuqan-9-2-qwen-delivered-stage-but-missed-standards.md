@@ -13,12 +13,6 @@ Series_Order: 15
 Image: /assets/images/tuqan-9-2-qwen-delivered-stage-but-missed-standards-hero.webp
 ---
 
-## Hero Image Prompt (ComfyUI via repo scripts)
-
-A clean, professional software engineering office split by a glass wall. On one side, a glowing local AI agent (Qwen/opencode) happily hands over a "working" Proveedores module screen showing list and form with data. On the other side, a senior human developer points at red annotations: wrong class name "Form.php", full reimplementation bypassing CatalogFormulario base, missing 0020 data patch, no legacy routes, MIGRATION-TODOS not updated, no 9.2 playbook section. In the background, a large visible wall of the MIGRATION-TODOS.md checklist with the Proveedores item checked "delivered" in green, but many "standards" items still red. Mood: "functionality achieved, craftsmanship failed". Modern, detailed, with subtle Docker whale and git branch icons. Cinematic lighting.
-
----
-
 ### The Context
 
 After the 9.0 leg (making the migration plan a usable daily todo list) and the small 9.1 hygiene win, the `MIGRATION-TODOS.md` was explicit about the next item:
