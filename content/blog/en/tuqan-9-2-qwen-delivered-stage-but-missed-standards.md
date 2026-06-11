@@ -4,7 +4,7 @@ Description: Even with a fine-grained, prioritized backlog (MIGRATION-TODOS.md f
 Date: 2026-06-10
 Template: post
 Author: Luis Amigo (with fixes by Grok 4.3)
-Tags: Desarrollo Web, Sistemas, Productividad, Inteligencia Artificial, Agentes, Tuqan
+Tags: Desarrollo Web, Sistemas, Productividad, Inteligencia Artificial
 Lang: en
 Translation_Key: tuqan-9-2-qwen-standards
 Series: Tuqan — Modernización
