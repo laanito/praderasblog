@@ -7,6 +7,8 @@ Template: post
 Tags: Crypto, Economia
 Lang: en
 Translation_Key: praderas-b7-celestia-tia
+Image: /assets/images/b7-celestia-tia-crypto-analysis-hero.webp
+
 ---
 
 **Celestia** is a modular blockchain network focused on **scalability** and a cleaner separation of concerns than monolithic “do everything on one chain” designs.

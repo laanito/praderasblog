@@ -25,6 +25,7 @@
 | P6 JSON v1–v1.2 (`/blog.json`, `search.json`, `/for-ai-agents`) | Done | Días 23–25; `blog-json-api.md` |
 | Day 5 visual + series | Done | `praderas-theme.css`; Día 5–6 (consultant notes: `day5-consultant-feedback.md`) |
 | Cover pipeline + Tier A heroes (Days 1–16) | Done | `comfyui-cover-images.md`, `retrofit-cover-queue.md` |
+| Cover retrofit Tier B+ (all archive pairs) | Done | `retrofit-cover-queue.md` (2026-06-01 batch) |
 | Agent authoring guide | Done | `article-authoring-guide.md` (2026-05-26) |
 
 ---
@@ -45,12 +46,12 @@
 
 - Spot-check live sample URLs after deploy.
 
-### 4. Cover retrofit Tier B+ — **medium (editorial habit)**
+### 4. Cover retrofit Tier B+ — **done (2026-06-01)**
 
-**Owner docs:** `retrofit-cover-queue.md`, `scripts/list_missing_hero_images.py`.
+**Owner docs:** `retrofit-cover-queue.md`, `scripts/list_missing_hero_images.py`, `scripts/comfyui/batch_remaining_heroes.py`.
 
-- Tier B: CTD-01–05 + Tuqan Phase 0 done.
-- Continue ~2 pairs/day when capacity allows (CTD-06+ next).
+- **All** existing paired blog posts now have committed `Image:` + `*-social.jpg` (0 left on Picsum for heroes).
+- **Habit going forward:** new posts run `export_cover.py` before merge.
 
 ### 5. Comfy hygiene — **low**
 
@@ -83,7 +84,7 @@
 
 ## Changelog
 
-- **2026-06-01:** Tier B retrofit CTD-04 + CTD-05 (JWT + React intro heroes).
+- **2026-06-01:** Cover retrofit **complete** — CTD 6–13 + B3–B8 batch (46 heroes); `list_missing_hero_images.py` → 0.
 - **2026-05-31:** Twitter/OG fix (`*-social.jpg`); Tier B retrofit CTD-02 + CTD-03; `generate_social_jpg.py` backfill.
 - **2026-05-28:** Visual S1–S3; Tier B covers (CTD-01, Tuqan Phase 0); Phase 6 tag filter + static JSON script + CI audit workflow.
 - **2026-05-26:** Consolidated — removed duplicate P0–P4 and phase-1–6 essay; shipped table + open backlog only.

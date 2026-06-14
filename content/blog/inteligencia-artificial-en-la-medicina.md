@@ -6,6 +6,8 @@ Template: post
 Author: Luis Amigo
 Tags: Inteligencia Artificial
 Translation_Key: praderas-b4-ai-medicine
+Image: /assets/images/b4-ai-medicine-hero.webp
+
 --- 
 
 En la era digital actual, la tecnología de inteligencia artificial (IA) ha trascendido más allá de las pantallas de nuestras computadoras y dispositivos móviles para convertirse en una herramienta poderosa en la industria médica. La intersección de la IA y la medicina ha dado lugar a avances innovadores que están transformando la forma en que se diagnostican, tratan y gestionan las enfermedades. En este artículo, exploraremos los emocionantes avances y aplicaciones de la inteligencia artificial en la medicina, así como las importantes consideraciones éticas que acompañan a esta revolución médica.

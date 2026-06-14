@@ -7,6 +7,8 @@ Template: post
 Tags: Sistemas, Crypto, Privacidad
 Lang: en
 Translation_Key: praderas-b7-electrum-server
+Image: /assets/images/b7-electrum-server-wallet-hero.webp
+
 ---
 
 ## Introduction

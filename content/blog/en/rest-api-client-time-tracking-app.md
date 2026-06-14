@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 9
 Lang: en
 Translation_Key: praderas-ctd-09
+Image: /assets/images/ctd-09-rest-api-client-hero.webp
+
 ---
 
 The database is ready—now we interact through the **REST API** exposed by PostgREST (or your gateway prefix).

@@ -6,6 +6,8 @@ Author: Luis Amigo
 Template: post
 Tags: Ciberseguridad
 Translation_Key: praderas-b3-cs-intro
+Image: /assets/images/b3-cybersecurity-intro-hero.webp
+
 ---
 
 # Introducción a la Ciberseguridad: Consejos para Mantener tus Datos Seguros en Línea

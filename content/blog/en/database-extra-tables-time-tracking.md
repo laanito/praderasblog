@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 8
 Lang: en
 Translation_Key: praderas-ctd-08
+Image: /assets/images/ctd-08-database-extra-tables-hero.webp
+
 ---
 
 With `control_tiempo.usuarios` in place, we add the rest of the relational core: **roles**, **projects**, **tasks**, and **worked hours**, then wire **GRANT**s for each database role.

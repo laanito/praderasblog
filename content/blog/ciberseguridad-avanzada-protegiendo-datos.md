@@ -6,6 +6,8 @@ Author: Luis Amigo
 Template: post
 Tags: Ciberseguridad, Privacidad
 Translation_Key: praderas-b3-cs-advanced
+Image: /assets/images/b3-cybersecurity-advanced-data-protection-hero.webp
+
 ---
 # Ciberseguridad Avanzada: Protegiendo tus Datos en un Mundo Digital Vulnerable
 

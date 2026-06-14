@@ -10,6 +10,8 @@ Series_Order: 9
 Template: post
 Lang: es
 Translation_Key: praderas-ctd-09
+Image: /assets/images/ctd-09-rest-api-client-hero.webp
+
 ---
 
 

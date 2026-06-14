@@ -6,6 +6,8 @@ Date: 2023-08-23 11:11AM
 Template: post
 Tags: Productividad
 Translation_Key: praderas-b5-remote-work-tips
+Image: /assets/images/b5-remote-work-productivity-tips-hero.webp
+
 ---
 
 El teletrabajo se ha convertido en una realidad para muchas personas en todo el mundo. Si bien trabajar desde casa puede ser conveniente, también presenta desafíos únicos en términos de organización, enfoque y productividad. En este artículo, exploraremos consejos prácticos para ayudarte a aprovechar al máximo el teletrabajo y lograr una eficiencia óptima mientras te desenvuelves en un entorno remoto.

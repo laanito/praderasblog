@@ -10,6 +10,8 @@ Series_Order: 6
 Template: post
 Lang: es
 Translation_Key: praderas-ctd-06
+Image: /assets/images/ctd-06-database-schema-time-tracking-hero.webp
+
 ---
 
 

@@ -7,6 +7,8 @@ Template: post
 Tags: Sistemas, Productividad
 Lang: en
 Translation_Key: praderas-b8-laptop-buying-guide
+Image: /assets/images/b8-laptop-buying-guide-hero.webp
+
 ---
 
 Buying a laptop is easy to overthink: dozens of SKUs, overlapping marketing names, and specs that only matter for certain workloads. This guide helps you translate **how you actually use the machine** into concrete hardware choices.

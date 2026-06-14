@@ -7,6 +7,8 @@ Template: post
 Tags: Ciberseguridad
 Lang: en
 Translation_Key: praderas-b3-cs-intro
+Image: /assets/images/b3-cybersecurity-intro-hero.webp
+
 ---
 
 # Introduction to cybersecurity: keep your data safer online

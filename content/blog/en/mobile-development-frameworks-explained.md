@@ -7,6 +7,8 @@ Template: post
 Tags: Aplicaciones Moviles
 Lang: en
 Translation_Key: praderas-b6-mobile-frameworks
+Image: /assets/images/b6-mobile-frameworks-exploration-hero.webp
+
 ---
 
 Frameworks bundle libraries, tooling, and conventions so teams ship faster than coding everything from scratch. Choosing one is a trade-off among performance, ecosystem, hiring pool, and how much “native feel” you need. Here is a concise tour of widely used options.

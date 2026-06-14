@@ -7,6 +7,8 @@ Template: post
 Tags: Inteligencia Artificial, Sociedad
 Lang: en
 Translation_Key: praderas-b4-ai-society-impact
+Image: /assets/images/b4-ai-society-impact-hero.webp
+
 ---
 
 Artificial intelligence (AI) has moved from science-fiction trope to a reality embedded in many parts of life. From content recommendations on streaming platforms to assisted driving, AI has shown it can transform industries and change how we live and work. This article surveys advances, challenges, and reflections on AI’s societal impact.

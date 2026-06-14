@@ -7,6 +7,8 @@ Template: post
 Tags: Aplicaciones Moviles
 Lang: en
 Translation_Key: praderas-b6-first-mobile-app
+Image: /assets/images/b6-first-mobile-app-practical-hero.webp
+
 ---
 
 Building your first mobile app is exciting and challenging. As you enter app development, you need a clear path from idea to working software. This article walks through a practical, step-by-step approach—whether you target **iOS**, **Android**, or both. Get ready to turn your idea into something real.

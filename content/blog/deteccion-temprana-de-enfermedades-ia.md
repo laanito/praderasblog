@@ -6,6 +6,8 @@ Date: 2023-08-15 10:00
 Template: post
 Tags: Inteligencia Artificial
 Translation_Key: praderas-b4-ai-early-disease-detection
+Image: /assets/images/b4-ai-early-disease-detection-hero.webp
+
 ---
 
 La inteligencia artificial (IA) ha demostrado ser una herramienta revolucionaria en muchos campos, y la medicina no es una excepción. Uno de los aspectos más emocionantes y prometedores de la aplicación de la IA en la medicina es su capacidad para la detección temprana de enfermedades. A medida que la tecnología avanza y los algoritmos se vuelven más sofisticados, la IA está desempeñando un papel crucial en la identificación precoz de condiciones médicas, lo que lleva a diagnósticos más precisos y tratamientos más efectivos.

@@ -7,6 +7,8 @@ Template: post
 Tags: Productividad, Sistemas
 Lang: en
 Translation_Key: praderas-b5-taskwarrior-guide
+Image: /assets/images/b5-taskwarrior-task-management-hero.webp
+
 ---
 
 Taskwarrior is a **CLI task manager** that stays fast even when your backlog grows. This guide covers single-machine usage and a **Taskserver** path for multi-device sync. Commands reflect common Linux distributions—adapt package names for your OS.

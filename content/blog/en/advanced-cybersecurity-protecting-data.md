@@ -7,6 +7,8 @@ Template: post
 Tags: Ciberseguridad, Privacidad
 Lang: en
 Translation_Key: praderas-b3-cs-advanced
+Image: /assets/images/b3-cybersecurity-advanced-data-protection-hero.webp
+
 ---
 
 # Advanced cybersecurity: protecting your data in a vulnerable digital world

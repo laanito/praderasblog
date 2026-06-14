@@ -7,6 +7,8 @@ Template: post
 Tags: Ciberseguridad, Privacidad
 Lang: en
 Translation_Key: praderas-b3-internet-not-safe-ii
+Image: /assets/images/b3-internet-privacy-ii-hero.webp
+
 ---
 
 Security is not our only concern online. Privacy has become a central battleground: companies accumulate user data for their own products—or sell aggregated feeds to third parties—often with limited transparency.

@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 7
 Lang: en
 Translation_Key: praderas-ctd-07
+Image: /assets/images/ctd-07-database-roles-permissions-hero.webp
+
 ---
 
 A working **time-tracking** backend needs explicit **database roles** and **grants**. The Spanish originals use the schema name `control_tiempo`; we keep it here so SQL snippets stay aligned with earlier posts.

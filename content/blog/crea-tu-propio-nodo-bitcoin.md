@@ -7,6 +7,8 @@ Template: post
 Tags: Crypto, Privacidad
 Lang: es
 Translation_Key: praderas-b7-bitcoin-node
+Image: /assets/images/b7-bitcoin-node-setup-hero.webp
+
 ---
 
 En este artículo trataremos sobre qué es un nodo bitcoin y bajo qué circunstancias y por qué es interesante montar tu propio nodo.

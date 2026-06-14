@@ -7,6 +7,8 @@ Template: post
 Tags: Crypto, Privacidad
 Lang: en
 Translation_Key: praderas-b7-bitcoin-node
+Image: /assets/images/b7-bitcoin-node-setup-hero.webp
+
 ---
 
 This article explains what a **Bitcoin node** is, when running your own hardware makes sense, and how **Bitcoin Core** relates to the **Lightning Network**.

@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 12
 Lang: en
 Translation_Key: praderas-ctd-12
+Image: /assets/images/ctd-12-react-project-management-hero.webp
+
 ---
 
 We continue the **time-tracking** UI by managing **projects**: listing them, showing metadata, and creating or editing records through the REST API.

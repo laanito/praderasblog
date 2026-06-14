@@ -7,6 +7,8 @@ Template: post
 Tags: Aplicaciones Moviles
 Lang: es
 Translation_Key: praderas-b6-mobile-frameworks
+Image: /assets/images/b6-mobile-frameworks-exploration-hero.webp
+
 ---
 
 En el emocionante mundo del desarrollo de aplicaciones móviles, los frameworks juegan un papel fundamental al proporcionar a los desarrolladores las herramientas y recursos necesarios para crear aplicaciones robustas y eficientes. Un framework de desarrollo de aplicaciones móviles es esencialmente un conjunto de librerías, herramientas y patrones de diseño que simplifican y agilizan el proceso de desarrollo. En este artículo, vamos a explorar en detalle algunos de los frameworks más populares para el desarrollo de aplicaciones móviles y cómo pueden influir en tu enfoque de desarrollo.

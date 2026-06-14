@@ -10,6 +10,8 @@ Series_Order: 11
 Template: post
 Lang: es
 Translation_Key: praderas-ctd-11
+Image: /assets/images/ctd-11-react-role-management-hero.webp
+
 ---
 
 

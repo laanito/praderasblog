@@ -7,6 +7,8 @@ Template: post
 Tags: Inteligencia Artificial
 Lang: en
 Translation_Key: praderas-b4-ai-early-disease-detection
+Image: /assets/images/b4-ai-early-disease-detection-hero.webp
+
 ---
 
 Artificial intelligence (AI) has become a transformative tool across many domains—and medicine is no exception. One of the most exciting applications is **early disease detection**: as models mature, AI is increasingly used to flag conditions sooner, supporting more accurate diagnoses and more effective treatment plans.

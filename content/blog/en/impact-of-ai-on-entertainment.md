@@ -7,6 +7,8 @@ Template: post
 Tags: Inteligencia Artificial, Sociedad, Economia
 Lang: en
 Translation_Key: praderas-b4-ai-entertainment
+Image: /assets/images/b4-ai-entertainment-industry-hero.webp
+
 ---
 
 The wave of artificial intelligence (AI) is transforming countless parts of life—and entertainment is no exception. From creation and distribution to user experience, AI is changing how we consume music, film, games, and more. This article surveys that impact and where the industry may be headed.

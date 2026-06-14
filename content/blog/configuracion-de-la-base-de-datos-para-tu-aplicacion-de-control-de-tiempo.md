@@ -10,6 +10,8 @@ Series_Order: 7
 Template: post
 Lang: es
 Translation_Key: praderas-ctd-07
+Image: /assets/images/ctd-07-database-roles-permissions-hero.webp
+
 ---
 
 

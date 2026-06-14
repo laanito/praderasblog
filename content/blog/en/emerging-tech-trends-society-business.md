@@ -7,6 +7,8 @@ Template: post
 Tags: Sociedad, Inteligencia Artificial, Economia
 Lang: en
 Translation_Key: praderas-b8-emerging-tech-trends-society
+Image: /assets/images/b8-emerging-tech-trends-society-hero.webp
+
 ---
 
 *Note: the Spanish filename references “economic” trends, but the article body surveys cross-cutting **technology** trends with business and social implications.*

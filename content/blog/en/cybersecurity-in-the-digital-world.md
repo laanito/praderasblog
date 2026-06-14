@@ -7,6 +7,8 @@ Template: post
 Tags: Ciberseguridad, Privacidad
 Lang: en
 Translation_Key: praderas-b3-cs-digital-world
+Image: /assets/images/b3-cybersecurity-digital-world-hero.webp
+
 ---
 
 In today’s digital era—where information moves constantly and online transactions are routine—cybersecurity is essential. Protecting your data helps preserve privacy and reduce fraud risk. Below is a concise overview plus practical guidance.

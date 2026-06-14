@@ -7,6 +7,8 @@ Template: post
 Tags: Aplicaciones Moviles
 Lang: en
 Translation_Key: praderas-b6-mobile-dev-beginners
+Image: /assets/images/b6-mobile-development-beginners-hero.webp
+
 ---
 
 Today’s world runs on mobile technology, and building apps is a sought-after skill. From social apps to productivity tools and games, mobile software touches daily life. If you are new to the field, this step-by-step overview gives you a solid mental model and a path to your first projects.

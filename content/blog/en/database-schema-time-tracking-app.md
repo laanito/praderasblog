@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 6
 Lang: en
 Translation_Key: praderas-ctd-06
+Image: /assets/images/ctd-06-database-schema-time-tracking-hero.webp
+
 ---
 
 Solid applications start with a coherent **data model**. For **time tracking** we need to connect **users**, **roles**, **projects**, **tasks**, and **hours logged**.

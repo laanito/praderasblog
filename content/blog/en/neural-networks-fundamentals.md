@@ -7,6 +7,8 @@ Template: post
 Tags: Inteligencia Artificial
 Lang: en
 Translation_Key: praderas-b4-neural-nets
+Image: /assets/images/b4-neural-networks-fundamentals-hero.webp
+
 ---
 
 In the broad landscape of artificial intelligence (AI), **artificial neural networks** stand out as one of the most powerful and widely used ideas. Inspired loosely by biological neurons, they have changed how machines learn from data. This article covers the basics of how they work and where they are applied.

@@ -10,6 +10,8 @@ Series_Order: 12
 Template: post
 Lang: es
 Translation_Key: praderas-ctd-12
+Image: /assets/images/ctd-12-react-project-management-hero.webp
+
 ---
 
 En nuestra serie de tutoriales sobre el desarrollo de una aplicación de control de tiempo, llegamos a la etapa de gestionar proyectos. Vamos a utilizar React para crear una interfaz de usuario que permita a los usuarios listar, crear y editar proyectos. A continuación, exploraremos el proceso de desarrollo y el código de React necesario.

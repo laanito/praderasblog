@@ -6,6 +6,8 @@ Date: 2023-09-01 01:05PM
 Template: post
 Tags: Productividad, Sistemas
 Translation_Key: praderas-b5-taskwarrior-guide
+Image: /assets/images/b5-taskwarrior-task-management-hero.webp
+
 ---
 
 TaskWarrior es una potente herramienta de gestión de tareas de código abierto que te ayuda a organizar tu trabajo y aumentar la productividad. En esta guía, exploraremos cómo instalar y utilizar TaskWarrior en un único equipo, así como cómo configurar TaskWarrior para funcionar en varios equipos utilizando TaskServer para sincronizar las tareas. También cubriremos las instrucciones de instalación de TaskServer.

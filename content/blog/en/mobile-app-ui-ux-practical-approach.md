@@ -7,6 +7,8 @@ Template: post
 Tags: Aplicaciones Moviles
 Lang: en
 Translation_Key: praderas-b6-mobile-ui-ux
+Image: /assets/images/b6-mobile-ui-ux-design-hero.webp
+
 ---
 
 In a crowded app market, **user interface (UI)** and **user experience (UX)** strongly influence retention and reviews. Attractive visuals plus a frictionless flow separate apps people recommend from those they uninstall. This article covers practical ways to improve UI and UX on mobile.

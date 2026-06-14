@@ -7,6 +7,8 @@ Template: post
 Tags: Productividad
 Lang: en
 Translation_Key: praderas-b8-emacs-guide
+Image: /assets/images/b8-emacs-productivity-guide-hero.webp
+
 ---
 
 **Emacs** is a highly extensible text environment—decades of Lisp customization turned it into a productivity platform, not only an editor. This guide covers install basics, starter configuration, everyday commands, and a few modes that punch above their weight.

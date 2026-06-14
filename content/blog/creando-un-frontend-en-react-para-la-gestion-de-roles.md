@@ -10,6 +10,8 @@ Series_Order: 10
 Template: post
 Lang: es
 Translation_Key: praderas-ctd-10
+Image: /assets/images/ctd-10-react-frontend-roles-hero.webp
+
 ---
 
 En esta fase de nuestro proyecto de control de tiempo, estamos desarrollando el frontend de la aplicación utilizando React. React es una biblioteca de JavaScript que se utiliza ampliamente para crear interfaces de usuario interactivas y dinámicas. En este artículo, te guiaré a través de los conceptos básicos de React y cómo configurar un proyecto React desde cero.

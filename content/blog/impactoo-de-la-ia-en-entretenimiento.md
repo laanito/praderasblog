@@ -6,6 +6,8 @@ Author: Luis Amigo
 Template: post
 Tags: Inteligencia Artificial, Sociedad, Economia
 Translation_Key: praderas-b4-ai-entertainment
+Image: /assets/images/b4-ai-entertainment-industry-hero.webp
+
 ---
 
 La revolución tecnológica impulsada por la inteligencia artificial (IA) está transformando innumerables aspectos de nuestras vidas, y la industria del entretenimiento no es una excepción. Desde la creación de contenido hasta la distribución y la experiencia del usuario, la IA está dejando una huella profunda en la forma en que consumimos y disfrutamos del entretenimiento en sus diversas formas, como la música, el cine, los videojuegos y más. En este artículo, exploraremos el impacto de la inteligencia artificial en la industria del entretenimiento y cómo está dando forma a su futuro.

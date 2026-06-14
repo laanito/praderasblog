@@ -7,6 +7,8 @@ Template: post
 Tags: Sistemas
 Lang: en
 Translation_Key: praderas-b8-ubuntu-vs-debian
+Image: /assets/images/b8-ubuntu-vs-debian-comparison-hero.webp
+
 ---
 
 # Ubuntu and Debian: how to choose

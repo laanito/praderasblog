@@ -8,6 +8,8 @@ Template: post
 Tags: Productividad
 Lang: es
 Translation_Key: praderas-b8-emacs-guide
+Image: /assets/images/b8-emacs-productivity-guide-hero.webp
+
 ---
 
 Emacs es un editor de texto extremadamente versátil y altamente personalizable que ha sido una herramienta favorita entre los programadores y usuarios avanzados durante décadas. Además de su capacidad para editar texto, Emacs ofrece una amplia gama de características que lo convierten en una potente plataforma para la productividad. En esta guía, exploraremos cómo instalar, configurar y utilizar Emacs, y revisaremos en detalle los plugins y modos de Emacs que pueden impulsar tu eficiencia.

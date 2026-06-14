@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 11
 Lang: en
 Translation_Key: praderas-ctd-11
+Image: /assets/images/ctd-11-react-role-management-hero.webp
+
 ---
 
 This instalment sketches two components from the Spanish originals: **`ListRoles`** and **`EditRole`**. Treat URLs and JSON field names as placeholders—align them with your PostgREST routes and schema (`nombre`, etc.).
