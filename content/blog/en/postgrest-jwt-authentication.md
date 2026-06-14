@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 4
 Lang: en
 Translation_Key: praderas-ctd-04
+Image: /assets/images/ctd-04-postgrest-jwt-authentication-hero.webp
+
 ---
 
 We are building a decoupled **time-tracking** product on **PostgREST**. To protect the REST surface we adopt **JWT** (JSON Web Tokens) for authentication and authorization hints between client and API.

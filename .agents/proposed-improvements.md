@@ -49,8 +49,8 @@
 
 **Owner docs:** `retrofit-cover-queue.md`, `scripts/list_missing_hero_images.py`.
 
-- Tier B: CTD-01–03 + Tuqan Phase 0 done.
-- Continue ~2 pairs/day when capacity allows (CTD-04+ next).
+- Tier B: CTD-01–05 + Tuqan Phase 0 done.
+- Continue ~2 pairs/day when capacity allows (CTD-06+ next).
 
 ### 5. Comfy hygiene — **low**
 
@@ -83,6 +83,7 @@
 
 ## Changelog
 
+- **2026-06-01:** Tier B retrofit CTD-04 + CTD-05 (JWT + React intro heroes).
 - **2026-05-31:** Twitter/OG fix (`*-social.jpg`); Tier B retrofit CTD-02 + CTD-03; `generate_social_jpg.py` backfill.
 - **2026-05-28:** Visual S1–S3; Tier B covers (CTD-01, Tuqan Phase 0); Phase 6 tag filter + static JSON script + CI audit workflow.
 - **2026-05-26:** Consolidated — removed duplicate P0–P4 and phase-1–6 essay; shipped table + open backlog only.
