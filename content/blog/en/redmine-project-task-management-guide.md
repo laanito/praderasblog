@@ -7,6 +7,8 @@ Template: post
 Tags: Productividad, Sistemas
 Lang: en
 Translation_Key: praderas-b5-redmine-guide
+Image: /assets/images/b5-redmine-project-management-hero.webp
+
 ---
 
 Redmine is a mature **open-source project and issue tracker** used by teams that want self-hosted control without vendor lock-in. This guide walks installation at a **conceptual** level, summarizes core features, and lists popular plugins—verify versions against current Redmine docs before you paste commands into production.

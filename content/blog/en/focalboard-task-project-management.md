@@ -7,6 +7,8 @@ Template: post
 Tags: Productividad, Sistemas
 Lang: en
 Translation_Key: praderas-b5-focalboard-guide
+Image: /assets/images/b5-focalboard-task-project-management-hero.webp
+
 ---
 
 Focalboard is an **open source** task and project board inspired by **Trello-style Kanban**, with a bias toward **self-hosting** and simplicity. This article introduces the product, contrasts it with common alternatives, and outlines a **Docker Compose** deployment pattern.

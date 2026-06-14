@@ -10,6 +10,8 @@ Series_Order: 8
 Template: post
 Lang: es
 Translation_Key: praderas-ctd-08
+Image: /assets/images/ctd-08-database-extra-tables-hero.webp
+
 ---
 
 

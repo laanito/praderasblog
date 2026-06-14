@@ -6,6 +6,8 @@ Date: 2023-09-04 11:34AM
 Template: post
 Tags: Productividad, Sistemas
 Translation_Key: praderas-b5-nextcloud-deck
+Image: /assets/images/b5-nextcloud-deck-groupware-hero.webp
+
 ---
 
 Nextcloud es una plataforma de nube privada de código abierto que ofrece una amplia gama de funciones para la gestión de archivos, colaboración en línea, calendario, correo electrónico y más. En este artículo, exploraremos el ecosistema de Nextcloud, compararemos las versiones gratuita y de pago, y profundizaremos en la instalación, configuración y características de Nextcloud, con un enfoque especial en la aplicación Deck.

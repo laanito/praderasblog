@@ -7,6 +7,8 @@ Template: post
 Tags: Sociedad
 Lang: en
 Translation_Key: praderas-b8-future-of-education
+Image: /assets/images/b8-future-of-education-digital-era-hero.webp
+
 ---
 
 Rapid technology change is reshaping how people teach and learn. Digital tools are not a veneer on old models—they alter pacing, scale, and feedback loops. This article surveys major forces and trade-offs.

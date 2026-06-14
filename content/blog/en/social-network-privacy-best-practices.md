@@ -7,6 +7,8 @@ Template: post
 Tags: Privacidad, Ciberseguridad
 Lang: en
 Translation_Key: praderas-b3-social-privacy
+Image: /assets/images/b3-social-media-privacy-hero.webp
+
 ---
 
 Social networks are woven into daily life—for better and worse. As more personal data lives online, **privacy on social platforms** deserves deliberate attention. This article collects practical habits that reduce risk without pretending the problem disappears.

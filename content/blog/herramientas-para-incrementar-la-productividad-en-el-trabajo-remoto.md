@@ -8,6 +8,8 @@ Template: post
 Tags: Productividad, Sociedad
 Lang: es
 Translation_Key: praderas-b8-remote-team-productivity-tools
+Image: /assets/images/b8-remote-team-productivity-tools-hero.webp
+
 ---
 
 El trabajo remoto ha cambiado la forma en que realizamos nuestras labores diarias, y el uso adecuado de herramientas digitales puede marcar la diferencia en la productividad. Estas herramientas no solo facilitan la comunicación y colaboración, sino que también optimizan la gestión del tiempo y tareas, permitiéndonos ser más eficientes y efectivos. En este artículo, exploraremos una variedad de herramientas que pueden ayudarte a incrementar la productividad mientras trabajas de manera remota.

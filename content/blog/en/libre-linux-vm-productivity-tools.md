@@ -7,6 +7,8 @@ Template: post
 Tags: Productividad, Sistemas
 Lang: en
 Translation_Key: praderas-b8-linux-vm-productivity-tools
+Image: /assets/images/b8-linux-vm-productivity-tools-hero.webp
+
 ---
 
 On **Linux** hosts or **virtual machines**, free-software stacks give you auditable tools without per-seat license friction. Below is a curated sampler aligned with common collaboration patterns.

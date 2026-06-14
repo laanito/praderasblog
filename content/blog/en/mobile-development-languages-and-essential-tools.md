@@ -7,6 +7,8 @@ Template: post
 Tags: Aplicaciones Moviles
 Lang: en
 Translation_Key: praderas-b6-mobile-languages-tools
+Image: /assets/images/b6-mobile-languages-tools-hero.webp
+
 ---
 
 Demand for polished mobile experiences keeps rising. Whether you build for **iOS**, **Android**, or both, a small set of languages and IDEs anchors most professional work. This article summarizes the essentials.

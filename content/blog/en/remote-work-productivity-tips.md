@@ -7,6 +7,8 @@ Template: post
 Tags: Productividad
 Lang: en
 Translation_Key: praderas-b5-remote-work-tips
+Image: /assets/images/b5-remote-work-productivity-tips-hero.webp
+
 ---
 
 Remote work is now everyday reality for many people. Home is convenient, but it also tests organization, focus, and boundaries. Here are practical habits that help you stay effective while working away from the office.

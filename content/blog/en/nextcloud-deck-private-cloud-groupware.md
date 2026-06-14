@@ -7,6 +7,8 @@ Template: post
 Tags: Productividad, Sistemas
 Lang: en
 Translation_Key: praderas-b5-nextcloud-deck
+Image: /assets/images/b5-nextcloud-deck-groupware-hero.webp
+
 ---
 
 Nextcloud is an **open-source private cloud** stack—files, chat hooks, calendar, mail integrations, and a rich app store. This article surveys the ecosystem, contrasts **Community** with **enterprise** offerings, and highlights **Deck** as a Kanban-style task layer inside Nextcloud. Treat install steps as a **checklist**, not a copy-paste production runbook, unless you verify versions first.

@@ -7,6 +7,8 @@ Template: post
 Tags: Productividad, Sistemas
 Lang: en
 Translation_Key: praderas-b5-etherpad-guide
+Image: /assets/images/b5-etherpad-collaboration-guide-hero.webp
+
 ---
 
 Etherpad is a lightweight **real-time collaborative editor**: many authors, one pad, minimal friction. Teams use it for joint drafting, incident notes, and live agendas. This article covers core features, a **Debian-oriented install path**, and practical tips.

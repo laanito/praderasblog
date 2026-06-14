@@ -7,6 +7,8 @@ Template: post
 Tags: Privacidad
 Lang: en
 Translation_Key: praderas-b3-geolocation
+Image: /assets/images/b3-geolocation-internet-hero.webp
+
 ---
 
 ### How does the internet work at a high level?

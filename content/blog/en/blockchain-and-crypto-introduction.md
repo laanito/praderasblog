@@ -7,6 +7,8 @@ Template: post
 Tags: Crypto
 Lang: en
 Translation_Key: praderas-b7-blockchain-crypto-intro
+Image: /assets/images/b7-blockchain-crypto-intro-hero.webp
+
 ---
 
 ## Introduction

@@ -8,6 +8,8 @@ Author: Luis Amigo
 Tags: Sistemas
 Lang: es
 Translation_Key: praderas-b8-ubuntu-vs-debian
+Image: /assets/images/b8-ubuntu-vs-debian-comparison-hero.webp
+
 ---
 
 # Diferencias y Similitudes entre Ubuntu y Debian: ¿Cuál es la Elección Correcta?

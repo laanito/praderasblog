@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 10
 Lang: en
 Translation_Key: praderas-ctd-10
+Image: /assets/images/ctd-10-react-frontend-roles-hero.webp
+
 ---
 
 We now build the **React** UI for the **time-tracking** product, starting with **role management**—list views and create/edit flows backed by the API you already exposed.

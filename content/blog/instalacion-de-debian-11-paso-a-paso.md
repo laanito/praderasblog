@@ -8,6 +8,8 @@ Author: Luis Amigo
 Tags: Sistemas
 Lang: es
 Translation_Key: praderas-b8-debian-11-install
+Image: /assets/images/b8-debian-11-install-walkthrough-hero.webp
+
 ---
 
 ## Introducción

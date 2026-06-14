@@ -6,6 +6,8 @@ Date: 2023-08-27 01:50PM
 Template: post
 Tags: Privacidad, Ciberseguridad
 Translation_Key: praderas-b3-social-privacy
+Image: /assets/images/b3-social-media-privacy-hero.webp
+
 ---
 
 En la era digital, las redes sociales se han convertido en una parte integral de nuestras vidas, permitiéndonos conectarnos con amigos, compartir momentos y estar al tanto de las novedades. Sin embargo, con la proliferación de datos personales en línea, mantener tu privacidad en las redes sociales es más importante que nunca. En este artículo, exploraremos consejos y buenas prácticas para asegurar que tus datos y tu privacidad estén protegidos en las redes sociales.

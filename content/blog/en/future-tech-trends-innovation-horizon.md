@@ -7,6 +7,8 @@ Template: post
 Tags: Sociedad, Inteligencia Artificial, Sistemas
 Lang: en
 Translation_Key: praderas-b8-future-tech-innovation-horizon
+Image: /assets/images/b8-future-tech-innovation-horizon-hero.webp
+
 ---
 
 Technology accelerates: connectivity, intelligence, and fabrication tools compound. The trends below are not predictions— they are **active research and product fronts** worth monitoring.

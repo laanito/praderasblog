@@ -6,6 +6,8 @@ Date: 2023-09-03 08:05PM
 Template: post
 Tags: Productividad, Sistemas
 Translation_Key: praderas-b5-redmine-guide
+Image: /assets/images/b5-redmine-project-management-hero.webp
+
 ---
 
 Redmine es una poderosa herramienta de gestión de proyectos y tareas de código abierto que se ha convertido en una opción popular para equipos y organizaciones en todo el mundo. En esta guía, exploraremos todo lo que necesitas saber sobre Redmine, desde su instalación hasta sus características avanzadas y los plugins que pueden mejorar tu productividad.

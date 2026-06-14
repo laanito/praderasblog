@@ -7,6 +7,8 @@ Template: post
 Tags: Inteligencia Artificial
 Lang: en
 Translation_Key: praderas-b4-ai-medicine
+Image: /assets/images/b4-ai-medicine-hero.webp
+
 ---
 
 In today’s digital era, artificial intelligence (AI) has moved beyond laptops and phones into a powerful role in **healthcare**. The intersection of AI and medicine is producing new ways to diagnose, treat, and manage disease—alongside serious ethical questions. This article surveys major advances, practical applications, and the values trade-offs the field must navigate.

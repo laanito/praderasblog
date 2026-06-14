@@ -56,14 +56,25 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 | Control de Tiempo Desacoplado | `praderas-ctd-03` | done | `ctd-03-nginx-postgrest-https-hero.webp` — Nginx + HTTPS ES/EN. |
 | Control de Tiempo Desacoplado | `praderas-ctd-04` | done | `ctd-04-postgrest-jwt-authentication-hero.webp` — JWT auth ES/EN. |
 | Control de Tiempo Desacoplado | `praderas-ctd-05` | done | `ctd-05-react-es5-es6-intro-hero.webp` — React ES5/ES6 intro ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-06` | done | `ctd-06-database-schema-time-tracking-hero.webp` — DB schema ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-07` | done | `ctd-07-database-roles-permissions-hero.webp` — DB roles ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-08` | done | `ctd-08-database-extra-tables-hero.webp` — extra tables ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-09` | done | `ctd-09-rest-api-client-hero.webp` — REST client ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-10` | done | `ctd-10-react-frontend-roles-hero.webp` — React roles scaffold ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-11` | done | `ctd-11-react-role-management-hero.webp` — role CRUD ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-12` | done | `ctd-12-react-project-management-hero.webp` — project CRUD ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-13` | done | `ctd-13-react-create-user-hero.webp` — user creation ES/EN. |
 | Tuqan — Modernización | `tuqan-phase-0-strategic-foundation` | done | `tuqan-phase-0-strategic-foundation-hero.webp` — Phase 0 ES/EN. |
 
-Next Tier B candidates: CTD `Series_Order` 6+ and other series openers still on Picsum; see `comfyui-cover-images.md` § *Retrofit plan*.
+**Tier B+ archive (standalone pairs):** all remaining blog `Translation_Key` rows without `Image:` were cleared **2026-06-01** via `scripts/comfyui/batch_remaining_heroes.py` (B3–B8 topic batches + CTD 6–13). **0** paired posts left on Picsum for heroes.
+
+Next: only **new** posts need heroes at publish time (`export_cover.py` + audit).
 
 ---
 
 ## Changelog (this file)
 
+- **2026-06-01:** **CTD 6–13** + **B3–B8 archive batch** (46 keys) — `batch_remaining_heroes.py`; queue effectively **complete** for existing posts.
 - **2026-06-01:** Tier B rows **CTD-04** + **CTD-05** — JWT + React intro heroes (no new ship log).
 - **2026-05-31:** Tier B rows **CTD-02** + **CTD-03** — PostgREST + Nginx HTTPS heroes (no new ship log).
 - **2026-05-28:** Tier B rows **CTD-01** + **Tuqan Phase 0** — dedicated WebP heroes (no new ship log).

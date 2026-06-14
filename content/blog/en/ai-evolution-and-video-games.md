@@ -7,6 +7,8 @@ Template: post
 Tags: Inteligencia Artificial
 Lang: en
 Translation_Key: praderas-b4-ai-games-evolution
+Image: /assets/images/b4-ai-video-games-evolution-hero.webp
+
 ---
 
 ## Introduction

@@ -7,6 +7,8 @@ Template: post
 Tags: Sistemas
 Lang: en
 Translation_Key: praderas-b8-debian-11-install
+Image: /assets/images/b8-debian-11-install-walkthrough-hero.webp
+
 ---
 
 ## Introduction

@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 13
 Lang: en
 Translation_Key: praderas-ctd-13
+Image: /assets/images/ctd-13-react-create-user-hero.webp
+
 ---
 
 Roles and projects are in motion—now we add **user onboarding** from the React app by posting to `/api/usuarios` (adjust to your real PostgREST path).

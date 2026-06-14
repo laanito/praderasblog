@@ -6,6 +6,8 @@ Author: Luis Amigo
 Template: post
 Tags: Privacidad
 Translation_Key: praderas-b3-geolocation
+Image: /assets/images/b3-geolocation-internet-hero.webp
+
 ---
 
 ### ¿Cómo funciona Internet?

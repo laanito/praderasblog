@@ -6,6 +6,8 @@ Date: 2023-08-25 11:25AM
 Template: post
 Tags: Inteligencia Artificial, Sociedad
 Translation_Key: praderas-b4-ai-society-impact
+Image: /assets/images/b4-ai-society-impact-hero.webp
+
 ---
 
 La Inteligencia Artificial (IA) ha pasado de ser un concepto de ciencia ficción a una realidad presente en muchos aspectos de nuestra vida. Desde la recomendación de contenido en plataformas de streaming hasta la conducción autónoma, la IA ha demostrado su capacidad para transformar industrias y cambiar la forma en que vivimos y trabajamos. En este artículo, exploraremos los avances de la IA, los desafíos que presenta y las reflexiones sobre su impacto en la sociedad.
