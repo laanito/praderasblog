@@ -10,6 +10,8 @@ Series_Order: 5
 Template: post
 Lang: es
 Translation_Key: praderas-ctd-05
+Image: /assets/images/ctd-05-react-es5-es6-intro-hero.webp
+
 ---
 
 

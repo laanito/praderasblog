@@ -54,14 +54,17 @@ At **two pairs per working day**, Tier A (**16** pairs) clears in roughly **8** 
 | Control de Tiempo Desacoplado | `praderas-ctd-01` | done | `ctd-01-decoupled-time-tracking-hero.webp` — series opener ES/EN. |
 | Control de Tiempo Desacoplado | `praderas-ctd-02` | done | `ctd-02-postgrest-rest-api-hero.webp` — PostgREST REST API ES/EN. |
 | Control de Tiempo Desacoplado | `praderas-ctd-03` | done | `ctd-03-nginx-postgrest-https-hero.webp` — Nginx + HTTPS ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-04` | done | `ctd-04-postgrest-jwt-authentication-hero.webp` — JWT auth ES/EN. |
+| Control de Tiempo Desacoplado | `praderas-ctd-05` | done | `ctd-05-react-es5-es6-intro-hero.webp` — React ES5/ES6 intro ES/EN. |
 | Tuqan — Modernización | `tuqan-phase-0-strategic-foundation` | done | `tuqan-phase-0-strategic-foundation-hero.webp` — Phase 0 ES/EN. |
 
-Next Tier B candidates: CTD `Series_Order` 4+ and other series openers still on Picsum; see `comfyui-cover-images.md` § *Retrofit plan*.
+Next Tier B candidates: CTD `Series_Order` 6+ and other series openers still on Picsum; see `comfyui-cover-images.md` § *Retrofit plan*.
 
 ---
 
 ## Changelog (this file)
 
+- **2026-06-01:** Tier B rows **CTD-04** + **CTD-05** — JWT + React intro heroes (no new ship log).
 - **2026-05-31:** Tier B rows **CTD-02** + **CTD-03** — PostgREST + Nginx HTTPS heroes (no new ship log).
 - **2026-05-28:** Tier B rows **CTD-01** + **Tuqan Phase 0** — dedicated WebP heroes (no new ship log).
 

@@ -10,6 +10,8 @@ Series_Order: 4
 Template: post
 Lang: es
 Translation_Key: praderas-ctd-04
+Image: /assets/images/ctd-04-postgrest-jwt-authentication-hero.webp
+
 ---
 
 

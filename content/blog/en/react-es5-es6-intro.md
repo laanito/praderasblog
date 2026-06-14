@@ -10,6 +10,8 @@ Series_Slug: control-de-tiempo-desacoplado
 Series_Order: 5
 Lang: en
 Translation_Key: praderas-ctd-05
+Image: /assets/images/ctd-05-react-es5-es6-intro-hero.webp
+
 ---
 
 We have covered API layers with **PostgREST** and **JWT**. Now we turn to the **frontend** using **React**.
