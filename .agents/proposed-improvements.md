@@ -36,9 +36,13 @@
 
 **Owner doc:** `.agents/man-in-the-loop.md`. Hub `/man-in-the-loop`, bilingual ES/EN pairs, infinite scroll + sidebar, excluded from blog taxonomy/tags/series/archive.
 
-### 2. Twitter / OG social previews — **shipped (this PR)**
+### 2. Twitter / OG social previews — **shipped**
 
 **Fix:** `page-meta.twig` serves **`*-social.jpg`** (1200×630) for `og:image` / `twitter:image` instead of WebP heroes; batch backfill via `scripts/generate_social_jpg.py`; audit enforces JPEG sibling when `Image:` ends in `.webp`.
+
+### 2b. Reviviendo Praderas closure (Series_Order 26) — **shipped (closure PR)**
+
+Human retrospective ES/EN — process evolution and delivered outcomes; ends the construction series narrative.
 
 ### 3. Article body visuals — **follow-up QA**
 
@@ -84,7 +88,7 @@
 
 ## Changelog
 
-- **2026-06-01:** Cover retrofit **complete** — CTD 6–13 + B3–B8 batch (46 heroes); `list_missing_hero_images.py` → 0.
+- **2026-06-02:** Closure article — *Reviviendo Praderas* Series_Order 26 (ES/EN retrospective).
 - **2026-05-31:** Twitter/OG fix (`*-social.jpg`); Tier B retrofit CTD-02 + CTD-03; `generate_social_jpg.py` backfill.
 - **2026-05-28:** Visual S1–S3; Tier B covers (CTD-01, Tuqan Phase 0); Phase 6 tag filter + static JSON script + CI audit workflow.
 - **2026-05-26:** Consolidated — removed duplicate P0–P4 and phase-1–6 essay; shipped table + open backlog only.
