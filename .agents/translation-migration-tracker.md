@@ -37,7 +37,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | Translation_Key | ES path (content/blog/) | EN path (content/blog/en/) | Status | Notes |
 |-------------------|-------------------------|----------------------------|--------|--------|
 | `praderas-home` | _(N/A — use `content/index.md`)_ | _(N/A — use `content/en/index.md`)_ | done | Home pair; editorial-era text must stay in sync. |
-| `ainarres-intro-substrate` | `ainarres-sustrato-para-que-las-ia-coordinen-su-trabajo.md` | `ainarres-a-substrate-for-ais-to-coordinate-their-own-work.md` | done | New series *AINARRES* (Order 1): overview/intro. No dedicated hero yet (Picsum fallback) — cover deferred. |
+| `ainarres-intro-substrate` | `ainarres-sustrato-para-que-las-ia-coordinen-su-trabajo.md` | `ainarres-a-substrate-for-ais-to-coordinate-their-own-work.md` | done | New series *AINARRES* (Order 1): overview/intro. Hero `ainarres-01-intro-substrate-hero.webp` (ComfyUI SDXL, seed `19062026`) + `-social.jpg`. |
 | `praderas-day-1-technical-audit` | `reviviendo-praderas-dia-1-auditoria-tecnica-y-plan-con-agentes-ia.md` | `reviving-praderas-day-1-technical-audit-and-ai-agent-improvement-plan.md` | done | Batch 1: Reviving Praderas. |
 | `praderas-day-2-phase-1-listing-search-pagination` | `reviviendo-praderas-dia-2-fase-1-plantilla-listado-busqueda-y-paginacion.md` | `reviving-praderas-day-2-phase-1-listing-search-and-pagination.md` | done | Batch 1: Reviving Praderas. |
 | `praderas-day-3-phase-2-navigation-categories-breadcrumbs-related` | `reviviendo-praderas-dia-3-fase-2-navegacion-categorias-crumbs-y-posts-relacionados.md` | `reviving-praderas-day-3-phase-2-navigation-categories-breadcrumbs-and-related-posts.md` | done | Batch 1: Reviving Praderas. |

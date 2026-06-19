@@ -10,6 +10,7 @@ Series_Slug: ainarres
 Series_Order: 1
 Lang: es
 Translation_Key: ainarres-intro-substrate
+Image: /assets/images/ainarres-01-intro-substrate-hero.webp
 
 ---
 
