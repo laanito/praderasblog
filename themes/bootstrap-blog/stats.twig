@@ -1,0 +1,137 @@
+{% extends "index.twig" %}
+
+{% set is_en = content_lang is defined and content_lang == 'en' %}
+{% set report = visit_stats_report|default({}) %}
+{% set _home_label = is_en ? 'Home' : 'Inicio' %}
+{% set _home_url = pradera_home_url|default(is_en ? ("en/index"|link) : ("index"|link)) %}
+{% set _stats_label = is_en ? 'Stats' : 'Estadísticas' %}
+
+{% block breadcrumb %}
+{% include 'breadcrumbs.twig' with { 'crumbs': [ { 'label': _home_label, 'url': _home_url }, { 'label': _stats_label } ] } only %}
+{% endblock %}
+
+{% block content %}
+<header class="mb-4">
+	<h1 class="fw-bolder mb-2">{{ meta.title }}</h1>
+	{% if meta.description %}<p class="text-muted lead">{{ meta.description }}</p>{% endif %}
+</header>
+
+<div class="pradera-prose mb-4">{{ content }}</div>
+
+{% if not report.available|default(false) %}
+<div class="alert alert-warning" role="alert">
+	{{ is_en ? 'Stats are temporarily unavailable (Redis not connected or phpredis missing).' : 'Las estadísticas no están disponibles ahora mismo (Redis no conectado o falta la extensión phpredis).' }}
+</div>
+{% else %}
+{% set totals = report.totals|default({}) %}
+<div class="row g-3 mb-4">
+	<div class="col-md-4">
+		<div class="card h-100 border-0 shadow-sm">
+			<div class="card-body">
+				<p class="text-muted small text-uppercase mb-1">{{ is_en ? 'All hits' : 'Total' }}</p>
+				<p class="display-6 fw-bold mb-0">{{ totals.all|default(0)|number_format(0, '.', is_en ? ',' : '.') }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card h-100 border-0 shadow-sm">
+			<div class="card-body">
+				<p class="text-muted small text-uppercase mb-1">HTML</p>
+				<p class="display-6 fw-bold mb-0">{{ totals.html|default(0)|number_format(0, '.', is_en ? ',' : '.') }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="card h-100 border-0 shadow-sm">
+			<div class="card-body">
+				<p class="text-muted small text-uppercase mb-1">JSON</p>
+				<p class="display-6 fw-bold mb-0">{{ totals.json|default(0)|number_format(0, '.', is_en ? ',' : '.') }}</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% if report.daily|default([])|length > 0 %}
+<section class="mb-5">
+	<h2 class="h4 mb-3">{{ is_en ? 'Last 30 days' : 'Últimos 30 días' }}</h2>
+	<div class="table-responsive">
+		<table class="table table-sm align-middle">
+			<thead>
+				<tr>
+					<th scope="col">{{ is_en ? 'Date (UTC)' : 'Fecha (UTC)' }}</th>
+					<th scope="col" class="text-end">HTML</th>
+					<th scope="col" class="text-end">JSON</th>
+					<th scope="col" class="text-end">{{ is_en ? 'Total' : 'Total' }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for row in report.daily %}
+				<tr>
+					<td>{{ row.label }}</td>
+					<td class="text-end">{{ row.html|number_format(0, '.', is_en ? ',' : '.') }}</td>
+					<td class="text-end">{{ row.json|number_format(0, '.', is_en ? ',' : '.') }}</td>
+					<td class="text-end fw-semibold">{{ row.total|number_format(0, '.', is_en ? ',' : '.') }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</section>
+{% endif %}
+
+<div class="row g-4">
+	<div class="col-lg-6">
+		<section>
+			<h2 class="h5 mb-3">{{ is_en ? 'Top JSON endpoints' : 'Endpoints JSON más consultados' }}</h2>
+			{% if report.top_json|default([])|length > 0 %}
+			<ol class="list-group list-group-numbered">
+				{% for row in report.top_json %}
+				<li class="list-group-item d-flex justify-content-between align-items-start">
+					<code class="small text-break me-2">{{ row.path }}</code>
+					<span class="badge bg-secondary rounded-pill">{{ row.views|number_format(0, '.', is_en ? ',' : '.') }}</span>
+				</li>
+				{% endfor %}
+			</ol>
+			{% else %}
+			<p class="text-muted small mb-0">{{ is_en ? 'No JSON traffic recorded yet.' : 'Aún no hay tráfico JSON registrado.' }}</p>
+			{% endif %}
+		</section>
+	</div>
+	<div class="col-lg-6">
+		<section>
+			<h2 class="h5 mb-3">{{ is_en ? 'Top HTML paths' : 'Rutas HTML más visitadas' }}</h2>
+			{% if report.top_html|default([])|length > 0 %}
+			<ol class="list-group list-group-numbered">
+				{% for row in report.top_html %}
+				<li class="list-group-item d-flex justify-content-between align-items-start">
+					<span class="small text-break me-2">{{ row.path }}</span>
+					<span class="badge bg-secondary rounded-pill">{{ row.views|number_format(0, '.', is_en ? ',' : '.') }}</span>
+				</li>
+				{% endfor %}
+			</ol>
+			{% else %}
+			<p class="text-muted small mb-0">{{ is_en ? 'No HTML traffic recorded yet.' : 'Aún no hay tráfico HTML registrado.' }}</p>
+			{% endif %}
+		</section>
+	</div>
+</div>
+
+{% if report.top_posts|default([])|length > 0 %}
+<section class="mt-5">
+	<h2 class="h4 mb-3">{{ is_en ? 'Most viewed posts' : 'Entradas más leídas' }}</h2>
+	<ol class="list-group list-group-numbered">
+		{% for row in report.top_posts %}
+		<li class="list-group-item d-flex justify-content-between align-items-start gap-2">
+			{% if row.url %}
+			<a href="{{ row.url }}" class="text-break">{{ row.title }}</a>
+			{% else %}
+			<span class="text-break">{{ row.title }}</span>
+			{% endif %}
+			<span class="badge bg-primary rounded-pill flex-shrink-0">{{ row.views|number_format(0, '.', is_en ? ',' : '.') }}</span>
+		</li>
+		{% endfor %}
+	</ol>
+</section>
+{% endif %}
+{% endif %}
+{% endblock %}
