@@ -61,6 +61,9 @@
 				{% if meta.date_formatted %}
 				{{ is_en ? ('Published on ' ~ meta.date_formatted) : ('Publicado el ' ~ meta.date_formatted) }}
 				{% endif %}
+				{% if visit_stats_post_views is defined %}
+				<span class="pradera-post-meta__views{% if meta.date_formatted %} · {% endif %}">{{ is_en ? (visit_stats_post_views ~ ' views') : (visit_stats_post_views ~ ' lecturas') }}</span>
+				{% endif %}
 			</div>
 			{% if meta.tags %}
 			<div class="pradera-post-tags" role="list">

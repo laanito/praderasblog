@@ -109,3 +109,14 @@ pagination_page_indicator: "blog"
 pagination_prev_text: "Entradas anteriores"
 pagination_next_text: "Entradas recientes"
 
+#
+# Visit stats (Redis-backed counters — see plugins/68-VisitStats.php)
+#
+VisitStats:
+  enabled: true
+  redis_host: 127.0.0.1
+  redis_port: 6379
+  redis_prefix: praderas:stats
+  skip_bots: true
+  exclude_self: true
+
