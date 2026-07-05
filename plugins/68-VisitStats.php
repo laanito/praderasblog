@@ -62,7 +62,7 @@ class VisitStats extends AbstractPicoPlugin
 
     public function onRequestUrl(&$url)
     {
-        if (!$this->isEnabled()) {
+        if (!$this->isStatsEnabled()) {
             return;
         }
 
@@ -98,7 +98,7 @@ class VisitStats extends AbstractPicoPlugin
 
     public function onPageRendering(&$twigTemplate, array &$twigVariables)
     {
-        if (!$this->isEnabled()) {
+        if (!$this->isStatsEnabled()) {
             return;
         }
 
@@ -126,7 +126,7 @@ class VisitStats extends AbstractPicoPlugin
         $this->attachReadOnlyContext($pico, $twigVariables, $current);
     }
 
-    private function isEnabled()
+    private function isStatsEnabled()
     {
         return !empty($this->config['enabled']);
     }
