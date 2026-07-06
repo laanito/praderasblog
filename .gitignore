@@ -20,3 +20,6 @@ __pycache__/
 
 # Generated JSON listing snapshots (regenerate with scripts/pregenerate_blog_json.py)
 /generated/json/*.json
+
+# Visit stats lazy disk snapshots (plugins/68-VisitStats.php)
+/var/visit-stats/

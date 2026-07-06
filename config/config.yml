@@ -119,4 +119,6 @@ VisitStats:
   redis_prefix: praderas:stats
   skip_bots: true
   exclude_self: true
+  disk_save: true
+  disk_dir: var/visit-stats
 

@@ -6,6 +6,9 @@
  * Counts HTML page views and JSON API hits (blog.json, search.json, MITL feeds, etc.).
  * Public report: /estadisticas (ES) · /en/stats (EN) · GET /stats.json
  *
+ * Lazy disk persistence: first counted hit each UTC day writes var/visit-stats/latest.json
+ * (and daily/YYYY-MM-DD.json on rollover). Restores from latest.json if Redis is empty.
+ *
  * Loads before 70-BlogJson so JSON routes are counted before those handlers exit().
  */
 class VisitStats extends AbstractPicoPlugin
@@ -51,6 +54,8 @@ class VisitStats extends AbstractPicoPlugin
                 'sitemap-es.xml',
                 'sitemap-en.xml',
             ),
+            'disk_save' => true,
+            'disk_dir' => 'var/visit-stats',
         );
 
         if (isset($config['VisitStats']) && is_array($config['VisitStats'])) {
@@ -231,6 +236,8 @@ class VisitStats extends AbstractPicoPlugin
         $prefix = rtrim((string) $this->config['redis_prefix'], ':');
         $day = gmdate('Ymd');
 
+        $this->maybeLazyDiskSave($redis, $prefix, $day);
+
         try {
             $redis->multi(Redis::PIPELINE);
             $redis->incr($prefix . ':total');
@@ -244,6 +251,192 @@ class VisitStats extends AbstractPicoPlugin
             $redis->exec();
         } catch (Exception $e) {
             $this->redis = null;
+        }
+    }
+
+    private function getDiskDir()
+    {
+        $rel = isset($this->config['disk_dir']) ? (string) $this->config['disk_dir'] : 'var/visit-stats';
+        $rel = trim(str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $rel), DIRECTORY_SEPARATOR);
+        return dirname(__DIR__) . DIRECTORY_SEPARATOR . $rel;
+    }
+
+    /**
+     * At most one disk write per UTC day, on the first counted hit of that day (before increment).
+     * On day rollover, archives the prior calendar day's Redis snapshot.
+     */
+    private function maybeLazyDiskSave(Redis $redis, $prefix, $today)
+    {
+        if (empty($this->config['disk_save'])) {
+            return;
+        }
+
+        $dir = $this->getDiskDir();
+        if (!$this->ensureDiskDir($dir)) {
+            return;
+        }
+
+        $markerPath = $dir . DIRECTORY_SEPARATOR . '.snapshot-day';
+        $lastDay = file_exists($markerPath) ? trim((string) file_get_contents($markerPath)) : '';
+
+        if ($lastDay === $today) {
+            return;
+        }
+
+        $lockPath = $dir . DIRECTORY_SEPARATOR . '.snapshot.lock';
+        $lock = @fopen($lockPath, 'c');
+        if ($lock === false || !flock($lock, LOCK_EX | LOCK_NB)) {
+            if ($lock !== false) {
+                fclose($lock);
+            }
+            return;
+        }
+
+        try {
+            $lastDay = file_exists($markerPath) ? trim((string) file_get_contents($markerPath)) : '';
+            if ($lastDay === $today) {
+                return;
+            }
+
+            $payload = $this->exportRedisSnapshot($redis, $prefix);
+            $payload['meta'] = array(
+                'saved_at' => gmdate('c'),
+                'schema' => 'visit-stats-disk-1',
+                'snapshot_day' => $today,
+                'previous_marker_day' => $lastDay !== '' ? $lastDay : null,
+            );
+
+            $this->writeJsonFile($dir . DIRECTORY_SEPARATOR . 'latest.json', $payload);
+
+            if ($lastDay !== '') {
+                $dailyDir = $dir . DIRECTORY_SEPARATOR . 'daily';
+                $this->ensureDiskDir($dailyDir);
+                $dailyName = substr($lastDay, 0, 4) . '-'
+                    . substr($lastDay, 4, 2) . '-'
+                    . substr($lastDay, 6, 2);
+                $this->writeJsonFile($dailyDir . DIRECTORY_SEPARATOR . $dailyName . '.json', $payload);
+            }
+
+            file_put_contents($markerPath, $today, LOCK_EX);
+        } finally {
+            flock($lock, LOCK_UN);
+            fclose($lock);
+        }
+    }
+
+    private function ensureDiskDir($dir)
+    {
+        if (is_dir($dir)) {
+            return is_writable($dir);
+        }
+        return @mkdir($dir, 0755, true) && is_writable($dir);
+    }
+
+    private function writeJsonFile($path, array $payload)
+    {
+        $json = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+        if ($json === false) {
+            return false;
+        }
+
+        $tmp = $path . '.tmp.' . getmypid();
+        if (file_put_contents($tmp, $json, LOCK_EX) === false) {
+            @unlink($tmp);
+            return false;
+        }
+
+        return @rename($tmp, $path);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function exportRedisSnapshot(Redis $redis, $prefix)
+    {
+        $pathsHtml = $redis->zRange($prefix . ':paths:html', 0, -1, true);
+        $pathsJson = $redis->zRange($prefix . ':paths:json', 0, -1, true);
+        $days = $redis->hGetAll($prefix . ':days');
+        $pages = $redis->hGetAll($prefix . ':pages');
+
+        return array(
+            'totals' => array(
+                'all' => (int) $redis->get($prefix . ':total'),
+                'html' => (int) $redis->get($prefix . ':html'),
+                'json' => (int) $redis->get($prefix . ':json'),
+            ),
+            'days' => is_array($days) ? $days : array(),
+            'paths_html' => is_array($pathsHtml) ? $pathsHtml : array(),
+            'paths_json' => is_array($pathsJson) ? $pathsJson : array(),
+            'pages' => is_array($pages) ? $pages : array(),
+        );
+    }
+
+    private function tryRestoreFromDisk(Redis $redis, $prefix)
+    {
+        if (empty($this->config['disk_save'])) {
+            return;
+        }
+
+        try {
+            if ($redis->exists($prefix . ':total')) {
+                return;
+            }
+        } catch (Exception $e) {
+            return;
+        }
+
+        $latestPath = $this->getDiskDir() . DIRECTORY_SEPARATOR . 'latest.json';
+        if (!is_readable($latestPath)) {
+            return;
+        }
+
+        $raw = file_get_contents($latestPath);
+        if ($raw === false || $raw === '') {
+            return;
+        }
+
+        $payload = json_decode($raw, true);
+        if (!is_array($payload)) {
+            return;
+        }
+
+        $this->importRedisSnapshot($redis, $prefix, $payload);
+    }
+
+    private function importRedisSnapshot(Redis $redis, $prefix, array $payload)
+    {
+        $totals = isset($payload['totals']) && is_array($payload['totals']) ? $payload['totals'] : array();
+        $days = isset($payload['days']) && is_array($payload['days']) ? $payload['days'] : array();
+        $pathsHtml = isset($payload['paths_html']) && is_array($payload['paths_html']) ? $payload['paths_html'] : array();
+        $pathsJson = isset($payload['paths_json']) && is_array($payload['paths_json']) ? $payload['paths_json'] : array();
+        $pages = isset($payload['pages']) && is_array($payload['pages']) ? $payload['pages'] : array();
+
+        try {
+            $redis->multi(Redis::PIPELINE);
+            if (isset($totals['all'])) {
+                $redis->set($prefix . ':total', (int) $totals['all']);
+            }
+            if (isset($totals['html'])) {
+                $redis->set($prefix . ':html', (int) $totals['html']);
+            }
+            if (isset($totals['json'])) {
+                $redis->set($prefix . ':json', (int) $totals['json']);
+            }
+            foreach ($days as $field => $value) {
+                $redis->hSet($prefix . ':days', $field, (int) $value);
+            }
+            foreach ($pathsHtml as $path => $score) {
+                $redis->zAdd($prefix . ':paths:html', (int) $score, $path);
+            }
+            foreach ($pathsJson as $path => $score) {
+                $redis->zAdd($prefix . ':paths:json', (int) $score, $path);
+            }
+            foreach ($pages as $pageId => $score) {
+                $redis->hSet($prefix . ':pages', $pageId, (int) $score);
+            }
+            $redis->exec();
+        } catch (Exception $e) {
+            // keep Redis empty; next request may retry
         }
     }
 
@@ -475,6 +668,8 @@ class VisitStats extends AbstractPicoPlugin
                 }
             }
             $this->redis = $redis;
+            $prefix = rtrim((string) $this->config['redis_prefix'], ':');
+            $this->tryRestoreFromDisk($redis, $prefix);
         } catch (Exception $e) {
             $this->redis = null;
         }
