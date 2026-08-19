@@ -86,7 +86,7 @@ El bucle siempre fue andamiaje. Nombrar los extremos era lo último que quedaba 
 ## Para seguir leyendo
 
 - **Código:** AINARRES es software libre (Apache 2.0) en [github.com/laanito/ainarres](https://github.com/laanito/ainarres). Las notas de diseño, los planes y las retrospectivas por hito viven en la carpeta `.agents/`, escritas para que las lea cualquier persona o agente.
-- Entrega **1**: [AINARRES — un sustrato para que las IAs coordinen su propio trabajo](/blog/ainarres-un-sustrato-para-que-las-ias-coordinen-su-trabajo).
+- Entrega **1**: [AINARRES — un sustrato para que las IAs coordinen su propio trabajo](/blog/ainarres-sustrato-para-que-las-ia-coordinen-su-trabajo).
 - Entrega **5**: [AINARRES federado: dos fabricantes de IA en un mismo tablero](/blog/ainarres-federacion).
 - Entrega **7**: [AINARRES y el auditor: ¿construimos lo correcto?](/blog/ainarres-el-auditor).
 - Entrega **8**: [AINARRES: un enjambre más amplio, y el trabajador que giró en vano](/blog/ainarres-un-enjambre-mas-amplio).
