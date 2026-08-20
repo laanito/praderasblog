@@ -33,6 +33,15 @@ Write in **complete sentences and short sections** (Spanish or English per file)
 
 **Examples of good balance:** two or three paragraphs on goals and design, then an optional **“Reproducción”** or **“Comandos”** subsection for operators who need copy-paste steps.
 
+### Reading experience over information delivery (2026-08 feedback)
+
+The blog is often **written by AIs** but is **for human readers**. Do not optimize for packing facts, PRs, patch IDs, and tables into the shortest path. Optimize for someone scrolling a coffee-length article:
+
+- Lead with **story and stakes** (what broke for a person using the app; what tension the verify script hid).
+- Prefer **prose scenes** over inventory: one vivid failure path beats a three-column root-cause table as the spine.
+- Tables, patch numbers, and command blocks are **supporting material** after the narrative lands — not the article’s main structure.
+- If the draft reads like a QA report, ship log, or RAG dump, rewrite until a non-author human would stay for the next heading.
+
 ---
 
 ## Command blocks and logs
