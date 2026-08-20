@@ -141,6 +141,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `tuqan-menu-red-herring-tech-debt` | `tuqan-agentic-lessons-menu-red-herring-tech-debt.md` | `tuqan-agentic-lessons-menu-red-herring-tech-debt.md` | done | Part 6: Red herring session hunt while real tech debt (2007 menu generator localhost assumptions + query builder bugs) was the actual problem. Human intervention correcting agent course multiple times. Pragmatic simple renderer + smart legacy fallback. New dedicated hero (`Series_Order: 9`). |
 | `tuqan-phase-0-strategic-foundation` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | done | Tuqan series opener; ES file canonical path `content/blog/` (not `blog/es/`). |
 | `tuqan-agentic-lessons-16-base-consolidates-clean-verification` | `tuqan-agentic-lessons-16-base-consolidates-clean-verification.md` | `tuqan-agentic-lessons-16-base-consolidates-clean-verification.md` | done | Agentic lessons 16: base consolidates after autonomous legs since 9.3 + clean human verification (no breakages, no oddities). |
+| `tuqan-post-9-40-user-qa-plateau` | `tuqan-post-9-40-user-qa-plateau.md` | `tuqan-post-9-40-user-qa-plateau.md` | done | Post-9.40 plateau human QA checklist vs verify script; three P0 hotfixes (Mejora Config, ejecución list Twig key, areas 0051); PR #114 Tuqan; dedicated hero seed 20082026 (`Series_Order: 17`). |
 
 ## Batch migration plan (to avoid context overflow)
 

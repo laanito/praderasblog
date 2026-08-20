@@ -1,0 +1,9 @@
+# tuqan-post-9-40-user-qa-plateau-hero
+
+- Method: ComfyUI local + scripts/comfyui/export_cover.py
+- Workflow: scripts/comfyui/sdxl_ubersimple.api.json (SDXL)
+- Seed: 20082026
+- Prefix: tuqan_qa_plateau_940
+- Positive (EN CLIP): Wide cinematic editorial illustration for Praderas tech blog, soft golden-hour light over calm meadow greens and neutrals, abstract quality-assurance metaphor: translucent checklist panels and gentle inspection lenses floating above modular software blocks, soft network of verification paths, quiet professional high detail, tasteful color grading, no readable text, no logos, no watermarks
+- Output: tuqan-post-9-40-user-qa-plateau-hero.webp (+ -social.jpg via export_cover)
+- Date: 2026-08-20
