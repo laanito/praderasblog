@@ -512,6 +512,19 @@ body.praderas-site .pradera-sidebar .card .card-body {
   padding: 1rem;
 }
 
+body.praderas-site .sidebar-affiliate__link {
+  max-width: 100%;
+}
+
+body.praderas-site .sidebar-affiliate__img {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border: 0;
+  border-radius: var(--pradera-radius-sm);
+}
+
 /* Footer */
 body.praderas-site .pradera-footer {
   margin-top: 0;
