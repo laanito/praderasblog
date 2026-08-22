@@ -142,6 +142,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `tuqan-phase-0-strategic-foundation` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | `tuqan-phase-0-strategic-foundation-audit-and-roadmap.md` | done | Tuqan series opener; ES file canonical path `content/blog/` (not `blog/es/`). |
 | `tuqan-agentic-lessons-16-base-consolidates-clean-verification` | `tuqan-agentic-lessons-16-base-consolidates-clean-verification.md` | `tuqan-agentic-lessons-16-base-consolidates-clean-verification.md` | done | Agentic lessons 16: base consolidates after autonomous legs since 9.3 + clean human verification (no breakages, no oddities). |
 | `tuqan-post-9-40-user-qa-plateau` | `tuqan-post-9-40-user-qa-plateau.md` | `tuqan-post-9-40-user-qa-plateau.md` | done | Post-9.40 plateau human QA checklist vs verify script; three P0 hotfixes (Mejora Config, ejecución list Twig key, areas 0051); PR #114 Tuqan; dedicated hero seed 20082026 (`Series_Order: 17`). |
+| `migracion-praderas-01-hermes-once` | `migracion-praderas-01-hermes-para-lo-que-pasa-una-vez.md` | `migracion-praderas-01-hermes-for-what-happens-once.md` | done | New series *Migración Praderas* (Order 1): Hermes for one-off server move vs Ansible ROI; Time4VPS (affid link); web cut first, NC chapter later. Hero seed 22082026. |
 
 ## Batch migration plan (to avoid context overflow)
 
