@@ -56,6 +56,7 @@ If the post is **only** a cover retrofit tick (no new narrative), you may skip a
 | `Image:` pointing at another post’s WebP | Violates one-asset-per-article rule | Generate or document explicit reuse in prose |
 | EN article linking to Spanish `/blog/slug` only | Poor EN UX | EN body links use `/blog/en/...` where a pair exists |
 | Skipping `python3 scripts/frontmatter_audit.py` | Broken tags, duplicate keys, missing images merge silently | Run before every PR |
+| Dense “info delivery” tone (tables of P0s, patch lists, command spine) | Feels like a QA report for agents, not a blog for humans | Lead with reading experience: story, stakes, lessons in prose; data after (2026-08 feedback on Tuqan post-9.40 QA article) |
 
 ---
 
