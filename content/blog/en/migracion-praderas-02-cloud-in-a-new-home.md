@@ -4,10 +4,10 @@ Description: We close the heavy stretch of the move: Nextcloud now lives on the 
 Date: 2026-08-23 08:00PM
 Template: post
 Author: Luis Amigo
-Tags: Systems, Productivity, Artificial Intelligence, Nextcloud
+Tags: Sistemas, Productividad, Inteligencia Artificial
 Lang: en
 Translation_Key: migracion-praderas-02-cloud-new-home
-Series: Praderas migration
+Series: Migración Praderas
 Series_Slug: migracion-praderas
 Series_Order: 2
 Image: /assets/images/migracion-praderas-02-cloud-new-home-hero.webp
