@@ -4,7 +4,7 @@ Description: Cerramos el tramo grande de la mudanza: Nextcloud ya vive en el VPS
 Date: 2026-08-23 08:00PM
 Template: post
 Author: Luis Amigo
-Tags: Sistemas, Productividad, Inteligencia Artificial, Nextcloud
+Tags: Sistemas, Productividad, Inteligencia Artificial
 Lang: es
 Translation_Key: migracion-praderas-02-cloud-new-home
 Series: Migración Praderas
