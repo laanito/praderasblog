@@ -145,6 +145,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `migracion-praderas-01-hermes-once` | `migracion-praderas-01-hermes-para-lo-que-pasa-una-vez.md` | `migracion-praderas-01-hermes-for-what-happens-once.md` | done | New series *Migración Praderas* (Order 1): Hermes for one-off server move vs Ansible ROI; Time4VPS (affid link); web cut first, NC chapter later. Hero seed 22082026. |
 | `migracion-praderas-02-cloud-new-home` | `migracion-praderas-02-la-nube-en-casa-nueva.md` | `migracion-praderas-02-cloud-in-a-new-home.md` | done | Migración #2: NC on new Time4VPS, backups, Talk HPB; Hermes one-off; affiliate Time4VPS |
 | `migracion-praderas-03-hermes-talk` | `migracion-praderas-03-hablar-con-hermes-en-talk.md` | `migracion-praderas-03-talking-to-hermes-in-talk.md` | draft | Migración #3: host Hermes + Talk bot + official bridge; Docker only as terminal backend; no hermes_cli container |
+| `migracion-praderas-04-agenda-bolsillo` | `migracion-praderas-04-la-agenda-en-el-bolsillo.md` | `migracion-praderas-04-the-agenda-in-your-pocket.md` | draft | Migración #4: human pitch — NC+Hermes on phone, family NL agenda, autonomy; P0–P2 capabilities without sales tone |
 
 ## Batch migration plan (to avoid context overflow)
 
