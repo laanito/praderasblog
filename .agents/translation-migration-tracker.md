@@ -148,6 +148,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `migracion-praderas-04-agenda-bolsillo` | `migracion-praderas-04-la-agenda-en-el-bolsillo.md` | `migracion-praderas-04-the-agenda-in-your-pocket.md` | draft | Migración #4: human pitch — NC+Hermes on phone, family NL agenda, autonomy; P0–P2 capabilities without sales tone |
 | `migracion-praderas-05-manos-casa` | `migracion-praderas-05-manos-en-la-casa.md` | `migracion-praderas-05-hands-on-the-house.md` | draft | Migración #5: hands on the house — watch/digest/deck/deploy trades, limits, narrative what/why/how |
 | `migracion-praderas-06-casa-lee-red` | `migracion-praderas-06-la-casa-que-lee-la-red.md` | `migracion-praderas-06-the-house-that-reads-the-web.md` | draft | Migración #6: house reads the web with judgment — local path + spare key, Hoy/Casa/48h brief |
+| `migracion-praderas-07-correo-no-manda` | `migracion-praderas-07-el-correo-que-no-manda-la-casa.md` | `migracion-praderas-07-the-mail-that-does-not-run-the-house.md` | draft | Migración #7: mail that does not run the house — forward→judgment→reply |
 
 ## Batch migration plan (to avoid context overflow)
 
