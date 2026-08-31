@@ -302,8 +302,7 @@ class BlogJson extends AbstractPicoPlugin
         $item['content_format'] = 'markdown';
         $item['series'] = $this->readMetaString($meta, array('series', 'Series'), '') ?: null;
         $item['series_slug'] = $this->readMetaString($meta, array('series_slug', 'Series_Slug'), '') ?: null;
-        $seriesOrder = $this->readMetaString($meta, array('series_order', 'Series_Order'), '');
-        $item['series_order'] = $seriesOrder !== '' ? (int) $seriesOrder : null;
+        $item['series_order'] = $this->readMetaInteger($meta, array('series_order', 'Series_Order'));
         $item['modified_at'] = $this->pageModifiedAt($page);
 
         return $item;
@@ -370,6 +369,25 @@ class BlogJson extends AbstractPicoPlugin
             }
         }
         return is_string($fallback) ? trim($fallback) : '';
+    }
+
+    private function readMetaInteger(array $meta, array $keys)
+    {
+        foreach ($keys as $key) {
+            if (!isset($meta[$key])) {
+                continue;
+            }
+
+            $value = $meta[$key];
+            if (is_int($value)) {
+                return $value;
+            }
+            if (is_string($value) && preg_match('/^-?\d+$/', trim($value))) {
+                return (int) trim($value);
+            }
+        }
+
+        return null;
     }
 
     private function readTagFilter()

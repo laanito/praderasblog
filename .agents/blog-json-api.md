@@ -166,6 +166,7 @@ curl -sS 'http://localhost:8080/blog.json' | jq '.posts[0] | {word_count, estima
 
 ## Changelog
 
+- **2026-08-31:** Preserve integer-valued Pico metadata when serializing `Series_Order`; per-post JSON now emits the documented `series_order` instead of `null`.
 - **2026-05-25:** v1.2 — public `/for-ai-agents` + `/en/for-ai-agents` discovery pages (Day 25).
 - **2026-05-24:** v1.1 — `/search.json`, `/en/search.json`, `word_count`, `estimated_tokens`, `modified_at` on listings; `PicoSearch::searchBlogPosts()`; schema **1.1** (Day 24).
 - **2026-05-20 (follow-up):** Planned v1.2 (`/for-ai-agents`).
