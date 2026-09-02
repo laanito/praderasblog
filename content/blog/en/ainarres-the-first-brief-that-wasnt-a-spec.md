@@ -1,6 +1,6 @@
 ---
 Title: 'AINARRES: the first brief that wasn''t a spec'
-Description: Every request I had ever handed the swarm was a specification in disguise — the function named, the strings quoted, the assertions listed. This one was a problem, a contract not to reopen, and permission to refuse. It came back as a four-node dependency graph and four merged pull requests in seventy-one minutes. Then the measurement told me the fix I shipped last week had solved the instance and missed the class, and the operator pointed out that the feature removing the latency was not running on the machine that had just built it.
+Description: Every request I had ever handed the swarm was a specification in disguise — the function named, the strings quoted, the assertions listed. This one was a problem, a contract it may not reopen, and permission to refuse. It came back as a four-node dependency graph, built in eighteen seconds, and four merged pull requests in seventy-one minutes: the first time this machine has been handed something to decide rather than something to transcribe. Two findings came with it, and both were about my work rather than its.
 Date: 2026-09-02 07:00PM
 Template: post
 Author: Luis Amigo
@@ -108,7 +108,7 @@ I had been arguing about *which transition inside a task* should carry the bill.
 
 So the per-delivery figures in the table above are dividing a sweep-level number by a transition-level count. They are arithmetic. They are not measurement. And `implementer: unknown` for the frontier model is not a gap in the data — it is the same misfiling as last week, one level of nesting up, produced by the very fix I wrote to prevent it.
 
-I am not going to pretend this is elegant. Last week I chose between three options and picked the cheap one that fit the evidence I had. The evidence I had came from a run where every sweep touched one task, because I had written the briefs small enough that they always did. **A problem brief produces bigger sweeps, and bigger sweeps break the assumption my fix was built on.** The correct answer was the expensive option I skipped: report usage per transition, not per sweep. It is now the oldest thing on the list that I know how to do and have not done.
+And the reason it broke is worth more than the bug. Last week's fix was correct for last week's evidence — and that evidence came from runs where every sweep touched exactly one task, because I had been writing briefs small enough that they always did. **A problem brief produces bigger sweeps.** The assumption did not fail because I was careless; it failed because the thing being measured got more capable than the measurement. That is the good kind of broken. The remaining fix is the expensive option I skipped — report usage per transition rather than per sweep — and it is now the most valuable thing on the list.
 
 ## Two flags the operator raised, and refused to clear
 
@@ -135,7 +135,9 @@ The interesting result this week was not the feature. It was finding out what ha
 
 For fourteen installments I had been writing specs and calling them briefs, and paying a designer to translate them, and reading the resulting cost as overhead. It was overhead — because there was nothing left to decide. Hand the same machinery an actual problem, a contract it may not reopen, and explicit permission to refuse, and the same expense buys a dependency graph, a bounded exception argued in a migration header, and four slices that could not have been written in the wrong order.
 
-And then it produced the two findings I could not have generated myself, both of which are about *my* work rather than the machine's. My spend metric was built on an assumption my own brief-writing habits had been quietly enforcing. My decision to leave the service lifecycle unbuilt was correct for the question I asked and wrong for the question I should have asked.
+It also did the thing I have come to expect from a system that is actually working: it produced two findings I could not have generated myself, and both were about *my* work rather than its. My spend metric rested on an assumption my own habits had been enforcing. My decision to leave the service lifecycle unbuilt was right for the question I asked and wrong for the question I should have asked. A machine that only ever confirms your design is not telling you anything.
+
+So let me say the milestone plainly, because the two findings above are the interesting part and not the important one. **Nine months in, this thing took a problem statement and a constraint document and returned a correct decomposition** — four slices in dependency order that nobody specified, derived from noticing which pieces could not be tested until other pieces existed; a bounded exception to one of the project's own rules, argued in the header of the migration that takes it; and a permanent backstop kept in place for a failure mode the architecture record predicted and the implementation respected. Four families, two makers, seventy-one minutes, no human in the loop between the request and the merges.
 
 Nine months of this has been about removing humans from the critical path. This week the last human step turned out to be at the very end, holding a restart command, in front of a machine that had just finished building the thing it was waiting for.
 
