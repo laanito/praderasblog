@@ -159,6 +159,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 | `migracion-praderas-05-manos-casa` | `migracion-praderas-05-manos-en-la-casa.md` | `migracion-praderas-05-hands-on-the-house.md` | draft | Migración #5: hands on the house — watch/digest/deck/deploy trades, limits, narrative what/why/how |
 | `migracion-praderas-06-casa-lee-red` | `migracion-praderas-06-la-casa-que-lee-la-red.md` | `migracion-praderas-06-the-house-that-reads-the-web.md` | draft | Migración #6: house reads the web with judgment — local path + spare key, Hoy/Casa/48h brief |
 | `migracion-praderas-07-correo-no-manda` | `migracion-praderas-07-el-correo-que-no-manda-la-casa.md` | `migracion-praderas-07-the-mail-that-does-not-run-the-house.md` | draft | Migración #7: mail that does not run the house — forward→judgment→reply |
+| `openterminalui-citing-and-knowing` | `openterminalui-la-diferencia-entre-citar-y-saber.md` | `openterminalui-the-difference-between-citing-and-knowing.md` | done | *OpenTerminalUI* (Order 18): v2.2 retrospective on the difference between references and semantic truth, explicit briefing scope/lifecycle, the human-found crypto zero-price routing failure, and model capability as a separate concern. Source: published v2.2.0 and application PRs #218–#222. Dedicated built-in AI-generated hero `openterminalui-18-citing-and-knowing-hero.webp` + `-social.jpg`; shared by ES/EN. |
 
 ## Batch migration plan (to avoid context overflow)
 
