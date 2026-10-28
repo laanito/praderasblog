@@ -1,0 +1,12 @@
+Dedicated cover for OpenTerminalUI series chapter 19, v2.3 Context beyond price.
+
+Generation: built-in image_gen tool, 2026-10-28. No existing post image reused.
+Shared by the ES/EN Translation_Key: openterminalui-context-beyond-price.
+
+Final assets:
+- /assets/images/openterminalui-19-context-beyond-price-hero.webp (1200x676, cwebp quality 82)
+- /assets/images/openterminalui-19-context-beyond-price-hero-social.jpg (1200x630, scripts/generate_social_jpg.py)
+The original generated PNG is retained outside Git; only the optimized derivatives ship.
+
+Prompt:
+Use case: stylized-concept. Asset type: dedicated editorial blog hero for Praderas, accompanying an article about OpenTerminalUI v2.3 and why adding more market information is not the same as making sense of it. Scene: a calm wooden research desk beside an open window overlooking a green meadow in soft late-afternoon natural light. Main visual metaphor: one elegant magnifying lens bringing a deliberately chosen small cluster of paper cards into clear focus, with other loose papers remaining softly out of focus around them. The selected cards have only abstract shapes suggesting a price line, a news page and a calendar, absolutely no readable text or numbers. Style: sophisticated quiet cinematic editorial illustration, tactile paper and wood, restrained sage green, warm amber and neutral cream, professional and thoughtful, not a stock photo or neon cyberpunk. Composition: wide landscape hero, one clear focal mass, important content within central 70 percent so it also works in a 1200x630 social crop and small thumbnail. No people, robots, brains, causal arrows, readable text, logos, brand marks or watermarks. Opaque background.
