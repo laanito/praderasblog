@@ -1,0 +1,11 @@
+Dedicated cover for OpenTerminalUI chapter 20, v2.4 Task-appropriate models.
+Generated with the built-in image_gen tool on 2026-10-31. No previous cover reused.
+Shared Translation_Key: openterminalui-task-appropriate-models.
+
+Final assets:
+- openterminalui-20-task-appropriate-models-hero.webp: 1200x800, cwebp quality 82.
+- openterminalui-20-task-appropriate-models-hero-social.jpg: 1200x630, standard generate_social_jpg.py.
+Original generated PNG remains outside Git. No numeric seed is exposed by this tool.
+
+Prompt:
+Use case: editorial illustration. Asset type: dedicated landscape blog hero for chapter 20 of a human–AI collaboration story about a financial research terminal. Primary request: a quiet wide cinematic editorial illustration for the Spanish tech blog Praderas, one coherent metaphor for choosing the right instrument for a question. On a warm wooden desk at an open window overlooking a green meadow at golden hour, a compact brass hand lens lies beside a larger elegant optical telescope directed toward the same distant landscape; a few plain paper sheets carry only faint abstract lines. The two instruments feel complementary, neither heroic nor superior. Thoughtful, tactile, understated painterly realism, soft natural light, muted green and warm amber palette, generous clear composition that reads well at thumbnail size, 3:2 landscape. No people, robots, brains, readable text, labels, logos, watermarks, financial ticker symbols or rendered interface screenshots.
