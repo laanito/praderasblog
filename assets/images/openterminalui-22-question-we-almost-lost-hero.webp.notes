@@ -1,0 +1,12 @@
+Chapter: OpenTerminalUI 22 — The question we almost lost
+Translation_Key: openterminalui-question-we-almost-lost
+Generator: built-in image_gen tool, using the imagegen skill; no CLI API or ComfyUI run.
+Dedicated article image: the Spanish/English pair shares this cover. No prior article asset is reused.
+Hero: /assets/images/openterminalui-22-question-we-almost-lost-hero.webp
+Export: cwebp quality 76, width 1200 with preserved aspect ratio.
+Social: /assets/images/openterminalui-22-question-we-almost-lost-hero-social.jpg
+Social export: repository scripts/generate_social_jpg.py, 1200 x 630.
+Seed: not exposed by the built-in tool.
+
+Final generation prompt:
+Use case: illustration-story. Asset type: a dedicated wide editorial blog cover for an essay titled 'OpenTerminalUI — The question we almost lost', about preserving a person's research question while evidence moves across different views. Create a quiet, professional, richly textured editorial illustration: a single unbroken amber thread passes through four translucent paper frames arranged on a warm wooden research desk and arrives at an open, unlettered notebook. One paper frame has a small open gap that lets the thread continue. The thread is the clear focal metaphor for continuity, not a tangled network. Faint abstract curved lines on the translucent paper suggest different views of the same evidence, without any readable data or interface. Soft natural late-afternoon light, muted meadow greens and warm ivory, restrained teal shadows, a calm green landscape softly out of focus behind the desk. Painterly fine detail, cinematic horizontal composition, enough breathing space, central subject safe for a 1200 by 630 social crop. No readable text, letters, numbers, logos, watermarks, stock tickers, coins, robots, neon cyberpunk, or financial buy/sell arrows.
