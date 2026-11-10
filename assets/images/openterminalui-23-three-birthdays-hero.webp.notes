@@ -1,0 +1,12 @@
+Generated with the built-in image_gen tool using the imagegen skill.
+Mode: built-in generation; no ComfyUI or CLI/API fallback.
+Numeric seed: not exposed by the built-in tool.
+Source PNG: /Users/lamigo/.codex/generated_images/01a058a1-9956-7b21-9562-251ff8f9fbc0/exec-5bcaad2c-3add-4b67-8a3d-782af6adab1a.png
+Hero: /Users/lamigo/codigo/praderasblog/assets/images/openterminalui-23-three-birthdays-hero.webp
+Social: /Users/lamigo/codigo/praderasblog/assets/images/openterminalui-23-three-birthdays-hero-social.jpg
+Shared Translation_Key: openterminalui-three-birthdays
+Hero export: cwebp -q 76 -resize 1200 0 (original PNG preserved).
+Social export: repository scripts/generate_social_jpg.py, 1200x630 JPEG.
+
+Final prompt:
+Use case: illustration-story. Asset type: wide editorial blog cover for 'OpenTerminalUI and the number with three birthdays', an essay about the different times carried by financial evidence. Primary request: a quiet painterly editorial still life of exactly three small hourglasses with slender aged-brass frames and clear slightly teal glass, standing beside one folded ivory document on a broad pale stone windowsill overlooking a soft green meadow. Each hourglass has a visibly different distribution of warm sand, suggesting three separate clocks attached to the same report. The document has only subtle abstract embossed lines, completely unreadable. Composition: cinematic horizontal, simple central focal group, plenty of breathing space, safe for a wide 1200 by 630 crop. Soft natural late-afternoon light, warm ivory and meadow greens, restrained amber highlights, delicate handmade textures, professional high-detail illustration. Constraints: exactly three hourglasses, one document, no readable text, letters, numbers, logos, watermarks, graphs, stock tickers, coins, robots, birthday candles, party decoration or neon cyberpunk.
