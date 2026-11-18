@@ -36,6 +36,7 @@ When in doubt, prefer **honest, dated** statements over vague “AI-assisted” 
 
 | Translation_Key | ES path (content/blog/) | EN path (content/blog/en/) | Status | Notes |
 |-------------------|-------------------------|----------------------------|--------|--------|
+| `openterminalui-right-to-ask-again` | `openterminalui-el-derecho-a-volver-a-preguntar.md` | `openterminalui-the-right-to-ask-again.md` | done | *OpenTerminalUI* (Order 24): v2.8/v2 close-out; durable answers and original evidence, rerun versus refresh, independent tone/asset judgments, protected retention, the Home ledger-history discovery and Portfolio-first v3 UX direction. Dedicated built-in AI-generated fern/notebook hero `openterminalui-24-ask-again-hero.webp` + `-social.jpg`; shared by ES/EN. |
 | `praderas-home` | _(N/A — use `content/index.md`)_ | _(N/A — use `content/en/index.md`)_ | done | Home pair; editorial-era text must stay in sync. |
 | `ainarres-intro-substrate` | `ainarres-sustrato-para-que-las-ia-coordinen-su-trabajo.md` | `ainarres-a-substrate-for-ais-to-coordinate-their-own-work.md` | done | New series *AINARRES* (Order 1): overview/intro. Hero `ainarres-01-intro-substrate-hero.webp` (ComfyUI SDXL, seed `19062026`) + `-social.jpg`. |
 | `ainarres-bootstrap` | `ainarres-se-construye-a-si-mismo.md` | `ainarres-builds-itself.md` | done | *AINARRES* (Order 2): the v2 bootstrap — built `ainarres status` as an AINARRES project; capability escalation + independent grok integrator. Hero `ainarres-02-bootstrap-hero.webp` (ComfyUI SDXL, seed `27062026`) + `-social.jpg`. |
@@ -220,6 +221,7 @@ Add rows as you fix recurring choices (tags, UI strings, series names).
 | Editorial eras (home) | 2020 human / 2023–24 IA prose / 2026 IA-led engineering | same facts in EN | Keep `index.md` ↔ `en/index.md` aligned. |
 | Research provenance | evidencia técnica capturada | captured technical evidence | Dated observations retained with a saved synthesis; not refreshed by private citation checks. |
 | Filing chronology | periodo fiscal / fecha de presentación / recuperación | fiscal period / filed date / retrieval | Distinct date roles; none alone proves earliest publication or investor knowledge. |
+| Saved research | volver a ejecutar entradas guardadas / actualizar con datos actuales | rerun saved inputs / refresh with current data | Frozen evidence and current-source collection create separate linked runs; reopening runs neither. |
 
 ---
 
